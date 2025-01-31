@@ -22,7 +22,7 @@ export default function Navbar() {
 
             <div className={`${menuStatus ? "block" : "hidden"} fixed inset-0 bg-[#0A0A23] w-full text-white flex items-center justify-center`}>
                <div className="flex items-center space-x-6">
-                  <p className=" md:text-xl text-[#EEEEEE]  
+                  <p className="text-sm md:text-xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -30,7 +30,7 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/about">About</Link>
                   </p>
-                  <p className=" md:text-xl text-[#EEEEEE]  
+                  <p className="text-sm md:text-xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -38,7 +38,7 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       Experience
                   </p>
-                  <p className=" md:text-xl text-[#EEEEEE]  
+                  <p className="text-sm md:text-xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -48,7 +48,7 @@ export default function Navbar() {
                   </p>
                   <button 
                     onClick={() => setMenuStatus(false)}
-                    className=" md:text-xl text-[#EEEEEE]  
+                    className="text-sm md:text-xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
