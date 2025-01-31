@@ -15,7 +15,7 @@ export default function AboutPage() {
             <div>
                 <p className="my-[10%] text-xl text-[#333333]">
                     Hi,<strong className="text-[#0A0A23]"> nice to meet you!</strong> My name is 
-                    <strong className="text-[#0A0A23]"> Luis Villalon</strong>. I'm from
+                    <strong className="text-[#0A0A23]"> Luis Villalon</strong>. I am from
                     <strong className="text-[#0A0A23]"> Southern California</strong>, where the sun never stops shining. 
                     I <strong className="text-[#0A0A23]">love to learn</strong> and <strong className="text-[#0A0A23]"> 
                     challenge myself</strong>.
@@ -29,7 +29,7 @@ export default function AboutPage() {
                     <strong className="text-[#0A0A23]"> SQL</strong> and <strong className="text-[#0A0A23]"> NoSQL databases</strong>.
                 </p>
                 <p  className="my-[10%] text-xl text-[#333333]">
-                    Whenever I'm not in front of a computer screen, I enjoy spending time outdoors—whether it's 
+                    Whenever I am not in front of a computer screen, I enjoy spending time outdoors—whether it is 
                     hiking, playing basketball, or going for a run.
                 </p>
                 <h1 className="underline underline-offset-2  text-4xl font-extrabold">The Evolution of My Coding Career</h1>
@@ -52,7 +52,7 @@ export default function AboutPage() {
                 <p className="my-[1%] text-xl text-[#333333]">
                     This is when I decided to go back to college to earn a B.S. in Computer Science to further develop my career as a
                     software engineer. With all the skills as a full-stack developer I learned on my own, college courses have been a breeze.
-                    I recently acquired an Associate's in Computer Science and I am currently waiting on decisions being made from Cal State
+                    I recently acquired an Associate in Computer Science and I am currently waiting on decisions being made from Cal State
                     Uniersities. 
                 </p>    
                 <p className="my-[1%] text-xl text-[#333333]">
