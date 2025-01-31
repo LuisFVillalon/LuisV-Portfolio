@@ -10,7 +10,7 @@ export default function Navbar() {
       <nav className="sticky top-0 w-full shadow-md bg-[#EEEEEE] bg-opacity-70">
           <div
             className={`flex justify-between my-[1%] transition-all duration-300 
-              ${menuStatus ? "mr-[10%] ml-[0%] mt-[0%]" : "mx-[10%] md:mx-[20%]"}`}
+              ${menuStatus ? "mt-[0%] mr-[5%]" : "mx-[10%] md:mx-[20%]"}`}
             style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}
           >
             <Link href="/">
@@ -21,10 +21,10 @@ export default function Navbar() {
             </button>
 
             <div className={`${menuStatus ? "block" : "hidden"} flex justify-start items-start 
-              fixed inset-0 bg-[#0A0A23] h-screen w-[50%] text-white 
+              fixed inset-0 bg-[#0A0A23] h-screen w-[90%] text-white 
               bg-opacity-95
               `}>
-               <div className="my-[5%] flex flex-col items-end space-x-5 space-y-5">
+               <div className="my-[5%] w-[90%] flex flex-col items-end space-x-5 space-y-5">
                   <p className="text-2xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
