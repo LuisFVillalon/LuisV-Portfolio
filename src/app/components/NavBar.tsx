@@ -10,18 +10,21 @@ export default function Navbar() {
       <nav className="sticky top-0 w-full shadow-md bg-[#EEEEEE] bg-opacity-70">
           <div
             className={`flex justify-between my-[1%] transition-all duration-300 
-              ${menuStatus ? "mx-[0%]" : "mx-[10%] md:mx-[20%]"}`}
+              ${menuStatus ? "mr-[10%] ml-[0%] my-[0%]" : "mx-[10%] md:mx-[20%]"}`}
             style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}
           >
             <Link href="/">
               <i className="text-2xl text-[#0A0A23] fas fa-home"></i>
             </Link>
-            <button onClick={() => setMenuStatus(true)}>
+            <button onClick={() => setMenuStatus(!menuStatus)}>
               <i className="text-2xl text-[#0A0A23] fas fa-bars"></i>
             </button>
 
-            <div className={`${menuStatus ? "block" : "hidden"} fixed inset-0 bg-[#0A0A23] w-full text-white flex items-center justify-center`}>
-               <div className="flex items-center space-x-6">
+            <div className={`${menuStatus ? "block" : "hidden"} flex justify-start items-start 
+              fixed inset-0 bg-[#0A0A23] h-screen w-[50%] text-white 
+              bg-opacity-95
+              `}>
+               <div className="my-[5%] flex flex-col items-end space-x-6">
                   <p className="text-sm md:text-xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
