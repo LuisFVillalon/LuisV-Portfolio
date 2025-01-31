@@ -7,7 +7,7 @@ import { useState } from 'react';
 export default function Navbar() {
     const [menuStatus, setMenuStatus] = useState(false);
   return (
-      <nav className="sticky top-0 w-full shadow-md bg-[#EEEEEE] bg-opacity-70">
+      <nav className="z-10 sticky top-0 w-full shadow-md bg-[#EEEEEE] bg-opacity-70">
           <div
             className={`flex justify-between my-[1%] transition-all duration-300 
               ${menuStatus ? "mt-[0%] md:py-[1%] md:my-[0%] mr-[5%] md:mr-[0%]" : "mx-[10%] md:mx-[20%]"}`}
