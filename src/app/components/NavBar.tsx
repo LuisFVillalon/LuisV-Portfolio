@@ -14,10 +14,10 @@ export default function Navbar() {
             style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}
           >
             <Link href="/">
-              <i className="text-2xl text-[#0A0A23] fas fa-home"></i>
+              <i className="text-2xl md:text-4xl text-[#0A0A23] fas fa-home"></i>
             </Link>
             <button onClick={() => setMenuStatus(!menuStatus)}>
-              <i className="text-2xl text-[#0A0A23] fas fa-bars"></i>
+              <i className="text-2xl md:text-4xl text-[#0A0A23] fas fa-bars"></i>
             </button>
 
             <div className={`${menuStatus ? "block" : "hidden"} flex justify-start items-start md:items-center
@@ -25,7 +25,7 @@ export default function Navbar() {
               bg-opacity-95 md:bg-opacity-100 
               `}>
                <div className="my-[5%] md:my-[0%] w-[90%] md:w-[100%] flex flex-col md:flex-row items-end md:justify-center space-x-5 space-y-5 md:space-y-0">
-                  <p className="text-2xl text-[#EEEEEE]  
+                  <p className="text-2xl md:text-3xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -33,7 +33,7 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/about">About</Link>
                   </p>
-                  <p className="text-2xl text-[#EEEEEE]  
+                  <p className="text-2xl md:text-3xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -41,7 +41,7 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       Experience
                   </p>
-                  <p className="text-2xl text-[#EEEEEE]  
+                  <p className="text-2xl md:text-3xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -49,7 +49,7 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       Projects
                   </p>
-                  <p className="text-2xl text-[#EEEEEE]  
+                  <p className="text-2xl md:text-3xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -59,7 +59,7 @@ export default function Navbar() {
                   </p>                  
                   <button 
                     onClick={() => setMenuStatus(false)}
-                    className="text-2xl text-[#EEEEEE]  
+                    className="text-2xl md:text-3xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
