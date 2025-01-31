@@ -19,3 +19,6 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Import Font Awesome at the end */
+@import '@fortawesome/fontawesome-free/css/all.min.css';
