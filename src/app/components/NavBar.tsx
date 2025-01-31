@@ -49,6 +49,14 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       Projects
                   </p>
+                  <p className="text-2xl text-[#EEEEEE]  
+                    hover:font-black 
+                    hover:cursor-pointer
+                    hover:underline
+                    hover:text-[#006400] transition-colors"
+                    style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
+                      Blog
+                  </p>                  
                   <button 
                     onClick={() => setMenuStatus(false)}
                     className="text-2xl text-[#EEEEEE]  
