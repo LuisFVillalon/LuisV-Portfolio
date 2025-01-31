@@ -10,7 +10,7 @@ export default function Navbar() {
       <nav className="sticky top-0 w-full shadow-md bg-[#EEEEEE] bg-opacity-70">
           <div
             className={`flex justify-between my-[1%] transition-all duration-300 
-              ${menuStatus ? "mr-[10%] ml-[0%] my-[0%]" : "mx-[10%] md:mx-[20%]"}`}
+              ${menuStatus ? "mr-[10%] ml-[0%] mt-[0%]" : "mx-[10%] md:mx-[20%]"}`}
             style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}
           >
             <Link href="/">
@@ -24,8 +24,8 @@ export default function Navbar() {
               fixed inset-0 bg-[#0A0A23] h-screen w-[50%] text-white 
               bg-opacity-95
               `}>
-               <div className="my-[5%] flex flex-col items-end space-x-6">
-                  <p className="text-sm md:text-xl text-[#EEEEEE]  
+               <div className="my-[5%] flex flex-col items-end space-x-5 space-y-5">
+                  <p className="text-2xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -33,7 +33,7 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/about">About</Link>
                   </p>
-                  <p className="text-sm md:text-xl text-[#EEEEEE]  
+                  <p className="text-2xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -41,7 +41,7 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       Experience
                   </p>
-                  <p className="text-sm md:text-xl text-[#EEEEEE]  
+                  <p className="text-2xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -51,7 +51,7 @@ export default function Navbar() {
                   </p>
                   <button 
                     onClick={() => setMenuStatus(false)}
-                    className="text-sm md:text-xl text-[#EEEEEE]  
+                    className="text-2xl text-[#EEEEEE]  
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
