@@ -4,7 +4,7 @@ import Image from 'next/image';
 export default function Homebody() {
     return (
 
-        <div className="my-[1%] mx-[10%] md:mx-[20%] flex flex-col  h-[100%]">
+        <div className="my-[5%] mx-[10%] md:mx-[20%] flex flex-col  h-[100%]">
             <div className="text-start col-start-1 col-end-5 text-[#0A0A23] flex flex-col">
                 <h1 className="my-[1%] text-5xl font-extrabold">Hi, I am Luis Villalon. </h1>
                 <h2 className="my-[1%] bg-[#006400] text-[#EEEEEE] text-3xl font-extrabold">I build full-stack web applications. </h2>
