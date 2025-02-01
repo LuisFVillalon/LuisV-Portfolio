@@ -84,7 +84,7 @@ export default function AboutPage() {
                         rel="noopener noreferrer"
                         >Imperial Valley College</a> and am currently in the process of transferring to a four-year university. 
                     </p>
-                    <div className="flex">
+                    <div className="flex items-center justify-between  w-full">
                         <Image 
                             src="/IVC_Logo.png"
                             alt="IVC logo."
