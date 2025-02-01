@@ -9,17 +9,19 @@ export default function Homebody() {
                 <h1 className="my-[1%] text-5xl font-extrabold">Hi, I am Luis Villalon. </h1>
                 <h2 className="my-[1%] bg-[#006400] text-[#EEEEEE] text-3xl font-extrabold">I build full-stack web applications. </h2>
                 <p className="my-[5%] md:my-[1%] text-2xl text-[#333333]">
-                    I am a <strong>software engineer</strong> specializing in building scalable <strong>full-stack </strong>web applications.
+                    I am a <strong className="text-[#0A0A23]">software engineer</strong> specializing in building 
+                    scalable <strong className="text-[#0A0A23]">full-stack </strong>web applications.
                     Self-taught and currently persuing a Bachelor&apos;s of Science in Computer Science.
                 </p>
                 <p className="my-[5%] md:my-[1%] text-2xl text-[#333333]">
-                    I leverage my full-stack expertise to deliver <strong>clean</strong>, <strong>maintainable </strong> 
-                    code while collaborating 
-                    with product owners and scrum masters during <strong>sprint planning</strong> and <strong>stand-ups </strong>
-                    to drive innovation and build impactful digital products.
+                    I leverage my full-stack expertise to deliver <strong className="text-[#0A0A23]">clean</strong>
+                    , <strong className="text-[#0A0A23]">maintainable </strong> code while collaborating 
+                    with product owners and scrum masters during <strong className="text-[#0A0A23]">sprint 
+                    planning</strong> and <strong className="text-[#0A0A23]">stand-ups </strong> to drive 
+                    innovation and build impactful digital products.
                 </p>  
                 <p className="my-[5%] md:my-[1%] text-2xl text-[#333333]">
-                    Currently working as <strong>Front-end Developer Intern</strong> at <a 
+                    Currently working as <strong className="text-[#0A0A23]">Front-end Developer Intern</strong> at <a 
                         href="https://www.linkedin.com/company/sportsexcitement/posts/?feedView=all" 
                         target="_blank" 
                         rel="noopener noreferrer"
@@ -28,7 +30,7 @@ export default function Homebody() {
                       Sports Excitement
                     </a>. 
                 </p>   
-                <strong className="text-center md:text-start my-[5%] md:my-[1%] text-2xl text-[#333333]">
+                <strong className="text-center md:text-start my-[5%] md:my-[1%] text-2xl text-[#0A0A23]">
                     Open for work.    
                 </strong>                  
             </div>
