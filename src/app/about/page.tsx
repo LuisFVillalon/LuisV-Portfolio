@@ -13,14 +13,34 @@ export default function AboutPage() {
         <div className="text- mx-[20%] my-[1%] text-[#0A0A23]">
             <h1 className="underline underline-offset-2  text-4xl font-extrabold">About Luis Villalon</h1>
             <div>
-                <p className="my-[10%] text-xl text-[#333333]">
-                    Hi,<strong className="text-[#0A0A23]"> nice to meet you!</strong> My name is 
-                    <strong className="text-[#0A0A23]"> Luis Villalon</strong>. I am from
-                    <strong className="text-[#0A0A23]"> Southern California</strong>, where the sun never stops shining. 
-                    I <strong className="text-[#0A0A23]">love to learn</strong> and <strong className="text-[#0A0A23]"> 
-                    challenge myself</strong>.
+                <p className="my-[10%] md:my-[1%] text-xl text-[#333333]">
+                    Hi, nice to meet you! I&apos;m  Luis Villalon, a 
+                    Software Engineer and Full-Stack Developer from <a 
+                        className="text-[#006400] underline font-bold" 
+                        href="https://en.wikipedia.org/wiki/Calexico%2C_California" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                    >
+                     Calexico, CA</a>. I&apos;m passionate
+                    about learning and constatnly challenging myself to grow!
                 </p>
-                <p className="my-[10%] text-xl text-[#333333]">
+                <p className="my-[10%] md:my-[3%] text-xl text-[#333333]">
+                    Currently, I’m a Front-End Developer Intern at <a 
+                        className="text-[#006400] underline font-bold" 
+                        href="https://www.linkedin.com/company/sportsexcitement/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                    >Sports Excitement</a>, helping build
+                    a global sports community platform that connects athletes, parents, and fans in 
+                    one dynamic space. Previously, I was a Software Engineer Intern at <a 
+                        className="text-[#006400] underline font-bold" 
+                        href="https://ectron.com/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                    >Ectron Corporation</a>, 
+                    where I helped develop a full-stack asset tracking application.
+                </p>
+                <p className="my-[10%] md:my-[3%] text-xl text-[#333333]">
                     With my skills as a <strong className="text-[#0A0A23]"> full-stack developer</strong>, I can build 
                     web applications from the ground up, that deal with <strong className="text-[#0A0A23]"> complex data 
                     visualization and manipulation</strong>. Being a <strong className="text-[#0A0A23]"> 
@@ -28,37 +48,41 @@ export default function AboutPage() {
                     </strong> and <strong className="text-[#0A0A23]"> engaging user interfaces</strong> while dealing with both 
                     <strong className="text-[#0A0A23]"> SQL</strong> and <strong className="text-[#0A0A23]"> NoSQL databases</strong>.
                 </p>
-                <p  className="my-[10%] text-xl text-[#333333]">
-                    Whenever I am not in front of a computer screen, I enjoy spending time outdoors—whether it is 
-                    hiking, playing basketball, or going for a run.
+                <p  className="my-[10%] md:my-[3%] text-xl text-[#333333]">
+                    I learned full-stack development through free online resources like, <a 
+                        className="text-[#006400] underline font-bold" 
+                        href="https://www.theodinproject.com/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                    >The Odin Project</a> and <a 
+                    className="text-[#006400] underline font-bold" 
+                    href="https://www.freecodecamp.org/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    >freeCodeCamp</a>.
+                    To strengthen my theoretical computer science fundamentals, I am pursuing a Bachelor of Science in Computer
+                    Science. I recently earned my Associate of  Science in Computer Science from <a 
+                    className="text-[#006400] underline font-bold" 
+                    href="https://www.imperial.edu/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    >Imperial Valley College</a> and am currently in the process of transferring to a four-year university. 
                 </p>
-                <h1 className="underline underline-offset-2  text-4xl font-extrabold">The Evolution of My Coding Career</h1>
-                <p className="my-[1%] text-xl text-[#333333]">
-                    I was studying Environmental Engineering at the University of California, Riverside from 2016 to 2020. 
-                    When the COVID-19 Pandemic hit, I realized life is too short to not persue a career that makes you feel 
-                    fufilled. This is when I decided to drop out of college. 
-                </p>
-                <p className="my-[1%] text-xl text-[#333333]">
-                    Lost and confused I decided it was best to take my talents to the Emergency Medical Service field. Working
-                    as an Emergency Medical Technician on an ambulance taught me I loved solve complex problems through collaboration
-                    and leadership. It also taught if I was able to save a life I could set out to accomplish anything. 
-                </p>    
-                <p className="my-[1%] text-xl text-[#333333]">
-                    With the new found confidence and free time on my hands, I decided to teach myself how to code with free online
-                    resources. Each day I found myself yearning to learn and get better at developing coding solutions, algorithms, 
-                    and data structures. After buildiong several web applications for my personal use, I decided it was time to dedicate
-                    my full time and energy into this new passion I have found in software development.
-                </p> 
-                <p className="my-[1%] text-xl text-[#333333]">
-                    This is when I decided to go back to college to earn a B.S. in Computer Science to further develop my career as a
-                    software engineer. With all the skills as a full-stack developer I learned on my own, college courses have been a breeze.
-                    I recently acquired an Associate in Computer Science and I am currently waiting on decisions being made from Cal State
-                    Uniersities. 
-                </p>    
-                <p className="my-[1%] text-xl text-[#333333]">
-                    Thanks to my personal projects in web development and my college courses I have been blessed enough to work for wonderful
-                    companies. I have worked as an Software Engineer Intern for Ectron, Inc. and as a Front Developer Intern for Sports Exictement.
-                </p>                                                 
+                <p  className="my-[10%] md:my-[3%] text-xl text-[#333333]">
+                    I consider myself fluent in Spanish, English, and JavaScript. When I&apos;m not in working academically
+                    or professionally, I enjoy spending time outdoors—whether it is hiking, playing basketball, or going for a run.
+                    Arternatively, I love working on a personal apps or watching a good show or movie like, <a 
+                    className="text-[#006400] underline italic font-bold" 
+                    href="https://www.imdb.com/title/tt0141842/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    >the Sopranos</a> or <a 
+                    className="text-[#006400] underline italic font-bold" 
+                    href="https://www.imdb.com/title/tt3783958/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    >Lala Land</a>. 
+                </p>                                               
             </div>
         </div>
       </section>
