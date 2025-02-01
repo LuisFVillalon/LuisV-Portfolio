@@ -90,7 +90,6 @@ export default function AboutPage() {
                             alt="IVC logo."
                             width={100}  // Specify the width and height for optimization
                             height={100}
-                            layout="responsive"
                             className="rounded-lg shadow-lg"
                             
                         /> 
@@ -99,7 +98,6 @@ export default function AboutPage() {
                             alt="The Odin Project logo."
                             width={100}  // Specify the width and height for optimization
                             height={100}
-                            layout="responsive"
                             className="rounded-lg shadow-lg"
                             
                         />
