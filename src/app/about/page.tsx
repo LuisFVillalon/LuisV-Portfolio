@@ -121,7 +121,7 @@ export default function AboutPage() {
                     </p>    
                 </div>     
                 <Image 
-                        src="/theSopranos.webp"
+                        src="/CHrissy_GIF.webp"
                         alt="Chrissy GIF."
                         width="300"  // Specify the width and height for optimization
                         height="300"
