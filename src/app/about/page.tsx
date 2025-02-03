@@ -11,7 +11,7 @@ export default function AboutPage() {
       <Navbar />
 
       <section className="flex w-full">
-        <div className="text- mx-[20%] my-[1%] text-[#0A0A23]">
+        <div className=" mx-[10%] md:mx-[20%] my-[5%] md:my-[1%] text-[#0A0A23]">
             <h1 className="underline underline-offset-2  text-4xl font-extrabold">About Luis Villalon</h1>
             <div className="md:grid md:grid-cols-2">
                         <p className="my-[10%] md:my-[1%] text-xl text-[#333333]">
@@ -151,7 +151,7 @@ export default function AboutPage() {
                         rel="noopener noreferrer"
                         >Imperial Valley College</a> and am currently in the process of transferring to a four-year university. 
             </p>
-            <div className="md:hidden flex items-center justify-between md:justify-evenly w-full">
+            <div className="md:hidden flex items-center justify-evenly md:justify-evenly w-full">
                         <Image 
                             src="/IVC_Logo.png"
                             alt="IVC logo."

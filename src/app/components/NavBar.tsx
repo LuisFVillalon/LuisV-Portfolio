@@ -39,7 +39,7 @@ export default function Navbar() {
                     hover:underline
                     hover:text-[#006400] transition-colors"
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
-                      Experience
+                      <Link href="/experience">Experience</Link>
                   </p>
                   <p className="text-2xl md:text-3xl text-[#EEEEEE]  
                     hover:font-black 
