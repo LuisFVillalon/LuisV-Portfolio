@@ -24,7 +24,7 @@ export default function ExperiencePage() {
                         and evolving as a developer. Tap the button below to explore my experience! 
                     </p>
                     <select value={selectedValue} onChange={(e) => setSelectedValue(e.target.value)} 
-                        className="font-bold text-base bg-[#0A0A23] text-[#EEEEEE] w-full rounded-lg py-1 border-2 border-gray-500"
+                        className="mt-[3%] md:mt-[1%] font-bold text-base bg-[#0A0A23] text-[#EEEEEE] w-full rounded-lg py-1 border-2 border-gray-500"
                     >
                         <option value="currently doing">Currently Doing</option>
                         <option value="professional experience">Professional Experience</option>
