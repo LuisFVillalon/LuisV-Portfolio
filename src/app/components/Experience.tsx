@@ -2,7 +2,7 @@ export function CurrentlyDoing() {
     return (
         <div>
             <p className="text-2xl font-extrabold mb-[5%] md:mb-[2%]">Currently Doing</p>
-            <p className="underline underline-offset-2 mb-[5%] md:mb-[2%] text-xl font-bold">Sports Excitement</p>
+            <p className="underline underline-offset-2 mb-[5%] md:mb-[0%] text-xl font-bold">Sports Excitement</p>
             <div className="text-lg flex justify-between mb-[2%] md:mb-[1%]">
                 <p className="w-[60%] italic font-semibold">Front-end Developer Intern</p>
                 <p className="text-end w-[40%]">Dec 2024 - Present</p>
@@ -22,7 +22,7 @@ export function Education() {
     return (
         <div>
             <p className="text-2xl font-extrabold mb-[5%]  md:mb-[2%]">Education</p>
-            <p className="underline underline-offset-2 mb-[5%]  md:mb-[2%] text-xl font-bold">Imperial Valley College</p>
+            <p className="underline underline-offset-2 mb-[5%]  md:mb-[0%] text-xl font-bold">Imperial Valley College</p>
             <div className="text-lg flex justify-between mb-[2%] md:mb-[1%]">
                 <p className="w-[60%] italic font-semibold">Associate of Science in Computer Science</p>
                 <p className="text-end w-[40%]">June 2023 - Dec 2024</p>
@@ -31,7 +31,7 @@ export function Education() {
             
             <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
 
-            <p className="underline underline-offset-2 mb-[5%] md:mb-[2%] text-xl font-bold">The Odin Project</p>
+            <p className="underline underline-offset-2 mb-[5%] md:mb-[0%] text-xl font-bold">The Odin Project</p>
             <div className="text-lg flex justify-between mb-[2%] md:mb-[1%]">
                 <p className="w-[60%] italic font-semibold">Full Stack JavaScript</p>
                 <p className="text-end w-[40%]">Jul 2022 - Apr 2024</p>
@@ -51,7 +51,7 @@ export function ProfessionalExperience() {
     return (
         <div>
             <p className="text-2xl font-extrabold mb-[5%] md:mb-[2%]">Professional Experience</p>
-            <p className="underline underline-offset-2 mb-[5%] md:mb-[2%] text-xl font-bold">Sports Excitement</p>
+            <p className="underline underline-offset-2 mb-[5%] md:mb-[0%] text-xl font-bold">Sports Excitement</p>
             <div className="text-lg flex justify-between mb-[2%] md:mb-[1%]">
                 <p className="w-[60%] italic font-semibold">Front-end Developer Intern</p>
                 <p className="text-end w-[40%]">Dec 2024 - Present</p>
@@ -62,12 +62,12 @@ export function ProfessionalExperience() {
             </p>
             <p className="text-base mt-[3%] md:mt-[1%]">Tech: HTML, CSS, React.js, Google Firebase, Node.js </p>
             
-            <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
+            <div className="my-[5%] md:my-[2%] border-b border-gray-250"></div>
 
-            <p className="underline underline-offset-2 mb-[5%]  md:mb-[2%] text-xl font-bold">Ectron Corporation</p>
+            <p className="underline underline-offset-2 mb-[5%]  md:mb-[0%] text-xl font-bold">Ectron Corporation</p>
             <div className="text-lg flex justify-between mb-[2%]  md:mb-[1%]">
                 <p className="w-[60%] italic font-semibold">Software Engineer Intern</p>
-                <p className="text-end w-[40%]">Jun 2024 - August 2024</p>
+                <p className="text-end w-[40%]">Jun 2024 - Aug 2024</p>
             </div>
             <p className="text-base"> 
                 Led and collaborated in the development of a full-stack asset tracking application designed for 
@@ -119,6 +119,34 @@ export function Certificates() {
             </p>   
             <p className="text-base mt-[3%] md:mt-[1%]">Tech: Connection, Atlas, Aggregation, CRUD, 
                 Data Modeling, Indexes, Transactions, Document Model </p>                                   
+        </div>
+    );
+}
+
+export function TechTools() {
+    return (
+        <div>
+            <p className="text-2xl font-extrabold mb-[5%] md:mb-[2%]">Tech Tools</p>
+            <p className="underline underline-offset-2 mb-[0%] text-xl font-bold">Programming Language</p>
+            <p className="text-base mt-[3%] md:mt-[1%]">Java, JavaScript, Assembly Language (Windows x86)</p>
+            <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
+
+            <p className="underline underline-offset-2 mb-[0%] text-xl font-bold">Web Development</p>
+            <p className="text-base mt-[3%] md:mt-[1%]">HTML, CSS, Tailwind CSS, Next.js, React.js, Node.js, Express.js </p>   
+            <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
+
+            <p className="underline underline-offset-2 mb-[0%] text-xl font-bold">Databases & Backend</p>
+            <p className="text-base mt-[3%] md:mt-[1%]">MongoDB (NoSQL), Mongoose, Firebase, Microsoft Azure SQL Database</p>   
+            <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
+
+            <p className="underline underline-offset-2 mb-[0%] text-xl font-bold">Content Management System & UI Builders</p>
+            <p className="text-base mt-[3%] md:mt-[1%]">Plasmic CMS</p>   
+            <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
+            
+            <p className="underline underline-offset-2 mb-[0%] text-xl font-bold">Version Control & Project Management</p>
+            <p className="text-base mt-[3%] md:mt-[1%]">GitHub, Taiga</p>   
+            <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
+
         </div>
     );
 }
