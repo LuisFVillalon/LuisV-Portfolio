@@ -2,10 +2,8 @@
 import { useState } from "react";
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
-import {CurrentlyDoing} from '../components/Experience';
-import {Education} from '../components/Experience';
+import {CurrentlyDoing, Education, ProfessionalExperience, Certificates} from '../components/Experience';
 
-const OptionThree = () => <p className="text-black">🎯 You selected Option 3</p>;
 
 // app/about/page.js
 export default function ExperiencePage() {
@@ -38,7 +36,8 @@ export default function ExperiencePage() {
               <div className="mx-[10%] md:mx-[20%] my-[5%] md:my-[1%]  text-[#333333] ">
                 {selectedValue === "currently doing" && <CurrentlyDoing />}
                 {selectedValue === "education" && <Education />}
-                {selectedValue === "professional experience" && <OptionThree />}
+                {selectedValue === "professional experience" && <ProfessionalExperience />}
+                {selectedValue === "certificates" && <Certificates />}
               </div>
             </section>
 
