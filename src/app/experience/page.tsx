@@ -2,7 +2,9 @@
 import { useState } from "react";
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
-import {CurrentlyDoing, Education, ProfessionalExperience, Certificates, TechTools} from '../components/Experience';
+import {CurrentlyDoing, Education, 
+    ProfessionalExperience, Certificates, 
+    TechTools, ExperienceBeyondTech} from '../components/Experience';
 
 
 // app/about/page.js
@@ -39,6 +41,7 @@ export default function ExperiencePage() {
                 {selectedValue === "professional experience" && <ProfessionalExperience />}
                 {selectedValue === "certificates" && <Certificates />}
                 {selectedValue === "tech tools" && <TechTools />}
+                {selectedValue === "experience beyond tech" && <ExperienceBeyondTech />}
               </div>
             </section>
 

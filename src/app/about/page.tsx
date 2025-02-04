@@ -172,7 +172,7 @@ export default function AboutPage() {
             <p  className="my-[10%] md:my-[3%] text-xl text-[#333333]">
                         I consider myself fluent in Spanish, English, and JavaScript. When I&apos;m not in working academically
                         or professionally, I enjoy spending time outdoors—whether it is hiking, playing basketball, or going for a run.
-                        Alternatively, I love working on a personal apps or watching a good show or movie like, <a 
+                        Alternatively, I love working on personal apps or watching a good show or movie like, <a 
                         className="text-[#006400] underline italic font-bold" 
                         href="https://www.imdb.com/title/tt0141842/" 
                         target="_blank" 
