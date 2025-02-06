@@ -38,7 +38,7 @@ export default function AboutPage() {
             <div className="md:grid md:grid-cols-2 gap-4">
                         <div className="hidden md:flex flex-col space-y-5 justify-center items-center">
                             <Image 
-                                src="/Ectron_logo.png"
+                                src="/about/Ectron_logo.png"
                                 alt="Ectron logo."
                                 width={300}  // Specify the width and height for optimization
                                 height={300}
@@ -46,7 +46,7 @@ export default function AboutPage() {
                                 
                             />
                             <Image 
-                                src="/sportexcitement_cover.jpg"
+                                src="/about/sportexcitement_cover.jpg"
                                 alt="Sports Excitement logo."
                                 width={400}  // Specify the width and height for optimization
                                 height={300}
@@ -74,7 +74,7 @@ export default function AboutPage() {
             </div>
             <div className="md:hidden flex justify-center items-center w-full">                  
                             <Image 
-                                src="/sportexcitement_cover.jpg"
+                                src="/about/sportexcitement_cover.jpg"
                                 alt="Sports Excitement logo."
                                 width={400}  // Specify the width and height for optimization
                                 height={300}
@@ -92,7 +92,7 @@ export default function AboutPage() {
             <div className="hidden md:grid md:grid-cols-3 justify-center items-center gap-4">
                         <div className="flex justify-center">
                             <Image 
-                                src="/IVC_Logo.png"
+                                src="/about/IVC_Logo.png"
                                 alt="IVC logo."
                                 width={300}  // Specify the width and height for optimization
                                 height={300}
@@ -122,7 +122,7 @@ export default function AboutPage() {
                         </p>
                         <div className="flex justify-center">
                             <Image 
-                                src="/TOP_Logo.png"
+                                src="/about/TOP_Logo.png"
                                 alt="The Odin Project logo."
                                 width={300}  // Specify the width and height for optimization
                                 height={300}
@@ -153,7 +153,7 @@ export default function AboutPage() {
             </p>
             <div className="md:hidden flex items-center justify-evenly md:justify-evenly w-full">
                         <Image 
-                            src="/IVC_Logo.png"
+                            src="/about/IVC_Logo.png"
                             alt="IVC logo."
                             width={100}  // Specify the width and height for optimization
                             height={100}
@@ -161,7 +161,7 @@ export default function AboutPage() {
                             
                         /> 
                         <Image 
-                            src="/TOP_Logo.png"
+                            src="/about/TOP_Logo.png"
                             alt="The Odin Project logo."
                             width={100}  // Specify the width and height for optimization
                             height={100}
@@ -186,7 +186,7 @@ export default function AboutPage() {
             </p>    
             <div className="flex justify-center items-center">
                     <Image 
-                            src="/Chrissy_GIF.webp"
+                            src="/about/Chrissy_GIF.webp"
                             alt="Chrissy GIF."
                             width={300}  // Specify the width and height for optimization
                             height={300}
@@ -195,7 +195,7 @@ export default function AboutPage() {
             </div>
             <div className="flex justify-center items-center">
                     <Image 
-                        src="/basketball_selfie.jpg"
+                        src="/about/basketball_selfie.jpg"
                         alt="Basketball selfie."
                         width={300}  // Specify the width and height for optimization
                         height={300}
