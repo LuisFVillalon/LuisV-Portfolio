@@ -12,7 +12,7 @@ export default function AboutPage() {
 
       <section className="flex w-full">
         <div className=" mx-[10%] md:mx-[20%] my-[5%] md:my-[1%] text-[#0A0A23]">
-            <h1 className="underline underline-offset-2  text-4xl font-extrabold">About Luis Villalon</h1>
+            <h1 className="text-4xl font-extrabold">About Luis Villalon</h1>
             <div className="md:grid md:grid-cols-2">
                         <p className="my-[10%] md:my-[1%] text-xl text-[#333333]">
                         Hi, nice to meet you! I&apos;m  Luis Villalon, a 

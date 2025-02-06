@@ -18,7 +18,7 @@ export default function ExperiencePage() {
 
             <section className="flex flex-col w-full">
               <div className="mx-[10%] md:mx-[20%] my-[5%] md:my-[1%]  text-[#333333] border-b border-gray-500">
-                <h1 className="underline underline-offset-2  text-3xl font-extrabold">My Career Path</h1>
+                <h1 className="text-3xl font-extrabold">My Career Path</h1>
                 <div className="flex flex-col text-l my-[5%] md:my-[1%] ">
                     <p className="text-base">This is how I&apos;ve dedicated years to honing my skills, overcoming challenges, 
                         and evolving as a developer. Tap the button below to explore my experience! 
