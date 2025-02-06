@@ -27,7 +27,7 @@ export default function AboutPage() {
                         </p>
                         <div className="flex justify-center items-center">
                             <Image 
-                                src="/Calexico.webp"
+                                src="/about/Calexico.webp"
                                 alt="Calexico border."
                                 width={300}  // Specify the width and height for optimization
                                 height={300}
