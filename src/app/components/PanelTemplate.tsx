@@ -12,6 +12,9 @@ interface PanelTemplateProps {
   }
   
   const PanelTemplate: React.FC<PanelTemplateProps> = ({ title, description, tech, github_repo, live_app, image }) => {
+    if (live_app === "") {
+      live_app = github_repo
+    }
     return (
       <div className="bg-[#EEEEEE] rounded shadow-lg overflow-hidden text-[#333333] mx-auto md:mx-8 my-[5%] md:my-[1%] max-w-screen-md w-full border border-4 border-[#0A0A23]">
         <a  

@@ -3,10 +3,10 @@ import Navbar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import Link from 'next/link';
 //import Image from 'next/image';
-import {projectsFrontEnd} from '../../lib/projects';
+import {projectsBackEnd} from '../../lib/projects';
 import PanelTemplate from '../../components/PanelTemplate';
     
-export default function FrontEnd() {
+export default function BackEnd() {
     return (
 
       <div className="flex font-[Monospace] flex-col items-center justify-start min-h-screen bg-[#FFFFFF]">
@@ -15,10 +15,10 @@ export default function FrontEnd() {
 
         <section className="flex flex-col w-full">
           <div className= "mx-[10%] md:mx-[20%] my-[5%] md:my-[1%]  text-[#333333] border-b border-gray-500">
-            <h1 className="text-3xl font-extrabold text-[#0A0A23]">Front-End Projects</h1>
+            <h1 className="text-3xl font-extrabold text-[#0A0A23]">Back-End Projects</h1>
             <p className="text-base">
-              A collection of personal projects showcasing my skills and growth as a Front-End Developer. 
-              Click on an image for the live application or the link to visit GitHub repository.
+              A collection of personal projects showcasing my skills and growth as a Back-End Developer. 
+              Click on an image or the link to visit the GitHub repository.
             </p>
           </div>
           <div className="flex justify-center items-center">
@@ -29,7 +29,7 @@ export default function FrontEnd() {
             </Link>
           </div>
           <div className="mx-[10%] md:mx-[20%] my-[5%] md:my-[1%] grid md:grid-cols-3 md:gap-20 justify-center items-start ">
-            {projectsFrontEnd.map((project, id) => {
+            {projectsBackEnd.map((project, id) => {
               return (
                 <PanelTemplate
                   key={id}
@@ -42,17 +42,6 @@ export default function FrontEnd() {
                 />
               );
             })}
-            {/* <div>
-              <Image 
-                src="/projects/dashboard.png"
-                alt="Dashboard screenshot."
-                width="300"  // Specify the width and height for optimization
-                height="300"
-                className=""
-              />
-              <p className="text-[#0A0A23]">Title</p>
-              <p className="text-[#333333]">Tech</p>
-            </div> */}
           </div>
         </section>
         <Footer />

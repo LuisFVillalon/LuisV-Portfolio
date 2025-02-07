@@ -7,6 +7,22 @@ type projectsFrontEnd = {
     image: string
   };
 
+type projectsBackEnd = {
+    title: string;
+    description: string;
+    tech: string;
+    github_repo: string;
+    image: string
+};
+
+type projectsAcademic = {
+    title: string;
+    description: string;
+    tech: string;
+    github_repo: string;
+    image: string
+};
+
 const projectsFrontEnd = [
     {
         title: 'Pokedex Catalog',
@@ -90,6 +106,87 @@ const projectsFrontEnd = [
     }
 ];
 
+const projectsBackEnd = [
+    {
+        title: 'Blog API',
+        description: 'Developed a backend API for a blog with user authentication, CRUD functionality for posts and comments, validation, and token-based authorization.',
+        tech: 'JavaScript, Node.js, Express.js, MongoDB, Mongoose, Passport.js, bcrypt, JWT (token-based authentication), MVC pattern (models, controllers, routes)',
+        github_repo: 'https://github.com/LuisFernandoVillalon/Blog-API',
+        live_app:'',
+        image: '/projects/backend/blogtemplate.png'
+    },
+    {
+        title: 'Members Only',
+        description: 'Developed a secure backend with authentication, role-based access control, and MongoDB, enabling user sign-up, encrypted passwords, and dynamic permissions for members and admins.',
+        tech: ' JavaScript, Node.js, Express.js, MongoDB, Mongoose, EJS, CSS, bcrypt, Passport.js',
+        github_repo: 'https://github.com/LuisFernandoVillalon/Members-Only',
+        live_app:'',
+        image: '/projects/backend/membersonly.png'     
+    },
+    {  
+        title: 'Whats Poppin?',
+        description: 'Developed a RESTful backend with Node.js, Express.js, and MongoDB, implementing authentication, API routes, and CRUD functionality for managing event postings.',
+        tech: 'JavaScript. Google Firebase Firestore Database and Authentication',
+        github_repo: 'https://github.com/LuisFernandoVillalon/WhatsPoppin',
+        live_app:'',
+        image: '/projects/backend/whatspoppin.png'    
+    },
+    {
+        title: 'Poke-Photo Tag',
+        description: 'Built a RESTful API with MongoDB for efficient leaderboard management, dynamically storing and updating the top 10 records with automated entry removal.',
+        tech: 'JavaScript, Node.js, Express.js, MongoDB, Mongoose, RESTful API, Schema Models, Routes, Controllers',
+        github_repo: 'https://github.com/LuisFernandoVillalon/back-end-pokemon-photo-tag',
+        live_app:'',
+        image: '/projects/backend/pokephototag.png'      
+    }
+
+];
+
+const projectsAcademic = [
+    {
+        title: 'Assembly Language and Machine Organization',
+        description: 'Covered machine architecture, assembly language, data representation, instruction execution, addressing modes, and operating system fundamentals.',
+        tech: 'Assembly Language (Windows x86), Visual Studio',
+        github_repo: 'https://github.com/LuisFernandoVillalon/CS281-Assembly-Language-and-Machine-Organization',
+        live_app:'',
+        image: '/projects/academic/cs281.png'
+    },
+    {
+        title: 'Pokedex',
+        description: 'Developed a JavaFX-based GUI application that organizes, filters, and sorts Pokémon data, implementing data structures and sorting algorithms.',
+        tech: 'Java, JavaFX, Data Structures, Sorting Algorithms, GUI Design, Event Handling, jGrasp',
+        github_repo: 'https://github.com/LuisFernandoVillalon/JAVA-Pokedex',
+        live_app:'',
+        image: '/projects/academic/pokedex.png'        
+    },
+    {  
+        title: 'Introduction to Data Structures',
+        description: 'Covered abstract classes and interfaces, JavaFX, Recursion, Stack, Array, Queue, LinkedList.',
+        tech: 'JAVA, JavaFX, jGrasp',
+        github_repo: 'https://github.com/LuisFernandoVillalon/cs231-IntroDataStructures',
+        live_app:'',
+        image: '/projects/academic/cs231.png'    
+    },
+    {
+        title: 'Hang-Man',
+        description: 'Developed a JavaFX-based Hangman game with a dynamic GUI, implementing polymorphism and inheritance to manage game logic and updating visuals based on user input.',
+        tech: 'Java, JavaFX, Object-Oriented Programming (OOP), Polymorphism, Inheritance, GUI Design, jGrasp',
+        github_repo: 'https://github.com/LuisFernandoVillalon/hang-man',
+        live_app:'',
+        image: '/projects/academic/hangman.png'      
+    },
+    {
+        title: 'Introduction to Object Oriented Programming',
+        description: 'Covered abstract classes and loops, arrays, classes, objects, inheritance, JavaFX, and event driven programs.',
+        tech: 'JAVA, JavaFX, jGrasp',
+        github_repo: 'https://github.com/LuisFernandoVillalon/cs221-IntroOOP',
+        live_app:'',
+        image: '/projects/academic/cs221.png'      
+    }
+
+
+];
+
 export {
-    projectsFrontEnd
+    projectsFrontEnd, projectsBackEnd, projectsAcademic
 };

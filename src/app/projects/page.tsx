@@ -29,12 +29,12 @@ export default function Projects() {
                             Front-End
                         </button>
                     </Link>
-                    <Link className="" href="/projects/frontend">
+                    <Link className="" href="/projects/backend">
                         <button className="text-base  p-[5%] bg-[#EEEEEE] rounded-lg border border-4 border-[#0A0A23] shadow-lg  ">
                             Back-End
                         </button>
                     </Link>
-                    <Link className="" href="/projects/frontend">
+                    <Link className="" href="/projects/academic">
                         <button className= "text-base p-[5%] bg-[#EEEEEE] rounded-lg border border-4 border-[#0A0A23] shadow-lg ">
                             Academic
                         </button>
