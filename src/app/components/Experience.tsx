@@ -16,7 +16,7 @@ export function CurrentlyDoing() {
                 Developed responsive a web application, collaborated on UI/UX improvements, and optimized 
                 performance for a global sports platform.
             </p>
-            <p className="text-base mt-[3%] md:mt-[1%]">Tech: HTML, CSS, React.js, Google Firebase, Node.js </p>
+            <p className="text-base mt-[3%] md:mt-[1%]">Tech: HTML, CSS, React.js, Figma, Github, Taiga</p>
             
         
         </div>
@@ -40,7 +40,7 @@ export function ProfessionalExperience() {
                 Developed responsive a web application, collaborated on UI/UX improvements, and optimized 
                 performance for a global sports platform.
             </p>
-            <p className="text-base mt-[3%] md:mt-[1%]">Tech: HTML, CSS, React.js, Google Firebase, Node.js </p>
+            <p className="text-base mt-[3%] md:mt-[1%]">Tech: HTML, CSS, React.js, Figma, Github, Taiga</p>
             
             <div className="my-[5%] md:my-[2%] border-b border-gray-250"></div>
 
@@ -105,6 +105,50 @@ export function Certificates() {
     return (
         <div>
             <p className="text-2xl font-extrabold mb-[5%] md:mb-[2%]">Certificates</p>
+            <div className="flex  space-x-1 text-xl font-bold">
+                <a className="text-[#006400] underline underline-offset-2 mb-[5%] md:mb-[0%]"
+                    href="https://app-na2.hubspot.com/academy/achievements/mdm3m2ys/en/1/luis-villalon/seo" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                >SEO</a> <p>&</p> 
+                <a className="text-[#006400] underline underline-offset-2 mb-[5%] md:mb-[0%]"
+                    href="https://app-na2.hubspot.com/academy/achievements/4yc7vjwc/en/1/luis-villalon/seo-ii" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                >SEO II</a>
+                </div>
+            <div className="text-lg flex justify-between mb-[2%] md:mb-[1%]">
+                <p className="text-[#0A0A23] w-[60%] italic font-semibold">HubSpot Academy</p>
+                <p className="text-end w-[40%]">Feb 2025</p>
+            </div>
+            <p className="text-base"> 
+                Learned advanced strategies for optimizing website content, improving search rankings, 
+                and analyzing SEO performance.
+            </p>   
+            <p className="text-base mt-[3%] md:mt-[1%]">Tech: Keyword Research, Backlink Strategies, 
+                Content Optimization, on-page SEO, Performance Tracking 
+            </p>        
+
+            <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
+
+            <a className="text-[#006400] underline underline-offset-2 mb-[5%] md:mb-[0%] text-xl font-bold"
+                href="https://www.linkedin.com/in/luis-villalon/details/certifications/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+            >MongoDB Certifications</a>
+            <div className="text-lg flex justify-between mb-[2%] md:mb-[1%]">
+                <p className="text-[#0A0A23] w-[60%] italic font-semibold">MongoDB</p>
+                <p className="text-end w-[40%]">May 2023</p>
+            </div>
+            <p className="text-base"> 
+                Completed several certifications verifying my knowledge of MongoDB.
+            </p>   
+            <p className="text-base mt-[3%] md:mt-[1%]">Tech: Connection, Atlas, Aggregation, CRUD, 
+                Data Modeling, Indexes, Transactions, Document Model 
+            </p>        
+
+            <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
+
             <a className="text-[#006400] underline underline-offset-2 mb-[5%] md:mb-[0%] text-xl font-bold"
                 href="https://www.freecodecamp.org/certification/LuisBoy/responsive-web-design" 
                 target="_blank" 
@@ -117,7 +161,9 @@ export function Certificates() {
             <p className="text-base"> 
                 Developer certification representing approximately 300 hours of work.
             </p>
-            <p className="text-base mt-[3%] md:mt-[1%]">Tech: HTML, CSS, Responsive Design, CSS Frameworks, Web Accessibility </p>
+            <p className="text-base mt-[3%] md:mt-[1%]">
+                Tech: HTML, CSS, Responsive Design, CSS Frameworks, Web Accessibility 
+            </p>
             
             <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
 
@@ -134,24 +180,9 @@ export function Certificates() {
                 Developer certification representing approximately 300 hours of work.
             </p>   
             <p className="text-base mt-[3%] md:mt-[1%]">Tech: JavaScript, ES6 Features, Regular Expressions, 
-                Algorithms, Object-Oriented Programming, Functional Programming </p>   
-            
-            <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
-
-            <a className="text-[#006400] underline underline-offset-2 mb-[5%] md:mb-[0%] text-xl font-bold"
-                href="https://www.linkedin.com/in/luis-villalon/details/certifications/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-            >MongoDB Certifications</a>
-            <div className="text-lg flex justify-between mb-[2%] md:mb-[1%]">
-                <p className="text-[#0A0A23] w-[60%] italic font-semibold">MongoDB</p>
-                <p className="text-end w-[40%]">May 2023</p>
-            </div>
-            <p className="text-base"> 
-                Completed several certifications verifying my knowledge of MongoDB.
+                Algorithms, Object-Oriented Programming, Functional Programming 
             </p>   
-            <p className="text-base mt-[3%] md:mt-[1%]">Tech: Connection, Atlas, Aggregation, CRUD, 
-                Data Modeling, Indexes, Transactions, Document Model </p>                                   
+                           
         </div>
     );
 }
@@ -194,7 +225,8 @@ export function TechTools() {
 
             <p className="underline underline-offset-2 mb-[0%] text-xl font-bold">Content Management System & UI Builders</p>
             <p className="text-base mt-[3%] md:mt-[1%] text-[#006400]">
-                <a href="https://docs.plasmic.app/learn/plasmic-cms/" className="underline" target="_blank" rel="noopener noreferrer">Plasmic CMS</a>
+                <a href="https://docs.plasmic.app/learn/plasmic-cms/" className="underline" target="_blank" rel="noopener noreferrer">Plasmic CMS</a>, <a 
+                href="https://www.figma.com/" className="underline" target="_blank" rel="noopener noreferrer">Figma</a>
             </p>   
             <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
             

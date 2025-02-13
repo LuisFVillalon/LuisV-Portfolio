@@ -55,7 +55,7 @@ export default function Navbar() {
                     hover:underline
                     hover:text-[#006400] transition-colors"
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
-                      Blog
+                      <Link href="/blog">Blog</Link>
                   </p>                  
                   <button 
                     onClick={() => setMenuStatus(false)}
