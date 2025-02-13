@@ -16,7 +16,7 @@ export function CurrentlyDoing() {
                 Developed responsive a web application, collaborated on UI/UX improvements, and optimized 
                 performance for a global sports platform.
             </p>
-            <p className="text-base mt-[3%] md:mt-[1%]">Tech: HTML, CSS, React.js, Figma, Github, Taiga</p>
+            <p className="text-base mt-[3%] md:mt-[1%]">Tech: HTML, Tailwind CSS, React.js, Figma, Github, Taiga</p>
             
         
         </div>
@@ -40,7 +40,7 @@ export function ProfessionalExperience() {
                 Developed responsive a web application, collaborated on UI/UX improvements, and optimized 
                 performance for a global sports platform.
             </p>
-            <p className="text-base mt-[3%] md:mt-[1%]">Tech: HTML, CSS, React.js, Figma, Github, Taiga</p>
+            <p className="text-base mt-[3%] md:mt-[1%]">Tech: HTML, Tailwind CSS, React.js, Figma, Github, Taiga</p>
             
             <div className="my-[5%] md:my-[2%] border-b border-gray-250"></div>
 
