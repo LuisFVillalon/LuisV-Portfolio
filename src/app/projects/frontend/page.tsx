@@ -12,7 +12,6 @@ export default function FrontEnd() {
       <div className="flex font-[Monospace] flex-col items-center justify-start min-h-screen bg-[#FFFFFF]">
         
         <Navbar />
-
         <section className="flex flex-col w-full">
           <div className= "mx-[10%] md:mx-[20%] my-[5%] md:my-[1%]  text-[#333333] border-b border-gray-500">
             <h1 className="text-3xl font-extrabold text-[#0A0A23]">Front-End Projects</h1>
@@ -42,17 +41,6 @@ export default function FrontEnd() {
                 />
               );
             })}
-            {/* <div>
-              <Image 
-                src="/projects/dashboard.png"
-                alt="Dashboard screenshot."
-                width="300"  // Specify the width and height for optimization
-                height="300"
-                className=""
-              />
-              <p className="text-[#0A0A23]">Title</p>
-              <p className="text-[#333333]">Tech</p>
-            </div> */}
           </div>
         </section>
         <Footer />

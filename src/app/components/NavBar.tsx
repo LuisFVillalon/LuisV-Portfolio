@@ -9,23 +9,22 @@ export default function Navbar() {
   return (
       <nav className="sticky top-0 w-full shadow-md bg-[#EEEEEE] bg-opacity-70">
           <div
-            className={`flex justify-between my-[1%] transition-all duration-300 
+            className={`text-2xl md:text-4xl text-[#0A0A23] text-2xl md:text-4xl text-[#0A0A23] flex justify-between my-[1%] transition-all duration-300 
               ${menuStatus ? "mt-[0%] md:py-[1%] md:my-[0%] mr-[5%] md:mr-[0%]" : "mx-[10%] md:mx-[20%]"}`}
             style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}
           >
             <Link href="/">
-              <i className="text-2xl md:text-4xl text-[#0A0A23] fas fa-home"></i>
+              <i className=" fas fa-home"></i>
             </Link>
             <button onClick={() => setMenuStatus(!menuStatus)}>
-              <i className="text-2xl md:text-4xl text-[#0A0A23] fas fa-bars"></i>
+              <i className=" fas fa-bars"></i>
             </button>
-
             <div className={`${menuStatus ? "block" : "hidden"} flex justify-start items-start md:items-center
-              fixed inset-0 bg-[#0A0A23] h-screen md:h-full  w-[90%] md:w-[100%] text-white 
+              fixed inset-0 bg-[#0A0A23] h-screen md:h-full  w-[90%] md:w-[100%] text-[#FFFFFF] 
               bg-opacity-95 md:bg-opacity-100 
               `}>
-               <div className="my-[5%] md:my-[0%] w-[90%] md:w-[100%] flex flex-col md:flex-row items-end md:justify-center space-x-5 space-y-5 md:space-y-0">
-                  <p className="text-2xl md:text-3xl text-[#EEEEEE]  
+              <div className="my-[5%] md:my-[0%] w-[90%] md:w-[100%] flex flex-col md:flex-row items-end md:justify-center space-x-5 space-y-5 md:space-y-0">
+                  <p className="text-2xl md:text-3xl   
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -33,7 +32,7 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/about">About</Link>
                   </p>
-                  <p className="text-2xl md:text-3xl text-[#EEEEEE]  
+                  <p className="text-2xl md:text-3xl   
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -41,7 +40,7 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/experience">Experience</Link>
                   </p>
-                  <p className="text-2xl md:text-3xl text-[#EEEEEE]  
+                  <p className="text-2xl md:text-3xl   
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -49,7 +48,7 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/projects">Projects</Link>
                   </p>
-                  <p className="text-2xl md:text-3xl text-[#EEEEEE]  
+                  <p className="text-2xl md:text-3xl   
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
@@ -67,13 +66,9 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       X
                   </button>
-                </div>
+              </div>
             </div>
-
-
-
           </div>
-
         <style>{`
          @keyframes fadeDown {
            0% {
@@ -87,7 +82,6 @@ export default function Navbar() {
          }
         
        `}</style>
-
       </nav>
   
 

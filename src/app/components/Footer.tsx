@@ -1,17 +1,17 @@
 export default function Footer() {
   return (
-    <div className="flex justify-between w-full border-t border-gray-250 shadow-md mt-auto ">
+    <div className="text-[#0A0A23] flex justify-between w-full border-t border-gray-250 shadow-md mt-auto ">
     <footer className="w-full flex justify-between space-x-5 mx-[10%] md:mx-[20%] my-[0.5%] items-center" style={{ animation: "fadeUp 0.5s ease-in 0s forwards" }}>
-          <p className=" md:text-xl text-[#0A0A23]">
+          <p className=" md:text-xl">
             Luis Villalon © 2025
           </p>
           <div className="flex justify-end items-center space-x-5">
             <a href="https://www.linkedin.com/in/luis-villalon/" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-linkedin md:text-xl text-[#0A0A23]" 
+              <i className="fab fa-linkedin md:text-xl" 
               ></i>
             </a>
             <a href="https://github.com/LuisFernandoVillalon" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-github md:text-xl text-[#0A0A23]"
+              <i className="fab fa-github md:text-xl"
               ></i>
             </a>
           </div>

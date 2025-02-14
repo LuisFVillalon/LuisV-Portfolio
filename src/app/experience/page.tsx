@@ -4,7 +4,7 @@ import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 import {CurrentlyDoing, Education, 
     ProfessionalExperience, Certificates, 
-    TechTools, ExperienceBeyondTech} from '../components/Experience';
+    TechTools, ExperienceBeyondTech} from '../components/ExperienceComponents';
 
 
 // app/about/page.js
