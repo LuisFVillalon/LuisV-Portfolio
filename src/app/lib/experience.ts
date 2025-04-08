@@ -29,9 +29,17 @@ type techTools = {
 };
 const professionalExperience = [
     {
+        company: 'Calexico Neighborhood House – Mission Thrift Store & Happy Kids Preschool and Daycare',
+        position: 'SEO & Digital Marketing Specialist',
+        time: 'Mar 2025 - Present',
+        description: 'Strategized SEO and digital marketing to increase thrift store sales and preschool enrollment by coordinating with Shopify devs, managing inventory, and executing data-driven social media campaigns.',
+        tech:'Facebook Business Suite, Google Analytics, Google Drive, Google Doc, Google Sheets',
+        link: 'https://nhclx.org/'    
+    }, 
+    {
         company: 'Sports Excitement',
         position: 'Front-End Developer Intern',
-        time: 'Dec 2024 - Present',
+        time: 'Dec 2024 - Mar 2025',
         description: 'Developed responsive a web application, collaborated on UI/UX improvements, and optimized performance for a global sports platform.',
         tech:'HTML, Tailwind CSS, React.js, Figma, Github, Taiga',
         link: 'https://www.linkedin.com/company/sportsexcitement/posts/?feedView=all'
@@ -43,9 +51,18 @@ const professionalExperience = [
         description: 'Led and collaborated in the development of a full-stack asset tracking application designed for commercial use. The application helped workers quickly locate essential tools and equipment upon arrival at job sites, improving efficiency and reducing downtime.',
         tech:'HTML, CSS, React.js, Next.js, Plasmic CMS, Express.js, Node.js, Microsoft Azure SQL Database',
         link: 'https://ectron.com/'    
-    }
+    },
+
 ];
 const education = [
+    {
+        institution: 'San Diego State University',
+        course: 'Bachelor of Science in Computer Science',
+        time: 'Aug 2025 - Jun 2027',
+        description: '',
+        tech:'',
+        link: 'https://cs.sdsu.edu/'
+    },
     {
         institution: 'Imperial Valley College',
         course: 'Associate of Science in Computer Science',
@@ -205,6 +222,19 @@ const techTools = [
             {
                 tool: 'Taiga',
                 link: 'https://taiga.io/about-us/'
+            }
+        ]
+    },
+    {
+        subject: 'Marketing',
+        tools: [
+            {
+                tool: 'Facebook Business Suite',
+                link: 'https://www.facebook.com/business/tools/meta-business-suite/get-started'
+            },
+            {
+                tool: 'Google Analytics',
+                link: 'https://developers.google.com/analytics'
             }
         ]
     },

@@ -9,25 +9,38 @@ export default function Homebody() {
                 <h1 className="my-[1%] text-5xl font-extrabold text-[#0A0A23]">Hi, I am Luis Villalon. </h1>
                 <h2 className="my-[1%] bg-[#006400] text-[#FFFFFF] text-3xl font-extrabold">I build full-stack web applications. </h2>
                 <p className="my-[5%] md:my-[1%] text-2xl">
-                    I am a <strong className="text-[#0A0A23]">software engineer</strong> specializing in building 
-                    scalable <strong className="text-[#0A0A23]">full-stack </strong>web applications.
-                    Self-taught and currently persuing a Bachelor&apos;s of Science in Computer Science.
+                    I am a <strong className="text-[#0A0A23]">software engineer</strong> specializing in building <strong 
+                    className="text-[#0A0A23]">scalable full-stack web applications</strong> optimized for performance, <strong 
+                    className="text-[#0A0A23]">user experience</strong>, and <strong 
+                    className="text-[#0A0A23]">search engine visibility</strong>.
+                    I am a <strong className="text-[#0A0A23]">self-taught developer</strong> currently pursuing a <strong 
+                    className="text-[#0A0A23]">Bachelor of Science in Computer Science</strong> at <strong 
+                    className="text-[#0A0A23]">
+                        <a 
+                        href="https://cs.sdsu.edu/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-[#006400] font-bold underline"
+                        >
+                            San Diego State University
+                        </a>
+                    </strong>.
                 </p>
                 <p className="my-[5%] md:my-[1%] text-2xl">
-                    I leverage my full-stack expertise to deliver <strong className="text-[#0A0A23]">clean</strong>
-                    , <strong className="text-[#0A0A23]">maintainable </strong> code while collaborating 
-                    with product owners and scrum masters during <strong className="text-[#0A0A23]">sprint 
-                    planning</strong> and <strong className="text-[#0A0A23]">stand-ups </strong> to drive 
-                    innovation and build impactful digital products.
+                    I leverage my <strong className="text-[#0A0A23]">full-stack expertise</strong> to deliver <strong className="text-[#0A0A23]">clean</strong>
+                    , <strong className="text-[#0A0A23]">maintainable solutions</strong> solutions while collaborating 
+                    with <strong className="text-[#0A0A23]">project leads</strong> and <strong className="text-[#0A0A23]">stakeholders</strong> during <strong 
+                    className="text-[#0A0A23]">Agile development meetings</strong> to <strong className="text-[#0A0A23]">drive innovation</strong> and <strong 
+                    className="text-[#0A0A23]">build impactful digital products</strong>.
                 </p>  
                 <p className="my-[5%] md:my-[1%] text-2xl">
-                    Currently working as <strong className="text-[#0A0A23]">Front-end Developer Intern</strong> at <a 
-                        href="https://www.linkedin.com/company/sportsexcitement/posts/?feedView=all" 
+                    Currently working as an <strong className="text-[#0A0A23]">SEO & Digital Marketing Specialist</strong> at <a 
+                        href="https://nhclx.org/" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-[#006400] font-bold underline"
                     >
-                      Sports Excitement
+                      Calexico Neighborhood House – Mission Thrift Store & Happy Kids Preschool and Daycare
                     </a>. 
                 </p>   
                 <strong className="text-center md:text-start my-[5%] md:my-[1%] text-2xl text-[#0A0A23]">
