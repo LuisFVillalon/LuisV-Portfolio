@@ -7,7 +7,8 @@ export default function Homebody() {
         <div className="my-[5%] md:my-[1%] mx-[10%] md:mx-[20%] flex flex-col md:flex-row  h-[100%]">
             <div className="text-start text-[#333333] flex flex-col">
                 <h1 className="my-[1%] text-5xl font-extrabold text-[#0A0A23]">Hi, I am Luis Villalon. </h1>
-                <h2 className="my-[1%] bg-[#006400] text-[#FFFFFF] text-3xl font-extrabold">I build full-stack web applications. </h2>
+                <h2 className="my-[1%] bg-[#006400] text-[#FFFFFF] text-3xl font-extrabold">I design, build, and optimize
+                     full-stack web applications.</h2>
                 <p className="my-[5%] md:my-[1%] text-2xl">
                     I am a <strong className="text-[#0A0A23]">software engineer</strong> specializing in building <strong 
                     className="text-[#0A0A23]">scalable full-stack web applications</strong> optimized for performance, <strong 
@@ -43,9 +44,9 @@ export default function Homebody() {
                       Calexico Neighborhood House – Mission Thrift Store & Happy Kids Preschool and Daycare
                     </a>. 
                 </p>   
-                <strong className="text-center md:text-start my-[5%] md:my-[1%] text-2xl text-[#0A0A23]">
+                {/* <strong className="text-center md:text-start my-[5%] md:my-[1%] text-2xl text-[#0A0A23]">
                     Open for work.    
-                </strong>                  
+                </strong>                   */}
             </div>
             <div className="w-full flex items-center justify-center">
                 <Image 
