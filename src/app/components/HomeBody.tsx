@@ -29,13 +29,13 @@ export default function Homebody() {
                 </p>
                 <p className="my-[5%] md:my-[1%] text-2xl">
                     I leverage my <strong className="text-[#0A0A23]">full-stack expertise</strong> to deliver <strong className="text-[#0A0A23]">clean</strong>
-                    , <strong className="text-[#0A0A23]">maintainable solutions</strong> solutions while collaborating 
+                    , <strong className="text-[#0A0A23]">maintainable solutions</strong> while collaborating 
                     with <strong className="text-[#0A0A23]">project leads</strong> and <strong className="text-[#0A0A23]">stakeholders</strong> during <strong 
                     className="text-[#0A0A23]">Agile development meetings</strong> to <strong className="text-[#0A0A23]">drive innovation</strong> and <strong 
                     className="text-[#0A0A23]">build impactful digital products</strong>.
                 </p>  
                 <p className="my-[5%] md:my-[1%] text-2xl">
-                    Currently working as an <strong className="text-[#0A0A23]">SEO & Digital Marketing Specialist</strong> at <a 
+                    Currently working as an <strong className="text-[#0A0A23]">SEO & Digital Marketing Strategist</strong> at <a 
                         href="https://nhclx.org/" 
                         target="_blank" 
                         rel="noopener noreferrer"

@@ -33,7 +33,7 @@ const professionalExperience = [
         position: 'SEO & Digital Marketing Specialist',
         time: 'Mar 2025 - Present',
         description: 'Strategized SEO and digital marketing to increase thrift store sales and preschool enrollment by coordinating with Shopify devs, managing inventory, and executing data-driven social media campaigns.',
-        tech:'Facebook Business Suite, Google Analytics, Google Drive, Google Doc, Google Sheets',
+        tech:'Meta Business Suite, Meta Ads Manager, Google Analytics, Shopify',
         link: 'https://nhclx.org/'    
     }, 
     {
@@ -226,15 +226,23 @@ const techTools = [
         ]
     },
     {
-        subject: 'Marketing',
+        subject: 'Digital Marketing',
         tools: [
             {
-                tool: 'Facebook Business Suite',
+                tool: 'Meta Business Suite',
                 link: 'https://www.facebook.com/business/tools/meta-business-suite/get-started'
+            },
+            {
+                tool: 'Meta Ads Manager',
+                link: 'https://business.meta.com/?locale=en_US'
             },
             {
                 tool: 'Google Analytics',
                 link: 'https://developers.google.com/analytics'
+            },
+            {
+                tool: 'Shopify',
+                link: 'https://www.shopify.com/'
             }
         ]
     },
