@@ -122,12 +122,10 @@ export default function AboutPage() {
                             />                  
             </div>          
             <p className="my-[10%] md:my-[3%] text-xl text-[#333333]">
-                I’m an <strong>SEO-focused full-stack web developer</strong> who builds 
-                <strong> scalable</strong>, <strong> high-performance web applications</strong>. 
-                I design <strong>clean, engaging user interfaces</strong> and work with both 
-                <strong> SQL</strong> and <strong> NoSQL</strong> databases to manage complex data. 
-                My goal is to create <strong>fast</strong>, <strong>accessible</strong>, and 
-                <strong> search-optimized digital experiences</strong>.
+                I’m a <strong>full-stack web developer</strong> with experience in <strong>SEO</strong>, 
+                building <strong>responsive</strong>, <strong>high-performing</strong> web platforms. 
+                I design and develop <strong>visually appealing</strong>, <strong>user-friendly</strong> interfaces 
+                and work with both <strong> SQL</strong> and <strong> NoSQL</strong> databases to manage complex data efficiently. 
             </p>
             <div className="hidden md:grid md:grid-cols-3 justify-center items-center gap-4">
                         <div className="flex flex-col justify-center">
@@ -167,11 +165,11 @@ export default function AboutPage() {
                                 freeCodeCamp
                             </a> and                             <a 
                                 className="text-[#006400] underline font-bold" 
-                                href="https://www.imperial.edu/" 
+                                href="https://academy.hubspot.com/" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                             >
-                                HubSpot
+                                HubSpot Academy
                             </a>. 
 
                             To strengthen my theoretical computer science fundamentals, I am pursuing a 
@@ -238,7 +236,14 @@ export default function AboutPage() {
                     rel="noopener noreferrer"
                 >
                     freeCodeCamp
-                </a>, and <strong>HubSpot</strong>. 
+                </a>, and <a 
+                                className="text-[#006400] underline font-bold" 
+                                href="https://academy.hubspot.com/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
+                                HubSpot Academy
+                            </a>. 
 
                 To strengthen my <strong>theoretical computer science fundamentals</strong>, I am pursuing a 
                 <strong> Bachelor of Science in Computer Science</strong> at <a 
@@ -305,8 +310,8 @@ export default function AboutPage() {
             </div>                                           
             <p className="my-[10%] md:my-[3%] text-xl text-[#333333]">
                 I consider myself fluent in <strong>Spanish</strong>, <strong>English</strong>, and <strong>JavaScript</strong>. 
-                When I&apos;m not working academically or professionally, I enjoy spending time <strong>outdoors</strong>—whether it is 
-                <strong>hiking</strong>, <strong>playing basketball</strong>, or <strong>going for a run</strong>. 
+                When I&apos;m not working academically or professionally, I enjoy spending time <strong>outdoors</strong>—whether it 
+                is <strong>hiking</strong>, <strong>playing basketball</strong>, or <strong>going for a run</strong>. 
                 Alternatively, I love working on <strong>personal apps</strong> or watching a good show or movie like{" "}
                 <a 
                     className="text-[#006400] underline italic font-bold" 

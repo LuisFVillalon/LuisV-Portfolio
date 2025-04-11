@@ -120,18 +120,18 @@ export function TechTools() {
             {techTools.map((item, index) => (
                 <div key={index}>
                     <p className="mb-[0%] text-xl font-bold">{item.subject}:</p>
-                    <div className="flex">
-                    {item.tools.map((tech_item, link_index) => {
-                        const isLast = link_index === item.tools.length - 1;
-                        return (
-                            <p key={link_index} className="text-base mt-[3%] md:mt-[1%] text-[#006400]">
-                                <a href={tech_item.link} className="underline" target="_blank" rel="noopener noreferrer">
-                                    {tech_item.tool}
-                                </a>
-                                {!isLast && ',\u00A0'} {/* Only add a comma if it's NOT the last item */}
-                            </p>
-                        );
-                    })}
+                    <div className="flex flex-wrap">
+                        {item.tools.map((tech_item, link_index) => {
+                            const isLast = link_index === item.tools.length - 1;
+                            return (
+                                <p key={link_index} className="text-base mt-[3%] md:mt-[1%] text-[#006400]">
+                                    <a href={tech_item.link} className="underline" target="_blank" rel="noopener noreferrer">
+                                        {tech_item.tool}
+                                    </a>
+                                    {!isLast && ',\u00A0'} {/* Only add a comma if it's NOT the last item */}
+                                </p>
+                            );
+                        })}
                     </div>
                     <div className="my-[5%] md:my-[1%] border-b border-gray-250"></div>
                 </div>
