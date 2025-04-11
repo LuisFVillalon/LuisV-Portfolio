@@ -26,7 +26,7 @@ type projectsAcademic = {
 const projectsFrontEnd = [
     {
         title: 'Pokedex Catalog',
-        description: 'View the information of 891 Pokemons.',
+        description: 'View the information of 891 Pokemons. (Mobile-friendly)',
         tech: 'HTML, CSS, JavaScript, Data Structures',
         github_repo: 'https://github.com/LuisFernandoVillalon/catalog-website',
         live_app: 'https://luisfernandovillalon.github.io/catalog-website/',
@@ -50,7 +50,7 @@ const projectsFrontEnd = [
     },
     {
         title: 'Tic-Tac-Toe',
-        description: 'Play tic-tac-toe against a computer.',
+        description: 'Play tic-tac-toe against a computer. (Mobile-friendly)',
         tech: 'HTML, CSS, JavaScript, Recursion, Minimax Algorithm',
         github_repo: 'https://github.com/LuisFernandoVillalon/TicTacToe-theOdinProject',
         live_app: 'https://luisfernandovillalon.github.io/TicTacToe-theOdinProject/',   
