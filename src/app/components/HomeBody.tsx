@@ -6,11 +6,11 @@ export default function Homebody() {
 
         <div className="my-[5%] md:my-[1%] mx-[10%] md:mx-[20%] flex flex-col   h-[100%]">
             <div className="text-start text-[#333333] flex flex-col">
-                <h1 className="my-[1%] text-2xl font-extrabold text-[#0A0A23]">Hi, I am Luis Villalon.💻📈</h1>
-                <h2 className="my-[1%] bg-[#006400] text-[#FFFFFF] text-lg font-extrabold">I design, build, and optimize
+                <h1 className="my-[1%] text-2xl md:text-4xl font-extrabold text-[#0A0A23]">Hi, I am Luis Villalon.💻📈</h1>
+                <h2 className="my-[1%] bg-[#006400] text-[#FFFFFF] text-lg md:text-xl font-extrabold">I design, build, and optimize
                      full-stack web applications.
                 </h2>
-                <p className="my-[2.5%] md:my-[1%] text-lg">
+                <p className="my-[2.5%] md:my-[1%] text-base md:text-lg">
                     I’m a <strong className="text-[#0A0A23]">self-taught</strong> 
                     <strong className="text-[#0A0A23]"> software engineer</strong> pursuing a 
                     <strong className="text-[#0A0A23]"> B.S. in Computer Science</strong> at{" "}
@@ -31,7 +31,7 @@ export default function Homebody() {
                     <strong className="text-[#0A0A23]"> Agile teams</strong> to deliver 
                     <strong className="text-[#0A0A23]"> impactful</strong> digital products.
                 </p>
-                <p className="my-[2.5%] md:my-[1%] text-lg">
+                <p className="my-[2.5%] md:my-[1%] text-base md:text-lg">
                     Currently working as an <strong className="text-[#0A0A23]">SEO & Digital Marketing Strategist</strong> at <a 
                         href="https://nhclx.org/" 
                         target="_blank" 
