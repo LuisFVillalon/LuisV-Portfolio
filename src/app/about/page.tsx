@@ -10,11 +10,11 @@ export default function AboutPage() {
       
       <Navbar />
       <section className="flex w-full">
-        <div className=" mx-[10%] md:mx-[20%] my-[5%] md:my-[1%] text-[#0A0A23]">
-            <h1 className="text-2xl md:text-4xl font-extrabold">About Luis Villalon</h1>
+        <div className="mx-[10%] md:mx-[20%] my-[5%] md:my-[1%] text-[#0A0A23]">
+            <h1 className="text-center md:text-left text-2xl md:text-4xl font-extrabold">About Luis Villalon</h1>
             {/* First Paragraph & CLX Image */}
             <div className="md:grid md:grid-cols-2">
-                <p className="my-[10%] md:my-[1%] text-base md:text-lg text-[#333333]">
+                <p className="my-[2.5%] md:my-[1%] text-base md:text-lg text-[#333333]">
                     Hi, nice to meet you! I&apos;m <strong> Luis Villalon</strong>, a 
                     <strong> Software Engineer</strong> and <strong> Full-Stack Developer</strong> from{" "}
                     <a 
@@ -64,8 +64,8 @@ export default function AboutPage() {
                             />                                
                 </div>                            
                 <div className="flex justify-center items-center">
-                            <p className="my-[10%] md:my-[3%] text-base md:text-lg text-[#333333]">
-                                Currently, I’m an <strong>SEO & Digital Marketing Strategist</strong> at{" "}
+                            <p className="my-[2.5%] md:my-[3%] text-base md:text-lg text-[#333333]">
+                                Currently, I’m a <strong>SEO & Digital Marketing Strategist</strong> at{" "}
                                 <a 
                                     className="text-[#006400] underline font-bold" 
                                     href="https://nhclx.org/" 
@@ -99,7 +99,7 @@ export default function AboutPage() {
                 </div>
             </div>
             {/* Mobile Job Logo Images */}
-            <div className="md:hidden flex flex-col justify-center items-center w-full">                  
+            <div className="md:hidden space-y-2 flex flex-col justify-center items-center w-full">                  
                             <Image 
                                 src="/about/Ectron_logo.png"
                                 alt="Ectron logo."
@@ -124,7 +124,7 @@ export default function AboutPage() {
                             />                  
             </div>    
             {/* Third Paragraph       */}
-            <p className="my-[10%] md:my-[3%] text-base md:text-lg text-[#333333]">
+            <p className="mt-[5%] md:my-[3%] text-base md:text-lg text-[#333333]">
                 I’m a <strong>full-stack web developer</strong> with experience in <strong>SEO</strong>, 
                 building <strong>responsive</strong>, <strong>high-performing</strong> web platforms. 
                 I design and develop <strong>visually appealing</strong>, <strong>user-friendly</strong> interfaces 
@@ -150,7 +150,7 @@ export default function AboutPage() {
                                 
                             />  
                         </div>                      
-                        <p className="my-[10%] md:my-[3%] text-base md:text-lg text-[#333333]">
+                        <p className="my-[2.5%] md:my-[3%] text-base md:text-lg text-[#333333]">
                             I learned <strong>full-stack development</strong> through free online resources like{" "}
                             <a 
                                 className="text-[#006400] underline font-bold" 
@@ -223,7 +223,7 @@ export default function AboutPage() {
                         </div>                     
             </div>
             {/* Mobile Fourth Paragraph */}
-            <p className="md:hidden my-[10%] md:my-[3%] text-base md:text-lg text-[#333333]">
+            <p className="md:hidden my-[2.5%] md:my-[3%] text-base md:text-lg text-[#333333]">
                 I learned <strong>full-stack</strong> and <strong>SEO development</strong> through free online resources like{" "}
                 <a 
                     className="text-[#006400] underline font-bold" 
@@ -313,8 +313,9 @@ export default function AboutPage() {
                                 className="rounded-lg shadow-lg"
                                 
                         />                       
-            </div>                                           
-            <p className="my-[10%] md:my-[3%] text-base md:text-lg text-[#333333]">
+            </div> 
+            {/* Fifth Paragraph */}
+            <p className="my-[2.5%] md:my-[3%] text-base md:text-lg text-[#333333]">
                 I consider myself fluent in <strong>Spanish</strong>, <strong>English</strong>, and <strong>JavaScript</strong>. 
                 When I&apos;m not working academically or professionally, I enjoy spending time <strong>outdoors</strong>—whether it 
                 is <strong>hiking</strong>, <strong>playing basketball</strong>, or <strong>going for a run</strong>. 
@@ -336,6 +337,7 @@ export default function AboutPage() {
                     Interstellar
                 </a>.
             </p>
+            {/* Chrissy GIF */}
             <div className="flex justify-center items-center">
                     <Image 
                             src="/about/Chrissy_GIF.webp"
@@ -345,6 +347,7 @@ export default function AboutPage() {
                             className="rounded-lg shadow-lg"
                     />
             </div>
+            {/* Basketball Selfie */}
             <div className="flex justify-center items-center">
                     <Image 
                         src="/about/basketball_selfie.jpg"
