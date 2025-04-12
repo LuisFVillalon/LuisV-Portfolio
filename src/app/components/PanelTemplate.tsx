@@ -31,7 +31,7 @@ interface PanelTemplateProps {
             />
         </a>
         <div className="border-t-4 border-[#333333] p-4 p-[5%]">
-            <p className="font-extrabold text-[#0A0A23] text-xl">{title}</p>
+            <p className="font-extrabold text-[#0A0A23] text-lg md:text-xl">{title}</p>
             <p className="text-base break-words">{description}</p>
             <p className="text-base break-words"><strong>Tech:</strong> {tech}</p>
             <a className="underline" 
