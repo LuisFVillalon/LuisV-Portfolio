@@ -123,14 +123,7 @@ export default function AboutPage() {
                                 className="rounded-lg shadow-lg"
                             />                  
             </div>    
-            {/* Third Paragraph       */}
-            <p className="mt-[5%] md:my-[3%] text-base md:text-lg text-[#333333]">
-                I’m a <strong>full-stack web developer</strong> with experience in <strong>SEO</strong>, 
-                building <strong>responsive</strong>, <strong>high-performing</strong> web platforms. 
-                I design and develop <strong>visually appealing</strong>, <strong>user-friendly</strong> interfaces 
-                and work with both <strong> SQL</strong> and <strong> NoSQL</strong> databases to manage complex data efficiently. 
-            </p>
-            {/* Desktop Fourth Paragraph & School and Academy Logos */}
+            {/* Desktop Third Paragraph & School and Academy Logos */}
             <div className="hidden md:grid md:grid-cols-3 justify-center items-center gap-4">
                         <div className="flex flex-col justify-center">
                             <Image 
@@ -151,7 +144,7 @@ export default function AboutPage() {
                             />  
                         </div>                      
                         <p className="my-[2.5%] md:my-[3%] text-base md:text-lg text-[#333333]">
-                            I learned <strong>full-stack development</strong> through free online resources like{" "}
+                            I learned <strong>front-end</strong>, <strong>back-end</strong>, and <strong>SEO development</strong> through free online resources like{" "}
                             <a 
                                 className="text-[#006400] underline font-bold" 
                                 href="https://www.theodinproject.com/" 
@@ -222,9 +215,9 @@ export default function AboutPage() {
                             />                                    
                         </div>                     
             </div>
-            {/* Mobile Fourth Paragraph */}
-            <p className="md:hidden my-[2.5%] md:my-[3%] text-base md:text-lg text-[#333333]">
-                I learned <strong>full-stack</strong> and <strong>SEO development</strong> through free online resources like{" "}
+            {/* Mobile Third Paragraph */}
+            <p className="md:hidden mt-[5%] mb-[2.5%] md:my-[3%] text-base md:text-lg text-[#333333]">
+                I learned <strong>front-end</strong>, <strong>back-end</strong>, and <strong>SEO development</strong> through free online resources like{" "}
                 <a 
                     className="text-[#006400] underline font-bold" 
                     href="https://www.theodinproject.com/" 
@@ -314,7 +307,7 @@ export default function AboutPage() {
                                 
                         />                       
             </div> 
-            {/* Fifth Paragraph */}
+            {/* Fourth Paragraph */}
             <p className="my-[2.5%] md:my-[3%] text-base md:text-lg text-[#333333]">
                 I consider myself fluent in <strong>Spanish</strong>, <strong>English</strong>, and <strong>JavaScript</strong>. 
                 When I&apos;m not working academically or professionally, I enjoy spending time <strong>outdoors</strong>—whether it 
