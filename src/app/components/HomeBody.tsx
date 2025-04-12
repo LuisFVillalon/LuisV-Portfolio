@@ -6,7 +6,7 @@ export default function Homebody() {
 
         <div className="my-[5%] md:my-[1%] mx-[10%] md:mx-[20%] flex flex-col   h-[100%]">
             <div className="text-start text-[#333333] flex flex-col">
-                <h1 className="my-[1%] text-4xl font-extrabold text-[#0A0A23]">Hi, I am Luis Villalon.💻📈</h1>
+                <h1 className="my-[1%] text-2xl font-extrabold text-[#0A0A23]">Hi, I am Luis Villalon.💻📈</h1>
                 <h2 className="my-[1%] bg-[#006400] text-[#FFFFFF] text-lg font-extrabold">I design, build, and optimize
                      full-stack web applications.
                 </h2>
