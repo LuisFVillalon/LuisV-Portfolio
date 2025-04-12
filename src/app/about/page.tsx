@@ -11,9 +11,10 @@ export default function AboutPage() {
       <Navbar />
       <section className="flex w-full">
         <div className=" mx-[10%] md:mx-[20%] my-[5%] md:my-[1%] text-[#0A0A23]">
-            <h1 className="text-4xl font-extrabold">About Luis Villalon</h1>
+            <h1 className="text-2xl md:text-4xl font-extrabold">About Luis Villalon</h1>
+            {/* First Paragraph & CLX Image */}
             <div className="md:grid md:grid-cols-2">
-                <p className="my-[10%] md:my-[1%] text-xl text-[#333333]">
+                <p className="my-[10%] md:my-[1%] text-base md:text-lg text-[#333333]">
                     Hi, nice to meet you! I&apos;m <strong> Luis Villalon</strong>, a 
                     <strong> Software Engineer</strong> and <strong> Full-Stack Developer</strong> from{" "}
                     <a 
@@ -26,8 +27,7 @@ export default function AboutPage() {
                     </a>. I&apos;m passionate about <strong>learning</strong> and constantly 
                     challenging myself to <strong>grow</strong>!
                 </p>
-
-                        <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center">
                             <Image 
                                 src="/about/Calexico.webp"
                                 alt="Calexico border."
@@ -35,10 +35,11 @@ export default function AboutPage() {
                                 height={300}
                                 className="rounded-lg shadow-lg"
                             />   
-                        </div>
+                </div>
             </div>
+            {/* Second Paragrph & Job Logo Images */}
             <div className="md:grid md:grid-cols-2 gap-4">
-                        <div className="hidden md:flex flex-col space-y-5 justify-center items-center">
+                <div className="hidden md:flex flex-col space-y-5 justify-center items-center">
                             <Image 
                                 src="/about/Ectron_logo.png"
                                 alt="Ectron logo."
@@ -61,9 +62,9 @@ export default function AboutPage() {
                                 height={300}
                                 className="rounded-lg shadow-lg"
                             />                                
-                        </div>                            
-                        <div className="flex justify-center items-center">
-                            <p className="my-[10%] md:my-[3%] text-xl text-[#333333]">
+                </div>                            
+                <div className="flex justify-center items-center">
+                            <p className="my-[10%] md:my-[3%] text-base md:text-lg text-[#333333]">
                                 Currently, I’m an <strong>SEO & Digital Marketing Strategist</strong> at{" "}
                                 <a 
                                     className="text-[#006400] underline font-bold" 
@@ -95,8 +96,9 @@ export default function AboutPage() {
                                     Ectron Corporation
                                 </a>, where I helped build a <strong>full-stack asset tracking application</strong>.
                             </p>                    
-                        </div>
+                </div>
             </div>
+            {/* Mobile Job Logo Images */}
             <div className="md:hidden flex flex-col justify-center items-center w-full">                  
                             <Image 
                                 src="/about/Ectron_logo.png"
@@ -120,13 +122,15 @@ export default function AboutPage() {
                                 height={300}
                                 className="rounded-lg shadow-lg"
                             />                  
-            </div>          
-            <p className="my-[10%] md:my-[3%] text-xl text-[#333333]">
+            </div>    
+            {/* Third Paragraph       */}
+            <p className="my-[10%] md:my-[3%] text-base md:text-lg text-[#333333]">
                 I’m a <strong>full-stack web developer</strong> with experience in <strong>SEO</strong>, 
                 building <strong>responsive</strong>, <strong>high-performing</strong> web platforms. 
                 I design and develop <strong>visually appealing</strong>, <strong>user-friendly</strong> interfaces 
                 and work with both <strong> SQL</strong> and <strong> NoSQL</strong> databases to manage complex data efficiently. 
             </p>
+            {/* Desktop Fourth Paragraph & School and Academy Logos */}
             <div className="hidden md:grid md:grid-cols-3 justify-center items-center gap-4">
                         <div className="flex flex-col justify-center">
                             <Image 
@@ -146,7 +150,7 @@ export default function AboutPage() {
                                 
                             />  
                         </div>                      
-                        <p className="my-[10%] md:my-[3%] text-xl text-[#333333]">
+                        <p className="my-[10%] md:my-[3%] text-base md:text-lg text-[#333333]">
                             I learned <strong>full-stack development</strong> through free online resources like{" "}
                             <a 
                                 className="text-[#006400] underline font-bold" 
@@ -191,7 +195,6 @@ export default function AboutPage() {
                                 Imperial Valley College
                             </a>.
                         </p>
-
                         <div className="flex flex-col space-y-6 justify-center">
                             <Image 
                                 src="/about/TOP_Logo.png"
@@ -219,7 +222,8 @@ export default function AboutPage() {
                             />                                    
                         </div>                     
             </div>
-            <p className="md:hidden my-[10%] md:my-[3%] text-xl text-[#333333]">
+            {/* Mobile Fourth Paragraph */}
+            <p className="md:hidden my-[10%] md:my-[3%] text-base md:text-lg text-[#333333]">
                 I learned <strong>full-stack</strong> and <strong>SEO development</strong> through free online resources like{" "}
                 <a 
                     className="text-[#006400] underline font-bold" 
@@ -264,6 +268,7 @@ export default function AboutPage() {
                     Imperial Valley College
                 </a>.
             </p>
+            {/* Mobile Academy Logos */}
             <div className="md:hidden flex items-center justify-evenly md:justify-evenly w-full">
                         <Image 
                             src="/about/TOP_Logo.png"
@@ -290,6 +295,7 @@ export default function AboutPage() {
                                 
                             />                             
             </div> 
+            {/* Mobile School Logos */}
             <div className="md:hidden flex items-center justify-evenly md:justify-evenly w-full">
                         <Image 
                             src="/about/IVC_Logo.png"
@@ -308,7 +314,7 @@ export default function AboutPage() {
                                 
                         />                       
             </div>                                           
-            <p className="my-[10%] md:my-[3%] text-xl text-[#333333]">
+            <p className="my-[10%] md:my-[3%] text-base md:text-lg text-[#333333]">
                 I consider myself fluent in <strong>Spanish</strong>, <strong>English</strong>, and <strong>JavaScript</strong>. 
                 When I&apos;m not working academically or professionally, I enjoy spending time <strong>outdoors</strong>—whether it 
                 is <strong>hiking</strong>, <strong>playing basketball</strong>, or <strong>going for a run</strong>. 
@@ -329,8 +335,7 @@ export default function AboutPage() {
                 >
                     Interstellar
                 </a>.
-                </p>
-  
+            </p>
             <div className="flex justify-center items-center">
                     <Image 
                             src="/about/Chrissy_GIF.webp"

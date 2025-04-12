@@ -31,7 +31,7 @@ export default function Homebody() {
                     <strong className="text-[#0A0A23]"> Agile teams</strong> to deliver 
                     <strong className="text-[#0A0A23]"> impactful</strong> digital products.
                 </p>
-                <p className="my-[2.5%] md:my-[1%] text-base md:text-lg">
+                <p className="my-[1%] text-base md:text-lg">
                     Currently working as an <strong className="text-[#0A0A23]">SEO & Digital Marketing Strategist</strong> at <a 
                         href="https://nhclx.org/" 
                         target="_blank" 
