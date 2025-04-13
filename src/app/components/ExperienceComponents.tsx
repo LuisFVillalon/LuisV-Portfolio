@@ -4,7 +4,7 @@ import {professionalExperience, education, certificates, techTools} from '../lib
 export function CurrentlyDoing() {
     return (
         <div>
-            <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Currently Doing</p>
+            {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Currently Doing</p> */}
             <a className="text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
                 href={professionalExperience[0].link} 
                 target="_blank" 
@@ -25,7 +25,7 @@ export function CurrentlyDoing() {
 export function ProfessionalExperience() {
     return (
         <div>
-            <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Professional Experience</p>
+            {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Professional Experience</p> */}
             {professionalExperience.map((item, index) => (
                 <div key={index}>
                             <a className="text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
@@ -52,7 +52,7 @@ export function ProfessionalExperience() {
 export function Education() {
     return (
         <div>
-            <p className="text-lg md:text-2xl font-extrabold mb-[5%]  md:mb-[2%]">Education</p>
+            {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%]  md:mb-[2%]">Education</p> */}
             {education.map((item, index) => (
                 <div key={index}>
                     <a className="text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
@@ -79,8 +79,8 @@ export function Education() {
 export function Certificates() {
     return (
         <div>
-            <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Certificates</p>
- 
+            {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Certificates</p>
+  */}
             {certificates.map((item, index) => (
                 <div key={index}>
                     <a className="text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
@@ -115,7 +115,7 @@ export function Certificates() {
 export function TechTools() {
     return (
         <div>
-            <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Tech Tools</p>
+            {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Tech Tools</p> */}
             {techTools.map((item, index) => (
                 <div key={index}>
                     <p className="mb-[0%] text-lg md:text-xl font-bold">{item.subject}:</p>
@@ -142,7 +142,7 @@ export function TechTools() {
 export function ExperienceBeyondTech() {
     return (
         <div>
-            <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Experience Beyond Tech</p>
+            {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Experience Beyond Tech</p> */}
 
             <p className=" mb-[5%]  md:mb-[0%] text-lg md:text-xl font-bold">After School Enrichment Tutor</p>
             <div className="text-lg flex justify-between mb-[2%]  md:mb-[1%]">
