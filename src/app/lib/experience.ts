@@ -30,7 +30,7 @@ type techTools = {
 const professionalExperience = [
     {
         company: 'Calexico Neighborhood House – Mission Thrift Store & Happy Kids Preschool and Daycare',
-        position: 'SEO & Digital Marketing Specialist',
+        position: 'SEO & Digital Marketing Strategist',
         time: 'Mar 2025 - Present',
         description: 'Strategized SEO and digital marketing to increase thrift store sales and preschool enrollment by coordinating with Shopify devs, managing inventory, and executing data-driven social media campaigns.',
         tech:'Meta Business Suite, Meta Ads Manager, Google Analytics, Shopify',
