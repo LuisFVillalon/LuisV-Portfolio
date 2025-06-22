@@ -1,4 +1,5 @@
 type projectsFrontEnd = {
+    key: number;
     title: string;
     description: string;
     tech: string;
@@ -9,6 +10,7 @@ type projectsFrontEnd = {
   };
 
 type topProjects = {
+    key: number;
     title: string;
     description: string;
     tech: string;
@@ -19,6 +21,7 @@ type topProjects = {
 }
 
 type projectsBackEnd = {
+    key: number;
     title: string;
     description: string;
     tech: string;
@@ -28,6 +31,7 @@ type projectsBackEnd = {
 };
 
 type projectsAcademic = {
+    key: number;
     title: string;
     description: string;
     tech: string;
