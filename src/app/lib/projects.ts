@@ -207,7 +207,7 @@ const projectsAcademic = [
         github_repo: 'https://github.com/LuisFernandoVillalon/CS281-Assembly-Language-and-Machine-Organization',
         live_app:'',
         image: '/projects/academic/cs281.png',
-        mobileFriendly: true,
+        mobileFriendly: false,
     },
     {
         title: 'Pokedex',
@@ -216,7 +216,7 @@ const projectsAcademic = [
         github_repo: 'https://github.com/LuisFernandoVillalon/JAVA-Pokedex',
         live_app:'',
         image: '/projects/academic/pokedex.png',       
-        mobileFriendly: true,
+        mobileFriendly: false,
     },
     {  
         title: 'Introduction to Data Structures',
@@ -225,7 +225,7 @@ const projectsAcademic = [
         github_repo: 'https://github.com/LuisFernandoVillalon/cs231-IntroDataStructures',
         live_app:'',
         image: '/projects/academic/cs231.png',   
-        mobileFriendly: true,
+        mobileFriendly: false,
     },
     {
         title: 'Hang-Man',
@@ -234,7 +234,7 @@ const projectsAcademic = [
         github_repo: 'https://github.com/LuisFernandoVillalon/hang-man',
         live_app:'',
         image: '/projects/academic/hangman.png',     
-        mobileFriendly: true,
+        mobileFriendly: false,
     },
     {
         title: 'Introduction to Object Oriented Programming',
@@ -243,7 +243,7 @@ const projectsAcademic = [
         github_repo: 'https://github.com/LuisFernandoVillalon/cs221-IntroOOP',
         live_app:'',
         image: '/projects/academic/cs221.png',     
-        mobileFriendly: true,
+        mobileFriendly: false,
     }
 
 

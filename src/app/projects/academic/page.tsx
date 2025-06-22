@@ -43,6 +43,7 @@ export default function Academic() {
                   github_repo={project.github_repo} 
                   live_app={project.live_app}
                   image={project.image}
+                  mobileFriendly={project.mobileFriendly}
                 />
               );
             })}
