@@ -16,8 +16,14 @@ export default function Post({ params }: PageProps): React.ReactElement {
   const { slug } = React.use(params);
   const selectedPost = getPostById(Number(slug));
   
-  console.log(selectedPost);
-  
+  if (!selectedPost) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-gray-600">Post not found.</p>
+      </div>
+    );
+  }  
+
   return (
     <div className="font-[Monospace] flex flex-col items-center justify-start min-h-screen bg-[#FFFFFF]">
       <Navbar />
