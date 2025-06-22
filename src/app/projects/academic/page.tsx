@@ -2,7 +2,6 @@
 import Navbar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import Link from 'next/link';
-//import Image from 'next/image';
 import {projectsAcademic} from '../../lib/projects';
 import PanelTemplate from '../../components/projects/PanelTemplate';
 import CTASection from '@/app/components/home/CTASection';
