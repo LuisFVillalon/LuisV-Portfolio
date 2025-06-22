@@ -32,6 +32,7 @@ type projectsAcademic = {
     description: string;
     tech: string;
     github_repo: string;
+    live_app: string;
     image: string;
     mobileFriendly: boolean;
 };
