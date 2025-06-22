@@ -53,7 +53,7 @@ const topProjects = [
     },
     {
         title: 'Imperial Web Experts',
-        description: 'A web development agency that develops web applications that help generate leads and appointments for small businesses. Coming soon.',
+        description: 'A web development agency specializing in custom web applications that help small businesses generate leads and book more appointments. Coming soon.',
         tech: 'HTML, CSS, JavaScript, TypeScript, Next.js, React.js',
         github_repo: '',
         live_app: '',  
