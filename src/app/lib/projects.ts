@@ -167,7 +167,7 @@ const projectsBackEnd = [
         github_repo: 'https://github.com/LuisFernandoVillalon/Blog-API',
         live_app:'',
         image: '/projects/backend/blogtemplate.png',
-        mobileFriendly: true,
+        mobileFriendly: false,
     },
     {
         title: 'Members Only',
@@ -176,7 +176,7 @@ const projectsBackEnd = [
         github_repo: 'https://github.com/LuisFernandoVillalon/Members-Only',
         live_app:'',
         image: '/projects/backend/membersonly.png',    
-        mobileFriendly: true,
+        mobileFriendly: false,
     },
     {  
         title: 'Whats Poppin?',
@@ -185,7 +185,7 @@ const projectsBackEnd = [
         github_repo: 'https://github.com/LuisFernandoVillalon/WhatsPoppin',
         live_app:'',
         image: '/projects/backend/whatspoppin.png',   
-        mobileFriendly: true,
+        mobileFriendly: false,
     },
     {
         title: 'Poke-Photo Tag',
@@ -194,7 +194,7 @@ const projectsBackEnd = [
         github_repo: 'https://github.com/LuisFernandoVillalon/back-end-pokemon-photo-tag',
         live_app:'',
         image: '/projects/backend/pokephototag.png',     
-        mobileFriendly: true,
+        mobileFriendly: false,
     }
 
 ];
