@@ -4,15 +4,27 @@ type projectsFrontEnd = {
     tech: string;
     github_repo: string;
     live_app: string;
-    image: string
+    image: string;
+    mobileFriendly: boolean;
   };
+
+type topProjects = {
+    title: string;
+    description: string;
+    tech: string;
+    github_repo: string;
+    live_app: string;
+    image: string;
+    mobileFriendly: boolean;    
+}
 
 type projectsBackEnd = {
     title: string;
     description: string;
     tech: string;
     github_repo: string;
-    image: string
+    image: string;
+    mobileFriendly: boolean;
 };
 
 type projectsAcademic = {
@@ -20,41 +32,76 @@ type projectsAcademic = {
     description: string;
     tech: string;
     github_repo: string;
-    image: string
+    image: string;
+    mobileFriendly: boolean;
 };
+
+const topProjects = [
+    {
+        title: 'Pokedex Catalog',
+        description: 'View the information of 891 Pokemons. Look them up, store them in your local storage, and release them! ',
+        tech: 'HTML, CSS, JavaScript, Data Structures',
+        github_repo: 'https://github.com/LuisFernandoVillalon/catalog-website',
+        live_app: 'https://luisfernandovillalon.github.io/catalog-website/',
+        image: '/projects/frontend/pokedexcatalog.png',
+        mobileFriendly: true,
+    },
+    {
+        title: 'Imperial Web Experts',
+        description: 'A web development agency that develops web applications that help generate leads and appointments for small businesses. Coming soon.',
+        tech: 'HTML, CSS, JavaScript, TypeScript, Next.js, React.js',
+        github_repo: '',
+        live_app: '',  
+        image: '/projects/IWE_logo.png',      
+        mobileFriendly: true,
+    },
+    {  
+        title: 'Whats Poppin?',
+        description: 'Reddit-clone web application. Create an account, post, comment, and vote!',
+        tech: 'HTML, CSS, JavaScript, React.js, Google Firebase Firestore Database and Authentication',
+        github_repo: 'https://github.com/LuisFernandoVillalon/WhatsPoppin',
+        live_app: 'https://luisfernandovillalon.github.io/WhatsPoppin/',    
+        image: '/projects/frontend/whatspoppin.png',   
+        mobileFriendly: false,
+    }
+];
 
 const projectsFrontEnd = [
     {
         title: 'Pokedex Catalog',
-        description: 'View the information of 891 Pokemons. (Mobile-friendly)',
+        description: 'View the information of 891 Pokemons. Look them up, store them in your local storage, release them!',
         tech: 'HTML, CSS, JavaScript, Data Structures',
         github_repo: 'https://github.com/LuisFernandoVillalon/catalog-website',
         live_app: 'https://luisfernandovillalon.github.io/catalog-website/',
-        image: '/projects/frontend/pokedexcatalog.png'
+        image: '/projects/frontend/pokedexcatalog.png',
+        mobileFriendly: true,
     },
     {
         title: 'Poke-Photo Tag',
         description: 'Identify and tag Pokémon in an image with real-time scoring.',
-        tech: 'HTML, CSS, JavaScript, React.js, Google Firebase Firestore Database',
+        tech: 'HTML, CSS, JavaScript, React.js, API',
         github_repo: 'https://github.com/LuisFernandoVillalon/front-end-pokemon-photo-tag',
         live_app: 'https://wheres-that-pokemon.netlify.app/',  
-        image: '/projects/frontend/pokephototag.png'      
+        image: '/projects/frontend/pokephototag.png',      
+        mobileFriendly: false,
     },
     {  
         title: 'Whats Poppin?',
-        description: 'Reddit-clone web application.',
+        description: 'Reddit-clone web application. Create an account, post, comment, and vote!',
         tech: 'HTML, CSS, JavaScript, React.js, Google Firebase Firestore Database and Authentication',
         github_repo: 'https://github.com/LuisFernandoVillalon/WhatsPoppin',
         live_app: 'https://luisfernandovillalon.github.io/WhatsPoppin/',    
-        image: '/projects/frontend/whatspoppin.png'    
+        image: '/projects/frontend/whatspoppin.png',   
+        mobileFriendly: false,
     },
     {
         title: 'Tic-Tac-Toe',
-        description: 'Play tic-tac-toe against a computer. (Mobile-friendly)',
+        description: 'Play tic-tac-toe against an unbeatable computer!',
         tech: 'HTML, CSS, JavaScript, Recursion, Minimax Algorithm',
         github_repo: 'https://github.com/LuisFernandoVillalon/TicTacToe-theOdinProject',
         live_app: 'https://luisfernandovillalon.github.io/TicTacToe-theOdinProject/',   
-        image: '/projects/frontend/tictactoe.png'     
+        image: '/projects/frontend/tictactoe.png',    
+        mobileFriendly: true,
     },
     {
         title: 'Blog Template',
@@ -62,7 +109,8 @@ const projectsFrontEnd = [
         tech: 'HTML, CSS, JavaScript, React.js, React Router, REST API, Forms',
         github_repo: 'https://github.com/LuisFernandoVillalon/Blog-Template',
         live_app: 'https://nimble-druid-a52a4e.netlify.app/',      
-        image: '/projects/frontend/blogtemplate.png'  
+        image: '/projects/frontend/blogtemplate.png', 
+        mobileFriendly: true,
     },
     {
         title: 'Members Only',
@@ -70,7 +118,8 @@ const projectsFrontEnd = [
         tech: 'HTML, CSS, JavaScript, Node.js, Express.js, MongoDB, Mongoose, Authentication',
         github_repo: 'https://github.com/LuisFernandoVillalon/Members-Only',
         live_app: 'https://members-only-9gew.onrender.com/',    
-        image: '/projects/frontend/membersonly.png'    
+        image: '/projects/frontend/membersonly.png',   
+        mobileFriendly: true,
     },
     {
         title: 'To Do List',
@@ -78,7 +127,8 @@ const projectsFrontEnd = [
         tech: 'HTML, CSS, JavaScript, ES6 Modules, Object Oriented Principles',
         github_repo: 'https://github.com/LuisFernandoVillalon/TodoList-TOD',
         live_app: 'https://luisfernandovillalon.github.io/TodoList-TOD/', 
-        image: '/projects/frontend/todolist.png'       
+        image: '/projects/frontend/todolist.png',      
+        mobileFriendly: false,
     },
     {
         title: 'Memory Card Game',
@@ -86,7 +136,8 @@ const projectsFrontEnd = [
         tech: 'HTML, CSS, JavaScript, React.js, State Management',
         github_repo: 'https://github.com/LuisFernandoVillalon/memory-card-game-TOP',
         live_app: 'https://luisfernandovillalon.github.io/memory-card-game-TOP/', 
-        image: '/projects/frontend/memorycard.png'       
+        image: '/projects/frontend/memorycard.png',      
+        mobileFriendly: false,
     },
     {
         title: 'Library',
@@ -94,15 +145,17 @@ const projectsFrontEnd = [
         tech: 'HTML, CS, JavaScript, React.js, DOM Manipulation',
         github_repo: 'https://github.com/LuisFernandoVillalon/Library-theOdinProject',
         live_app: 'https://luisfernandovillalon.github.io/Library-theOdinProject/',      
-        image: '/projects/frontend/library.png'  
+        image: '/projects/frontend/library.png', 
+        mobileFriendly: true,
     },
     {
         title: 'Rock, Paper, Scissors!',
-        description: 'Reddit-clone web application.',
+        description: 'Reddit-clone web application. Create an account, post, comment, and vote!',
         tech: 'HTML, CSS, JavaScript',
         github_repo: 'https://github.com/LuisFernandoVillalon/Rock-Paper-Scissors-OdinProject',
         live_app: 'https://luisfernandovillalon.github.io/Rock-Paper-Scissors-OdinProject/',        
-        image: '/projects/frontend/rockpaperscissors.png'
+        image: '/projects/frontend/rockpaperscissors.png',
+        mobileFriendly: false,
     }
 ];
 
@@ -113,7 +166,8 @@ const projectsBackEnd = [
         tech: 'JavaScript, Node.js, Express.js, MongoDB, Mongoose, Passport.js, bcrypt, JWT (token-based authentication), MVC pattern (models, controllers, routes)',
         github_repo: 'https://github.com/LuisFernandoVillalon/Blog-API',
         live_app:'',
-        image: '/projects/backend/blogtemplate.png'
+        image: '/projects/backend/blogtemplate.png',
+        mobileFriendly: true,
     },
     {
         title: 'Members Only',
@@ -121,7 +175,8 @@ const projectsBackEnd = [
         tech: ' JavaScript, Node.js, Express.js, MongoDB, Mongoose, EJS, CSS, bcrypt, Passport.js',
         github_repo: 'https://github.com/LuisFernandoVillalon/Members-Only',
         live_app:'',
-        image: '/projects/backend/membersonly.png'     
+        image: '/projects/backend/membersonly.png',    
+        mobileFriendly: true,
     },
     {  
         title: 'Whats Poppin?',
@@ -129,7 +184,8 @@ const projectsBackEnd = [
         tech: 'JavaScript. Google Firebase Firestore Database and Authentication',
         github_repo: 'https://github.com/LuisFernandoVillalon/WhatsPoppin',
         live_app:'',
-        image: '/projects/backend/whatspoppin.png'    
+        image: '/projects/backend/whatspoppin.png',   
+        mobileFriendly: true,
     },
     {
         title: 'Poke-Photo Tag',
@@ -137,7 +193,8 @@ const projectsBackEnd = [
         tech: 'JavaScript, Node.js, Express.js, MongoDB, Mongoose, RESTful API, Schema Models, Routes, Controllers',
         github_repo: 'https://github.com/LuisFernandoVillalon/back-end-pokemon-photo-tag',
         live_app:'',
-        image: '/projects/backend/pokephototag.png'      
+        image: '/projects/backend/pokephototag.png',     
+        mobileFriendly: true,
     }
 
 ];
@@ -149,7 +206,8 @@ const projectsAcademic = [
         tech: 'Assembly Language (Windows x86), Visual Studio',
         github_repo: 'https://github.com/LuisFernandoVillalon/CS281-Assembly-Language-and-Machine-Organization',
         live_app:'',
-        image: '/projects/academic/cs281.png'
+        image: '/projects/academic/cs281.png',
+        mobileFriendly: true,
     },
     {
         title: 'Pokedex',
@@ -157,7 +215,8 @@ const projectsAcademic = [
         tech: 'Java, JavaFX, Data Structures, Sorting Algorithms, GUI Design, Event Handling, jGrasp',
         github_repo: 'https://github.com/LuisFernandoVillalon/JAVA-Pokedex',
         live_app:'',
-        image: '/projects/academic/pokedex.png'        
+        image: '/projects/academic/pokedex.png',       
+        mobileFriendly: true,
     },
     {  
         title: 'Introduction to Data Structures',
@@ -165,7 +224,8 @@ const projectsAcademic = [
         tech: 'JAVA, JavaFX, jGrasp',
         github_repo: 'https://github.com/LuisFernandoVillalon/cs231-IntroDataStructures',
         live_app:'',
-        image: '/projects/academic/cs231.png'    
+        image: '/projects/academic/cs231.png',   
+        mobileFriendly: true,
     },
     {
         title: 'Hang-Man',
@@ -173,7 +233,8 @@ const projectsAcademic = [
         tech: 'Java, JavaFX, Object-Oriented Programming (OOP), Polymorphism, Inheritance, GUI Design, jGrasp',
         github_repo: 'https://github.com/LuisFernandoVillalon/hang-man',
         live_app:'',
-        image: '/projects/academic/hangman.png'      
+        image: '/projects/academic/hangman.png',     
+        mobileFriendly: true,
     },
     {
         title: 'Introduction to Object Oriented Programming',
@@ -181,12 +242,13 @@ const projectsAcademic = [
         tech: 'JAVA, JavaFX, jGrasp',
         github_repo: 'https://github.com/LuisFernandoVillalon/cs221-IntroOOP',
         live_app:'',
-        image: '/projects/academic/cs221.png'      
+        image: '/projects/academic/cs221.png',     
+        mobileFriendly: true,
     }
 
 
 ];
 
 export {
-    projectsFrontEnd, projectsBackEnd, projectsAcademic
+    projectsFrontEnd, projectsBackEnd, projectsAcademic, topProjects
 };

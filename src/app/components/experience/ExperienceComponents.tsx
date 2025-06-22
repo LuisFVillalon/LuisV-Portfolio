@@ -1,17 +1,16 @@
-import {professionalExperience, education, certificates, techTools} from '../lib/experience';
+import {professionalExperience, education, certificates, techTools} from '../../lib/experience';
 
 
 export function CurrentlyDoing() {
     return (
         <div>
-            {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Currently Doing</p> */}
-            <a className="text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
+            <a className="dm-serif-text-regular text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
                 href={professionalExperience[0].link} 
                 target="_blank" 
                 rel="noopener noreferrer"
             >{professionalExperience[0].company}</a>
             <div className="text-base md:text-lg flex justify-between mb-[2%] md:mb-[1%]">
-                <p className="text-[#0A0A23] w-[60%] italic font-semibold">{professionalExperience[0].position}</p>
+                <p className="dm-serif-text-regular-italic text-[#0A0A23] w-[60%] italic font-semibold">{professionalExperience[0].position}</p>
                 <p className="text-end w-[40%]">{professionalExperience[0].time}</p>
             </div>
             <p className="text-base"> 
@@ -28,13 +27,13 @@ export function ProfessionalExperience() {
             {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Professional Experience</p> */}
             {professionalExperience.map((item, index) => (
                 <div key={index}>
-                            <a className="text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
+                            <a className="dm-serif-text-regular text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
                                 href={item.link} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                             >{item.company}</a>
                             <div className="text-base md:text-lg flex justify-between mb-[2%] md:mb-[1%]">
-                                <p className="text-[#0A0A23] w-[60%] italic font-semibold">{item.position}</p>
+                                <p className="text-[#0A0A23] w-[60%] dm-serif-text-regular-italic font-semibold">{item.position}</p>
                                 <p className="text-end w-[40%]">{item.time}</p>
                             </div>
                             <p className="text-base"> 
@@ -55,13 +54,13 @@ export function Education() {
             {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%]  md:mb-[2%]">Education</p> */}
             {education.map((item, index) => (
                 <div key={index}>
-                    <a className="text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
+                    <a className="dm-serif-text-regular text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
                         href={item.link} 
                         target="_blank" 
                         rel="noopener noreferrer"
                     >{item.institution}</a>
                     <div className="text-base md:text-lg flex justify-between mb-[2%] md:mb-[1%]">
-                        <p className="text-[#0A0A23] w-[60%] italic font-semibold">{item.course}</p>
+                        <p className="text-[#0A0A23] w-[60%] dm-serif-text-regular-italic font-semibold">{item.course}</p>
                         <p className="text-end w-[40%]">{item.time}</p>
                     </div>
                     <p className="text-base"> 
@@ -79,17 +78,15 @@ export function Education() {
 export function Certificates() {
     return (
         <div>
-            {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Certificates</p>
-  */}
             {certificates.map((item, index) => (
                 <div key={index}>
-                    <a className="text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
+                    <a className="dm-serif-text-regular text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
                         href={item.cert_link} 
                         target="_blank" 
                         rel="noopener noreferrer"
                     >{item.title}</a>
                     <div className="text-base md:text-lg flex justify-between mb-[2%] md:mb-[1%]">
-                        <a className="text-[#006400] w-[60%] italic font-semibold underline" 
+                        <a className="text-[#006400] w-[60%] dm-serif-text-regular-italic font-semibold underline" 
                             href={item.institution_link} 
                             target="_blank" 
                             rel="noopener noreferrer">
@@ -118,7 +115,7 @@ export function TechTools() {
             {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Tech Tools</p> */}
             {techTools.map((item, index) => (
                 <div key={index}>
-                    <p className="mb-[0%] text-lg md:text-xl font-bold">{item.subject}:</p>
+                    <p className="dm-serif-text-regular mb-[0%] text-lg md:text-xl font-bold">{item.subject}:</p>
                     <div className="flex flex-wrap">
                         {item.tools.map((tech_item, link_index) => {
                             const isLast = link_index === item.tools.length - 1;
@@ -144,9 +141,9 @@ export function ExperienceBeyondTech() {
         <div>
             {/* <p className="text-lg md:text-2xl font-extrabold mb-[5%] md:mb-[2%]">Experience Beyond Tech</p> */}
 
-            <p className=" mb-[5%]  md:mb-[0%] text-lg md:text-xl font-bold">After School Enrichment Tutor</p>
+            <p className="dm-serif-text-regular mb-[5%]  md:mb-[0%] text-lg md:text-xl font-bold">After School Enrichment Tutor</p>
             <div className="text-lg flex justify-between mb-[2%]  md:mb-[1%]">
-                <p className="underline w-[60%] italic font-semibold text-[#006400]">
+                <p className="dm-serif-text-regular-italic underline w-[60%] italic font-semibold text-[#006400]">
                     <a href="https://www.cusdk12.org/departments/educational-services/after-school-program/index.html"
                         target="_blank" rel="noopener noreferrer">SPARKS, Calexico Unified School District
                     </a>
@@ -162,9 +159,9 @@ export function ExperienceBeyondTech() {
 
             <div className="my-[5%] md:my-[2%] border-b border-gray-250"></div>    
 
-            <p className="mb-[5%]  md:mb-[0%] text-lg md:text-xl font-bold">Sales</p>
+            <p className="dm-serif-text-regular mb-[5%]  md:mb-[0%] text-lg md:text-xl font-bold">Sales</p>
             <div className="text-lg flex justify-between mb-[2%]  md:mb-[1%]">
-                <p className="w-[60%] italic font-semibold">Retail Industry</p>
+                <p className="w-[60%] dm-serif-text-regular-italic font-semibold">Retail Industry</p>
                 <p className="text-end w-[40%]">1+ year</p>
             </div>
             <p className="text-base"> 
@@ -183,9 +180,9 @@ export function ExperienceBeyondTech() {
 
             <div className="my-[5%] md:my-[2%] border-b border-gray-250"></div>                  
 
-            <p className="mb-[5%]  md:mb-[0%] text-lg md:text-xl font-bold">Emergency Medical Technician</p>
+            <p className="dm-serif-text-regular mb-[5%]  md:mb-[0%] text-lg md:text-xl font-bold">Emergency Medical Technician</p>
             <div className="text-lg flex justify-between mb-[2%]  md:mb-[1%]">
-                <p className="underline w-[60%] italic font-semibold text-[#006400]">
+                <p className="dm-serif-text-regular-italic underline w-[60%] italic font-semibold text-[#006400]">
                     <a href="https://www.amr.net/"
                         target="_blank" rel="noopener noreferrer">American Medical Response
                     </a>
@@ -201,9 +198,9 @@ export function ExperienceBeyondTech() {
 
             <div className="my-[5%] md:my-[2%] border-b border-gray-250"></div>      
 
-            <p className="mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold">Customer Service</p>
+            <p className="dm-serif-text-regular mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold">Customer Service</p>
             <div className="text-base md:text-lg flex justify-between mb-[2%] md:mb-[1%]">
-                <p className="w-[60%] italic font-semibold">Food Service Industry</p>
+                <p className="dm-serif-text-regular-italic w-[60%] font-semibold">Food Service Industry</p>
                 <p className="text-end w-[40%]">3+ years</p>
             </div>
             <p className="text-base"> 

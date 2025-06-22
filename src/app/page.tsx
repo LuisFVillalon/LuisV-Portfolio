@@ -1,6 +1,6 @@
 // app/page.tsx
 import Navbar from './components/NavBar';
-import Homebody from './components/HomeBody';
+import Homebody from './components/home/HomeBody';
 import Footer from './components/Footer';
 
 export default function Home() {

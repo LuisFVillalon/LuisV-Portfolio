@@ -7,7 +7,7 @@ import { useState } from 'react';
 export default function Navbar() {
     const [menuStatus, setMenuStatus] = useState(false);
   return (
-      <nav className="sticky top-0 w-full shadow-md bg-[#EEEEEE] bg-opacity-70">
+      <nav className="z-50 sticky top-0 w-full shadow-md bg-[#EEEEEE] bg-opacity-70">
           <div
             className={`text-2xl md:text-4xl text-[#0A0A23] text-2xl md:text-4xl text-[#0A0A23] flex justify-between my-[1%] transition-all duration-300 
               ${menuStatus ? "mt-[0%] md:py-[1%] md:my-[0%] mr-[5%] md:mr-[0%]" : "mx-[10%] md:mx-[20%]"}`}
@@ -55,7 +55,15 @@ export default function Navbar() {
                     hover:text-[#006400] transition-colors"
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/blog">Blog</Link>
-                  </p>                  
+                  </p>        
+                  <p className="text-2xl md:text-3xl   
+                    hover:font-black 
+                    hover:cursor-pointer
+                    hover:underline
+                    hover:text-[#006400] transition-colors"
+                    style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
+                      <Link href="/contact">Contact</Link>
+                  </p>                                 
                   <button 
                     onClick={() => setMenuStatus(false)}
                     className="text-2xl md:text-3xl text-[#EEEEEE]  
