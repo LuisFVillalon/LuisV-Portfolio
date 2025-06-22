@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Github, Smartphone, ExternalLink } from 'lucide-react';
 
 interface PanelTemplateProps {
+    key: number;
     title: string;
     description: string;
     tech: string;
@@ -14,6 +15,7 @@ interface PanelTemplateProps {
 }
 
 const PanelTemplate: React.FC<PanelTemplateProps> = ({ 
+    key,
     title, 
     description, 
     tech, 
