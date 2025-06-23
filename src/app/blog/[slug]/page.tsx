@@ -40,8 +40,8 @@ export default function Post({ params }: PageProps): React.ReactElement {
             />
             
             <div className="">
-              <div className="grid grid-cols-4 gap-2 text-center text-sm text-gray-600 my-4">
-                <span className="flex items-center justify-center bg-blue-100 text-blue-800  py-1 rounded-lg">
+              <div className="grid grid-cols-5 place-items-center gap-2 text-center text-xs text-gray-600 my-4">
+                <span className="flex items-center justify-center bg-blue-100 text-blue-800  p-1 rounded-lg">
                   {selectedPost.category}
                 </span>
                 <div className="flex items-center gap-1">
@@ -57,7 +57,7 @@ export default function Post({ params }: PageProps): React.ReactElement {
                   {selectedPost.author}
                 </div>
                 <Link className="" href="/blog/">
-                  <button className="text-sm p-2 m-2 rounded-md bg-gradient-to-r from-green-500 to-blue-500 text-[#ffffff] shadow-lg transform active:scale-95 
+                  <button className=" p-2 m-2 rounded-md bg-gradient-to-r from-green-500 to-blue-500 text-[#ffffff] shadow-lg transform active:scale-95 
                     active:shadow-md transition-all duration-150 hover:shadow-xl hover:-translate-y-1 border-b-4 border-r-2 border-[#004d00] 
                     active:border-b-2 active:translate-y-1 dm-serif-text-regular w-full"
                   >
