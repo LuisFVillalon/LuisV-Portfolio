@@ -5,6 +5,7 @@ import Navbar from '../../components/NavBar';
 import Wrapper from '../../components/Wrapper';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Calendar, Clock, User } from 'lucide-react'; // Added missing imports
 import { getPostById } from '@/app/lib/blogs';
 import CTASection from '@/app/components/home/CTASection';
@@ -55,6 +56,14 @@ export default function Post({ params }: PageProps): React.ReactElement {
                   <User size={16} />
                   {selectedPost.author}
                 </div>
+                <Link className="" href="/blog/">
+                  <button className="text-sm p-2 m-2 rounded-md bg-gradient-to-r from-green-500 to-blue-500 text-[#ffffff] shadow-lg transform active:scale-95 
+                    active:shadow-md transition-all duration-150 hover:shadow-xl hover:-translate-y-1 border-b-4 border-r-2 border-[#004d00] 
+                    active:border-b-2 active:translate-y-1 dm-serif-text-regular w-full"
+                  >
+                    <i className="ml-[1%] fas fa-arrow-left"></i>
+                  </button>
+                </Link>
               </div>
               
               <h1 className="dm-serif-text-regular text-3xl font-bold text-gray-900 mb-6">

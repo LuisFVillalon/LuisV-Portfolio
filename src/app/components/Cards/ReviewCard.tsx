@@ -44,7 +44,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
                       hover:scale-105 hover:-translate-y-1 
                       hover:bg-gradient-to-r hover:from-green-500 hover:to-blue-500 
                       bg-[#0A0A23] rounded-2xl 
-                      overflow-hidden text-[#FFFFFF] mx-auto my-[5%] md:my-[15%] 
+                      overflow-hidden text-[#FFFFFF] mx-auto 
                        border rounded-lg p-4 md:w-[300px]">         
                         <div className=" flex gap-3 flex-col p-4 p-[5%]">
                             <p className="text-base break-words">

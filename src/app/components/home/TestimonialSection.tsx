@@ -32,7 +32,7 @@ export default function TestimonialCarousel() {
             <div className="relative overflow-hidden">
                 
                 {/* Main Carousel Display */}
-                <div className="relative grid grid-cols-3 md:flex ">
+                <div className="relative grid grid-cols-3 md:flex justify-center items-center h-auto">
                     <div 
                         className={`grid grid-flow-col gap-6  w-full justify-center transition-all duration-300 ease-in-out ${
                             isTransitioning ? 'opacity-0 transform translate-x-2' : 'opacity-100 transform translate-x-0'
