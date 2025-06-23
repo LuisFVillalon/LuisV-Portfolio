@@ -19,7 +19,7 @@ export default function Testimonials() {
                     Testimonials from employers, mentors, and collaborators.
                 </p>
             </div>
-            <div className=" grid md:grid-cols-3 md:gap-20 justify-center items-start ">
+            <div className=" grid md:grid-cols-3 md:gap-10 justify-center items-start ">
                 {testimonialsArr.map((testimonial, id) => {
                 return (
                     <ReviewCard

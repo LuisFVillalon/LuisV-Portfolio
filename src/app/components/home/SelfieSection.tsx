@@ -11,8 +11,8 @@ export default function SelfieSection() {
                                         height={500}
                                         className="rounded-lg"
                                     />   
-                                    <p className="text-base text-[#333333] italic">&quot;Whatever the mind can conceive and believe, it can achieve.&quot;</p>
-                                    <p className="text-lg text-[#0A0A23] dm-serif-text-regular">- Napoleon Hill</p>
+                                    <p className="text-center text-base text-[#333333] italic">&quot;Whatever the mind can conceive and believe, it can achieve.&quot;</p>
+                                    <p className="text-center text-lg text-[#0A0A23] dm-serif-text-regular">- Napoleon Hill</p>
             </div>
     );
 }
