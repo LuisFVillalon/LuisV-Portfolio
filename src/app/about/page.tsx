@@ -25,8 +25,7 @@ export default function AboutPage() {
                                 rel="noopener noreferrer"
                             >
                                 Calexico, CA
-                            </a>. I&apos;m passionate about <strong>learning</strong> and constantly 
-                            challenging myself to <strong>grow</strong>!
+                            </a>. I&apos;m dedicated to helping my <strong>community</strong> through my work as a full-stack developer!
                         </p>
                         <div className="flex justify-center items-center">
                                     <Image 

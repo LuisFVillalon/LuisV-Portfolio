@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+
 "use client";
 import React from 'react';
 import { Calendar, Clock, User } from 'lucide-react';
@@ -33,12 +33,11 @@ export default function BlogShowcase() {
                 className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute top-3 left-3">
-                <span className="opacity-[75%] bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+                <span className="text-white opacity-[75%] bg-[#0A0A23] backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
                   {post.category}
                 </span>
               </div>
             </div>
-            
             <div className="p-6">
               <h2 className="dm-serif-text-regular text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                 {post.title}

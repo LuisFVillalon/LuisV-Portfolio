@@ -32,6 +32,14 @@ export default function Navbar() {
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/about">About</Link>
                   </p>
+                 <p className="text-2xl md:text-3xl   
+                    hover:font-black 
+                    hover:cursor-pointer
+                    hover:underline
+                    hover:text-[#006400] transition-colors"
+                    style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
+                      <Link href="/testimonials">Testimonials</Link>
+                  </p>                  
                   <p className="text-2xl md:text-3xl   
                     hover:font-black 
                     hover:cursor-pointer

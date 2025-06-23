@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { topProjects } from '@/app/lib/projects';
-import PanelTemplate from '../projects/PanelTemplate';
+import PanelTemplate from '../Cards/PanelTemplate';
 
 // Main Projects Component
 const ProjectCards: React.FC = () => {

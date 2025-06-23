@@ -7,6 +7,7 @@ import Footer from '../../components/Footer';
 import Image from 'next/image';
 import { Calendar, Clock, User } from 'lucide-react'; // Added missing imports
 import { getPostById } from '@/app/lib/blogs';
+import CTASection from '@/app/components/home/CTASection';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -27,20 +28,19 @@ export default function Post({ params }: PageProps): React.ReactElement {
   return (
     <div className="font-[Monospace] flex flex-col items-center justify-start min-h-screen bg-[#FFFFFF]">
       <Navbar />
-      <Wrapper>
-        <div className="max-w-4xl mx-auto p-6">
-          <article className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <Wrapper>
+          <article className=" bg-white  overflow-hidden">
             <Image
               src={selectedPost.image_banner}
               alt={selectedPost.title}
-              className="w-full h-64 object-cover"
+              className="w-full"
               width={800}
-              height={256}
+              height={400}
             />
             
-            <div className="p-8">
+            <div className="">
               <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                <span className="bg-blue-100 text-blue-800  py-1 rounded-lg">
                   {selectedPost.category}
                 </span>
                 <div className="flex items-center gap-1">
@@ -75,8 +75,8 @@ export default function Post({ params }: PageProps): React.ReactElement {
               </div>
             </div>
           </article>
-        </div>
-      </Wrapper>
+          <CTASection/>
+        </Wrapper>
       <Footer />
     </div>
   );

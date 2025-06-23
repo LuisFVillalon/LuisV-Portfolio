@@ -5,6 +5,7 @@ import Navbar from '../components/NavBar';
 import Wrapper from '../components/Wrapper';
 import Footer from '../components/Footer';
 import BlogList from '../components/blog/BlogList';
+import CTASection from '../components/home/CTASection';
 
 export default function Contact(): React.ReactElement {
   return (
@@ -12,6 +13,7 @@ export default function Contact(): React.ReactElement {
       <Navbar />
       <Wrapper>
         <BlogList/>
+        <CTASection/>
       </Wrapper>
       <Footer />
     </div>

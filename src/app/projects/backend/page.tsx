@@ -4,7 +4,7 @@ import Footer from '../../components/Footer';
 import Link from 'next/link';
 //import Image from 'next/image';
 import {projectsBackEnd} from '../../lib/projects';
-import PanelTemplate from '../../components/projects/PanelTemplate';
+import PanelTemplate from '../../components/Cards/PanelTemplate';
 import CTASection from '@/app/components/home/CTASection';
     
 export default function BackEnd() {

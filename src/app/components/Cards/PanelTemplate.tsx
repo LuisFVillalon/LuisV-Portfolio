@@ -27,7 +27,7 @@ const PanelTemplate: React.FC<PanelTemplateProps> = ({
     }
     
     return (
-        <div className="bg-[#EEEEEE] rounded-2xl shadow-2xl border border-2 border-[#0A0A23] overflow-hidden text-[#333333] mx-auto md:mx-8 my-[5%] md:my-[1%] max-w-screen-md w-full border rounded-lg relative">
+        <div className="bg-[#EEEEEE] rounded-2xl shadow-2xl border border-2 border-[#0A0A23] overflow-hidden text-[#333333] my-[5%] md:my-[1%] max-w-screen-md w-full border rounded-lg relative">
             {/* Mobile-friendly badge */}
             {mobileFriendly && (
                 <div className="opacity-[50%] absolute top-3 right-3 z-10 bg-[#006400] text-white px-2 py-1 rounded-full flex items-center gap-1 text-xs font-semibold">
