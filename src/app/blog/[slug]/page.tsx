@@ -40,8 +40,8 @@ export default function Post({ params }: PageProps): React.ReactElement {
             />
             
             <div className="">
-              <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
-                <span className="bg-blue-100 text-blue-800  py-1 rounded-lg">
+              <div className="grid grid-cols-4 gap-2 text-center text-sm text-gray-600 my-4">
+                <span className="flex items-center justify-center bg-blue-100 text-blue-800  py-1 rounded-lg">
                   {selectedPost.category}
                 </span>
                 <div className="flex items-center gap-1">
