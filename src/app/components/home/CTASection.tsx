@@ -30,7 +30,7 @@ const CTASection: React.FC<CTAProps> = ({
               active:shadow-md transition-all duration-150 hover:shadow-xl hover:-translate-y-1 border-b-4 border-r-2 border-[#004d00] 
               active:border-b-2 active:translate-y-1 dm-serif-text-regular"
           >
-            Let&apos;s Connect!
+            Let&apos;s Connect
           </button>        
         </Link>
       </div>
