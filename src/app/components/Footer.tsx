@@ -10,7 +10,7 @@ export default function Footer() {
               <i className="fab fa-linkedin text-base md:text-xl" 
               ></i>
             </a>
-            <a href="https://github.com/LuisFernandoVillalon" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/LuisFVillalon" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-github text-base md:text-xl"
               ></i>
             </a>

@@ -1,112 +1,113 @@
 "use client";
 
-import React, { useState } from 'react';
-import Navbar from '../components/NavBar';
-import Wrapper from '../components/Wrapper';
-import Footer from '../components/Footer';
-import { Github, Linkedin, Mail, User, MessageSquare, Copy, Check } from 'lucide-react';
+import React, { useMemo, useState } from "react";
+import Navbar from "../components/NavBar";
+import Wrapper from "../components/Wrapper";
+import Footer from "../components/Footer";
+import { Github, Linkedin, Mail, User, MessageSquare, Copy, Check } from "lucide-react";
 
-// TypeScript interfaces
 interface FormData {
   fullName: string;
   email: string;
   message: string;
 }
-
 interface FormErrors {
   fullName?: string;
   email?: string;
-  message?: string;
+  message?: string | null;
 }
 
-// Contact Form Component
 const ContactForm: React.FC = () => {
-  const [isCopied, setIsCopied] = useState<boolean>(false);
-  const [formData, setFormData] = useState<FormData>({
-    fullName: '',
-    email: '',
-    message: ''
-  });
-  
+  const [isCopied, setIsCopied] = useState(false);
+  const [formData, setFormData] = useState<FormData>({ fullName: "", email: "", message: "" });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;
-    setFormData((prev: FormData) => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
-      setErrors((prev: FormErrors) => ({
-        ...prev,
-        [name]: ''
-      }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const validateForm = (): FormErrors => {
     const newErrors: FormErrors = {};
-    
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Full name is required';
-    }
-    
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-    
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    }
-    
+    if (!formData.fullName.trim()) newErrors.fullName = "Full name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Please enter a valid email address";
+    if (!formData.message.trim()) newErrors.message = "Message is required";
     return newErrors;
   };
 
-// Updated handleSubmit function for your ContactForm component
-const handleSubmit = async (): Promise<void> => {
-  const newErrors: FormErrors = validateForm();
-  
-  if (Object.keys(newErrors).length === 0) {
-    try {
-      // Show loading state (optional)
-      setErrors({});
-      
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      console.log(response);
-      if (response.ok) {
-        console.log('Email sent successfully');
-        setIsSubmitted(true);
-        
-        // Reset form after successful submission
-        setTimeout((): void => {
-          setFormData({ fullName: '', email: '', message: '' });
-          setIsSubmitted(false);
-        }, 3000);
-      } else {
-        const errorData = await response.json();
-        console.error('Failed to send email:', errorData.message);
-        // You might want to show an error message to the user
-        setErrors({ message: 'Failed to send message. Please try again.' });
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setErrors({ message: 'Network error. Please check your connection and try again.' });
-    }
-  } else {
-    setErrors(newErrors);
+  const isFormValid = useMemo(() => {
+    const v = validateForm();
+    return Object.keys(v).length === 0;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData.fullName, formData.email, formData.message]);
+
+const toErrorMessage = (e: unknown): string => {
+  if (!e) return "Failed to send message. Please try again.";
+
+  if (typeof e === "string") return e;
+
+  if (e instanceof Error) return e.message;
+
+  if (typeof e === "object" && e !== null) {
+    const obj = e as Record<string, unknown>;
+    if (typeof obj.error === "string") return obj.error;
+    if (typeof obj.message === "string") return obj.message;
+    if (typeof obj.name === "string") return obj.name;
+  }
+
+  try {
+    return JSON.stringify(e);
+  } catch {
+    return "Unexpected error";
   }
 };
+
+
+const handleSubmit = async (): Promise<void> => {
+  const newErrors = validateForm();
+  if (Object.keys(newErrors).length) {
+    setErrors(newErrors);
+    return;
+  }
+
+  try {
+    setIsSending(true);
+    setErrors({});
+
+    const res = await fetch("/api/contact", {   // <-- make sure this matches your API route path
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: formData.fullName,
+        email: formData.email,
+        message: formData.message,
+      }),
+    });
+
+    if (res.ok) {
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setFormData({ fullName: "", email: "", message: "" });
+        setIsSubmitted(false);
+      }, 3000);
+    } else {
+      const err = await res.json().catch(() => ({}));
+      setErrors({ message: toErrorMessage(err) });
+    }
+  } catch (e: unknown) {
+    setErrors({ message: toErrorMessage(e) });
+  } finally {
+    setIsSending(false);
+  }
+};
+
 
   if (isSubmitted) {
     return (
@@ -121,72 +122,64 @@ const handleSubmit = async (): Promise<void> => {
       </div>
     );
   }
-    const handleCopyEmail = async (): Promise<void> => {
-    const email = 'luisfvilla012@gmail.com';
-    
+
+  const handleCopyEmail = async (): Promise<void> => {
+    const email = "lvillalon1179@sdsu.edu";
     try {
       setIsCopied(true);
-      
-      // Reset the copied state after 2 seconds
-      setTimeout(() => {
-        setIsCopied(false);
-      }, 2000);
+      await navigator.clipboard.writeText(email);
+      setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy email:', err);
-      // Fallback for older browsers
-      const textArea = document.createElement('textarea');
+      console.error("Failed to copy email:", err);
+      const textArea = document.createElement("textarea");
       textArea.value = email;
       document.body.appendChild(textArea);
       textArea.select();
-      document.execCommand('copy');
+      document.execCommand("copy");
       document.body.removeChild(textArea);
-      
       setIsCopied(true);
-      setTimeout(() => {
-        setIsCopied(false);
-      }, 2000);
+      setTimeout(() => setIsCopied(false), 2000);
     }
   };
+
   return (
     <div className="p-8 bg-white rounded-2xl shadow-lg border-2 border-gray-200 my-8">
       {/* Header Section with Contact Info */}
       <div className="text-center mb-8">
-        <h1 className="dm-serif-text-regular text-4xl  font-bold text-gray-800 mb-2">Get In Touch</h1>
+        <h1 className="dm-serif-text-regular text-4xl font-bold text-gray-800 mb-2">Get In Touch</h1>
         <p className="text-gray-600 mb-2 text-lg">I&apos;d love to hear how I can be of service. Send me a message!</p>
-        
+
         {/* Contact Info Display */}
         <div className="bg-gray-50 rounded-lg p-4 mb-6">
           <div className="md:text-lg flex items-center justify-center gap-2 mb-3">
             <button
               onClick={handleCopyEmail}
-              className="flex items-center gap-2 hover:bg-gray-200 py-2 rounded-lg transition-colors duration-200 group"
+              className="flex items-center gap-2 hover:bg-gray-200 py-2 px-2 rounded-lg transition-colors duration-200 group"
               title={isCopied ? "Copied!" : "Click to copy email"}
             >
-              {isCopied ? (
-                <Check className="w-5 h-5 text-green-600" />
-              ) : (
-                <Copy className="w-5 h-5 text-blue-600 group-hover:text-blue-800" />
-              )}
-              <span className={`font-medium transition-colors duration-200 ${
-                isCopied ? 'text-green-600' : 'text-gray-800 group-hover:text-blue-800'
-              }`}>
-                luisfvilla012@gmail.com
+              {isCopied ? <Check className="w-5 h-5 text-green-600" /> : <Copy className="w-5 h-5 text-blue-600 group-hover:text-blue-800" />}
+              <span
+                className={`font-medium transition-colors duration-200 ${
+                  isCopied ? "text-green-600" : "text-gray-800 group-hover:text-blue-800"
+                }`}
+              >
+                lvillalon1179@sdsu.edu
               </span>
             </button>
           </div>
           <div className="md:text-lg flex items-center justify-center gap-8">
-            <a 
-              href="https://github.com/LuisFernandoVillalon" 
-              target="_blank" 
+            <a
+              href="https://github.com/LuisFVillalon"
+              target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-gray-700 hover:text-black transition-colors duration-200"
             >
-              <Github className="w-5  h-5" />
+              <Github className="w-5 h-5" />
               <span>GitHub</span>
             </a>
-            <a 
-              href="https://www.linkedin.com/in/luis-villalon/" 
-              target="_blank" 
+            <a
+              href="https://www.linkedin.com/in/luis-villalon/"
+              target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors duration-200"
             >
@@ -199,9 +192,9 @@ const handleSubmit = async (): Promise<void> => {
 
       {/* Contact Form */}
       <div className="space-y-6">
-        {/* Full Name Field */}
+        {/* Full Name */}
         <div>
-          <label htmlFor="fullName" className="md:text-xl flex justify-cneter items-center dm-serif-text-regular block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="fullName" className="md:text-xl dm-serif-text-regular block text-sm font-semibold text-gray-700 mb-2">
             <User className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
             Full Name *
           </label>
@@ -212,18 +205,16 @@ const handleSubmit = async (): Promise<void> => {
             value={formData.fullName}
             onChange={handleInputChange}
             className={`md:text-base w-full text-[#333333] px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
-              errors.fullName ? 'border-red-500 bg-red-50' : 'border-gray-300 focus:border-blue-500'
+              errors.fullName ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-blue-500"
             }`}
             placeholder="Enter your full name"
           />
-          {errors.fullName && (
-            <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
-          )}
+          {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
         </div>
 
-        {/* Email Field */}
+        {/* Email */}
         <div>
-          <label htmlFor="email" className="md:text-lg flex justify-cneter items-center dm-serif-text-regular block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="email" className="md:text-lg dm-serif-text-regular block text-sm font-semibold text-gray-700 mb-2">
             <Mail className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
             Email Address *
           </label>
@@ -233,19 +224,17 @@ const handleSubmit = async (): Promise<void> => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className={`md:text-xl text-[#333333]  w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
-              errors.email ? 'border-red-500 bg-red-50' : 'border-gray-300 focus:border-blue-500'
+            className={`md:text-xl text-[#333333] w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
+              errors.email ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-blue-500"
             }`}
             placeholder="Enter your email address"
           />
-          {errors.email && (
-            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-          )}
+          {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
         </div>
 
-        {/* Message Field */}
+        {/* Message */}
         <div>
-          <label htmlFor="message" className="md:text-lg flex justify-cneter items-center dm-serif-text-regular block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="message" className="md:text-lg dm-serif-text-regular block text-sm font-semibold text-gray-700 mb-2">
             <MessageSquare className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
             Message *
           </label>
@@ -255,31 +244,36 @@ const handleSubmit = async (): Promise<void> => {
             rows={6}
             value={formData.message}
             onChange={handleInputChange}
-            className={`md:text-xl text-[#333333]  w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 resize-none ${
-              errors.message ? 'border-red-500 bg-red-50' : 'border-gray-300 focus:border-blue-500'
+            className={`md:text-xl text-[#333333] w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 resize-none ${
+              errors.message ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-blue-500"
             }`}
             placeholder="Enter your message here..."
           />
-          {errors.message && (
-            <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-          )}
+          {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
         </div>
 
-        {/* Submit Button */}
-        <button 
-            onClick={handleSubmit}
-            className="w-full text-2xl p-2 m-2 rounded-md bg-gradient-to-r from-green-500 to-blue-500 text-[#ffffff] shadow-lg transform active:scale-95 
-            active:shadow-md transition-all duration-150 hover:shadow-xl hover:-translate-y-1 border-b-4 border-r-2 border-[#004d00] 
-            active:border-b-2 active:translate-y-1 dm-serif-text-regular"
+        {/* Form-level error (if any) */}
+        {errors.message && typeof errors.message === "string" && !formData.message && (
+          <p className="text-red-600 text-sm">{errors.message}</p>
+        )}
+
+        {/* Submit */}
+        <button
+          onClick={handleSubmit}
+          disabled={isSending || !isFormValid}
+          aria-busy={isSending}
+          className={`w-full text-2xl p-2 m-2 rounded-md text-white shadow-lg transition-all duration-150 border-b-4 border-r-2 dm-serif-text-regular
+            ${isSending || !isFormValid
+              ? "bg-gray-400 cursor-not-allowed border-gray-600"
+              : "bg-gradient-to-r from-green-500 to-blue-500 hover:shadow-xl hover:-translate-y-1 active:scale-95 active:shadow-md border-[#004d00] active:border-b-2 active:translate-y-1"}`}
         >
-                    Send Message
-        </button>        
+          {isSending ? "Sending..." : "Send Message"}
+        </button>
       </div>
     </div>
   );
 };
 
-// Main Contact Page Component
 export default function Contact(): React.ReactElement {
   return (
     <div className="font-[Monospace] flex flex-col items-center justify-start min-h-screen bg-[#FFFFFF]">

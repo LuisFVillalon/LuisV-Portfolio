@@ -9,6 +9,16 @@ export default function TechCarousel() {
     
     const techStack = [
         {
+            name: 'Python',
+            logo: '/tech_logos/python.png',
+            href: 'https://www.python.org/'
+        },
+        {
+            name: 'C++',
+            logo: '/tech_logos/C++.png',
+            href: 'https://cplusplus.com/'
+        },
+        {
             name: 'Java',
             logo: '/tech_logos/java.png',
             href: 'https://www.java.com/'
@@ -17,6 +27,11 @@ export default function TechCarousel() {
             name: 'JavaScript',
             logo: '/tech_logos/javascript.png',
             href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'
+        },
+        {
+            name: 'TypeScript',
+            logo: '/tech_logos/typescript.png',
+            href: 'https://www.typescriptlang.org/'
         },
         {
             name: 'HTML',
@@ -68,6 +83,11 @@ export default function TechCarousel() {
             logo: '/tech_logos/azure.png',
             href: 'https://azure.microsoft.com/en-us/products/azure-sql/database/'
         },
+        {
+            name: 'PostgreSQL',
+            logo: '/tech_logos/postgresql.png',
+            href: 'https://www.postgresql.org/'
+        },        
         {
             name: 'Github',
             logo: '/tech_logos/github.png',
@@ -155,7 +175,7 @@ export default function TechCarousel() {
 
     return (
         <div className="w-full max-w-6xl mx-auto p-6">
-            <p className="text-[#0A0A23] text-center dm-serif-text-regular text-lg">Tech Stack:</p>
+            <p className="text-[#0A0A23] text-center dm-serif-text-regular text-lg">My Tech Stack:</p>
             {/* Carousel Container */}
             <div className="relative overflow-hidden">
                 

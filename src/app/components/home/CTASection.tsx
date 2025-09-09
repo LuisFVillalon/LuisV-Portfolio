@@ -17,7 +17,7 @@ const CTASection: React.FC<CTAProps> = ({
 }) => {
 
   return (
-    <div className={`bg-[#B3B3B3] rounded-xl bg-gray-50 py-12 m-4 px-4 sm:px-6 lg:px-8 ${className}`}>
+    <div className={`border-4 border-green-500 bg-gray-200 rounded-xl bg-gray-50 py-12 m-4 px-4 sm:px-6 lg:px-8 ${className}`}>
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-[#0A0A23] dm-serif-text-regular text-3xl font-extrabold sm:text-4xl">
           {title}

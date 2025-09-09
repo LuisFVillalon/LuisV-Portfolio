@@ -5,18 +5,18 @@ export function CurrentlyDoing() {
     return (
         <div>
             <a className="dm-serif-text-regular text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
-                href={professionalExperience[0].link} 
+                href={education[0].link} 
                 target="_blank" 
                 rel="noopener noreferrer"
-            >{professionalExperience[0].company}</a>
+            >{education[0].institution}</a>
             <div className="text-base md:text-lg flex justify-between mb-[2%] md:mb-[1%]">
-                <p className="dm-serif-text-regular-italic text-[#0A0A23] w-[60%] italic font-semibold">{professionalExperience[0].position}</p>
-                <p className="text-end w-[40%]">{professionalExperience[0].time}</p>
+                <p className="dm-serif-text-regular-italic text-[#0A0A23] w-[60%] italic font-semibold">{education[0].course}</p>
+                <p className="text-end w-[40%]">{education[0].time}</p>
             </div>
             <p className="text-base"> 
-                {professionalExperience[0].description}
+                {education[0].description}
             </p>
-            <p className="text-base mt-[3%] md:mt-[1%]"><strong>Tech:</strong> {professionalExperience[0].tech}</p>
+            <p className="text-base mt-[3%] md:mt-[1%]"><strong>Tech:</strong> {education[0].tech}</p>
         </div>
     );
 }

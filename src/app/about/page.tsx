@@ -65,7 +65,7 @@ export default function AboutPage() {
                         </div>                            
                         <div className="flex justify-center items-center">
                                     <p className="my-[2.5%] md:my-[3%] text-base md:text-lg text-[#333333]">
-                                        Currently, I’m a <strong>SEO & Digital Marketing Strategist</strong> at{" "}
+                                        I have worked as an <strong>SEO & Digital Marketing Strategist</strong> at{" "}
                                         <a 
                                             className="text-[#006400] underline font-bold" 
                                             href="https://nhclx.org/" 
@@ -73,7 +73,7 @@ export default function AboutPage() {
                                             rel="noopener noreferrer"
                                         >
                                             Calexico Neighborhood House
-                                        </a>, where I help increase <strong>thrift store sales</strong> and <strong>preschool enrollment</strong> through 
+                                        </a>, where I helped increase <strong>thrift store sales</strong> and <strong>preschool enrollment</strong> through 
                                         strategic <strong>digital campaigns</strong>. 
 
                                         Prior to this, I was a <strong>Front-End Developer Intern</strong> at{" "}
@@ -169,7 +169,7 @@ export default function AboutPage() {
                                         HubSpot Academy
                                     </a>. 
 
-                                    To strengthen my theoretical computer science fundamentals, I am pursuing a 
+                                    To strengthen my theoretical computer science fundamentals, I am currently pursuing a 
                                     <strong> Bachelor of Science in Computer Science</strong> at <a 
                                         className="text-[#006400] underline font-bold" 
                                         href="https://cs.sdsu.edu/" 
@@ -178,7 +178,7 @@ export default function AboutPage() {
                                     >
                                         San Diego State University
                                     </a>. 
-                                    I recently earned my <strong>Associate of Science in Computer Science</strong> from{" "}
+                                    I also earned an <strong>Associate of Science in Computer Science</strong> from{" "}
                                     <a 
                                         className="text-[#006400] underline font-bold" 
                                         href="https://www.imperial.edu/" 
@@ -242,7 +242,7 @@ export default function AboutPage() {
                                         HubSpot Academy
                                     </a>. 
 
-                        To strengthen my <strong>theoretical computer science fundamentals</strong>, I am pursuing a 
+                        To strengthen my <strong>theoretical computer science fundamentals</strong>, I am currently pursuing a 
                         <strong> Bachelor of Science in Computer Science</strong> at <a 
                                         className="text-[#006400] underline font-bold" 
                                         href="https://cs.sdsu.edu/" 
@@ -251,7 +251,7 @@ export default function AboutPage() {
                                     >
                                         San Diego State University
                                     </a>. 
-                        I recently earned my <strong>Associate of Science in Computer Science</strong> from{" "}
+                        I also earned an <strong>Associate of Science in Computer Science</strong> from{" "}
                         <a 
                             className="text-[#006400] underline font-bold" 
                             href="https://www.imperial.edu/" 
@@ -323,11 +323,11 @@ export default function AboutPage() {
                         </a> or{" "}
                         <a 
                             className="text-[#006400] underline italic font-bold" 
-                            href="https://www.imdb.com/title/tt0816692/" 
+                            href="https://www.imdb.com/title/tt3783958/" 
                             target="_blank" 
                             rel="noopener noreferrer"
                         >
-                            Interstellar
+                            La La Land
                         </a>.
                     </p>
                     {/* Chrissy GIF */}

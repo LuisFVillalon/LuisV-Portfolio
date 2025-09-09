@@ -31,7 +31,7 @@ const professionalExperience = [
     {
         company: 'Calexico Neighborhood House – Mission Thrift Store & Happy Kids Preschool and Daycare',
         position: 'SEO & Digital Marketing Strategist',
-        time: 'Mar 2025 - Present',
+        time: 'Mar 2025 - Jun 2025',
         description: 'Strategized SEO and digital marketing to increase thrift store sales and preschool enrollment by coordinating with Shopify devs, managing inventory, and executing data-driven social media campaigns.',
         tech:'Meta Business Suite, Meta Ads Manager, Google Analytics, Shopify',
         link: 'https://nhclx.org/'    
@@ -60,7 +60,7 @@ const education = [
         course: 'Bachelor of Science in Computer Science',
         time: 'Aug 2025 - Jun 2027',
         description: '',
-        tech:'',
+        tech:'Python, C++, Data Structures, Algorithms, Computer Architecture, Software Engineering',
         link: 'https://cs.sdsu.edu/'
     },
     {
@@ -132,6 +132,14 @@ const techTools = [
         subject: 'Programming Languages',
         tools: [
             {
+                tool: 'Python',
+                link: 'https://python.org/'
+            },
+            {
+                tool: 'C++',
+                link: 'https://cplusplus.com/'
+            },
+            {
                 tool: 'Java',
                 link: 'https://docs.oracle.com/en/java/'
             },
@@ -141,7 +149,7 @@ const techTools = [
             },
             {
                 tool: 'Assembly Language (Windows x86)',
-                link:             'https://en.wikipedia.org/wiki/X86_assembly_language'
+                link: 'https://en.wikipedia.org/wiki/X86_assembly_language'
             }
         ]
     },
@@ -156,6 +164,10 @@ const techTools = [
                 tool: 'CSS',
                 link: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
             },
+            {
+                tool: 'TypeScript',
+                link: 'https://www.typescriptlang.org/docs/'
+            },            
             {
                 tool: 'Tailwind CSS',
                 link: 'https://tailwindcss.com/docs/installation/using-vite'
@@ -196,11 +208,15 @@ const techTools = [
             {
                 tool: 'Microsoft Azure SQL Database',
                 link: 'https://learn.microsoft.com/en-us/azure/azure-sql/?view=azuresql'
+            },
+            {
+                tool: 'PostgreSQL',
+                link: 'https://www.postgresql.org/docs/'
             }
         ]
     },
     {
-        subject: 'Content Management System & UI Builders',
+        subject: 'Content Management System & UI/UX Design Builders',
         tools: [
             {
                 tool: 'Plasmic CMS',
