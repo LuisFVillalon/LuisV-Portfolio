@@ -18,7 +18,7 @@ export default function ExperiencePage() {
               <div className="mx-[10%] md:mx-[20%] my-[5%] md:my-[1%]  text-[#333333] border-b border-gray-500">
                 <div className="flex flex-col md:flex-row justify-center md:justify-between  items-center">
                   <h1 className="text-[#0A0A23] dm-serif-text-regular text-3xl md:text-4xl font-extrabold">My Career Path</h1>
-                  <a href="/sdsu_luis_villalon_tech_online_resume.docx.pdf" download>
+                  <a href="/sdsu_luis_villalon_tech_online_resume.pdf" download>
                     <button className="text-xl md:text-2xl p-2 m-2 rounded-md bg-gradient-to-r from-green-500 to-blue-500 text-[#ffffff] shadow-lg transform active:scale-95 
                         active:shadow-md transition-all duration-150 hover:shadow-xl hover:-translate-y-1 border-b-4 border-r-2 border-[#004d00] 
                         active:border-b-2 active:translate-y-1"
