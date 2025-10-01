@@ -19,9 +19,19 @@ export default function ExperiencePage() {
                 <div className="flex flex-col md:flex-row justify-center md:justify-between  items-center">
                   <h1 className="text-[#0A0A23] dm-serif-text-regular text-3xl md:text-4xl font-extrabold">My Career Path</h1>
                   <a href="/sdsu_luis_villalon_tech_online_resume.pdf" download>
-                    <button className="text-xl md:text-2xl p-2 m-2 rounded-md bg-gradient-to-r from-green-500 to-blue-500 text-[#ffffff] shadow-lg transform active:scale-95 
-                        active:shadow-md transition-all duration-150 hover:shadow-xl hover:-translate-y-1 border-b-4 border-r-2 border-[#004d00] 
-                        active:border-b-2 active:translate-y-1"
+                    <button
+                      className="
+                        text-2xl p-2 m-2 rounded-md
+                        text-white shadow-lg
+                        transition-all duration-150
+                        hover:shadow-xl hover:-translate-y-1
+                        border-b-4 border-r-2 border-green-900
+                        active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
+                        dm-serif-text-regular
+                      "
+                      style={{ 
+                        background: 'linear-gradient(to right, #22c55e, #3b82f6)'
+                      }}
                     >
                       <div className="font-bold flex gap-2">
                         <p>Resume</p>

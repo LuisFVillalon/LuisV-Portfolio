@@ -265,7 +265,14 @@ const handleSubmit = async (): Promise<void> => {
           className={`w-full text-2xl p-2 m-2 rounded-md text-white shadow-lg transition-all duration-150 border-b-4 border-r-2 dm-serif-text-regular
             ${isSending || !isFormValid
               ? "bg-gray-400 cursor-not-allowed border-gray-600"
-              : "bg-gradient-to-r from-green-500 to-blue-500 hover:shadow-xl hover:-translate-y-1 active:scale-95 active:shadow-md border-[#004d00] active:border-b-2 active:translate-y-1"}`}
+              : "hover:shadow-xl hover:-translate-y-1 active:scale-95 active:shadow-md border-[#004d00] active:border-b-2 active:translate-y-1"
+            }`
+          }
+          style={
+            isSending || !isFormValid
+              ? undefined
+              : { background: 'linear-gradient(to right, #22c55e, #3b82f6)' }
+          }
         >
           {isSending ? "Sending..." : "Send Message"}
         </button>

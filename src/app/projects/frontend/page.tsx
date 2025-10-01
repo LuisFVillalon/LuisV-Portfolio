@@ -24,9 +24,19 @@ export default function FrontEnd() {
           </div>
           <div className="flex justify-center items-center">
             <Link className="" href="/projects/">
-              <button className="text-lg p-2 m-2 rounded-md bg-gradient-to-r from-green-500 to-blue-500 text-[#ffffff] shadow-lg transform active:scale-95 
-                active:shadow-md transition-all duration-150 hover:shadow-xl hover:-translate-y-1 border-b-4 border-r-2 border-[#004d00] 
-                active:border-b-2 active:translate-y-1 dm-serif-text-regular w-full"
+              <button
+                className="
+                  text-2xl p-2 m-2 rounded-md
+                  text-white shadow-lg
+                  transition-all duration-150
+                  hover:shadow-xl hover:-translate-y-1
+                  border-b-4 border-r-2 border-green-900
+                  active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
+                  dm-serif-text-regular
+                "
+                style={{ 
+                  background: 'linear-gradient(to right, #22c55e, #3b82f6)'
+                }}
               >
                 <i className="ml-[1%] fas fa-arrow-left"></i>
               </button>
