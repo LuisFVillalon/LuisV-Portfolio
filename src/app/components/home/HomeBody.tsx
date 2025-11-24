@@ -10,7 +10,7 @@ export default function Homebody() {
     return (
         <Wrapper>
             <HeroSection/>
-            <TestimonialSection/>
+            {/* <TestimonialSection/> */}
             <TechSection/>
             <ProjectCardsSection/>
             <SelfieSection/>
