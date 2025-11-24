@@ -13,11 +13,11 @@ export default function TechCarousel() {
             logo: '/tech_logos/python.png',
             href: 'https://www.python.org/'
         },
-        {
-            name: 'C++',
-            logo: '/tech_logos/C++.png',
-            href: 'https://cplusplus.com/'
-        },
+        // {
+        //     name: 'C++',
+        //     logo: '/tech_logos/C++.png',
+        //     href: 'https://cplusplus.com/'
+        // },
         {
             name: 'Java',
             logo: '/tech_logos/java.png',
@@ -58,6 +58,11 @@ export default function TechCarousel() {
             logo: '/tech_logos/react.png',
             href: 'https://react.dev/'
         },
+        {
+            name: 'React Native',
+            logo: '/tech_logos/react-native.png',
+            href: 'https://reactnative.dev/'
+        },        
         {
             name: 'Node.js',
             logo: '/tech_logos/node.png',
