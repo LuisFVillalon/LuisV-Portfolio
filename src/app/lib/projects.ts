@@ -7,8 +7,7 @@ type projectsFrontEnd = {
     live_app: string;
     image: string;
     mobileFriendly: boolean;
-  };
-
+};
 type topProjects = {
     key: number;
     title: string;
@@ -18,8 +17,7 @@ type topProjects = {
     live_app: string;
     image: string;
     mobileFriendly: boolean;    
-}
-
+};
 type projectsBackEnd = {
     key: number;
     title: string;
@@ -29,7 +27,6 @@ type projectsBackEnd = {
     image: string;
     mobileFriendly: boolean;
 };
-
 type projectsAcademic = {
     key: number;
     title: string;
@@ -40,7 +37,6 @@ type projectsAcademic = {
     image: string;
     mobileFriendly: boolean;
 };
-
 const topProjects = [
     {  
         title: 'Whats Poppin?',
@@ -52,14 +48,23 @@ const topProjects = [
         mobileFriendly: false,
     },
     {
-        title: 'Imperial Web Experts',
-        description: 'A web development agency specializing in custom web applications that help small businesses generate leads and book more appointments. Coming soon.',
-        tech: 'HTML, CSS, JavaScript, TypeScript, Next.js, React.js',
-        github_repo: 'https://www.linkedin.com/company/imperial-web-experts',
-        live_app: 'https://www.imperialwebexperts.com/',  
-        image: '/projects/IWE_logo.png',      
+        title: 'The Crash App',
+        description: 'Web application for students to report hit-and-runs and earn rewards. Winner of Most Creative Project in Innovate 4 SDSU Hackathon 2025.',
+        tech: 'React.js, Tailwind CSS, Next.js, Forms, JSON files',
+        github_repo: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
+        live_app: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
+        image: '/projects/frontend/thecrashapp.png',
         mobileFriendly: true,
     },
+    // {
+    //     title: 'Imperial Web Experts',
+    //     description: 'A web development agency specializing in custom web applications that help small businesses generate leads and book more appointments. Coming soon.',
+    //     tech: 'HTML, CSS, JavaScript, TypeScript, Next.js, React.js',
+    //     github_repo: 'https://www.linkedin.com/company/imperial-web-experts',
+    //     live_app: 'https://www.imperialwebexperts.com/',  
+    //     image: '/projects/IWE_logo.png',      
+    //     mobileFriendly: true,
+    // },
     {  
         title: 'World Computing Organization: PokerBot',
         description: 'Play with a poker bot that learns how to beat you after every round!',
@@ -70,8 +75,16 @@ const topProjects = [
         mobileFriendly: false,
     }
 ];
-
 const projectsFrontEnd = [
+    {
+        title: 'The Crash App',
+        description: 'Web application for students to report hit-and-runs and earn rewards. Winner of Most Creative Project in Innovate 4 SDSU Hackathon 2025.',
+        tech: 'React.js, Tailwind CSS, Next.js, Forms, JSON files',
+        github_repo: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
+        live_app: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
+        image: '/projects/frontend/thecrashapp.png',
+        mobileFriendly: true,
+    },    
     {
         title: 'Pokedex Catalog',
         description: 'View the information of 891 Pokemons. Look them up, store them in your local storage, release them!',
@@ -163,8 +176,25 @@ const projectsFrontEnd = [
         mobileFriendly: false,
     }
 ];
-
 const projectsBackEnd = [
+    {  
+        title: 'World Computing Organization: PokerBot',
+        description: 'Play with a poker bot that learns how to beat you after every round!',
+        tech: 'Ptyhon, CSV, OOP Design',
+        github_repo: 'https://github.com/LuisFVillalon/PokerBot',
+        live_app: '',    
+        image: '/projects/backend/wco_logo.png',   
+        mobileFriendly: false,
+    },
+    {
+        title: 'LLM Bible Tutor',
+        description: 'An AI-powered Bible tutor that uses RAG with GPT-4o-mini, LangChain, and ChromaDB to deliver grounded, citation-based answers from the Douay–Rheims Bible.',
+        tech: 'Python, OpenAI (GPT-4o-mini, text-embedding-3-small, LangChain, ChromaDB (vector database)',
+        github_repo: 'https://github.com/LuisFVillalon/LLM-Bible-Tutor',
+        live_app: 'https://github.com/LuisFVillalon/LLM-Bible-Tutor',  
+        image: '/projects/backend/LLM_bible.png',      
+        mobileFriendly: false,
+    },
     {
         title: 'Blog API',
         description: 'Developed a backend API for a blog with user authentication, CRUD functionality for posts and comments, validation, and token-based authorization.',
@@ -203,8 +233,25 @@ const projectsBackEnd = [
     }
 
 ];
-
 const projectsAcademic = [
+    {  
+        title: 'World Computing Organization: PokerBot',
+        description: 'Play with a poker bot that learns how to beat you after every round!',
+        tech: 'Ptyhon, CSV, OOP Design',
+        github_repo: 'https://github.com/LuisFVillalon/PokerBot',
+        live_app: '',    
+        image: '/projects/backend/wco_logo.png',   
+        mobileFriendly: false,
+    },    
+    {
+        title: 'LLM Bible Tutor',
+        description: 'An AI-powered Bible tutor that uses RAG with GPT-4o-mini, LangChain, and ChromaDB to deliver grounded, citation-based answers from the Douay–Rheims Bible.',
+        tech: 'Python, OpenAI (GPT-4o-mini, text-embedding-3-small, LangChain, ChromaDB (vector database)',
+        github_repo: 'https://github.com/LuisFVillalon/LLM-Bible-Tutor',
+        live_app: 'https://github.com/LuisFVillalon/LLM-Bible-Tutor',  
+        image: '/projects/backend/LLM_bible.png',      
+        mobileFriendly: false,
+    },
     {
         title: 'Assembly Language and Machine Organization',
         description: 'Covered machine architecture, assembly language, data representation, instruction execution, addressing modes, and operating system fundamentals.',
@@ -253,7 +300,6 @@ const projectsAcademic = [
 
 
 ];
-
 export {
     projectsFrontEnd, projectsBackEnd, projectsAcademic, topProjects
 };
