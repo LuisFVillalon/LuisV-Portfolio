@@ -42,14 +42,14 @@ type projectsAcademic = {
 };
 
 const topProjects = [
-    {
-        title: 'Pokedex Catalog',
-        description: 'View the information of 891 Pokemons. Look them up, store them in your local storage, and release them! ',
-        tech: 'HTML, CSS, JavaScript, Data Structures',
-        github_repo: 'https://github.com/LuisFVillalon/catalog-website',
-        live_app: 'https://luisfvillalon.github.io/catalog-website/',
-        image: '/projects/frontend/pokedexcatalog.png',
-        mobileFriendly: true,
+    {  
+        title: 'Whats Poppin?',
+        description: 'Reddit-clone web application. Create an account, post, comment, and vote!',
+        tech: 'HTML, CSS, JavaScript, React.js, Google Firebase Firestore Database and Authentication',
+        github_repo: 'https://github.com/LuisFVillalon/WhatsPoppin',
+        live_app: 'https://luisfvillalon.github.io/WhatsPoppin/',    
+        image: '/projects/frontend/whatspoppin.png',   
+        mobileFriendly: false,
     },
     {
         title: 'Imperial Web Experts',
@@ -61,12 +61,12 @@ const topProjects = [
         mobileFriendly: true,
     },
     {  
-        title: 'Whats Poppin?',
-        description: 'Reddit-clone web application. Create an account, post, comment, and vote!',
-        tech: 'HTML, CSS, JavaScript, React.js, Google Firebase Firestore Database and Authentication',
-        github_repo: 'https://github.com/LuisFVillalon/WhatsPoppin',
-        live_app: 'https://luisfvillalon.github.io/WhatsPoppin/',    
-        image: '/projects/frontend/whatspoppin.png',   
+        title: 'World Computing Organization: PokerBot',
+        description: 'Play with a poker bot that learns how to beat you after every round!',
+        tech: 'Ptyhon, CSV, OOP Design',
+        github_repo: 'https://github.com/LuisFVillalon/PokerBot',
+        live_app: '',    
+        image: '/projects/backend/wco_logo.png',   
         mobileFriendly: false,
     }
 ];

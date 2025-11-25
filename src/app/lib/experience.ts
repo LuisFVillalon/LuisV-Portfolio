@@ -45,8 +45,8 @@ const professionalExperience = [
         link: 'https://www.secondcourse.co/food-security'    
     }, 
     {
-        company: 'World Computing Organization',
-        position: 'PokerBot: Backend Developer',
+        company: 'World Computing Organization: PokerBot',
+        position: 'Backend Developer',
         time: 'Oct 2025 - Present',
         description: 'Built the backend systems for an interactive poker application that runs full game logic, manages player–bot interactions, and records gameplay data for analysis.',
         tech:'Python, CSV, OOP Design',
@@ -302,8 +302,8 @@ const currentlyDoing = [
         link: 'https://www.secondcourse.co/food-security'    
     }, 
     {
-        company: 'World Computing Organization',
-        position: 'PokerBot: Backend Developer',
+        company: 'World Computing Organization: PokerBot',
+        position: 'Backend Developer',
         time: 'Oct 2025 - Present',
         description: 'Built the backend systems for an interactive poker application that runs full game logic, manages player–bot interactions, and records gameplay data for analysis.',
         tech:'Python, CSV, OOP Design',
