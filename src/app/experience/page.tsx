@@ -2,9 +2,14 @@
 import { useState } from "react";
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
-import {CurrentlyDoing, Education, 
-    ProfessionalExperience, Certificates, 
-    TechTools, ExperienceBeyondTech} from '../components/experience/ExperienceComponents';
+import {
+  CurrentlyDoing, 
+  Education, 
+  ProfessionalExperience, 
+  Certificates, 
+  TechTools, 
+  ExperienceBeyondTech
+} from '../components/experience/ExperienceComponents';
 import { Download } from "lucide-react";
 import CTASection from "../components/home/CTASection";
 

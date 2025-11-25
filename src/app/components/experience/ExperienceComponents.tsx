@@ -1,22 +1,28 @@
-import {professionalExperience, education, certificates, techTools} from '../../lib/experience';
+import { currentlyDoing, professionalExperience, education, certificates, techTools} from '../../lib/experience';
 
 
 export function CurrentlyDoing() {
     return (
         <div>
-            <a className="dm-serif-text-regular text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
-                href={education[0].link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-            >{education[0].institution}</a>
-            <div className="text-base md:text-lg flex justify-between mb-[2%] md:mb-[1%]">
-                <p className="dm-serif-text-regular-italic text-[#0A0A23] w-[60%] italic font-semibold">{education[0].course}</p>
-                <p className="text-end w-[40%]">{education[0].time}</p>
-            </div>
-            <p className="text-base"> 
-                {education[0].description}
-            </p>
-            <p className="text-base mt-[3%] md:mt-[1%]"><strong>Tech:</strong> {education[0].tech}</p>
+            {currentlyDoing.map((item, index) => (
+                <div key={index}>
+                            <a className="dm-serif-text-regular text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
+                                href={item.link} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >{item.company}</a>
+                            <div className="text-base md:text-lg flex justify-between mb-[2%] md:mb-[1%]">
+                                <p className="text-[#0A0A23] w-[60%] dm-serif-text-regular-italic font-semibold">{item.position}</p>
+                                <p className="text-end w-[40%]">{item.time}</p>
+                            </div>
+                            <p className="text-base"> 
+                                {item.description}
+                            </p>
+                            <p className="text-base mt-[3%] md:mt-[1%]"><strong>Tech:</strong> {item.tech}</p>
+                            
+                            <div className="my-[5%] md:my-[2%] border-b border-gray-250"></div>
+                </div>
+            ))}
         </div>
     );
 }

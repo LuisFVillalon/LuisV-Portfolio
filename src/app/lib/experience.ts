@@ -14,6 +14,14 @@ type education = {
     tech: string;
     link: string;
 };
+type currentlyDoing = {
+    company: string;
+    position: string;
+    time: string;
+    description: string;
+    tech: string;
+    link: string;
+};
 type certificates = {
     title: string;
     institution: string;
@@ -28,6 +36,22 @@ type techTools = {
     tools: { tool: string, link: string }[];
 };
 const professionalExperience = [
+    {
+        company: 'Second Course',
+        position: 'Computer Science Intern',
+        time: 'Nov 2025 - Present',
+        description: 'Developed a React Native application with Firestore as a backend for the Apple Store with the purpose of addressing food insecurity among college students.',
+        tech:'React Native, Firestore Database, Expo Go',
+        link: 'https://www.secondcourse.co/food-security'    
+    }, 
+    {
+        company: 'World Computing Organization',
+        position: 'PokerBot: Backend Developer',
+        time: 'Oct 2025 - Present',
+        description: 'Built the backend systems for an interactive poker application that runs full game logic, manages player–bot interactions, and records gameplay data for analysis.',
+        tech:'Python, CSV, OOP Design',
+        link: 'https://www.secondcourse.co/food-security'    
+    },   
     {
         company: 'Calexico Neighborhood House – Mission Thrift Store & Happy Kids Preschool and Daycare',
         position: 'SEO & Digital Marketing Strategist',
@@ -58,9 +82,9 @@ const education = [
     {
         institution: 'San Diego State University',
         course: 'Bachelor of Science in Computer Science',
-        time: 'Aug 2025 - Jun 2027',
+        time: 'Aug 2025 - May 2027',
         description: '',
-        tech:'Python, C++, Data Structures, Algorithms, Computer Architecture, Software Engineering',
+        tech:'Python, Data Structures, Algorithms, Computer Architecture, Artificial Intelligence',
         link: 'https://cs.sdsu.edu/'
     },
     {
@@ -135,10 +159,10 @@ const techTools = [
                 tool: 'Python',
                 link: 'https://python.org/'
             },
-            {
-                tool: 'C++',
-                link: 'https://cplusplus.com/'
-            },
+            // {
+            //     tool: 'C++',
+            //     link: 'https://cplusplus.com/'
+            // },
             {
                 tool: 'Java',
                 link: 'https://docs.oracle.com/en/java/'
@@ -154,7 +178,7 @@ const techTools = [
         ]
     },
     {
-        subject: 'Web Development',
+        subject: 'Frontend Development',
         tools: [
             {
                 tool: 'HTML',
@@ -180,6 +204,10 @@ const techTools = [
                 tool: 'React.js',
                 link: 'https://legacy.reactjs.org/docs/getting-started.html'
             },
+            {
+                tool: 'React Native',
+                link: 'https://reactnative.dev/'
+            },            
             {
                 tool: 'Node.js',
                 link: 'https://nodejs.org/docs/latest/api/'
@@ -264,6 +292,32 @@ const techTools = [
     },
        
 ];
+const currentlyDoing = [
+    {
+        company: 'Second Course',
+        position: 'Computer Science Intern',
+        time: 'Nov 2025 - Present',
+        description: 'Developed a React Native application with Firestore as a backend for the Apple Store with the purpose of addressing food insecurity among college students.',
+        tech:'React Native, Firestore Database, Expo Go',
+        link: 'https://www.secondcourse.co/food-security'    
+    }, 
+    {
+        company: 'World Computing Organization',
+        position: 'PokerBot: Backend Developer',
+        time: 'Oct 2025 - Present',
+        description: 'Built the backend systems for an interactive poker application that runs full game logic, manages player–bot interactions, and records gameplay data for analysis.',
+        tech:'Python, CSV, OOP Design',
+        link: 'https://www.secondcourse.co/food-security'    
+    },     
+    {
+        company: 'San Diego State University',
+        position: 'Bachelor of Science in Computer Science',
+        time: 'Aug 2025 - May 2027',
+        description: '',
+        tech:'Python, Data Structures, Algorithms, Computer Architecture, Artificial Intelligence',
+        link: 'https://cs.sdsu.edu/'
+    },
+]
 export {
-    professionalExperience, education, certificates, techTools
+    professionalExperience, education, certificates, techTools, currentlyDoing
 };
