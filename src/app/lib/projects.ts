@@ -49,7 +49,7 @@ const topProjects = [
     },
     {
         title: 'The Crash App',
-        description: 'Web application for students to report hit-and-runs and earn rewards. Winner of Most Creative Project in Innovate 4 SDSU Hackathon 2025.',
+        description: 'Web application for students to report hit-and-runs and earn rewards. Winner of Most Creative Project in Innovate 4 SDSU Hackathon 2025!',
         tech: 'React.js, Tailwind CSS, Next.js, Forms, JSON files',
         github_repo: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
         live_app: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
@@ -78,7 +78,7 @@ const topProjects = [
 const projectsFrontEnd = [
     {
         title: 'The Crash App',
-        description: 'Web application for students to report hit-and-runs and earn rewards. Winner of Most Creative Project in Innovate 4 SDSU Hackathon 2025.',
+        description: 'Web application for students to report hit-and-runs and earn rewards. Winner of Most Creative Project in Innovate 4 SDSU Hackathon 2025!',
         tech: 'React.js, Tailwind CSS, Next.js, Forms, JSON files',
         github_repo: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
         live_app: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
