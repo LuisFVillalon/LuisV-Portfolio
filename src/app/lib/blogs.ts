@@ -281,6 +281,274 @@ const blogPosts = [
         readTime: "20 min read",
         category: "Web Dev"
     },
+    {
+        id: 4,
+        title: "LLM-Powered Bible Tutor — A Deep Technical Breakdown + Engineering Reflection",
+        "content": [
+            {
+            "subtitle": "Introducing the Vision Behind the Project",
+            "text": [
+                "The idea for this project began with a simple question: What if we could create an AI tutor that explains the Bible while staying completely grounded in Scripture itself? Large language models are powerful, but they sometimes invent content if they’re not given strict guardrails. When dealing with Scripture, accuracy isn’t optional — it’s essential.",
+                "I wanted to build a system that could provide faithful, citation-backed explanations of the Catholic Douay–Rheims Bible. This felt like the perfect opportunity to combine my interest in AI engineering with my desire to build something meaningful for Christian-Catholic education. From the beginning, I knew I wanted retrieval-augmented generation (RAG) at the core, ensuring every generated answer explicitly tied back to real verses.",
+                "What emerged was a full-stack RAG pipeline: a system that embeds 35,800+ Bible verses, stores them in ChromaDB, retrieves the most relevant passages through semantic search, and uses GPT-4o-mini to generate grounded, verse-cited answers. The result is an AI tutor that actually studies the Bible instead of guessing."
+            ]
+            },
+            {
+            "subtitle": "Defining the Technical Problem and Constraints",
+            "text": [
+                "Building an AI Bible tutor might seem simple at first glance. After all, it’s just “ask a question → get an answer.” But doing this responsibly required tackling several engineering challenges.",
+                "The first challenge was ensuring theological accuracy. Without retrieval, even the best language models hallucinate biblical content. My system needed verifiable sourcing. That requirement alone shaped the entire architecture.",
+                "The second challenge was scale. The Douay–Rheims Bible contains nearly 36,000 verses. Indexing the text required a robust embedding pipeline, efficient storage, and a smooth retrieval process that wouldn’t buckle under heavy usage.",
+                "The third challenge was query alignment. User questions vary widely — from “What does the Bible say about forgiveness?” to “Explain John 6:54 in context.” A strong semantic search and prompt-engineering layer was needed so that GPT-4o-mini always received the right context.",
+                "And finally, I wanted this system to remain fast, affordable, and deployable by everyday developers. That meant using lightweight but powerful tools: ChromaDB, LangChain, and GPT-4o-mini."
+            ]
+            },
+            {
+            "subtitle": "Building the Foundation: Preparing and Structuring the Dataset",
+            "text": [
+                "I started with the Douay–Rheims Catholic Bible, a public-domain translation known for its formal, robust wording. I converted the entire dataset into a structured CSV format with four essential columns: Book, Chapter, Verse, and Text.",
+                "This structure allowed the embedding pipeline to treat each verse as its own independent document while still preserving enough metadata to return detailed citations in answers.",
+                "This attention to structure paid off later when implementing retrieval, since every piece of context had to be retrievable and explainable."
+            ]
+            },
+            {
+            "subtitle": "Designing the Embedding Pipeline",
+            "text": [
+                "To power semantic search, I used the text-embedding-3-small model. It provides high-quality embeddings at extremely low cost, making it ideal for large-scale ingestion.",
+                "A major challenge was batching. Embedding tens of thousands of verses individually would be slow and expensive, so I built a pipeline that loads the dataset, splits it into batches, embeds each batch, and pushes vectors into ChromaDB.",
+                "Batching kept memory usage stable and allowed the pipeline to run on modest hardware while indexing 35,800+ verses efficiently."
+            ]
+            },
+            {
+            "subtitle": "Engineering the Vector Database with ChromaDB",
+            "text": [
+                "I chose ChromaDB for its simplicity, speed, and local persistence. It integrates cleanly with LangChain and supports metadata filtering, which proved essential.",
+                "Each stored entry includes verse text, book, chapter, verse metadata, an embedding vector, and a unique ID. This makes retrieval both fast and explanatory.",
+                "Because Chroma supports flexible querying, the system can retrieve relevant verses even when user questions differ significantly from the biblical wording."
+            ]
+            },
+            {
+            "subtitle": "Building the RAG Pipeline with LangChain",
+            "text": [
+                "LangChain tied the entire workflow together. When a user submits a question, the system embeds it, performs semantic search through ChromaDB, retrieves top verses, and then builds a structured prompt.",
+                "The prompt includes strict rules for grounding, citation formatting, and theological clarity. GPT-4o-mini then generates an answer using only the retrieved verses as source material.",
+                "This strict prompting ensures that the model does not hallucinate content and remains fully grounded in the provided biblical text."
+            ]
+            },
+            {
+            "subtitle": "Creating Grounded, Faithful AI Explanations",
+            "text": [
+                "One of the most rewarding aspects of the project is how reliably the system produces grounded explanations. When users ask about forgiveness, suffering, love, or prayer, the tutor pulls verses that genuinely relate to the theme.",
+                "Because retrieval is semantic, not keyword-based, the system can handle broad theological topics and verse-specific questions equally well.",
+                "Every answer includes citations, which reinforces trust and makes the tool suitable for spiritual study, apologetics, or catechesis."
+            ]
+            },
+            {
+            "subtitle": "Optimizing Prompting and Model Behavior",
+            "text": [
+                "I experimented extensively with different prompting formats. The final version emphasizes theological clarity, clear citations, and strict reliance on retrieved verses.",
+                "Even though GPT-4o-mini is a smaller model, the combination of strong prompting and high-quality retrieval allows it to produce surprisingly deep explanations.",
+                "Prompt engineering became essential, especially when dealing with ambiguous or emotionally complex questions."
+            ]
+            },
+            {
+            "subtitle": "Evaluating System Performance and Limitations",
+            "text": [
+                "The system performs extremely well for most question types, but natural limitations exist. Retrieval depends on embedding quality, so the occasional question may require broader context than a standard semantic search can provide.",
+                "GPT-4o-mini also has limited reasoning capacity compared to larger models, though the RAG approach compensates for this by giving it authoritative source text.",
+                "The dataset currently includes only the Douay–Rheims Bible. Adding additional sources like the Catechism would enrich answers but increase architectural complexity."
+            ]
+            },
+            {
+            "subtitle": "Future Improvements and Planned Enhancements",
+            "text": [
+                "I plan to expand the system by adding the Catechism of the Catholic Church, allowing cross-referenced answers that blend Scripture and doctrine.",
+                "A web-based user interface would make the tutor accessible to a broader audience. Additional improvements like hybrid search and streaming responses are also on the roadmap.",
+                "Long-term features could include commentary mode, verse cross-analysis, and thematic devotional guidance."
+            ]
+            },
+            {
+            "subtitle": "Reflecting on Learning and Technical Growth",
+            "text": [
+                "This project deepened my understanding of RAG systems, embedding workflows, and metadata-driven architectures. It strengthened my appreciation for the power of structured retrieval.",
+                "Building an AI that serves a meaningful purpose taught me how technology can support spiritual and intellectual growth when applied responsibly.",
+                "More than anything, this project showed me how engineering becomes most fulfilling when aligned with purpose — using AI to help people learn Scripture more faithfully."
+            ]
+            }
+        ],
+        image_card: "/blog/blog_04_card.png",
+        image_banner: "/blog/blog_04.png",
+        author: "Luis Villalón",
+        date: "2025-10-28",
+        readTime: "15 min read",
+        category: "Web Dev"
+    },     
+    {
+        id: 5,
+        title: "SHPE National Conference 2025: My Experience and the Guide I Wish I Had",
+        content: [
+            {
+                "subtitle": "Deciding to Attend and Preparing for the Journey",
+                "text": [
+                    "Attending the SHPE National Conference 2025 was one of the most meaningful experiences of my undergraduate years. As a computer science student focused on full-stack development, I decided to attend with two ambitious goals: building a strong professional network and securing a summer internship. In the weeks leading up to the conference, I refined my resume, practiced my elevator pitch, and reviewed my past projects to ensure I could speak confidently about my work. I believed that strong projects and relevant experience would help me stand out, but I quickly learned that succeeding at SHPE requires far more than technical preparation—it requires strategy, confidence, and adaptability."
+                ]
+            },
+            {
+                "subtitle": "Finding Community in Region 2 and National Meetings",
+                "text": [
+                    "The first major events I attended were the SHPE Region 2 meeting and the National SHPE meeting. Both introduced me to a vibrant and welcoming community of students and professionals who were passionate about their fields and supportive of each other’s goals. These initial interactions eased my nerves and made me feel at home almost instantly. They also reminded me that SHPE is not just about job opportunities; it is a community rooted in shared experiences, cultural pride, and mutual encouragement. That sense of belonging would become a defining part of my conference experience."
+                ]
+            },
+            {
+                "subtitle": "Stepping Into the Career Fair and Navigating the Energy",
+                "text": [
+                    "The career fair was unlike anything I had encountered before—massive, fast-paced, and filled with opportunities. Booths from major companies stretched across the hall, and I spoke with representatives from Apple, Ford, Honeywell, Microsoft, Goldman Sachs, USAA, Global Foundries, Trimble, and more. Some lines were so long they lasted thirty minutes or more, but waiting in those lines became an unexpected networking opportunity. I met students from different universities, exchanged stories, and learned tips simply by talking to the people around me. That experience showed me that networking at SHPE happens everywhere, not just at the booths."
+                ]
+            },
+            {
+                "subtitle": "Understanding the Importance of Communicating Your Identity",
+                "text": [
+                    "As I navigated the fair, I realized how essential it is to clearly articulate your technical identity. Several times, I had strong conversations with recruiters but forgot to explicitly state that I am a computer science student specializing in full-stack development. Recruiters meet hundreds of students each day, and unless you intentionally communicate your role and skills, your message can get lost. I also discovered how powerful it is to highlight a standout project early in a conversation. With thousands of attendees, sharing something unique or memorable about your work becomes critical for making a lasting impression."
+                ]
+            },
+            {
+                "subtitle": "Facing My Technical Interviews and Learning From Them",
+                "text": [
+                    "I was fortunate to receive two technical interviews during the conference, which felt like significant accomplishments. However, the interviews also revealed areas where I was unprepared. Even though I could confidently discuss my projects, I struggled with the algorithmic and problem-solving style common in technical interviews. This experience taught me that projects and hands-on experience open doors, but technical interview skills—particularly LeetCode-style practice—determine how far you can go once those doors open. It was a humbling moment, but also an important reminder that growth is continuous."
+                ]
+            },
+            {
+                "subtitle": "Developing Effective Networking Habits Through Experience",
+                "text": [
+                    "One of the most rewarding parts of the conference was learning how to network more effectively. I made it a point to connect with attendees and recruiters on LinkedIn, and I quickly saw how important it is to follow up professionally and promptly. I also learned the value of asking for a specific point of contact whenever a recruiter showed interest. Near the end of the conference, Ford scheduled me for a virtual interview, but I never received a follow-up. Had I gotten a direct email or name, I could have reached out instead of waiting. This taught me that persistence and communication are essential when navigating professional opportunities."
+                ]
+            },
+            {
+                "subtitle": "Refining Strategies for Approaching Companies and Maximizing Time",
+                "text": [
+                    "Another insight I gained was the importance of researching which companies actually had roles relevant to my field before approaching their booths. With so many companies present, it’s easy to waste time speaking to organizations without computer science or software engineering opportunities. I also realized that printed resumes are becoming less necessary since many companies cannot accept physical copies anymore. Still, having a small stack is helpful for the few that do. Throughout the conference, I made it a habit to ask for LinkedIn connections, knowing that these relationships could become valuable in the future."
+                ]
+            },
+            {
+                "subtitle": "Overcoming the Challenge of Standing Out in a Competitive Environment",
+                "text": [
+                    "With thousands of talented students attending, standing out felt challenging at first. What helped me most was being authentic, confident, and intentional in my interactions. Rather than trying to impress everyone, I focused on expressing my genuine enthusiasm for software engineering and discussing the projects that best represented my abilities. I found that recruiters often responded more positively to natural, honest conversations than to overly rehearsed pitches. This shift in mindset made the experience less stressful and more rewarding."
+                ]
+            },
+            {
+                "subtitle": "What I Took Away From SHPE and How It Shaped My Goals",
+                "text": [
+                    "By the end of the conference, I had gained far more than I had anticipated. I expanded my professional network, improved my communication skills, and gained a clearer understanding of the expectations of the professional world. The experience helped me recognize the areas where I need to grow, especially in technical interview preparation. It also left me feeling more confident in my potential and more motivated than ever to continue improving. SHPE reminded me that growth is a constant process, and each step forward brings new opportunities."
+                ]
+            },
+            {
+                "subtitle": "Reflecting on the Impact and Looking Ahead",
+                "text": [
+                    "Ultimately, the SHPE National Conference 2025 was more than a career fair—it was a personal and professional turning point. I left with stronger skills, meaningful connections, and a deeper appreciation for the supportive community that SHPE fosters. For anyone considering attending in the future, I encourage you to go prepared, stay curious, and embrace every moment. The conference has the power to challenge you, inspire you, and help you grow in ways you might not expect. If my experience helps you navigate your own SHPE journey with more confidence and clarity, then this reflection has accomplished exactly what I hoped it would."
+                ]
+            }
+        ],
+        image_card: "/blog/blog_05_card.png",
+        image_banner: "/blog/blog_05.png",
+        author: "Luis Villalón",
+        date: "2025-11-09",
+        readTime: "10 min read",
+        category: "Career Dev"
+    },    
+    {
+        id: 6,
+        title: "Innovation 4 SDSU — My First Hackathon Experience and What I Learned",
+        "content": [
+            {
+            "subtitle": "Deciding to Join My First Hackathon",
+            "text": [
+                "My first hackathon experience took place at the Innovation 4 SDSU Hackathon, hosted by CTRL. I walked in with little idea of what the weekend would look like, only knowing the event ran from 9 a.m. to 7 p.m. on Saturday and from 9 a.m. to 3 p.m. on Sunday. It sounded intense but exciting.",
+                "I arrived an hour early on the first day to settle in and get comfortable. As I waited, I struck up a conversation with a fellow student I knew from AI Club. We talked casually about the event, what we hoped to get out of it, and how we were both a little nervous but also eager to begin.",
+                "A few minutes later, a friend from ACM walked in with someone from his network. After catching up, he asked if I wanted to join their team. The student I was talking to joined as well, and suddenly, we had a four-person team formed naturally before the hackathon even began. It felt like the perfect start."
+            ]
+            },
+            {
+            "subtitle": "Understanding the Prompt and Identifying a Real Problem",
+            "text": [
+                "This year’s challenge was to improve the living experience for SDSU students. The prompt was broad, giving teams a lot of flexibility in what problem they wanted to tackle.",
+                "Our team quickly gravitated toward an issue affecting tens of thousands of commuter students: the growing problem of hit-and-runs in parking lots. It was something many of us had heard about, and some had even experienced firsthand.",
+                "We researched how many commuter students were on campus and discovered that roughly 24,000 students commute each semester, totaling nearly 48,000 annually. That number alone showed the scale of the problem. Then we turned to Reddit and found countless posts from frustrated students asking for help, information, or simply venting about hit-and-runs that left them with repair bills and no answers.",
+                "Seeing how common these stories were made the issue feel even more urgent. It became clear this wasn’t just an idea — it was a real student problem waiting for a solution."
+            ]
+            },
+            {
+            "subtitle": "Planning the Solution and Seeking Mentorship",
+            "text": [
+                "Instead of diving straight into coding, we spent the first four hours brainstorming, analyzing use cases, and getting clarity on what we wanted to build. This planning session became one of the most important parts of our project.",
+                "We talked to two professional mentors who asked hard questions about our idea. They helped us refine our direction, think more clearly about the user experience, and decide which features mattered most for an MVP.",
+                "Since all of us had experience in web development, we chose to build a web app. It allowed us to move quickly while still creating something functional and realistic. The goal was simple: empower students to support one another by reporting incidents and providing victims with evidence they could use."
+            ]
+            },
+            {
+            "subtitle": "Designing a Practical MVP for Real Use Cases",
+            "text": [
+                "We designed the web app around two primary pain points. The first was witnessing an incident. If a student saw a hit-and-run occur, they could file a report containing the victim’s license plate, images, a text description, the timestamp, and optionally their contact information.",
+                "The second use case involved the victim. A student might return to their car to find it damaged with no note or explanation. They could search their license plate in our system to see if someone had submitted a report. If a matching report existed, they could download it and use it as documentation for an insurance claim.",
+                "This workflow emphasized community support — one student helping another — without needing an official campus-run reporting system. It made the parking lots feel a little less anonymous and a little more connected."
+            ]
+            },
+            {
+            "subtitle": "Finding a Way to Incentivize Reporting",
+            "text": [
+                "One major obstacle we recognized early on was motivation. How could we encourage students to actually report what they saw? Relying purely on goodwill wasn’t enough.",
+                "After talking to a mentor, we received a brilliant idea: Crash Coins. These digital tokens would reward users for creating verified reports. Students could redeem the coins for on-campus benefits or rewards.",
+                "Crash Coins added a gamified element to the platform and provided a clear incentive for students to participate. This feature became one of the most creative parts of our entire proposal."
+            ]
+            },
+            {
+            "subtitle": "Building the App and Overcoming Technical Hurdles",
+            "text": [
+                "Once planning was finished, each team member took ownership of a different page of the app. I created the home page, the rewards page, and handled much of the page-to-page integration.",
+                "We faced a critical challenge when deciding how to structure our backend. Implementing a database would take too long, and we didn’t want backend complexity to slow down our progress. After speaking with another mentor, we pivoted to using a simple JSON file to store all of our demo data.",
+                "This approach let us focus on creating a working prototype without tripping over unnecessary setup. Our tech stack included React.js, Next.js, TypeScript, Tailwind CSS, and our JSON file acting as a temporary database.",
+                "AI tools ended up being lifesavers. Whenever we ran into errors or needed quick debugging, AI helped resolve issues faster than we could manually. This allowed us to keep building at a steady pace despite the time constraints."
+            ]
+            },
+            {
+            "subtitle": "Polishing the User Experience and Preparing the Presentation",
+            "text": [
+                "By the end of the first day and into the early hours of the second, we had a working MVP. With the technical work mostly done, we shifted our focus to presentation quality.",
+                "We wanted to create something memorable, not just another slide deck, so we filmed two short skit videos. These acted out real scenarios where our app would help students, making the problem and our solution easy to understand.",
+                "We also recorded a screen demo of the app in use and created a clean, simple PowerPoint with clear speaking roles. We rehearsed repeatedly to make sure our three-minute presentation was smooth, engaging, and polished."
+            ]
+            },
+            {
+            "subtitle": "Presenting First Out of 29 Teams",
+            "text": [
+                "We were the first of twenty-nine teams to present. Going first is always intimidating because you don’t know what standards the judges have in mind. But we went in confident and prepared.",
+                "Our videos, storytelling, and demo immediately caught people’s attention. After our presentation, many attendees and mentors approached us to say they loved our storytelling approach and that it was one of the strongest presentations they had seen.",
+                "Starting strong set the tone for the rest of the event, and it felt rewarding to hear such positive feedback right away."
+            ]
+            },
+            {
+            "subtitle": "Winning Most Creative and Looking Toward the Future",
+            "text": [
+                "When the awards were announced, we learned we had won Most Creative, which felt incredibly validating. Our blend of real-world research, thoughtful design, and creative incentives like Crash Coins set our project apart.",
+                "During the final share-out, we also discussed our long-term vision for the project, including transitioning to React Native for a smoother mobile experience and building out the full Crash Coin rewards system.",
+                "Even though this was only our first hackathon, we left feeling proud and energized by what we had accomplished together."
+            ]
+            },
+            {
+            "subtitle": "Reflecting on Growth and What I Learned",
+            "text": [
+                "This hackathon taught me lessons I couldn’t have learned in a classroom. I realized the importance of planning before coding, the value of seeking mentorship early, and the impact a strong presentation can have on the perception of your project.",
+                "On a personal level, I learned how exciting it is to work under pressure with a team of motivated peers. I felt myself growing more confident in my abilities while recognizing how much more I want to learn.",
+                "For anyone thinking about joining their first hackathon, I can honestly say: go for it. Be open to new ideas, be willing to take risks, and don’t underestimate the power of creativity. It’s an experience that will challenge you, inspire you, and leave you with memories you won’t forget."
+            ]
+            }
+        ],
+        image_card: "/blog/blog_06_card.png",
+        image_banner: "/blog/blog_06.png",
+        author: "Luis Villalón",
+        date: "2025-11-15",
+        readTime: "10 min read",
+        category: "Career Dev"
+    },       
 ];
 export function getPostById(id: number) {
   return blogPosts.find(post => post.id === id);

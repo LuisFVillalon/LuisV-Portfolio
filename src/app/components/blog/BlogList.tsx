@@ -13,12 +13,12 @@ export default function BlogShowcase() {
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-4 dm-serif-text-regular">My Latest Blog Posts</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Discover insights, tutorials, and tips on web development, design, and technology
+          Discover insights, tutorials, and tips on web and career development, design, and technology
         </p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {blogPosts.map((post) => (
+        {[...blogPosts].reverse().map((post) => (
         <Link key={post.id} href={`/blog/${post.id}`}>
           <article
             key={post.id}
