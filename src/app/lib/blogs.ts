@@ -1,9 +1,16 @@
 // Sample blog data 
 
+export type ContentSection = 
+  | { subtitle: string; text: string[] }
+  | { subtitle: string; type: 'text'; text: string[] }
+  | { subtitle: string; type: 'bullets'; text: string[] }
+  | { subtitle: string; type: 'image'; text: string[]; imageUrl: string }
+  | { subtitle: string; type: 'quote'; text: string[] };
+
 export type blogPostsType = {
     id: number;
     title: string;
-    content: [];
+    content: ContentSection[];
     image_card: string;
     image_banner: string;
     author: string;

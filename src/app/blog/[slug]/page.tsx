@@ -83,7 +83,7 @@ export default function Post({ params }: PageProps): React.ReactElement {
               )}
               
               {/* Section Content Based on Type */}
-              {section.type === 'bullets' ? (
+              {'type' in section && section.type === 'bullets' ? (
                 // Bullet Points
                 <ul className="space-y-3 ml-4">
                   {section.text.map((bullet, i) => (
@@ -92,7 +92,7 @@ export default function Post({ params }: PageProps): React.ReactElement {
                     </li>
                   ))}
                 </ul>
-              ) : section.type === 'image' ? (
+              ) : 'type' in section && section.type === 'image' ? (
                 // Image Section - Text on Left, Image on Right
                 <div className="grid md:grid-cols-2 gap-8 items-center my-8">
                   {/* Text/Caption on Left */}
@@ -107,7 +107,7 @@ export default function Post({ params }: PageProps): React.ReactElement {
                   {/* Image on Right */}
                   <div className="relative rounded-xl overflow-hidden shadow-xl">
                     <Image
-                      src={section.imageUrl} 
+                      src={section.imageUrl || ''} 
                       alt={section.subtitle}
                       className="w-full h-auto"
                       width={400}
@@ -115,7 +115,7 @@ export default function Post({ params }: PageProps): React.ReactElement {
                     />
                   </div>
                 </div>
-              ) : section.type === 'quote' ? (
+              ) : 'type' in section && section.type === 'quote' ? (
                 // Quote Section
                 <blockquote className="border-l-4 border-blue-500 pl-6 py-4 my-6 bg-blue-50 rounded-r-lg">
                   {section.text.map((quote, i) => (
