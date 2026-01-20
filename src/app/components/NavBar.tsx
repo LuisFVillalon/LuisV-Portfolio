@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Navbar() {
-    const [menuStatus, setMenuStatus] = useState(false);
+    const [menuStatus, setMenuStatus] = useState(true);
   return (
       <nav className="z-50 sticky top-0 w-full shadow-md bg-[#EEEEEE] bg-opacity-70">
           <div

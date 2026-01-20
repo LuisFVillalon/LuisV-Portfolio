@@ -92,6 +92,17 @@ export default function Post({ params }: PageProps): React.ReactElement {
                     </li>
                   ))}
                 </ul>
+              ) :  'type' in section && section.type === 'references' ? (
+                // Reference Links
+                <ul>                {
+                  section.text.map((link, i) => (
+                    <Link key={i} href={link}>
+                      <li  className="text-lg text-blue-800 underline">
+                          {section.text}
+                      </li>
+                    </Link>
+                  ))} 
+                </ul>
               ) : 'type' in section && section.type === 'image' ? (
                 // Image Section - Text on Left, Image on Right
                 <div className="grid md:grid-cols-2 gap-8 items-center my-8">

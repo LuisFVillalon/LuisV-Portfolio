@@ -5,7 +5,8 @@ export type ContentSection =
   | { subtitle: string; type: 'text'; text: string[] }
   | { subtitle: string; type: 'bullets'; text: string[] }
   | { subtitle: string; type: 'image'; text: string[]; imageUrl: string }
-  | { subtitle: string; type: 'quote'; text: string[] };
+  | { subtitle: string; type: 'quote'; text: string[] }
+  | { subtitle: string; type: 'references'; text: string[] };
 
 export type blogPostsType = {
     id: number;
@@ -687,6 +688,14 @@ const blogPosts = [
         "text": [
             "React Hooks provide a consistent and composable approach to managing state and side effects in modern React applications. By enabling functional components to access React's core APIs, hooks simplify component logic, improve code organization, and encourage reusable patterns aligned with React's design principles.",
             "Understanding when and how to use hooks such as useState and useEffect allows developers to write clearer, more predictable components. As React continues to evolve around function-based patterns, a solid grasp of hooks remains essential for building maintainable and scalable user interfaces."
+        ]
+        },
+        {
+        "subtitle": "References",
+        "type": "references",
+        "text": [
+            "https://react.dev/reference/react/hooks",
+            "https://legacy.reactjs.org/docs/hooks-overview.html"
         ]
         }
     ],
