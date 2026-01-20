@@ -603,12 +603,13 @@ const blogPosts = [
         },
         {
         "subtitle": "Why Do React Hooks Exist?",
-        "type": "text",
+        "type": "image",
         "text": [
             "Before the introduction of React Hooks, developers relied on JavaScript class components to access state and lifecycle features in React. While class components are fully capable, they introduced practical challenges when applications grew in complexity. Component logic related to state and side effects was often spread across multiple lifecycle methods, making code harder to read, reason about, and reuse.",
             "React Hooks were introduced to address these challenges by enabling functional components to manage state and side effects directly. Hooks allow developers to extract and share reusable stateful logic without changing the component hierarchy, which was difficult to achieve with class-based patterns. This approach aligns with React's emphasis on composition, allowing related logic to be grouped together and reused across components in a predictable manner.",
             "By promoting function-based components and composable logic, React Hooks simplify component structure, improve code organization, and reduce the cognitive overhead associated with managing complex component lifecycles."
-        ]
+        ],
+        "imageUrl": "/blog/blog_07/class_hook.png"
         },
         {
         "subtitle": "When Should You Use React Hooks?",
@@ -660,12 +661,11 @@ const blogPosts = [
         },
         {
         "subtitle": "Where Are Hooks Used in a React Application?",
-        "type": "image",
+        "type": "text",
         "text": [
             "Hooks are used within React functional components to manage state and side-effect logic. Functional components are JavaScript functions that receive input through a props object and return React elements used to render and update the user interface.",
             "Because React applications are structured as a component tree, state managed by hooks should be placed at the appropriate level in the hierarchy. Lifting hook-based state to higher-level components allows that state to be shared with child components through props when needed."
-        ],
-        "imageUrl": "/blog/blog_07/class_hook.png"
+        ]
         },
         {
         "subtitle": "How to Use Hooks in a React Application",
