@@ -74,8 +74,7 @@ const blogPosts = [
                 ]
             },
         ],
-        image_card: "/blog/blog_02_card.png",
-        image_banner: "/blog/blog_02.png",
+        image_card: "/blog/cards/blog_02_card.png",
         author: "Luis Villalón",
         date: "2025-06-18",
         readTime: "5 min read",
@@ -172,8 +171,7 @@ const blogPosts = [
             }
 
         ],
-        image_card: "/blog/blog_01_card.png",
-        image_banner: "/blog/blog_01.png",
+        image_card: "/blog/cards/blog_01_card.png",
         author: "Luis Villalón",
         date: "2025-06-19",
         readTime: "10 min read",
@@ -274,8 +272,7 @@ const blogPosts = [
                 ]
             }
         ],
-        image_card: "/blog/blog_03_card.png",
-        image_banner: "/blog/blog_03.png",
+        image_card: "/blog/cards/blog_03_card.png",
         author: "Luis Villalón",
         date: "2025-06-22",
         readTime: "20 min read",
@@ -287,6 +284,7 @@ const blogPosts = [
         "content": [
             {
             "subtitle": "Introducing the Vision Behind the Project",
+            "type": "text",
             "text": [
                 "The idea for this project began with a simple question: What if we could create an AI tutor that explains the Bible while staying completely grounded in Scripture itself? Large language models are powerful, but they sometimes invent content if they’re not given strict guardrails. When dealing with Scripture, accuracy isn’t optional — it’s essential.",
                 "I wanted to build a system that could provide faithful, citation-backed explanations of the Catholic Douay–Rheims Bible. This felt like the perfect opportunity to combine my interest in AI engineering with my desire to build something meaningful for Christian-Catholic education. From the beginning, I knew I wanted retrieval-augmented generation (RAG) at the core, ensuring every generated answer explicitly tied back to real verses.",
@@ -295,6 +293,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Defining the Technical Problem and Constraints",
+            "type": "text",
             "text": [
                 "Building an AI Bible tutor might seem simple at first glance. After all, it’s just “ask a question → get an answer.” But doing this responsibly required tackling several engineering challenges.",
                 "The first challenge was ensuring theological accuracy. Without retrieval, even the best language models hallucinate biblical content. My system needed verifiable sourcing. That requirement alone shaped the entire architecture.",
@@ -305,6 +304,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Building the Foundation: Preparing and Structuring the Dataset",
+            "type": "text",
             "text": [
                 "I started with the Douay–Rheims Catholic Bible, a public-domain translation known for its formal, robust wording. I converted the entire dataset into a structured CSV format with four essential columns: Book, Chapter, Verse, and Text.",
                 "This structure allowed the embedding pipeline to treat each verse as its own independent document while still preserving enough metadata to return detailed citations in answers.",
@@ -313,6 +313,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Designing the Embedding Pipeline",
+            "type": "text",
             "text": [
                 "To power semantic search, I used the text-embedding-3-small model. It provides high-quality embeddings at extremely low cost, making it ideal for large-scale ingestion.",
                 "A major challenge was batching. Embedding tens of thousands of verses individually would be slow and expensive, so I built a pipeline that loads the dataset, splits it into batches, embeds each batch, and pushes vectors into ChromaDB.",
@@ -321,6 +322,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Engineering the Vector Database with ChromaDB",
+            "type": "text",
             "text": [
                 "I chose ChromaDB for its simplicity, speed, and local persistence. It integrates cleanly with LangChain and supports metadata filtering, which proved essential.",
                 "Each stored entry includes verse text, book, chapter, verse metadata, an embedding vector, and a unique ID. This makes retrieval both fast and explanatory.",
@@ -329,6 +331,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Building the RAG Pipeline with LangChain",
+            "type": "text",
             "text": [
                 "LangChain tied the entire workflow together. When a user submits a question, the system embeds it, performs semantic search through ChromaDB, retrieves top verses, and then builds a structured prompt.",
                 "The prompt includes strict rules for grounding, citation formatting, and theological clarity. GPT-4o-mini then generates an answer using only the retrieved verses as source material.",
@@ -337,6 +340,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Creating Grounded, Faithful AI Explanations",
+            "type": "text",
             "text": [
                 "One of the most rewarding aspects of the project is how reliably the system produces grounded explanations. When users ask about forgiveness, suffering, love, or prayer, the tutor pulls verses that genuinely relate to the theme.",
                 "Because retrieval is semantic, not keyword-based, the system can handle broad theological topics and verse-specific questions equally well.",
@@ -345,6 +349,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Optimizing Prompting and Model Behavior",
+            "type": "text",
             "text": [
                 "I experimented extensively with different prompting formats. The final version emphasizes theological clarity, clear citations, and strict reliance on retrieved verses.",
                 "Even though GPT-4o-mini is a smaller model, the combination of strong prompting and high-quality retrieval allows it to produce surprisingly deep explanations.",
@@ -353,6 +358,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Evaluating System Performance and Limitations",
+            "type": "text",
             "text": [
                 "The system performs extremely well for most question types, but natural limitations exist. Retrieval depends on embedding quality, so the occasional question may require broader context than a standard semantic search can provide.",
                 "GPT-4o-mini also has limited reasoning capacity compared to larger models, though the RAG approach compensates for this by giving it authoritative source text.",
@@ -361,6 +367,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Future Improvements and Planned Enhancements",
+            "type": "text",
             "text": [
                 "I plan to expand the system by adding the Catechism of the Catholic Church, allowing cross-referenced answers that blend Scripture and doctrine.",
                 "A web-based user interface would make the tutor accessible to a broader audience. Additional improvements like hybrid search and streaming responses are also on the roadmap.",
@@ -369,6 +376,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Reflecting on Learning and Technical Growth",
+            "type": "text",
             "text": [
                 "This project deepened my understanding of RAG systems, embedding workflows, and metadata-driven architectures. It strengthened my appreciation for the power of structured retrieval.",
                 "Building an AI that serves a meaningful purpose taught me how technology can support spiritual and intellectual growth when applied responsibly.",
@@ -376,8 +384,7 @@ const blogPosts = [
             ]
             }
         ],
-        image_card: "/blog/blog_04_card.png",
-        image_banner: "/blog/blog_04.png",
+        image_card: "/blog/cards/blog_04_card.png",
         author: "Luis Villalón",
         date: "2025-10-28",
         readTime: "15 min read",
@@ -389,67 +396,76 @@ const blogPosts = [
         content: [
             {
                 "subtitle": "Deciding to Attend and Preparing for the Journey",
+                "type": "text",
                 "text": [
                     "Attending the SHPE National Conference 2025 was one of the most meaningful experiences of my undergraduate years. As a computer science student focused on full-stack development, I decided to attend with two ambitious goals: building a strong professional network and securing a summer internship. In the weeks leading up to the conference, I refined my resume, practiced my elevator pitch, and reviewed my past projects to ensure I could speak confidently about my work. I believed that strong projects and relevant experience would help me stand out, but I quickly learned that succeeding at SHPE requires far more than technical preparation—it requires strategy, confidence, and adaptability."
                 ]
             },
             {
                 "subtitle": "Finding Community in Region 2 and National Meetings",
+                "type": "text",
                 "text": [
                     "The first major events I attended were the SHPE Region 2 meeting and the National SHPE meeting. Both introduced me to a vibrant and welcoming community of students and professionals who were passionate about their fields and supportive of each other’s goals. These initial interactions eased my nerves and made me feel at home almost instantly. They also reminded me that SHPE is not just about job opportunities; it is a community rooted in shared experiences, cultural pride, and mutual encouragement. That sense of belonging would become a defining part of my conference experience."
                 ]
             },
             {
                 "subtitle": "Stepping Into the Career Fair and Navigating the Energy",
+                "type": "text",
                 "text": [
                     "The career fair was unlike anything I had encountered before—massive, fast-paced, and filled with opportunities. Booths from major companies stretched across the hall, and I spoke with representatives from Apple, Ford, Honeywell, Microsoft, Goldman Sachs, USAA, Global Foundries, Trimble, and more. Some lines were so long they lasted thirty minutes or more, but waiting in those lines became an unexpected networking opportunity. I met students from different universities, exchanged stories, and learned tips simply by talking to the people around me. That experience showed me that networking at SHPE happens everywhere, not just at the booths."
                 ]
             },
             {
                 "subtitle": "Understanding the Importance of Communicating Your Identity",
+                "type": "text",
                 "text": [
                     "As I navigated the fair, I realized how essential it is to clearly articulate your technical identity. Several times, I had strong conversations with recruiters but forgot to explicitly state that I am a computer science student specializing in full-stack development. Recruiters meet hundreds of students each day, and unless you intentionally communicate your role and skills, your message can get lost. I also discovered how powerful it is to highlight a standout project early in a conversation. With thousands of attendees, sharing something unique or memorable about your work becomes critical for making a lasting impression."
                 ]
             },
             {
                 "subtitle": "Facing My Technical Interviews and Learning From Them",
+                "type": "text",
                 "text": [
                     "I was fortunate to receive two technical interviews during the conference, which felt like significant accomplishments. However, the interviews also revealed areas where I was unprepared. Even though I could confidently discuss my projects, I struggled with the algorithmic and problem-solving style common in technical interviews. This experience taught me that projects and hands-on experience open doors, but technical interview skills—particularly LeetCode-style practice—determine how far you can go once those doors open. It was a humbling moment, but also an important reminder that growth is continuous."
                 ]
             },
             {
                 "subtitle": "Developing Effective Networking Habits Through Experience",
+                "type": "text",
                 "text": [
                     "One of the most rewarding parts of the conference was learning how to network more effectively. I made it a point to connect with attendees and recruiters on LinkedIn, and I quickly saw how important it is to follow up professionally and promptly. I also learned the value of asking for a specific point of contact whenever a recruiter showed interest. Near the end of the conference, Ford scheduled me for a virtual interview, but I never received a follow-up. Had I gotten a direct email or name, I could have reached out instead of waiting. This taught me that persistence and communication are essential when navigating professional opportunities."
                 ]
             },
             {
                 "subtitle": "Refining Strategies for Approaching Companies and Maximizing Time",
+                "type": "text",
                 "text": [
                     "Another insight I gained was the importance of researching which companies actually had roles relevant to my field before approaching their booths. With so many companies present, it’s easy to waste time speaking to organizations without computer science or software engineering opportunities. I also realized that printed resumes are becoming less necessary since many companies cannot accept physical copies anymore. Still, having a small stack is helpful for the few that do. Throughout the conference, I made it a habit to ask for LinkedIn connections, knowing that these relationships could become valuable in the future."
                 ]
             },
             {
                 "subtitle": "Overcoming the Challenge of Standing Out in a Competitive Environment",
+                "type": "text",
                 "text": [
                     "With thousands of talented students attending, standing out felt challenging at first. What helped me most was being authentic, confident, and intentional in my interactions. Rather than trying to impress everyone, I focused on expressing my genuine enthusiasm for software engineering and discussing the projects that best represented my abilities. I found that recruiters often responded more positively to natural, honest conversations than to overly rehearsed pitches. This shift in mindset made the experience less stressful and more rewarding."
                 ]
             },
             {
                 "subtitle": "What I Took Away From SHPE and How It Shaped My Goals",
+                "type": "text",
                 "text": [
                     "By the end of the conference, I had gained far more than I had anticipated. I expanded my professional network, improved my communication skills, and gained a clearer understanding of the expectations of the professional world. The experience helped me recognize the areas where I need to grow, especially in technical interview preparation. It also left me feeling more confident in my potential and more motivated than ever to continue improving. SHPE reminded me that growth is a constant process, and each step forward brings new opportunities."
                 ]
             },
             {
                 "subtitle": "Reflecting on the Impact and Looking Ahead",
+                "type": "text",
                 "text": [
                     "Ultimately, the SHPE National Conference 2025 was more than a career fair—it was a personal and professional turning point. I left with stronger skills, meaningful connections, and a deeper appreciation for the supportive community that SHPE fosters. For anyone considering attending in the future, I encourage you to go prepared, stay curious, and embrace every moment. The conference has the power to challenge you, inspire you, and help you grow in ways you might not expect. If my experience helps you navigate your own SHPE journey with more confidence and clarity, then this reflection has accomplished exactly what I hoped it would."
                 ]
             }
         ],
-        image_card: "/blog/blog_05_card.png",
-        image_banner: "/blog/blog_05.png",
+        image_card: "/blog/cards/blog_05_card.png",
         author: "Luis Villalón",
         date: "2025-11-09",
         readTime: "10 min read",
@@ -461,6 +477,7 @@ const blogPosts = [
         "content": [
             {
             "subtitle": "Deciding to Join My First Hackathon",
+            "type": "text",
             "text": [
                 "My first hackathon experience took place at the Innovation 4 SDSU Hackathon, hosted by CTRL. I walked in with little idea of what the weekend would look like, only knowing the event ran from 9 a.m. to 7 p.m. on Saturday and from 9 a.m. to 3 p.m. on Sunday. It sounded intense but exciting.",
                 "I arrived an hour early on the first day to settle in and get comfortable. As I waited, I struck up a conversation with a fellow student I knew from AI Club. We talked casually about the event, what we hoped to get out of it, and how we were both a little nervous but also eager to begin.",
@@ -469,6 +486,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Understanding the Prompt and Identifying a Real Problem",
+            "type": "text",
             "text": [
                 "This year’s challenge was to improve the living experience for SDSU students. The prompt was broad, giving teams a lot of flexibility in what problem they wanted to tackle.",
                 "Our team quickly gravitated toward an issue affecting tens of thousands of commuter students: the growing problem of hit-and-runs in parking lots. It was something many of us had heard about, and some had even experienced firsthand.",
@@ -478,6 +496,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Planning the Solution and Seeking Mentorship",
+            "type": "text",
             "text": [
                 "Instead of diving straight into coding, we spent the first four hours brainstorming, analyzing use cases, and getting clarity on what we wanted to build. This planning session became one of the most important parts of our project.",
                 "We talked to two professional mentors who asked hard questions about our idea. They helped us refine our direction, think more clearly about the user experience, and decide which features mattered most for an MVP.",
@@ -486,6 +505,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Designing a Practical MVP for Real Use Cases",
+            "type": "text",
             "text": [
                 "We designed the web app around two primary pain points. The first was witnessing an incident. If a student saw a hit-and-run occur, they could file a report containing the victim’s license plate, images, a text description, the timestamp, and optionally their contact information.",
                 "The second use case involved the victim. A student might return to their car to find it damaged with no note or explanation. They could search their license plate in our system to see if someone had submitted a report. If a matching report existed, they could download it and use it as documentation for an insurance claim.",
@@ -494,6 +514,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Finding a Way to Incentivize Reporting",
+            "type": "text",
             "text": [
                 "One major obstacle we recognized early on was motivation. How could we encourage students to actually report what they saw? Relying purely on goodwill wasn’t enough.",
                 "After talking to a mentor, we received a brilliant idea: Crash Coins. These digital tokens would reward users for creating verified reports. Students could redeem the coins for on-campus benefits or rewards.",
@@ -502,6 +523,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Building the App and Overcoming Technical Hurdles",
+            "type": "text",
             "text": [
                 "Once planning was finished, each team member took ownership of a different page of the app. I created the home page, the rewards page, and handled much of the page-to-page integration.",
                 "We faced a critical challenge when deciding how to structure our backend. Implementing a database would take too long, and we didn’t want backend complexity to slow down our progress. After speaking with another mentor, we pivoted to using a simple JSON file to store all of our demo data.",
@@ -511,6 +533,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Polishing the User Experience and Preparing the Presentation",
+            "type": "text",
             "text": [
                 "By the end of the first day and into the early hours of the second, we had a working MVP. With the technical work mostly done, we shifted our focus to presentation quality.",
                 "We wanted to create something memorable, not just another slide deck, so we filmed two short skit videos. These acted out real scenarios where our app would help students, making the problem and our solution easy to understand.",
@@ -519,6 +542,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Presenting First Out of 29 Teams",
+            "type": "text",
             "text": [
                 "We were the first of twenty-nine teams to present. Going first is always intimidating because you don’t know what standards the judges have in mind. But we went in confident and prepared.",
                 "Our videos, storytelling, and demo immediately caught people’s attention. After our presentation, many attendees and mentors approached us to say they loved our storytelling approach and that it was one of the strongest presentations they had seen.",
@@ -527,6 +551,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Winning Most Creative and Looking Toward the Future",
+            "type": "text",
             "text": [
                 "When the awards were announced, we learned we had won Most Creative, which felt incredibly validating. Our blend of real-world research, thoughtful design, and creative incentives like Crash Coins set our project apart.",
                 "During the final share-out, we also discussed our long-term vision for the project, including transitioning to React Native for a smoother mobile experience and building out the full Crash Coin rewards system.",
@@ -535,6 +560,7 @@ const blogPosts = [
             },
             {
             "subtitle": "Reflecting on Growth and What I Learned",
+            "type": "text",
             "text": [
                 "This hackathon taught me lessons I couldn’t have learned in a classroom. I realized the importance of planning before coding, the value of seeking mentorship early, and the impact a strong presentation can have on the perception of your project.",
                 "On a personal level, I learned how exciting it is to work under pressure with a team of motivated peers. I felt myself growing more confident in my abilities while recognizing how much more I want to learn.",
@@ -542,13 +568,128 @@ const blogPosts = [
             ]
             }
         ],
-        image_card: "/blog/blog_06_card.png",
-        image_banner: "/blog/blog_06.png",
+        image_card: "/blog/cards/blog_06_card.png",
         author: "Luis Villalón",
         date: "2025-11-15",
         readTime: "10 min read",
         category: "Career Dev"
-    },       
+    },      
+    {
+    id: 7,
+    title: "Understanding React Hooks: Why They Exist and How to Use Them Effectively",
+    "content": [
+        {
+        "subtitle": "Introduction",
+        "type": "text",
+        "text": [
+            "React Hooks are a core part of modern React development, enabling state management and lifecycle behavior within functional components. Hooks provide a standardized way to write reusable, stateful logic without relying on class components.",
+            "This article introduces the fundamentals of React Hooks, explains why they were introduced, outlines common scenarios in which developers use them, and demonstrates how to apply them effectively in a React application."
+        ]
+        },
+        {
+        "subtitle": "What Are React Hooks?",
+        "type": "text",
+        "text": [
+            "React Hooks are JavaScript functions that let you access React's built-in APIs and use their capabilities such as React state and lifecycle features without writing a class."
+        ]
+        },
+        {
+        "subtitle": "Why Do React Hooks Exist?",
+        "type": "text",
+        "text": [
+            "Before the introduction of React Hooks, developers relied on JavaScript class components to access state and lifecycle features in React. While class components are fully capable, they introduced practical challenges when applications grew in complexity. Component logic related to state and side effects was often spread across multiple lifecycle methods, making code harder to read, reason about, and reuse.",
+            "React Hooks were introduced to address these challenges by enabling functional components to manage state and side effects directly. Hooks allow developers to extract and share reusable stateful logic without changing the component hierarchy, which was difficult to achieve with class-based patterns. This approach aligns with React's emphasis on composition, allowing related logic to be grouped together and reused across components in a predictable manner.",
+            "By promoting function-based components and composable logic, React Hooks simplify component structure, improve code organization, and reduce the cognitive overhead associated with managing complex component lifecycles."
+        ]
+        },
+        {
+        "subtitle": "When Should You Use React Hooks?",
+        "type": "text",
+        "text": [
+            "This article focuses on two of the most common use cases for React Hooks: managing component state and handling component side effects. These patterns represent the majority of scenarios in which hooks are applied in everyday React development."
+        ]
+        },
+        {
+        "subtitle": "Managing Component State",
+        "type": "image",
+        "text": [
+            "The useState hook is used when a functional component needs to store and manage data that can change over time. When the state value updates, React triggers a re-render of the component to reflect the updated user interface.",
+            "useState is commonly used for data that directly affects what the user sees, such as form inputs, UI toggles, counters, or dynamic lists of data.",
+            "In general, useState should be avoided for values that do not influence rendering. If a value can be derived during the render phase or does not need to trigger a re-render when it changes, storing it in state is often unnecessary."
+        ],
+        "imageUrl": "/blog/blog_07/useState_hook.png"
+        },
+        {
+        "subtitle": "Common useState Use Cases",
+        "type": "bullets",
+        "text": [
+            "Form inputs (tracking user input)",
+            "UI visibility and toggles (e.g., modals, switches)",
+            "Counters or other numeric values",
+            "Arrays or objects representing dynamic lists of data"
+        ]
+        },
+        {
+        "subtitle": "Handling Component Side Effects",
+        "type": "image",
+        "text": [
+            "The useEffect hook is used when a functional component needs to perform actions that occur outside the normal rendering process. It allows React components to synchronize with external systems and execute logic after a render has completed.",
+            "A common use case for useEffect is data fetching, such as making an API request when a component mounts or when specific dependencies change.",
+            "By clearly separating rendering logic from side-effect management, useEffect helps maintain predictable and maintainable component behavior."
+        ],
+        "imageUrl": "/blog/blog_07/useEffect_hook.png"
+        },
+        {
+        "subtitle": "Common useEffect Use Cases",
+        "type": "bullets",
+        "text": [
+            "Interacting with the DOM",
+            "Setting up and cleaning up event listeners",
+            "Managing timers and intervals",
+            "Sending analytics or logging data",
+            "Synchronizing component state with external sources"
+        ]
+        },
+        {
+        "subtitle": "Where Are Hooks Used in a React Application?",
+        "type": "image",
+        "text": [
+            "Hooks are used within React functional components to manage state and side-effect logic. Functional components are JavaScript functions that receive input through a props object and return React elements used to render and update the user interface.",
+            "Because React applications are structured as a component tree, state managed by hooks should be placed at the appropriate level in the hierarchy. Lifting hook-based state to higher-level components allows that state to be shared with child components through props when needed."
+        ],
+        "imageUrl": "/blog/blog_07/class_hook.png"
+        },
+        {
+        "subtitle": "How to Use Hooks in a React Application",
+        "type": "text",
+        "text": [
+            "There are only two rules when it comes to using React Hooks:"
+        ]
+        },
+        {
+        "subtitle": "Rules of Hooks",
+        "type": "bullets",
+        "text": [
+            "Only call Hooks at the top level - Do not call a hook inside loops, conditions, or nested functions. Always call hooks at the start of your component.",
+            "Only call Hooks from React functions - Do not call Hooks from regular JavaScript functions or class components. Call them from React function components."
+        ]
+        },
+        {
+        "subtitle": "Conclusion",
+        "type": "text",
+        "text": [
+            "React Hooks provide a consistent and composable approach to managing state and side effects in modern React applications. By enabling functional components to access React's core APIs, hooks simplify component logic, improve code organization, and encourage reusable patterns aligned with React's design principles.",
+            "Understanding when and how to use hooks such as useState and useEffect allows developers to write clearer, more predictable components. As React continues to evolve around function-based patterns, a solid grasp of hooks remains essential for building maintainable and scalable user interfaces."
+        ]
+        }
+    ],
+    image_card: "/blog/cards/blog_07_card.png",
+    author: "Luis Villalón",
+    date: "2025-01-19",
+    readTime: "8 min read",
+    category: "Frontend"
+    }    
+    
 ];
 export function getPostById(id: number) {
   return blogPosts.find(post => post.id === id);
@@ -556,3 +697,4 @@ export function getPostById(id: number) {
 export {
     blogPosts
 };
+
