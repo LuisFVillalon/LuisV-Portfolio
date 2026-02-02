@@ -59,7 +59,7 @@ export default function Post({ params }: PageProps): React.ReactElement {
           </div>
           
           {/* Title */}
-          <h1 className="font-sans text-3xl md:text-5xl lg:text-6xl font-bold text-[#FADA5E] mb-6 leading-tight">
+          <h1 className="font-sans text-2xl md:text-5xl lg:text-6xl font-bold text-[#FADA5E] mb-6 leading-tight">
             {selectedPost.title}
           </h1>
           
@@ -107,7 +107,7 @@ export default function Post({ params }: PageProps): React.ReactElement {
             <div key={index} className="mb-10">
               {/* Section Title */}
               {section.subtitle && (
-                <h2 className="font-sans text-2xl md:text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                <h2 className="font-sans text-xl md:text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
                   {section.subtitle}
                 </h2>
               )}
@@ -139,7 +139,7 @@ export default function Post({ params }: PageProps): React.ReactElement {
                   {/* Text/Caption on Left */}
                   <div className="space-y-4 min-w-0">
                     {section.text.map((paragraph, i) => (
-                      <p key={i} className="text-gray-700 leading-relaxed text-lg">
+                      <p key={i} className="text-gray-700 leading-relaxed text-base md:text-lg">
                         {paragraph}
                       </p>
                     ))}
@@ -171,7 +171,7 @@ export default function Post({ params }: PageProps): React.ReactElement {
                 // Regular Text
                 <div className="space-y-4">
                   {section.text.map((paragraph, i) => (
-                    <p key={i} className="text-gray-700 leading-relaxed text-lg">
+                    <p key={i} className="text-gray-700 leading-relaxed text-base md:text-lg">
                       {paragraph}
                     </p>
                   ))}
