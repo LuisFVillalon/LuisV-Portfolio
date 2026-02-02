@@ -38,14 +38,14 @@ type projectsAcademic = {
     mobileFriendly: boolean;
 };
 const topProjects = [
-    {  
-        title: 'Whats Poppin?',
-        description: 'Reddit-clone web application. Create an account, post, comment, and vote!',
-        tech: 'HTML, CSS, JavaScript, React.js, Google Firebase Firestore Database and Authentication',
-        github_repo: 'https://github.com/LuisFVillalon/WhatsPoppin',
-        live_app: 'https://luisfvillalon.github.io/WhatsPoppin/',    
-        image: '/projects/frontend/whatspoppin.png',   
-        mobileFriendly: false,
+    {
+        title: 'Task Master',
+        description: 'Full-stack web application for a user to manage and visualize tasks.',
+        tech: 'Next.js, React.js TypeScript, Tailwind CSS, Python, FastAPI, PostgreSQL, RESTful CRUD Operations',
+        github_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend',
+        live_app: 'https://task-master-mvp.vercel.app/',
+        image: '/projects/frontend/taskmaster.png',
+        mobileFriendly: true,
     },
     {
         title: 'The Crash App',
@@ -65,17 +65,35 @@ const topProjects = [
     //     image: '/projects/IWE_logo.png',      
     //     mobileFriendly: true,
     // },
+    // {  
+    //     title: 'World Computing Organization: PokerBot',
+    //     description: 'Play with a poker bot that learns how to beat you after every round!',
+    //     tech: 'Ptyhon, CSV, OOP Design',
+    //     github_repo: 'https://github.com/LuisFVillalon/PokerBot',
+    //     live_app: '',    
+    //     image: '/projects/backend/wco_logo.png',   
+    //     mobileFriendly: false,
+    // }
     {  
-        title: 'World Computing Organization: PokerBot',
-        description: 'Play with a poker bot that learns how to beat you after every round!',
-        tech: 'Ptyhon, CSV, OOP Design',
-        github_repo: 'https://github.com/LuisFVillalon/PokerBot',
-        live_app: '',    
-        image: '/projects/backend/wco_logo.png',   
+        title: 'Whats Poppin?',
+        description: 'Reddit-clone web application. Create an account, post, comment, and vote!',
+        tech: 'HTML, CSS, JavaScript, React.js, Google Firebase Firestore Database and Authentication',
+        github_repo: 'https://github.com/LuisFVillalon/WhatsPoppin',
+        live_app: 'https://luisfvillalon.github.io/WhatsPoppin/',    
+        image: '/projects/frontend/whatspoppin.png',   
         mobileFriendly: false,
-    }
+    },    
 ];
 const projectsFrontEnd = [
+    {
+        title: 'Task Master',
+        description: 'Frontend application which connects to a backend application through API calls to power a task management application.',
+        tech: 'Next.js, React.js TypeScript, Tailwind CSS',
+        github_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend',
+        live_app: 'https://task-master-mvp.vercel.app/',
+        image: '/projects/frontend/taskmaster.png',
+        mobileFriendly: true,
+    },    
     {
         title: 'The Crash App',
         description: 'Web application for students to report hit-and-runs and earn rewards. Winner of Most Creative Project in Innovate 4 SDSU Hackathon 2025!',
@@ -177,6 +195,15 @@ const projectsFrontEnd = [
     }
 ];
 const projectsBackEnd = [
+    {
+        title: 'Task Master',
+        description: 'Backend application of RESTful APIs built for powering a management application. It supports full CRUD operations, data validation, and relational associations between tasks and tags.',
+        tech: 'Python, FastAPI, PostgreSQL, RESTful CRUD Operations',
+        github_repo: 'https://github.com/LuisFVillalon/TaskMaster-Backend',
+        live_app: 'https://task-master-mvp.vercel.app/',
+        image: '/projects/frontend/taskmaster.png',
+        mobileFriendly: false,
+    },       
     {  
         title: 'World Computing Organization: PokerBot',
         description: 'Play with a poker bot that learns how to beat you after every round!',

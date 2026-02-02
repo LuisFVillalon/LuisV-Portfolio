@@ -411,24 +411,27 @@ const blogPosts = [
             },
             {
                 "subtitle": "Finding Community in Region 2 and National Meetings",
-                "type": "text",
+                "type": "image",
                 "text": [
                     "The first major events I attended were the SHPE Region 2 meeting and the National SHPE meeting. Both introduced me to a vibrant and welcoming community of students and professionals who were passionate about their fields and supportive of each other’s goals. These initial interactions eased my nerves and made me feel at home almost instantly. They also reminded me that SHPE is not just about job opportunities; it is a community rooted in shared experiences, cultural pride, and mutual encouragement. That sense of belonging would become a defining part of my conference experience."
-                ]
+                ],
+                "imageUrl": "/blog/blog_05/1.png"
             },
             {
                 "subtitle": "Stepping Into the Career Fair and Navigating the Energy",
-                "type": "text",
+                "type": "image",
                 "text": [
                     "The career fair was unlike anything I had encountered before—massive, fast-paced, and filled with opportunities. Booths from major companies stretched across the hall, and I spoke with representatives from Apple, Ford, Honeywell, Microsoft, Goldman Sachs, USAA, Global Foundries, Trimble, and more. Some lines were so long they lasted thirty minutes or more, but waiting in those lines became an unexpected networking opportunity. I met students from different universities, exchanged stories, and learned tips simply by talking to the people around me. That experience showed me that networking at SHPE happens everywhere, not just at the booths."
-                ]
+                ],
+                "imageUrl": "/blog/blog_05/2.png"
             },
             {
                 "subtitle": "Understanding the Importance of Communicating Your Identity",
-                "type": "text",
+                "type": "image",
                 "text": [
                     "As I navigated the fair, I realized how essential it is to clearly articulate your technical identity. Several times, I had strong conversations with recruiters but forgot to explicitly state that I am a computer science student specializing in full-stack development. Recruiters meet hundreds of students each day, and unless you intentionally communicate your role and skills, your message can get lost. I also discovered how powerful it is to highlight a standout project early in a conversation. With thousands of attendees, sharing something unique or memorable about your work becomes critical for making a lasting impression."
-                ]
+                ],
+                "imageUrl": "/blog/blog_05/3.png"
             },
             {
                 "subtitle": "Facing My Technical Interviews and Learning From Them",
@@ -446,10 +449,11 @@ const blogPosts = [
             },
             {
                 "subtitle": "Refining Strategies for Approaching Companies and Maximizing Time",
-                "type": "text",
+                "type": "image",
                 "text": [
                     "Another insight I gained was the importance of researching which companies actually had roles relevant to my field before approaching their booths. With so many companies present, it’s easy to waste time speaking to organizations without computer science or software engineering opportunities. I also realized that printed resumes are becoming less necessary since many companies cannot accept physical copies anymore. Still, having a small stack is helpful for the few that do. Throughout the conference, I made it a habit to ask for LinkedIn connections, knowing that these relationships could become valuable in the future."
-                ]
+                ],
+                "imageUrl": "/blog/blog_05/4.png"
             },
             {
                 "subtitle": "Overcoming the Challenge of Standing Out in a Competitive Environment",
@@ -467,10 +471,11 @@ const blogPosts = [
             },
             {
                 "subtitle": "Reflecting on the Impact and Looking Ahead",
-                "type": "text",
+                "type": "image",
                 "text": [
                     "Ultimately, the SHPE National Conference 2025 was more than a career fair—it was a personal and professional turning point. I left with stronger skills, meaningful connections, and a deeper appreciation for the supportive community that SHPE fosters. For anyone considering attending in the future, I encourage you to go prepared, stay curious, and embrace every moment. The conference has the power to challenge you, inspire you, and help you grow in ways you might not expect. If my experience helps you navigate your own SHPE journey with more confidence and clarity, then this reflection has accomplished exactly what I hoped it would."
-                ]
+                ],
+                "imageUrl": "/blog/blog_05/5.png"
             }
         ],
         image_card: "/blog/cards/blog_05_card.png",
@@ -485,12 +490,13 @@ const blogPosts = [
         "content": [
             {
             "subtitle": "Deciding to Join My First Hackathon",
-            "type": "text",
+            "type": "image",
             "text": [
                 "My first hackathon experience took place at the Innovation 4 SDSU Hackathon, hosted by CTRL. I walked in with little idea of what the weekend would look like, only knowing the event ran from 9 a.m. to 7 p.m. on Saturday and from 9 a.m. to 3 p.m. on Sunday. It sounded intense but exciting.",
                 "I arrived an hour early on the first day to settle in and get comfortable. As I waited, I struck up a conversation with a fellow student I knew from AI Club. We talked casually about the event, what we hoped to get out of it, and how we were both a little nervous but also eager to begin.",
                 "A few minutes later, a friend from ACM walked in with someone from his network. After catching up, he asked if I wanted to join their team. The student I was talking to joined as well, and suddenly, we had a four-person team formed naturally before the hackathon even began. It felt like the perfect start."
-            ]
+            ],
+            "imageUrl": "/blog/blog_06/1.png"
             },
             {
             "subtitle": "Understanding the Prompt and Identifying a Real Problem",
@@ -504,12 +510,13 @@ const blogPosts = [
             },
             {
             "subtitle": "Planning the Solution and Seeking Mentorship",
-            "type": "text",
+            "type": "image",
             "text": [
                 "Instead of diving straight into coding, we spent the first four hours brainstorming, analyzing use cases, and getting clarity on what we wanted to build. This planning session became one of the most important parts of our project.",
                 "We talked to two professional mentors who asked hard questions about our idea. They helped us refine our direction, think more clearly about the user experience, and decide which features mattered most for an MVP.",
                 "Since all of us had experience in web development, we chose to build a web app. It allowed us to move quickly while still creating something functional and realistic. The goal was simple: empower students to support one another by reporting incidents and providing victims with evidence they could use."
-            ]
+            ],
+            "imageUrl": "/blog/blog_06/4.png"
             },
             {
             "subtitle": "Designing a Practical MVP for Real Use Cases",
@@ -531,13 +538,14 @@ const blogPosts = [
             },
             {
             "subtitle": "Building the App and Overcoming Technical Hurdles",
-            "type": "text",
+            "type": "image",
             "text": [
                 "Once planning was finished, each team member took ownership of a different page of the app. I created the home page, the rewards page, and handled much of the page-to-page integration.",
                 "We faced a critical challenge when deciding how to structure our backend. Implementing a database would take too long, and we didn’t want backend complexity to slow down our progress. After speaking with another mentor, we pivoted to using a simple JSON file to store all of our demo data.",
                 "This approach let us focus on creating a working prototype without tripping over unnecessary setup. Our tech stack included React.js, Next.js, TypeScript, Tailwind CSS, and our JSON file acting as a temporary database.",
                 "AI tools ended up being lifesavers. Whenever we ran into errors or needed quick debugging, AI helped resolve issues faster than we could manually. This allowed us to keep building at a steady pace despite the time constraints."
-            ]
+            ],
+            "imageUrl": "/blog/blog_06/2.png"
             },
             {
             "subtitle": "Polishing the User Experience and Preparing the Presentation",
@@ -559,12 +567,13 @@ const blogPosts = [
             },
             {
             "subtitle": "Winning Most Creative and Looking Toward the Future",
-            "type": "text",
+            "type": "image",
             "text": [
                 "When the awards were announced, we learned we had won Most Creative, which felt incredibly validating. Our blend of real-world research, thoughtful design, and creative incentives like Crash Coins set our project apart.",
                 "During the final share-out, we also discussed our long-term vision for the project, including transitioning to React Native for a smoother mobile experience and building out the full Crash Coin rewards system.",
                 "Even though this was only our first hackathon, we left feeling proud and energized by what we had accomplished together."
-            ]
+            ],
+            "imageUrl": "/blog/blog_06/3.png"
             },
             {
             "subtitle": "Reflecting on Growth and What I Learned",

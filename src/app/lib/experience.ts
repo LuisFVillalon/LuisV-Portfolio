@@ -22,6 +22,14 @@ type currentlyDoing = {
     tech: string;
     link: string;
 };
+type leadership = {
+    company: string;
+    position: string;
+    time: string;
+    description: string;
+    tech: string;
+    link: string;
+};
 type certificates = {
     title: string;
     institution: string;
@@ -35,7 +43,8 @@ type techTools = {
     subject: string;
     tools: { tool: string, link: string }[];
 };
-const professionalExperience = [
+
+const professionalExperience: professionalExperience[] = [
     {
         company: 'Second Course',
         position: 'Computer Science Intern',
@@ -44,14 +53,6 @@ const professionalExperience = [
         tech:'React Native, Firestore Database, Expo Go',
         link: 'https://www.secondcourse.co/food-security'    
     }, 
-    {
-        company: 'World Computing Organization: PokerBot',
-        position: 'Backend Developer',
-        time: 'Oct 2025 - Present',
-        description: 'Built the backend systems for an interactive poker application that runs full game logic, manages player–bot interactions, and records gameplay data for analysis.',
-        tech:'Python, CSV, OOP Design',
-        link: 'https://www.secondcourse.co/food-security'    
-    },   
     {
         company: 'Calexico Neighborhood House – Mission Thrift Store & Happy Kids Preschool and Daycare',
         position: 'SEO & Digital Marketing Strategist',
@@ -78,13 +79,13 @@ const professionalExperience = [
     },
 
 ];
-const education = [
+const education: education[] = [
     {
         institution: 'San Diego State University',
         course: 'Bachelor of Science in Computer Science',
         time: 'Aug 2025 - May 2027',
         description: '',
-        tech:'Python, Data Structures, Algorithms, Computer Architecture, Artificial Intelligence',
+        tech:'Python, C++, Data Structures, Algorithms, Software Systems, Computer Architecture, Artificial Intelligence',
         link: 'https://cs.sdsu.edu/'
     },
     {
@@ -92,7 +93,7 @@ const education = [
         course: 'Associate of Science in Computer Science',
         time: 'June 2023 - Dec 2024',
         description: '',
-        tech:'Java, Assembly Language',
+        tech:'Data Structures, Object Oriented Programming, Java, Assembly Language',
         link: 'https://www.imperial.edu/'
     },
     {
@@ -104,7 +105,7 @@ const education = [
         link: 'https://www.theodinproject.com/'
     }
 ];
-const certificates = [
+const certificates: certificates[] = [
     {
         title: 'SEO',
         institution: 'HubSpot Academy',
@@ -151,7 +152,7 @@ const certificates = [
         institution_link: 'https://www.freecodecamp.org/'
     },        
 ];
-const techTools = [
+const techTools: techTools[] = [
     {
         subject: 'Programming Languages',
         tools: [
@@ -159,10 +160,10 @@ const techTools = [
                 tool: 'Python',
                 link: 'https://python.org/'
             },
-            // {
-            //     tool: 'C++',
-            //     link: 'https://cplusplus.com/'
-            // },
+            {
+                tool: 'C++',
+                link: 'https://cplusplus.com/'
+            },
             {
                 tool: 'Java',
                 link: 'https://docs.oracle.com/en/java/'
@@ -172,9 +173,9 @@ const techTools = [
                 link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'
             },
             {
-                tool: 'Assembly Language (Windows x86)',
-                link: 'https://en.wikipedia.org/wiki/X86_assembly_language'
-            }
+                tool: 'TypeScript',
+                link: 'https://www.typescriptlang.org/docs/'
+            },            
         ]
     },
     {
@@ -187,11 +188,7 @@ const techTools = [
             {
                 tool: 'CSS',
                 link: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
-            },
-            {
-                tool: 'TypeScript',
-                link: 'https://www.typescriptlang.org/docs/'
-            },            
+            },        
             {
                 tool: 'Tailwind CSS',
                 link: 'https://tailwindcss.com/docs/installation/using-vite'
@@ -208,51 +205,39 @@ const techTools = [
                 tool: 'React Native',
                 link: 'https://reactnative.dev/'
             },            
+        ]
+    },
+    {
+        subject: 'Backend Development',
+        tools: [
             {
                 tool: 'Node.js',
                 link: 'https://nodejs.org/docs/latest/api/'
             },
             {
-                tool: 'Express.js',
-                link: 'https://expressjs.com/en/starter/installing.html'
+                tool: 'FastAPI',
+                link: 'https://fastapi.tiangolo.com/'
+            },
+            {
+                tool: 'Restful APIs',
+                link: 'https://docs.github.com/en/rest?apiVersion=2022-11-28'
             }
         ]
-    },
+    },    
     {
-        subject: 'Databases & Backend',
+        subject: 'Databases',
         tools: [
             {
                 tool: 'MongoDB (NoSQL)',
                 link: 'https://www.mongodb.com/docs/'
             },
             {
-                tool: 'Mongoose',
-                link: 'https://mongoosejs.com/docs/'
-            },
-            {
                 tool: 'Google Firebase',
                 link: 'https://firebase.google.com/docs'
             },
             {
-                tool: 'Microsoft Azure SQL Database',
-                link: 'https://learn.microsoft.com/en-us/azure/azure-sql/?view=azuresql'
-            },
-            {
                 tool: 'PostgreSQL',
                 link: 'https://www.postgresql.org/docs/'
-            }
-        ]
-    },
-    {
-        subject: 'Content Management System & UI/UX Design Builders',
-        tools: [
-            {
-                tool: 'Plasmic CMS',
-                link: 'https://docs.plasmic.app/learn/plasmic-cms/'
-            },
-            {
-                tool: 'Figma',
-                link: 'https://www.figma.com/files/team/1304066408852983483/recents-and-sharing?fuid=1195890670151716613'
             }
         ]
     },
@@ -264,8 +249,8 @@ const techTools = [
                 link: 'https://docs.github.com/en/get-started'
             },
             {
-                tool: 'Taiga',
-                link: 'https://taiga.io/about-us/'
+                tool: 'Git',
+                link: 'https://git-scm.com/docs'
             }
         ]
     },
@@ -273,26 +258,22 @@ const techTools = [
         subject: 'Digital Marketing',
         tools: [
             {
-                tool: 'Meta Business Suite',
-                link: 'https://www.facebook.com/business/tools/meta-business-suite/get-started'
-            },
-            {
-                tool: 'Meta Ads Manager',
-                link: 'https://business.meta.com/?locale=en_US'
-            },
-            {
                 tool: 'Google Analytics',
                 link: 'https://developers.google.com/analytics'
             },
-            {
-                tool: 'Shopify',
-                link: 'https://www.shopify.com/'
-            }
         ]
     },
        
 ];
-const currentlyDoing = [
+const currentlyDoing: currentlyDoing[] = [
+    {
+        company: 'ColorStack',
+        position: 'Outreach Chair',
+        time: 'Jan 2026 - Present',
+        description: 'Lead recruitment strategy and digital presence while building partnerships with industry professionals and campus organizations to drive member growth and connect members with career opportunities',
+        tech:'Leadership, Teamwork, Communication, Networking, Community',
+        link: 'https://www.colorstack.org/'    
+    }, 
     {
         company: 'Second Course',
         position: 'Computer Science Intern',
@@ -301,23 +282,34 @@ const currentlyDoing = [
         tech:'React Native, Firestore Database, Expo Go',
         link: 'https://www.secondcourse.co/food-security'    
     }, 
-    {
-        company: 'World Computing Organization: PokerBot',
-        position: 'Backend Developer',
-        time: 'Oct 2025 - Present',
-        description: 'Built the backend systems for an interactive poker application that runs full game logic, manages player–bot interactions, and records gameplay data for analysis.',
-        tech:'Python, CSV, OOP Design',
-        link: 'https://www.secondcourse.co/food-security'    
-    },     
+    // {
+    //     company: 'World Computing Organization: PokerBot',
+    //     position: 'Backend Developer',
+    //     time: 'Oct 2025 - Present',
+    //     description: 'Built the backend systems for an interactive poker application that runs full game logic, manages player–bot interactions, and records gameplay data for analysis.',
+    //     tech:'Python, CSV, OOP Design',
+    //     link: 'https://www.secondcourse.co/food-security'    
+    // },     
     {
         company: 'San Diego State University',
         position: 'Bachelor of Science in Computer Science',
         time: 'Aug 2025 - May 2027',
         description: '',
-        tech:'Python, Data Structures, Algorithms, Computer Architecture, Artificial Intelligence',
+        tech:'Python, C++, Data Structures, Algorithms, Software Systems, Computer Architecture, Artificial Intelligence',
         link: 'https://cs.sdsu.edu/'
     },
 ]
+const leadership: leadership[] = [
+    {
+        company: 'ColorStack',
+        position: 'Outreach Chair',
+        time: 'Jan 2026 - Present',
+        description: 'Lead recruitment strategy and digital presence while building partnerships with industry professionals and campus organizations to drive member growth and connect members with career opportunities',
+        tech:'Leadership, Teamwork, Communication, Networking, Community',
+        link: 'https://www.colorstack.org/'    
+    }, 
+]
+
 export {
-    professionalExperience, education, certificates, techTools, currentlyDoing
+    professionalExperience, education, certificates, techTools, currentlyDoing, leadership
 };

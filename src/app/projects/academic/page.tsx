@@ -4,7 +4,7 @@ import Footer from '../../components/Footer';
 import Link from 'next/link';
 import {projectsAcademic} from '../../lib/projects';
 import PanelTemplate from '../../components/Cards/PanelTemplate';
-import CTASection from '@/app/components/home/CTASection';
+import CTASection from '@/app/components/CTASection';
     
 export default function Academic() {
     return (
@@ -15,7 +15,7 @@ export default function Academic() {
 
         <section className="flex flex-col w-full">
           <div className= "mx-[10%] md:mx-[20%] my-[5%] md:my-[1%]  text-[#333333] border-b border-gray-500">
-            <h1 className="dm-serif-text-regular text-2xl md:text-3xl font-extrabold text-[#0A0A23]">Academic Coursework</h1>
+            <h1 className="font-sans text-2xl md:text-3xl font-extrabold text-[#0A0A23]">Academic Coursework</h1>
             <p className="text-base">
               A collection of my academic projects showcasing my skills and growth as a well-rounded software engineer.
               Click on an image or the link to visit the GitHub repository.
@@ -31,7 +31,7 @@ export default function Academic() {
                   hover:shadow-xl hover:-translate-y-1
                   border-b-4 border-r-2 border-green-900
                   active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
-                  dm-serif-text-regular
+                  font-sans
                 "
                 style={{ 
                   background: 'linear-gradient(to right, #22c55e, #3b82f6)'
@@ -58,7 +58,10 @@ export default function Academic() {
             })}
           </div>
         </section>
-        <CTASection/>
+        <CTASection
+          title={"Like What You See?"}
+          description={"These projects showcase my approach to problem-solving and full-stack development. If you’re interested in building something together or have feedback, let’s talk."}
+        />
         <Footer />
 
       </div>        

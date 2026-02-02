@@ -116,7 +116,7 @@ const handleSubmit = async (): Promise<void> => {
           <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
             <Check className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-2xl md:text-4xl font-bold text-green-600 mb-2 dm-serif-text-regular">Message Sent!</h2>
+          <h2 className="text-2xl md:text-4xl font-bold text-green-600 mb-2 font-sans">Message Sent!</h2>
           <p className="text-gray-600 md:text-2xl">Thank you for reaching out. I&apos;ll get back to you soon!</p>
         </div>
       </div>
@@ -146,7 +146,7 @@ const handleSubmit = async (): Promise<void> => {
     <div className="p-8 bg-white rounded-2xl shadow-lg border-2 border-gray-200 my-8">
       {/* Header Section with Contact Info */}
       <div className="text-center mb-8">
-        <h1 className="dm-serif-text-regular text-4xl font-bold text-gray-800 mb-2">Get In Touch</h1>
+        <h1 className="font-sans text-4xl font-bold text-gray-800 mb-2">Get In Touch</h1>
         <p className="text-gray-600 mb-2 text-lg">I&apos;d love to hear how I can be of service. Send me a message!</p>
 
         {/* Contact Info Display */}
@@ -159,7 +159,7 @@ const handleSubmit = async (): Promise<void> => {
             >
               {isCopied ? <Check className="w-5 h-5 text-green-600" /> : <Copy className="w-5 h-5 text-blue-600 group-hover:text-blue-800" />}
               <span
-                className={`font-medium transition-colors duration-200 ${
+                className={`font-sans font-medium transition-colors duration-200 ${
                   isCopied ? "text-green-600" : "text-gray-800 group-hover:text-blue-800"
                 }`}
               >
@@ -175,7 +175,7 @@ const handleSubmit = async (): Promise<void> => {
               className="flex items-center gap-2 text-gray-700 hover:text-black transition-colors duration-200"
             >
               <Github className="w-5 h-5" />
-              <span>GitHub</span>
+              <span className="font-sans">GitHub</span>
             </a>
             <a
               href="https://www.linkedin.com/in/luis-villalon/"
@@ -184,7 +184,7 @@ const handleSubmit = async (): Promise<void> => {
               className="flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors duration-200"
             >
               <Linkedin className="w-5 h-5" />
-              <span>LinkedIn</span>
+              <span className="font-sans">LinkedIn</span>
             </a>
           </div>
         </div>
@@ -194,7 +194,7 @@ const handleSubmit = async (): Promise<void> => {
       <div className="space-y-6">
         {/* Full Name */}
         <div>
-          <label htmlFor="fullName" className="md:text-xl dm-serif-text-regular block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="fullName" className="md:text-xl font-sans block text-sm font-semibold text-gray-700 mb-2">
             <User className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
             Full Name *
           </label>
@@ -214,7 +214,7 @@ const handleSubmit = async (): Promise<void> => {
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="md:text-lg dm-serif-text-regular block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="email" className="md:text-lg font-sans block text-sm font-semibold text-gray-700 mb-2">
             <Mail className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
             Email Address *
           </label>
@@ -234,7 +234,7 @@ const handleSubmit = async (): Promise<void> => {
 
         {/* Message */}
         <div>
-          <label htmlFor="message" className="md:text-lg dm-serif-text-regular block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="message" className="md:text-lg font-sans block text-sm font-semibold text-gray-700 mb-2">
             <MessageSquare className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
             Message *
           </label>
@@ -262,7 +262,7 @@ const handleSubmit = async (): Promise<void> => {
           onClick={handleSubmit}
           disabled={isSending || !isFormValid}
           aria-busy={isSending}
-          className={`w-full text-2xl p-2 m-2 rounded-md text-white shadow-lg transition-all duration-150 border-b-4 border-r-2 dm-serif-text-regular
+          className={`w-full text-2xl p-2 m-2 rounded-md text-white shadow-lg transition-all duration-150 border-b-4 border-r-2 font-sans
             ${isSending || !isFormValid
               ? "bg-gray-400 cursor-not-allowed border-gray-600"
               : "hover:shadow-xl hover:-translate-y-1 active:scale-95 active:shadow-md border-[#004d00] active:border-b-2 active:translate-y-1"

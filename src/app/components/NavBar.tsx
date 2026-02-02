@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Navbar() {
-    const [menuStatus, setMenuStatus] = useState(true);
+    const [menuStatus, setMenuStatus] = useState(false);
   return (
       <nav className="z-50 sticky top-0 w-full shadow-md bg-[#EEEEEE] bg-opacity-70">
           <div
@@ -30,13 +30,29 @@ export default function Navbar() {
                     hover:underline
                     hover:text-[#006400] transition-colors"
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
+                      <Link href="/">
+                        <i className=" fas fa-home"></i>
+                      </Link>
+                  </p>                  
+                  <p className="text-2xl md:text-3xl   
+                    hover:font-black 
+                    hover:cursor-pointer
+                    hover:underline
+                    hover:text-[#006400] transition-colors
+                    font-sans
+                    font-bold
+                    "
+                    style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/about">About</Link>
                   </p>
                  {/* <p className="text-2xl md:text-3xl   
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
-                    hover:text-[#006400] transition-colors"
+                    hover:text-[#006400] transition-colors
+                    font-sans
+                    font-bold
+                    "
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/testimonials">Testimonials</Link>
                   </p>                   */}
@@ -44,7 +60,10 @@ export default function Navbar() {
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
-                    hover:text-[#006400] transition-colors"
+                    hover:text-[#006400] transition-colors
+                    font-sans
+                    font-bold
+                    "
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/experience">Experience</Link>
                   </p>
@@ -52,7 +71,10 @@ export default function Navbar() {
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
-                    hover:text-[#006400] transition-colors"
+                    hover:text-[#006400] transition-colors
+                    font-sans
+                    font-bold
+                    "
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/projects">Projects</Link>
                   </p>
@@ -60,7 +82,10 @@ export default function Navbar() {
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
-                    hover:text-[#006400] transition-colors"
+                    hover:text-[#006400] transition-colors
+                    font-sans
+                    font-bold
+                    "
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/blog">Blog</Link>
                   </p>        
@@ -68,7 +93,10 @@ export default function Navbar() {
                     hover:font-black 
                     hover:cursor-pointer
                     hover:underline
-                    hover:text-[#006400] transition-colors"
+                    hover:text-[#006400] transition-colors
+                    font-sans
+                    font-bold
+                    "
                     style={{ animation: "fadeDown 0.5s ease-in 0s forwards" }}>
                       <Link href="/contact">Contact</Link>
                   </p>                                 

@@ -3,6 +3,7 @@
 import React from 'react';
 import { topProjects } from '@/app/lib/projects';
 import PanelTemplate from '../Cards/PanelTemplate';
+import Link from 'next/link';
 
 // Main Projects Component
 const ProjectCards: React.FC = () => {
@@ -10,7 +11,19 @@ const ProjectCards: React.FC = () => {
 
   return (
       <div className="max-w-7xl mx-auto">
-          <p className="text-[#0A0A23] text-center dm-serif-text-regular text-lg">Projects:</p>
+          <Link href="/projects">
+              <p className="text-[#0A0A23] text-center font-sans font-bold
+                hover:font-black 
+                hover:cursor-pointer
+                hover:underline
+                hover:text-[#006400] transition-colors
+                text-xl
+                mt-[2%]
+                mb-[2%]
+              ">
+                Projects: Academic & Personal
+              </p>
+          </Link> 
           <div className=" grid md:grid-cols-3 md:gap-20 justify-center items-start ">
             {topProjects.map((project, id) => {
               return (

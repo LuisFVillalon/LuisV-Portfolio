@@ -13,11 +13,11 @@ export default function TechCarousel() {
             logo: '/tech_logos/python.png',
             href: 'https://www.python.org/'
         },
-        // {
-        //     name: 'C++',
-        //     logo: '/tech_logos/C++.png',
-        //     href: 'https://cplusplus.com/'
-        // },
+        {
+            name: 'C++',
+            logo: '/tech_logos/C++.png',
+            href: 'https://cplusplus.com/'
+        },
         {
             name: 'Java',
             logo: '/tech_logos/java.png',
@@ -68,11 +68,16 @@ export default function TechCarousel() {
             logo: '/tech_logos/node.png',
             href: 'https://nodejs.org/'
         },
+        // {
+        //     name: 'Express.js',
+        //     logo: '/tech_logos/express.png',
+        //     href: 'https://expressjs.com/'
+        // },
         {
-            name: 'Express.js',
-            logo: '/tech_logos/express.png',
-            href: 'https://expressjs.com/'
-        },
+            name: 'FastAPI',
+            logo: '/tech_logos/fastapi.png',
+            href: 'https://fastapi.tiangolo.com/'
+        },        
         {
             name: 'MongoDB',
             logo: '/tech_logos/mongodb.png',
@@ -83,11 +88,11 @@ export default function TechCarousel() {
             logo: '/tech_logos/firebase.png',
             href: 'https://firebase.google.com/'
         },
-        {
-            name: 'Microsoft Azure SQL DB',
-            logo: '/tech_logos/azure.png',
-            href: 'https://azure.microsoft.com/en-us/products/azure-sql/database/'
-        },
+        // {
+        //     name: 'Microsoft Azure SQL DB',
+        //     logo: '/tech_logos/azure.png',
+        //     href: 'https://azure.microsoft.com/en-us/products/azure-sql/database/'
+        // },
         {
             name: 'PostgreSQL',
             logo: '/tech_logos/postgresql.png',
@@ -180,7 +185,11 @@ export default function TechCarousel() {
 
     return (
         <div className="w-full max-w-6xl mx-auto p-6">
-            <p className="text-[#0A0A23] text-center dm-serif-text-regular text-lg">My Tech Stack:</p>
+            <p className="text-[#0A0A23] text-center font-sans font-bold
+                text-xl
+            ">
+                Tech Stack
+            </p>
             {/* Carousel Container */}
             <div className="relative overflow-hidden">
                 

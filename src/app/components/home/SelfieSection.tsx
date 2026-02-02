@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function SelfieSection() {
 
     return (
-            <div className="mt-[5%] flex flex-col gap-2 justify-center items-center">
+            <div className="mt-[5%] flex flex-col justify-center items-center ">
                                  <Image 
                                         src="/selfie.JPG"
                                         alt="A selfie."
@@ -12,7 +12,7 @@ export default function SelfieSection() {
                                         className="rounded-lg"
                                     />   
                                     <p className="text-center text-base text-[#333333] italic">&quot;Whatever the mind can conceive and believe, it can achieve.&quot;</p>
-                                    <p className="text-center text-lg text-[#0A0A23] dm-serif-text-regular">- Napoleon Hill</p>
+                                    <p className="text-center text-lg text-[#0A0A23] font-sans">- Napoleon Hill</p>
             </div>
     );
 }

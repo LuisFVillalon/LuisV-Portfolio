@@ -4,7 +4,7 @@ import Footer from '@/app/components/Footer';
 import Wrapper from '@/app/components/Wrapper';
 import { testimonialsArr } from '../lib/testimonials';
 import ReviewCard from '../components/Cards/ReviewCard';
-import CTASection from '@/app/components/home/CTASection';
+import CTASection from '@/app/components/CTASection';
     
 export default function Testimonials() {
     return (

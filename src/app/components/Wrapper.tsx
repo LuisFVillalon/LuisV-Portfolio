@@ -7,9 +7,14 @@ interface WrapperProps {
 function Wrapper({ children }: WrapperProps) {
   return (
     <div
-      className=
-        "bg-[#FFFFFF] wrapper m-[0_auto] max-w-4xl px-6 sm:px-4"
-      
+      className="
+        bg-[#FFFFFF]
+        mx-auto
+        w-full
+        max-w-4xl
+        px-6 sm:px-4
+        overflow-hidden
+      "
     >
       {children}
     </div>

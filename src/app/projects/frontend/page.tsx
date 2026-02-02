@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Wrapper from '@/app/components/Wrapper';
 import {projectsFrontEnd} from '../../lib/projects';
 import PanelTemplate from '../../components/Cards/PanelTemplate';
-import CTASection from '@/app/components/home/CTASection';
+import CTASection from '@/app/components/CTASection';
     
 export default function FrontEnd() {
     return (
@@ -13,10 +13,9 @@ export default function FrontEnd() {
       <div className="flex font-[Monospace] flex-col items-center justify-start min-h-screen bg-[#FFFFFF]">
         
         <Navbar />
-        <Wrapper>
-          <section className="flex flex-col w-full">
-          <div className= "mx-[10%] md:mx-[20%] my-[5%] md:my-[1%]  text-[#333333] border-b border-gray-500">
-            <h1 className="dm-serif-text-regular text-2xl md:text-3xl font-extrabold text-[#0A0A23]">Front-End Projects</h1>
+        <section className="flex flex-col w-full">
+          <div className= "mx-[10%] md:mx-[20%] my-[5%] md:my-[1%] text-[#333333] border-b border-gray-500">
+            <h1 className="font-sans text-2xl md:text-3xl font-extrabold text-[#0A0A23]">Front-End Projects</h1>
             <p className="text-base">
               A collection of personal projects showcasing my skills and growth as a Front-End Developer. 
               Click on an image for the live application or the link to visit GitHub repository.
@@ -32,7 +31,7 @@ export default function FrontEnd() {
                   hover:shadow-xl hover:-translate-y-1
                   border-b-4 border-r-2 border-green-900
                   active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
-                  dm-serif-text-regular
+                  font-sans
                 "
                 style={{ 
                   background: 'linear-gradient(to right, #22c55e, #3b82f6)'
@@ -42,7 +41,7 @@ export default function FrontEnd() {
               </button>
             </Link>
           </div>
-          <div className=" my-[5%] md:my-[1%] grid md:grid-cols-3 md:gap-20 justify-center items-start ">
+          <div className="mx-[10%] md:mx-[20%] my-[5%] md:my-[1%] grid md:grid-cols-3 md:gap-20 justify-center items-start ">
             {projectsFrontEnd.map((project, id) => {
               return (
                 <PanelTemplate
@@ -58,9 +57,11 @@ export default function FrontEnd() {
               );
             })}
           </div>
-          </section>
-          <CTASection/>
-        </Wrapper>
+        </section>
+        <CTASection
+          title={"Like What You See?"}
+          description={"These projects showcase my approach to problem-solving and full-stack development. If you’re interested in building something together or have feedback, let’s talk."}
+        />
         <Footer />
 
       </div>        

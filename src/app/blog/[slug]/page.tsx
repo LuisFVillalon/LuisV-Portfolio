@@ -7,7 +7,7 @@ import Footer from '../../components/Footer';
 import Link from 'next/link';
 import { Calendar, Clock, User } from 'lucide-react'; // Added missing imports
 import { getPostById } from '@/app/lib/blogs';
-import CTASection from '@/app/components/home/CTASection';
+import CTASection from '@/app/components/CTASection';
 import Image from 'next/image';
 
 interface PageProps {
@@ -41,7 +41,7 @@ export default function Post({ params }: PageProps): React.ReactElement {
           </div>
           
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#FADA5E] mb-6 leading-tight">
+          <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold text-[#FADA5E] mb-6 leading-tight">
             {selectedPost.title}
           </h1>
           
@@ -59,25 +59,37 @@ export default function Post({ params }: PageProps): React.ReactElement {
               <Clock className="text-[#FADA5E]" size={18} />
               <span>{selectedPost.readTime}</span>
             </div>
+            <Link className="" href="/blog/">
+              <button
+                className="
+                  text-2xl p-2 m-2 rounded-md
+                  text-white shadow-lg
+                  transition-all duration-150
+                  hover:shadow-xl hover:-translate-y-1
+                  border-b-4 border-r-2 border-green-900
+                  active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
+                  font-sans
+                "
+                style={{ 
+                  background: 'linear-gradient(to right, #FADA5E, #0A0A23)'
+                }}
+              >
+                <i className="ml-[1%] fas fa-arrow-left"></i>
+              </button>
+            </Link>
           </div>
         </div>
       </div>
 
       {/* Article Content */}
       <div className="max-w-4xl mx-auto px-6 py-12">
-        {/* Back Button */}
-        <Link className="" href="/blog/">
-          <button className="flex items-center gap-2 text-black hover:text-blue-600 transition-colors mb-8 group">
-                      <i className="ml-[1%] fas fa-arrow-left"></i>
-          </button>
-        </Link>
         {/* Article Body */}
         <article className="prose prose-lg max-w-none">
           {selectedPost.content.map((section, index) => (
             <div key={index} className="mb-10">
               {/* Section Title */}
               {section.subtitle && (
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                <h2 className="font-sans text-2xl md:text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
                   {section.subtitle}
                 </h2>
               )}
@@ -105,9 +117,9 @@ export default function Post({ params }: PageProps): React.ReactElement {
                 </ul>
               ) : 'type' in section && section.type === 'image' ? (
                 // Image Section - Text on Left, Image on Right
-                <div className="grid md:grid-cols-2 gap-8 items-center my-8">
+                <div className="grid md:grid-cols-2 gap-8 items-center my-8 w-full max-w-full">
                   {/* Text/Caption on Left */}
-                  <div className="space-y-4">
+                  <div className="space-y-4 min-w-0">
                     {section.text.map((paragraph, i) => (
                       <p key={i} className="text-gray-700 leading-relaxed text-lg">
                         {paragraph}
@@ -116,13 +128,15 @@ export default function Post({ params }: PageProps): React.ReactElement {
                   </div>
                   
                   {/* Image on Right */}
-                  <div className="relative rounded-xl overflow-hidden shadow-xl">
+                  <div className="relative rounded-xl overflow-hidden shadow-xl w-full min-w-0">
                     <Image
                       src={section.imageUrl || ''} 
                       alt={section.subtitle}
-                      className="w-full h-auto"
+                      className="w-full h-auto object-contain"
                       width={400}
-                      height={100}
+                      height={300}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      style={{ maxWidth: '100%' }}
                     />
                   </div>
                 </div>
@@ -149,10 +163,12 @@ export default function Post({ params }: PageProps): React.ReactElement {
           ))}
         </article>
       </div>
-          <CTASection/>
+          <CTASection
+            title={"Let's Learn and Build Together"}
+            description={"Always learning. Always building."}
+          />
         </Wrapper>   
       <Footer />
     </div>
   );
 }
-

@@ -63,10 +63,10 @@ export default function HeroSection() {
         return () => clearTimeout(timer);
     }, [currentCharIndex, currentWordIndex, isDeleting]);
     return (
-            <div className="gap-4 text-start justify-center items-center text-[#333333] flex flex-col  dm-serif-text-regular">
-                <h1 className="text-center my-[1%] text-6xl md:text-8xl font-extrabold text-[#0A0A23]">Luis Fernando Villalón.</h1>
+            <div className="gap-4 text-start justify-center items-center text-[#333333] flex flex-col  font-sans">
+                <h1 className="text-center my-[1%] text-6xl md:text-6xl font-bold text-[#0A0A23]">Luis Fernando Villalón</h1>
                 <h2 className="min-w-[280px] md:min-w-[400px] text-center flex flex-col font-bold text-[#0A0A23] min-h-[2rem] md:min-h-[3rem] justify-center items-center">
-                    <p className='text-xl md:text-3xl text-[#B3B3B3]'>I bring experience as a...</p>
+                    <p className='text-xl md:text-3xl font-normal text-[#B3B3B3]'>I bring experience as a...</p>
                     {displayText ? (
                         <span className="text-2xl md:text-4xl typewriter-text border-r-2 border-[#0A0A23] pr-2 animate-pulse">
                             {displayText}
@@ -84,7 +84,7 @@ export default function HeroSection() {
                         hover:shadow-xl hover:-translate-y-1
                         border-b-4 border-r-2 border-green-900
                         active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
-                        dm-serif-text-regular
+                        font-sans font-extrabold 
                     "
                     style={{ 
                         background: 'linear-gradient(to right, #22c55e, #3b82f6)'

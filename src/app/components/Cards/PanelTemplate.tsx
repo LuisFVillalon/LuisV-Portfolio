@@ -56,13 +56,13 @@ const PanelTemplate: React.FC<PanelTemplateProps> = ({
             </a>
             
             <div className="flex flex-col border-t-2 border-[#333333] p-4 p-[5%]">
-                <p className="dm-serif-text-regular font-extrabold text-[#0A0A23] text-lg md:text-xl">{title}</p>
+                <p className="font-sans font-extrabold text-[#0A0A23] text-lg md:text-xl">{title}</p>
                 <p className="text-base break-words">{description}</p>
-                <p className="text-base break-words"><strong>Tech:</strong> {tech}</p>
+                <p className="text-base break-words"><strong className="font-sans">Tech:</strong> {tech}</p>
                 <div className="grid">
                     <Link className="flex items-center justify-end font-bold text-[#006400] text-xs break-words" href={github_repo}>
                         <Github className="w-3 h-3"/>
-                        <p className="underline">Github Repo</p>
+                        <p className="font-sans underline">Github Repo</p>
                         <i className="ml-[1%] fas fa-arrow-right"></i>
                     </Link>
                 </div>                                          

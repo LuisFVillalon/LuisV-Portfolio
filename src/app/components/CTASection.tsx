@@ -19,7 +19,7 @@ const CTASection: React.FC<CTAProps> = ({
   return (
     <div className={`border-4 border-green-500 bg-gray-200 rounded-xl bg-gray-50 py-12 m-4 px-4 sm:px-6 lg:px-8 ${className}`}>
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-[#0A0A23] dm-serif-text-regular text-3xl font-extrabold sm:text-4xl">
+        <h2 className="text-[#0A0A23] font-sans text-3xl font-extrabold sm:text-4xl">
           {title}
         </h2>
         <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
@@ -34,7 +34,7 @@ const CTASection: React.FC<CTAProps> = ({
               hover:shadow-xl hover:-translate-y-1
               border-b-4 border-r-2 border-green-900
               active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
-              dm-serif-text-regular
+              font-sans font-extrabold 
             "
             style={{ 
               background: 'linear-gradient(to right, #22c55e, #3b82f6)',
