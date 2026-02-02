@@ -2,7 +2,6 @@
 import Navbar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import Link from 'next/link';
-import Wrapper from '@/app/components/Wrapper';
 import {projectsFrontEnd} from '../../lib/projects';
 import PanelTemplate from '../../components/Cards/PanelTemplate';
 import CTASection from '@/app/components/CTASection';
