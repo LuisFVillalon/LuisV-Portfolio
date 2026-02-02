@@ -10,7 +10,7 @@ export default function BlogShowcase() {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4 font-sans">Professional Developer Bag</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4 font-sans">Professional Developer Blog</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
           Discover insights, tutorials, and tips on web and career development, design, and technology.
         </p>

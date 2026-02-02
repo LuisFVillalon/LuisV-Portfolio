@@ -36,7 +36,7 @@ export default function ExperiencePage() {
             <section className="flex flex-col w-full">
                 <div className="mx-[10%] md:mx-[20%] my-[5%] md:my-[1%] text-[#333333] border-b border-gray-500">
                     <div className="flex flex-col md:flex-row justify-center md:justify-between items-center">
-                        <h1 className="text-[#0A0A23] font-sans text-3xl md:text-4xl font-extrabold">My Career Path</h1>
+                        <h1 className="text-[#0A0A23] font-sans text-3xl md:text-4xl font-extrabold">Career Path</h1>
                         <a href="/sdsu_luis_villalon_tech_online_resume.pdf" download>
                             <button
                                 className="

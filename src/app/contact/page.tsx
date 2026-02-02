@@ -204,7 +204,7 @@ const handleSubmit = async (): Promise<void> => {
             name="fullName"
             value={formData.fullName}
             onChange={handleInputChange}
-            className={`md:text-base w-full text-[#333333] px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
+            className={`md:text-xl w-full text-[#333333] px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
               errors.fullName ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-blue-500"
             }`}
             placeholder="Enter your full name"
