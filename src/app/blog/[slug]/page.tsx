@@ -38,27 +38,6 @@ export default function Post({ params }: PageProps): React.ReactElement {
             <span className="inline-block bg-blue-500 text-white text-sm font-semibold px-4 py-1.5 rounded-full shadow-lg">
               {selectedPost.category}
             </span>
-          </div>
-          
-          {/* Title */}
-          <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold text-[#FADA5E] mb-6 leading-tight">
-            {selectedPost.title}
-          </h1>
-          
-          {/* Meta Information */}
-          <div className="flex flex-wrap items-center gap-6 text-white">
-            <div className="flex items-center gap-2">
-              <User className="text-[#FADA5E]"  size={18} />
-              <span className="font-medium">{selectedPost.author}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Calendar className="text-[#FADA5E]" size={18} />
-              <span>{selectedPost.date}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="text-[#FADA5E]" size={18} />
-              <span>{selectedPost.readTime}</span>
-            </div>
             <Link className="" href="/blog/">
               <button
                 className="
@@ -77,6 +56,45 @@ export default function Post({ params }: PageProps): React.ReactElement {
                 <i className="ml-[1%] fas fa-arrow-left"></i>
               </button>
             </Link>
+          </div>
+          
+          {/* Title */}
+          <h1 className="font-sans text-3xl md:text-5xl lg:text-6xl font-bold text-[#FADA5E] mb-6 leading-tight">
+            {selectedPost.title}
+          </h1>
+          
+          {/* Meta Information */}
+          <div className="flex flex-wrap items-center gap-6 text-white">
+            <div className="flex items-center gap-2">
+              <User className="text-[#FADA5E]"  size={18} />
+              <span className="font-medium">{selectedPost.author}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Calendar className="text-[#FADA5E]" size={18} />
+              <span>{selectedPost.date}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Clock className="text-[#FADA5E]" size={18} />
+              <span>{selectedPost.readTime}</span>
+            </div>
+            {/* <Link className="" href="/blog/">
+              <button
+                className="
+                  text-2xl p-2 m-2 rounded-md
+                  text-white shadow-lg
+                  transition-all duration-150
+                  hover:shadow-xl hover:-translate-y-1
+                  border-b-4 border-r-2 border-green-900
+                  active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
+                  font-sans
+                "
+                style={{ 
+                  background: 'linear-gradient(to right, #FADA5E, #0A0A23)'
+                }}
+              >
+                <i className="ml-[1%] fas fa-arrow-left"></i>
+              </button>
+            </Link> */}
           </div>
         </div>
       </div>
