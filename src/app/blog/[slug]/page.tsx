@@ -30,9 +30,9 @@ export default function Post({ params }: PageProps): React.ReactElement {
       <Navbar />
         <Wrapper>   
    {/* Hero Banner with Overlay */}
-      <div className="relative h-[60vh] max-h-[500px] w-full overflow-hidden">
+      <div className="h-[60vh] max-h-[500px] w-full overflow-hidden">
         {/* Content Overlay */}
-        <div className="relative h-full w-full bg-[#0A0A23] px-6 flex flex-col justify-end pb-12">
+        <div className="h-full w-full bg-[#0A0A23] px-6 flex flex-col justify-end pb-8">
           {/* Category Badge */}
           <div className="mb-4">
             <span className="inline-block bg-blue-500 text-white text-sm font-semibold px-4 py-1.5 rounded-full shadow-lg">
