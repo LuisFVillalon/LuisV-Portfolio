@@ -77,7 +77,7 @@ export default function Projects() {
                                     background: 'linear-gradient(to right, #22c55e, #3b82f6)'
                                 }}
                                 >
-                                    Academic Coursework & Projects
+                                    Academic Coursework
                                 </button>
                             </Link>
                         </div>

@@ -12,7 +12,7 @@ import {
 
 function EntryCard({
     title,
-    titleLink,
+    subtitleLink,
     subtitle,
     time,
     description,
@@ -20,7 +20,7 @@ function EntryCard({
     footerContent,
 }: {
     title: string;
-    titleLink?: string;
+    subtitleLink?: string;
     subtitle: string;
     time: string;
     description: string;
@@ -28,22 +28,22 @@ function EntryCard({
     footerContent: React.ReactNode;
 }) {
     return (
-        <div>
-            {titleLink ? (
-                <a
-                    className="font-sans text-[#006400] underline mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold"
-                    href={titleLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    {title}
-                </a>
-            ) : (
-                <p className="font-sans mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold">{title}</p>
-            )}
-
+        <div>     
+            <p className="text-[#0A0A23] font-sans mb-[5%] md:mb-[0%] text-lg md:text-xl font-bold">{title}</p>
             <div className="text-base md:text-lg flex justify-between mb-[2%] md:mb-[1%]">
-                <p className="text-[#0A0A23] w-[60%] dm-serif-text-regular-italic font-semibold">{subtitle}</p>
+                {subtitleLink ? (
+                    <a
+                        className="text-[#006400] underline w-[60%] dm-serif-text-regular-italic"
+                        href={subtitleLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {subtitle}
+                    </a>
+                ) : (
+                    <p className="w-[60%] dm-serif-text-regular-italic font-semibold">{subtitle}</p>
+                )}                
+                
                 <p className="text-end w-[40%]">{time}</p>
             </div>
 
@@ -77,9 +77,9 @@ function ExperienceSection({ items }: { items: ExperienceItem[] }) {
             {items.map((item, index) => (
                 <EntryCard
                     key={index}
-                    title={item.company}
-                    titleLink={item.link}
-                    subtitle={item.position}
+                    title={item.position}
+                    subtitleLink={item.link}
+                    subtitle={item.company}
                     time={item.time}
                     description={item.description}
                     footerLabel="Tech"
@@ -111,9 +111,9 @@ export function Education() {
             {education.map((item, index) => (
                 <EntryCard
                     key={index}
-                    title={item.institution}
-                    titleLink={item.link}
-                    subtitle={item.course}
+                    title={item.course}
+                    subtitleLink={item.link}
+                    subtitle={item.institution}
                     time={item.time}
                     description={item.description}
                     footerLabel="Tech"
@@ -134,7 +134,7 @@ export function Certificates() {
                 <EntryCard
                     key={index}
                     title={item.title}
-                    titleLink={item.cert_link}
+                    subtitleLink={item.cert_link}
                     subtitle={item.institution}
                     time={item.time}
                     description={item.description}
@@ -182,7 +182,7 @@ export function ExperienceBeyondTech() {
         <div>
             <EntryCard
                 title="After School Enrichment Tutor"
-                titleLink="https://www.cusdk12.org/departments/educational-services/after-school-program/index.html"
+                subtitleLink="https://www.cusdk12.org/departments/educational-services/after-school-program/index.html"
                 subtitle="SPARKS, Calexico Unified School District"
                 time="Dec 2023 - May 2024"
                 description="Led engaging after-school enrichment classes on science, technology, engineering, art, and math (STEAM), fostering curiosity and hands-on learning for students."
@@ -207,7 +207,7 @@ export function ExperienceBeyondTech() {
 
             <EntryCard
                 title="Emergency Medical Technician"
-                titleLink="https://www.amr.net/"
+                subtitleLink="https://www.amr.net/"
                 subtitle="American Medical Response"
                 time="Feb 2022 - Sept 2022"
                 description="Provided emergency medical care and basic life support during 911 calls and interfacility transports, ensuring patient stability and safety."

@@ -46,11 +46,19 @@ type techTools = {
 
 const professionalExperience: professionalExperience[] = [
     {
+        company: 'AI4Business Lab',
+        position: 'Undergraduate Researcher: Adversarial Attacks & Defenses in Deep Learning',
+        time: 'Jan 2026 - Present',
+        description: 'Research AI agent trust, safety, and adversarial robustness, contributing to a three-layer trust-centered AI safety framework and designing a simple agent to study emerging autonomy and security vulnerabilities.',
+        tech:'LLM APIs, LangChain, Python, RAG Systems',
+        link: 'https://sites.google.com/sdsu.edu/ai4business/home'    
+    },     
+    {
         company: 'Second Course',
-        position: 'Computer Science Intern',
-        time: 'Nov 2025 - Present',
+        position: 'Full-Stack Intern',
+        time: 'Nov 2025 - Jan 2026',
         description: 'Developed a React Native application with Firestore as a backend for the Apple Store with the purpose of addressing food insecurity among college students.',
-        tech:'React Native, Firestore Database, Expo Go',
+        tech:'React Native, Firestore Database, Expo Go, Github',
         link: 'https://www.secondcourse.co/food-security'    
     }, 
     {
@@ -80,6 +88,14 @@ const professionalExperience: professionalExperience[] = [
 
 ];
 const education: education[] = [
+    {
+        institution: 'NxP Semiconductors',
+        course: 'Engineering Bootcamp: Agentic AI in the Cloud',
+        time: 'Feb 2026 - Apr 2026',
+        description: 'Developed and deployed cloud-based agentic AI systems using LangChain, LLM APIs, RAG architectures, multi-agent orchestration, and scalable AWS/GCP under mentorship from the Design & Automation Team at NXP .',
+        tech:'LLM APIs, LangChain, Python, RAG Systems',
+        link: 'https://www.nxp.com/'
+    },    
     {
         institution: 'San Diego State University',
         course: 'Bachelor of Science in Computer Science',
@@ -228,7 +244,7 @@ const techTools: techTools[] = [
         subject: 'Databases',
         tools: [
             {
-                tool: 'MongoDB (NoSQL)',
+                tool: 'MongoDB',
                 link: 'https://www.mongodb.com/docs/'
             },
             {
@@ -267,21 +283,29 @@ const techTools: techTools[] = [
 ];
 const currentlyDoing: currentlyDoing[] = [
     {
+        company: 'NxP Semiconductors',
+        position: 'Engineering Bootcamp: Agentic AI in the Cloud',
+        time: 'Feb 2026 - Apr 2026',
+        description: 'Developed and deployed cloud-based agentic AI systems using LangChain, LLM APIs, RAG architectures, multi-agent orchestration, and scalable AWS/GCP under mentorship from the Design & Automation Team at NXP .',
+        tech:'LLM APIs, LangChain, Python, RAG Systems',
+        link: 'https://www.nxp.com/'
+    },     
+    {
+        company: 'AI4Business Lab',
+        position: 'Undergraduate Researcher: Adversarial Attacks & Defenses in Deep Learning',
+        time: 'Jan 2026 - Present',
+        description: 'Research AI agent trust, safety, and adversarial robustness, contributing to a three-layer trust-centered AI safety framework and designing a simple agent to study emerging autonomy and security vulnerabilities.',
+        tech:'LLM APIs, LangChain, Python, RAG Systems',
+        link: 'https://sites.google.com/sdsu.edu/ai4business/home'    
+    },      
+    {
         company: 'ColorStack',
         position: 'Outreach Chair',
         time: 'Jan 2026 - Present',
         description: 'Lead recruitment strategy and digital presence while building partnerships with industry professionals and campus organizations to drive member growth and connect members with career opportunities',
         tech:'Leadership, Teamwork, Communication, Networking, Community',
         link: 'https://www.colorstack.org/'    
-    }, 
-    {
-        company: 'Second Course',
-        position: 'Computer Science Intern',
-        time: 'Nov 2025 - Present',
-        description: 'Developed a React Native application with Firestore as a backend for the Apple Store with the purpose of addressing food insecurity among college students.',
-        tech:'React Native, Firestore Database, Expo Go',
-        link: 'https://www.secondcourse.co/food-security'    
-    }, 
+    },     
     // {
     //     company: 'World Computing Organization: PokerBot',
     //     position: 'Backend Developer',
