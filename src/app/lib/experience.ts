@@ -48,7 +48,7 @@ const professionalExperience: professionalExperience[] = [
     {
         company: 'AI4Business Lab',
         position: 'Undergraduate Researcher: Adversarial Attacks & Defenses in Deep Learning',
-        time: 'Jan 2026 - Present',
+        time: 'Jan 2026 - May 2026',
         description: 'Research AI agent trust, safety, and adversarial robustness, contributing to a three-layer trust-centered AI safety framework and designing a simple agent to study emerging autonomy and security vulnerabilities.',
         tech:'LLM APIs, LangChain, Python, RAG Systems',
         link: 'https://sites.google.com/sdsu.edu/ai4business/home'    
@@ -123,6 +123,15 @@ const education: education[] = [
 ];
 const certificates: certificates[] = [
     {
+        title: 'TIP103 | Advanced Technical Interview Prep',
+        institution: 'CodePath',
+        time: 'Spring 2026',
+        description:  'Strengthened data structures and algorithms proficiency through intensive technical interview preparation and peer-based problem solving.',
+        tech: 'Data Structures, Algorithms, Collaboration, Critical Thinking',
+        cert_link: 'https://drive.google.com/file/d/1NytGYb7hFF5FIvmpa5_flASpNuvmOtp_/view',
+        institution_link: 'https://www.codepath.org/'
+    },    
+    {
         title: 'SEO',
         institution: 'HubSpot Academy',
         time: 'Feb 2025',
@@ -194,6 +203,15 @@ const techTools: techTools[] = [
             },            
         ]
     },
+{
+        subject: 'Agentic AI',
+        tools: [
+            {
+                tool: 'LangGraph',
+                link: 'https://www.langchain.com/langgraph'
+            },
+        ]
+    },    
     {
         subject: 'Frontend Development',
         tools: [
@@ -283,21 +301,13 @@ const techTools: techTools[] = [
 ];
 const currentlyDoing: currentlyDoing[] = [
     {
-        company: 'NxP Semiconductors',
-        position: 'Engineering Bootcamp: Agentic AI in the Cloud',
-        time: 'Feb 2026 - Apr 2026',
-        description: 'Developed and deployed cloud-based agentic AI systems using LangChain, LLM APIs, RAG architectures, multi-agent orchestration, and scalable AWS/GCP under mentorship from the Design & Automation Team at NXP .',
-        tech:'LLM APIs, LangChain, Python, RAG Systems',
-        link: 'https://www.nxp.com/'
-    },     
-    {
-        company: 'AI4Business Lab',
-        position: 'Undergraduate Researcher: Adversarial Attacks & Defenses in Deep Learning',
-        time: 'Jan 2026 - Present',
-        description: 'Research AI agent trust, safety, and adversarial robustness, contributing to a three-layer trust-centered AI safety framework and designing a simple agent to study emerging autonomy and security vulnerabilities.',
-        tech:'LLM APIs, LangChain, Python, RAG Systems',
-        link: 'https://sites.google.com/sdsu.edu/ai4business/home'    
-    },      
+        company: 'CodePath',
+        position: 'AI110 | Foundations of AI Engineering',
+        time: 'Jun 2026 - Aug 2026',
+        description: 'Trained in AI-assisted software engineering, applying AI-driven development techniques and the evaluation of AI-generated code to build and evaluate intelligent software systems.',
+        tech:'RAG, Agentic workflows, Machine Learning, Data structures, Algorithms',
+        link: 'https://www.codepath.org/'    
+    },       
     {
         company: 'ColorStack',
         position: 'Outreach Chair',
@@ -306,20 +316,12 @@ const currentlyDoing: currentlyDoing[] = [
         tech:'Leadership, Teamwork, Communication, Networking, Community',
         link: 'https://www.colorstack.org/'    
     },     
-    // {
-    //     company: 'World Computing Organization: PokerBot',
-    //     position: 'Backend Developer',
-    //     time: 'Oct 2025 - Present',
-    //     description: 'Built the backend systems for an interactive poker application that runs full game logic, manages player–bot interactions, and records gameplay data for analysis.',
-    //     tech:'Python, CSV, OOP Design',
-    //     link: 'https://www.secondcourse.co/food-security'    
-    // },     
     {
         company: 'San Diego State University',
         position: 'Bachelor of Science in Computer Science',
         time: 'Aug 2025 - May 2027',
         description: '',
-        tech:'Python, C++, Data Structures, Algorithms, Software Systems, Computer Architecture, Artificial Intelligence',
+        tech:'Python, C, C++, Data Structures, Algorithms, Software Systems, Computer Architecture, Artificial Intelligence, Operating Systems',
         link: 'https://cs.sdsu.edu/'
     },
 ]

@@ -68,11 +68,6 @@ export default function TechCarousel() {
             logo: '/tech_logos/node.png',
             href: 'https://nodejs.org/'
         },
-        // {
-        //     name: 'Express.js',
-        //     logo: '/tech_logos/express.png',
-        //     href: 'https://expressjs.com/'
-        // },
         {
             name: 'FastAPI',
             logo: '/tech_logos/fastapi.png',
@@ -88,15 +83,15 @@ export default function TechCarousel() {
             logo: '/tech_logos/firebase.png',
             href: 'https://firebase.google.com/'
         },
-        // {
-        //     name: 'Microsoft Azure SQL DB',
-        //     logo: '/tech_logos/azure.png',
-        //     href: 'https://azure.microsoft.com/en-us/products/azure-sql/database/'
-        // },
         {
             name: 'PostgreSQL',
             logo: '/tech_logos/postgresql.png',
             href: 'https://www.postgresql.org/'
+        },      
+        {
+            name: 'LangGraph',
+            logo: '/tech_logos/langgraph.png',
+            href: 'https://www.langchain.com/langgraph'
         },        
         {
             name: 'Github',

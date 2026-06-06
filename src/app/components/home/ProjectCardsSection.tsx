@@ -1,19 +1,18 @@
 'use client';
 
 import React from 'react';
-import { topProjects } from '@/app/lib/projects';
+import { getProjectsByCategory } from '@/app/lib/projects';
 import PanelTemplate from '../Cards/PanelTemplate';
 import Link from 'next/link';
 
-// Main Projects Component
 const ProjectCards: React.FC = () => {
-
+  const topProjects = getProjectsByCategory('top');
 
   return (
       <div className="max-w-7xl mx-auto">
           <Link href="/projects">
               <p className="text-[#0A0A23] text-center font-sans font-bold
-                hover:font-black 
+                hover:font-black
                 hover:cursor-pointer
                 hover:underline
                 hover:text-[#006400] transition-colors
@@ -21,9 +20,9 @@ const ProjectCards: React.FC = () => {
                 mt-[2%]
                 mb-[2%]
               ">
-                Projects: Academic & Personal
+                Featured Projects
               </p>
-          </Link> 
+          </Link>
           <div className=" grid md:grid-cols-3 md:gap-20 justify-center items-start ">
             {topProjects.map((project, id) => {
               return (

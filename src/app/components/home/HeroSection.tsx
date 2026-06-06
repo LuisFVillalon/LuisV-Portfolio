@@ -10,16 +10,11 @@ export default function HeroSection() {
     const [isDeleting, setIsDeleting] = useState(false);
     useEffect(() => {
         const words = [
-            'Software Engineer',
-            'Problem Solver',
-            'Full-stack Developer',
-            'Collaborator',
-            'Front-end Specialist',
-            'Learner',
-            'Back-end Programmer',
-            'Visionary',
-            'SEO Strategist',
-            'Descision Maker'
+            'Software',
+            'Agentic AI',
+            'Full-stack',
+            'Back-end',
+            'Front-end',
         ];
 
         const typeWriter = () => {
@@ -66,14 +61,17 @@ export default function HeroSection() {
             <div className="gap-4 text-start justify-center items-center text-[#333333] flex flex-col  font-sans">
                 <h1 className="text-center my-[1%] text-6xl md:text-6xl font-bold text-[#0A0A23]">Luis Fernando Villalón</h1>
                 <h2 className="min-w-[280px] md:min-w-[400px] text-center flex flex-col font-bold text-[#0A0A23] min-h-[2rem] md:min-h-[3rem] justify-center items-center">
-                    <p className='text-xl md:text-3xl font-normal text-[#B3B3B3]'>I bring experience as a...</p>
-                    {displayText ? (
-                        <span className="text-2xl md:text-4xl typewriter-text border-r-2 border-[#0A0A23] pr-2 animate-pulse">
-                            {displayText}
-                        </span>
-                    ) : (
-                        <div className="text-2xl md:text-4xl invisible">SPACE</div>
-                    )}
+                    <p className='text-xl md:text-3xl font-normal text-[#B3B3B3]'>I bring experience as a(n)...</p>
+                        <div className="flex text-2xl md:text-4xl">
+                            {displayText ? (
+                                <span className="typewriter-text border-r-2 border-[#0A0A23] pr-1 animate-pulse italic">
+                                    {displayText}
+                                </span>
+                            ) : (
+                                <div className="text-2xl md:text-4xl invisible">SPACE</div>
+                            )}
+                            <p className='pl-2'>Engineer</p>
+                        </div>
                 </h2>
                 <Link href="/contact">
                     <button

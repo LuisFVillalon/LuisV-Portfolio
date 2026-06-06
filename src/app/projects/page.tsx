@@ -1,15 +1,11 @@
 "use client";
-//import { useState } from "react";
 import Navbar from '../components/NavBar';
 import Wrapper from '../components/Wrapper';
 import Footer from '../components/Footer';
 import Link from 'next/link';
 import CTASection from '../components/CTASection';
 
-
-// app/about/page.js
 export default function Projects() {
-    //const [selectedValue, setSelectedValue] = useState("currently doing");
     return (
 
     <div className=" font-[Monospace] flex flex-col items-center justify-start min-h-screen bg-[#FFFFFF]">

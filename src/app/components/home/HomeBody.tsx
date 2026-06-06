@@ -4,7 +4,6 @@ import HeroSection from './HeroSection';
 import TechSection from './TechSection';
 import ProjectCardsSection from './ProjectCardsSection';
 import ExperienceSection from './ExperienceSection';
-// import TestimonialSection from './TestimonialSection';
 import SelfieSection from './SelfieSection';
 import BlogSection from './BlogSection';
 import CTASection from '../CTASection';
@@ -17,7 +16,6 @@ export default function Homebody() {
                 <SelfieSection/>
             </div>
             <ExperienceSection/>
-            {/* <TestimonialSection/> */}
             <TechSection/>
             <ProjectCardsSection/>
             <BlogSection/>

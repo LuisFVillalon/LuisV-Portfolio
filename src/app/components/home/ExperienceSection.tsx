@@ -40,9 +40,10 @@ export default function ExperienceSection() {
                         </p>
                 </Link>
                 <p className="text-center text-base text-[#333333]">
-                        I am a third year computer science undergraduate student at San Diego State University 
-                        with experience in full-stack development. I am passionate about serving the public through
-                        building digital products that drive community and push productivity.
+                    I am a fourth-year Computer Science undergraduate student at San Diego State University 
+                    with experience in full-stack development and a growing focus on DevOps and agentic AI systems. 
+                    I am passionate about serving the public through building digital applications that strengthen 
+                    communities and improve productivity.
                 </p>
             </div>
             <div className='flex flex-col space-y-4'>

@@ -50,9 +50,8 @@ const EducationParagraph = () => (
     <ExternalLink href="https://academy.hubspot.com/">HubSpot Academy</ExternalLink>. To
     strengthen my theoretical computer science fundamentals, I am currently pursuing a{" "}
     <strong>Bachelor of Science in Computer Science</strong> at{" "}
-    <ExternalLink href="https://cs.sdsu.edu/">San Diego State University</ExternalLink>. I
-    also earned an <strong>Associate of Science in Computer Science</strong> from{" "}
-    <ExternalLink href="https://www.imperial.edu/">Imperial Valley College</ExternalLink>.
+    <ExternalLink href="https://cs.sdsu.edu/">San Diego State University</ExternalLink>. I am 
+    currently exploring careers in <strong>Full-Stack</strong> and <strong>Agentic Systems</strong>  development and <strong>Development Operations</strong>.
   </p>
 );
 
@@ -73,8 +72,7 @@ export default function AboutPage() {
                 {/* ── Introduction + Calexico Image ── */}
                 <div className="md:grid md:grid-cols-2">
                 <p className="my-[2.5%] md:my-[1%] text-base md:text-lg text-[#333333]">
-                    Hi, I&apos;m <strong>Luis Villalon</strong>, a <strong>Software Engineer</strong> and{" "}
-                    <strong>Full-Stack Developer</strong> from{" "}
+                    Hi, I&apos;m <strong>Luis Villalon</strong>, a <strong>Software Engineer</strong> from{" "}
                     <ExternalLink href="https://en.wikipedia.org/wiki/Calexico%2C_California">
                     Calexico, California
                     </ExternalLink>
@@ -128,7 +126,7 @@ export default function AboutPage() {
                 <p className="my-[2.5%] md:my-[3%] text-base md:text-lg text-[#333333]">
                 I am fluent in <strong>Spanish</strong> and <strong>English</strong>. When I&apos;m not
                 working academically or professionally, I enjoy spending time <strong>outdoors</strong>
-                —whether it is <strong>hiking</strong>, <strong>playing basketball</strong>, or{" "}
+                —whether it is <strong>working out</strong>, <strong>playing basketball</strong>, or{" "}
                 <strong>going for a run</strong>. Alternatively, I love working on{" "}
                 <strong>personal apps</strong> or watching a good show or movie like{" "}
                 <ExternalLink href="https://www.imdb.com/title/tt0141842/" italic>the Sopranos</ExternalLink>{" "}

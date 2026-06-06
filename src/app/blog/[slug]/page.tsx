@@ -77,24 +77,6 @@ export default function Post({ params }: PageProps): React.ReactElement {
               <Clock className="text-[#FADA5E]" size={18} />
               <span>{selectedPost.readTime}</span>
             </div>
-            {/* <Link className="" href="/blog/">
-              <button
-                className="
-                  text-2xl p-2 m-2 rounded-md
-                  text-white shadow-lg
-                  transition-all duration-150
-                  hover:shadow-xl hover:-translate-y-1
-                  border-b-4 border-r-2 border-green-900
-                  active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
-                  font-sans
-                "
-                style={{ 
-                  background: 'linear-gradient(to right, #FADA5E, #0A0A23)'
-                }}
-              >
-                <i className="ml-[1%] fas fa-arrow-left"></i>
-              </button>
-            </Link> */}
           </div>
         </div>
       </div>
