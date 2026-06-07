@@ -27,9 +27,9 @@ No test suite is configured.
 
 All site content is defined as typed TypeScript data — not fetched from a CMS or database. To add or update content, edit the relevant file:
 
-- `projects.ts` — project entries with metadata (title, description, stack, links, image paths); exports typed arrays for frontend, backend, academic, and featured categories
-- `blogs.ts` — blog posts with structured content sections (`text`, `bullets`, `image`, `quote`, `reference`)
-- `experience.ts` — work experience entries
+- `projects.ts` — project entries; each entry has a `categories` array of `'top' | 'frontend' | 'backend' | 'academic'`; `'top'` marks a project as featured on the homepage
+- `blogs.ts` — blog posts with structured content sections (`text`, `bullets`, `image`, `quote`, `references`); the blog URL slug is the numeric `id` field (e.g., id `1` → `/blog/1`)
+- `experience.ts` — exports separate named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`
 - `testimonials.ts` — testimonial entries
 
 ### Pages follow Next.js App Router conventions
@@ -70,6 +70,16 @@ src/app/components/
 - `globals.css` defines CSS variables and base styles
 - Monospace font used site-wide
 - Responsive design via Tailwind breakpoint prefixes (`sm:`, `md:`, `lg:`)
+
+### Environment variables
+
+The contact form requires these vars in `.env.local`:
+
+```
+RESEND_API_KEY=   # Resend API key
+FROM_EMAIL=       # Sender address (must be verified in Resend)
+TO_EMAIL=         # Recipient address
+```
 
 ### Adding content
 
