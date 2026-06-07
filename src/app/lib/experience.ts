@@ -210,6 +210,14 @@ const techTools: techTools[] = [
                 tool: 'LangGraph',
                 link: 'https://www.langchain.com/langgraph'
             },
+            {
+                tool: 'RAG Systems',
+                link: 'https://aws.amazon.com/what-is/retrieval-augmented-generation/'
+            },
+            {
+                tool: 'LLM APIs',
+                link: 'https://www.ibm.com/think/insights/llm-apis'
+            }, 
         ]
     },    
     {
@@ -249,6 +257,10 @@ const techTools: techTools[] = [
                 link: 'https://nodejs.org/docs/latest/api/'
             },
             {
+                tool: 'Pydantic',
+                link: 'https://pydantic.dev/docs/validation/latest/get-started/'
+            },            
+            {
                 tool: 'FastAPI',
                 link: 'https://fastapi.tiangolo.com/'
             },
@@ -272,6 +284,10 @@ const techTools: techTools[] = [
             {
                 tool: 'PostgreSQL',
                 link: 'https://www.postgresql.org/docs/'
+            },
+            {
+                tool: 'Supabase',
+                link: 'https://supabase.com/'
             }
         ]
     },
