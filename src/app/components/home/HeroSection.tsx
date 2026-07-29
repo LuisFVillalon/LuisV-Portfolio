@@ -59,7 +59,7 @@ export default function HeroSection() {
     }, [currentCharIndex, currentWordIndex, isDeleting]);
     return (
             <div className="gap-4 text-start justify-center items-center text-[#333333] flex flex-col  font-sans">
-                <h1 className="text-center my-[1%] text-6xl md:text-6xl font-bold text-[#0A0A23]">Luis Fernando Villalón</h1>
+                <h1 className="text-center my-[1%] text-6xl md:text-6xl font-extrabold text-[#0A0A23]">Luis Fernando Villalón</h1>
                 <h2 className="min-w-[280px] md:min-w-[400px] text-center flex flex-col font-bold text-[#0A0A23] min-h-[2rem] md:min-h-[3rem] justify-center items-center">
                     <p className='text-xl md:text-3xl font-normal text-[#B3B3B3]'>I bring experience as a(n)...</p>
                         <div className="flex text-2xl md:text-4xl">
