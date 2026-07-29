@@ -1,0 +1,101 @@
+---
+id: 4
+title: "LLM-Powered Bible Tutor — A Deep Technical Breakdown + Engineering Reflection"
+author: "Luis Villalón"
+date: "2025-10-28"
+readTime: "15 min read"
+category: "Web Dev"
+image_card: "/blog/blog_04/blog_04_card.png"
+---
+
+## Introducing the Vision Behind the Project
+
+The idea for this project began with a simple question: What if we could create an AI tutor that explains the Bible while staying completely grounded in Scripture itself? Large language models are powerful, but they sometimes invent content if they're not given strict guardrails. When dealing with Scripture, accuracy isn't optional — it's essential.
+
+I wanted to build a system that could provide faithful, citation-backed explanations of the Catholic Douay–Rheims Bible. This felt like the perfect opportunity to combine my interest in AI engineering with my desire to build something meaningful for Christian-Catholic education. From the beginning, I knew I wanted retrieval-augmented generation (RAG) at the core, ensuring every generated answer explicitly tied back to real verses.
+
+What emerged was a full-stack RAG pipeline: a system that embeds 35,800+ Bible verses, stores them in ChromaDB, retrieves the most relevant passages through semantic search, and uses GPT-4o-mini to generate grounded, verse-cited answers. The result is an AI tutor that actually studies the Bible instead of guessing.
+
+## Defining the Technical Problem and Constraints
+
+Building an AI Bible tutor might seem simple at first glance. After all, it's just "ask a question → get an answer." But doing this responsibly required tackling several engineering challenges.
+
+The first challenge was ensuring theological accuracy. Without retrieval, even the best language models hallucinate biblical content. My system needed verifiable sourcing. That requirement alone shaped the entire architecture.
+
+The second challenge was scale. The Douay–Rheims Bible contains nearly 36,000 verses. Indexing the text required a robust embedding pipeline, efficient storage, and a smooth retrieval process that wouldn't buckle under heavy usage.
+
+The third challenge was query alignment. User questions vary widely — from "What does the Bible say about forgiveness?" to "Explain John 6:54 in context." A strong semantic search and prompt-engineering layer was needed so that GPT-4o-mini always received the right context.
+
+And finally, I wanted this system to remain fast, affordable, and deployable by everyday developers. That meant using lightweight but powerful tools: ChromaDB, LangChain, and GPT-4o-mini.
+
+## Building the Foundation: Preparing and Structuring the Dataset
+
+I started with the Douay–Rheims Catholic Bible, a public-domain translation known for its formal, robust wording. I converted the entire dataset into a structured CSV format with four essential columns: Book, Chapter, Verse, and Text.
+
+This structure allowed the embedding pipeline to treat each verse as its own independent document while still preserving enough metadata to return detailed citations in answers.
+
+This attention to structure paid off later when implementing retrieval, since every piece of context had to be retrievable and explainable.
+
+## Designing the Embedding Pipeline
+
+To power semantic search, I used the text-embedding-3-small model. It provides high-quality embeddings at extremely low cost, making it ideal for large-scale ingestion.
+
+A major challenge was batching. Embedding tens of thousands of verses individually would be slow and expensive, so I built a pipeline that loads the dataset, splits it into batches, embeds each batch, and pushes vectors into ChromaDB.
+
+Batching kept memory usage stable and allowed the pipeline to run on modest hardware while indexing 35,800+ verses efficiently.
+
+## Engineering the Vector Database with ChromaDB
+
+I chose ChromaDB for its simplicity, speed, and local persistence. It integrates cleanly with LangChain and supports metadata filtering, which proved essential.
+
+Each stored entry includes verse text, book, chapter, verse metadata, an embedding vector, and a unique ID. This makes retrieval both fast and explanatory.
+
+Because Chroma supports flexible querying, the system can retrieve relevant verses even when user questions differ significantly from the biblical wording.
+
+## Building the RAG Pipeline with LangChain
+
+LangChain tied the entire workflow together. When a user submits a question, the system embeds it, performs semantic search through ChromaDB, retrieves top verses, and then builds a structured prompt.
+
+The prompt includes strict rules for grounding, citation formatting, and theological clarity. GPT-4o-mini then generates an answer using only the retrieved verses as source material.
+
+This strict prompting ensures that the model does not hallucinate content and remains fully grounded in the provided biblical text.
+
+## Creating Grounded, Faithful AI Explanations
+
+One of the most rewarding aspects of the project is how reliably the system produces grounded explanations. When users ask about forgiveness, suffering, love, or prayer, the tutor pulls verses that genuinely relate to the theme.
+
+Because retrieval is semantic, not keyword-based, the system can handle broad theological topics and verse-specific questions equally well.
+
+Every answer includes citations, which reinforces trust and makes the tool suitable for spiritual study, apologetics, or catechesis.
+
+## Optimizing Prompting and Model Behavior
+
+I experimented extensively with different prompting formats. The final version emphasizes theological clarity, clear citations, and strict reliance on retrieved verses.
+
+Even though GPT-4o-mini is a smaller model, the combination of strong prompting and high-quality retrieval allows it to produce surprisingly deep explanations.
+
+Prompt engineering became essential, especially when dealing with ambiguous or emotionally complex questions.
+
+## Evaluating System Performance and Limitations
+
+The system performs extremely well for most question types, but natural limitations exist. Retrieval depends on embedding quality, so the occasional question may require broader context than a standard semantic search can provide.
+
+GPT-4o-mini also has limited reasoning capacity compared to larger models, though the RAG approach compensates for this by giving it authoritative source text.
+
+The dataset currently includes only the Douay–Rheims Bible. Adding additional sources like the Catechism would enrich answers but increase architectural complexity.
+
+## Future Improvements and Planned Enhancements
+
+I plan to expand the system by adding the Catechism of the Catholic Church, allowing cross-referenced answers that blend Scripture and doctrine.
+
+A web-based user interface would make the tutor accessible to a broader audience. Additional improvements like hybrid search and streaming responses are also on the roadmap.
+
+Long-term features could include commentary mode, verse cross-analysis, and thematic devotional guidance.
+
+## Reflecting on Learning and Technical Growth
+
+This project deepened my understanding of RAG systems, embedding workflows, and metadata-driven architectures. It strengthened my appreciation for the power of structured retrieval.
+
+Building an AI that serves a meaningful purpose taught me how technology can support spiritual and intellectual growth when applied responsibly.
+
+More than anything, this project showed me how engineering becomes most fulfilling when aligned with purpose — using AI to help people learn Scripture more faithfully.

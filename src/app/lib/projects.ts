@@ -21,7 +21,7 @@ const projects: Project[] = [
         categories: ['top', 'frontend'],
     },
     {
-        title: 'Agentic Abstraction for Chip Engineering (ACEE)',
+        title: 'Agentic Abstraction for Chip Engineering (AACE)',
         description: 'Agentic pipeline to create visual and interactive diagrams from chip design code.',
         tech: 'LangGraph, FastAPI, Pydantic, GraphViz API, Next.js, AWS Bedrock, S3, EC2',
         github_repo: 'https://github.com/LuisFVillalon/Agentic-Abstraction-for-Chip-Engineering',

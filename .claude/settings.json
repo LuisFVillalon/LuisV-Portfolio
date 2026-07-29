@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:3001/blog/8 -o /tmp/blog8.html)",
+      "Read(//tmp/**)",
+      "Bash(tail -60 /tmp/dev.log)",
+      "Bash(tail -80 /tmp/dev.log)",
+      "Bash(netstat -ano)",
+      "Bash(curl -s -m 60 http://localhost:3001/blog/8 -o /tmp/blog8.html)",
+      "Bash(echo \"exit:$?\")",
+      "Bash(taskkill //PID 9284 //F)",
+      "Bash(taskkill //PID 23676 //F)",
+      "Bash(tasklist)"
+    ]
+  }
+}

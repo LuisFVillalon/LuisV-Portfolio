@@ -1,12 +1,14 @@
-
-"use client";
 import React from 'react';
 import { Calendar, Clock, User } from 'lucide-react';
-import { blogPosts } from '@/app/lib/blogs';
 import Image from 'next/image';
 import Link from 'next/link';
+import { MarkdownBlogPost, getPreviewText } from '@/app/lib/blogTypes';
 
-export default function BlogShowcase() { 
+interface BlogListProps {
+  posts: MarkdownBlogPost[];
+}
+
+export default function BlogShowcase({ posts }: BlogListProps) {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="text-center mb-12">
@@ -15,9 +17,9 @@ export default function BlogShowcase() {
           Discover insights, tutorials, and tips on web and career development, design, and technology.
         </p>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[...blogPosts].reverse().map((post) => (
+        {posts.map((post) => (
         <Link key={post.id} href={`/blog/${post.id}`}>
           <article
             key={post.id}
@@ -41,11 +43,11 @@ export default function BlogShowcase() {
               <h2 className="font-sans text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                 {post.title}
               </h2>
-              
+
               <p className="text-gray-600 mb-4 line-clamp-3">
-                {post.content[0].text[0].substring(0, 120)}...
+                {getPreviewText(post.content)}
               </p>
-              
+
               <div className="flex items-center justify-between text-sm text-gray-500">
                 <div className="flex items-center gap-2">
                   <User size={16} />
@@ -63,7 +65,7 @@ export default function BlogShowcase() {
                 </div>
               </div>
             </div>
-          </article>            
+          </article>
         </Link>
         ))}
       </div>

@@ -28,9 +28,18 @@ No test suite is configured.
 All site content is defined as typed TypeScript data — not fetched from a CMS or database. To add or update content, edit the relevant file:
 
 - `projects.ts` — project entries; each entry has a `categories` array of `'top' | 'frontend' | 'backend' | 'academic'`; `'top'` marks a project as featured on the homepage
-- `blogs.ts` — blog posts with structured content sections (`text`, `bullets`, `image`, `quote`, `references`); the blog URL slug is the numeric `id` field (e.g., id `1` → `/blog/1`)
+- `markdownBlogs.ts` — reads blog posts from Markdown files instead of typed data; see "Blog posts" below
 - `experience.ts` — exports separate named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`
 - `testimonials.ts` — testimonial entries
+
+### Blog posts (Markdown-based)
+
+Unlike other content, blog posts are **not** defined in `src/app/lib/` as typed data. Each post lives in its own folder under `public/blog/blog_<n>/` containing a `.md` file with YAML frontmatter (`id`, `title`, `author`, `date`, `readTime`, `category`, `image_card`) followed by the Markdown body. `src/app/lib/markdownBlogs.ts` reads and parses these files server-side with `gray-matter` at request time:
+
+- `getAllMarkdownBlogPosts()` — returns all posts, newest first, used by the blog listing page and the homepage's "Latest Blog Posts" section
+- `getMarkdownBlogPostById(id)` — returns a single post by its frontmatter `id`, used by `blog/[slug]/page.tsx`
+
+The Markdown body is rendered with `react-markdown` + `remark-gfm` on the post detail page. Only posts with a corresponding `.md` file appear on the site.
 
 ### Pages follow Next.js App Router conventions
 
@@ -84,5 +93,5 @@ TO_EMAIL=         # Recipient address
 ### Adding content
 
 - **New project:** Add an entry to the appropriate typed array in `src/app/lib/projects.ts` and place images in `public/projects/`
-- **New blog post:** Add an entry to `src/app/lib/blogs.ts`; the slug in the entry id is used as the URL segment in `/blog/[slug]`
+- **New blog post:** Create `public/blog/blog_<n>/blog_<n>.md` with frontmatter (`id`, `title`, `author`, `date`, `readTime`, `category`, `image_card`) plus the Markdown body, and place any referenced images alongside it in the same folder; the `id` is used as the URL segment in `/blog/[slug]`
 - **Images:** Static assets live in `public/` organized by section (`/about/`, `/blog/`, `/projects/`)
