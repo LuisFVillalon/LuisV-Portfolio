@@ -7,6 +7,7 @@ import ExperienceSection from './ExperienceSection';
 import SelfieSection from './SelfieSection';
 import BlogSection from './BlogSection';
 import CTASection from '../CTASection';
+import { SectionCard } from '../Cards/SectionCard';
 import { MarkdownBlogPost } from '@/app/lib/markdownBlogs';
 
 interface HomebodyProps {
@@ -16,14 +17,33 @@ interface HomebodyProps {
 export default function Homebody({ posts }: HomebodyProps) {
     return (
         <Wrapper>
-            <div className="flex flex-col md:flex-row">
-                <HeroSection/>
-                <SelfieSection/>
-            </div>
-            <ExperienceSection/>
-            {/* <TechSection/> */}
-            <ProjectCardsSection/>
-            <BlogSection posts={posts}/>
+            <section className="flex flex-col gap-6 py-8 md:py-12">
+
+                {/* ── Hero ── */}
+                <SectionCard className="flex flex-col md:flex-row items-center gap-6">
+                    <HeroSection/>
+                    <SelfieSection/>
+                </SectionCard>
+
+                {/* ── About & Experience preview ── */}
+                <SectionCard>
+                    <ExperienceSection/>
+                </SectionCard>
+
+                {/* <TechSection/> */}
+
+                {/* ── Featured projects ── */}
+                <SectionCard>
+                    <ProjectCardsSection/>
+                </SectionCard>
+
+                {/* ── Latest blog posts ── */}
+                <SectionCard>
+                    <BlogSection posts={posts}/>
+                </SectionCard>
+
+            </section>
+
             <CTASection
                 title={"Let’s Build Something Together"}
                 description={"I’m a full-stack developer and computer science undergraduate who enjoys turning ideas into real, scalable products. If you’re working on something interesting, let’s talk."}

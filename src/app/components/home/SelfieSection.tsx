@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function SelfieSection() {
 
     return (
-            <div className="mt-[5%] flex flex-col justify-center items-center ">
-                                 <Image 
+            <div className="flex flex-col justify-center items-center">
+                                 <Image
                                         src="/selfie.JPG"
                                         alt="A selfie."
                                         width={500}  // Specify the width and height for optimization

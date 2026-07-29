@@ -9,7 +9,7 @@ const ProjectCards: React.FC = () => {
   const topProjects = getProjectsByCategory('top');
 
   return (
-      <div className="max-w-7xl mx-auto">
+      <div>
           <Link href="/projects">
               <p className="text-[#0A0A23] text-center font-sans font-bold
                 hover:font-black
@@ -17,25 +17,27 @@ const ProjectCards: React.FC = () => {
                 hover:underline
                 hover:text-[#006400] transition-colors
                 text-xl
-                mt-[2%]
-                mb-[2%]
+                mb-4
               ">
                 Featured Projects
               </p>
           </Link>
-          <div className=" grid md:grid-cols-3 md:gap-20 justify-center items-start ">
+          <div className="flex flex-wrap justify-center gap-x-10 gap-y-8">
             {topProjects.map((project, id) => {
               return (
-                <PanelTemplate
-                  key={id}
-                  title={project.title} 
-                  description={project.description}
-                  tech={project.tech}
-                  github_repo={project.github_repo} 
-                  live_app={project.live_app}
-                  image={project.image}
-                  mobileFriendly={project.mobileFriendly}
-                />
+                <div key={id} className="w-full sm:w-[340px]">
+                  <PanelTemplate
+                    title={project.title}
+                    description={project.description}
+                    tech={project.tech}
+                    github_repo={project.github_repo}
+                    frontend_repo={project.frontend_repo}
+                    backend_repo={project.backend_repo}
+                    live_app={project.live_app}
+                    image={project.image}
+                    mobileFriendly={project.mobileFriendly}
+                  />
+                </div>
               );
             })}
           </div>

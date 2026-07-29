@@ -4,6 +4,7 @@ import React, { useMemo, useState } from "react";
 import Navbar from "../components/NavBar";
 import Wrapper from "../components/Wrapper";
 import Footer from "../components/Footer";
+import { SectionCard } from "../components/Cards/SectionCard";
 import { Github, Linkedin, Mail, User, MessageSquare, Copy, Check } from "lucide-react";
 
 interface FormData {
@@ -111,15 +112,13 @@ const handleSubmit = async (): Promise<void> => {
 
   if (isSubmitted) {
     return (
-      <div className="p-8 bg-white rounded-2xl shadow-2xl border-2 border-green-500 m-8">
-        <div className="text-center">
-          <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Check className="w-8 h-8 text-white" />
-          </div>
-          <h2 className="text-2xl md:text-4xl font-bold text-green-600 mb-2 font-sans">Message Sent!</h2>
-          <p className="text-gray-600 md:text-2xl">Thank you for reaching out. I&apos;ll get back to you soon!</p>
+      <SectionCard className="text-center">
+        <div className="w-16 h-16 bg-[#006400] rounded-full flex items-center justify-center mx-auto mb-4">
+          <Check className="w-8 h-8 text-white" />
         </div>
-      </div>
+        <h2 className="text-2xl md:text-4xl font-bold text-[#006400] mb-2 font-sans">Message Sent!</h2>
+        <p className="text-[#333333] md:text-2xl">Thank you for reaching out. I&apos;ll get back to you soon!</p>
+      </SectionCard>
     );
   }
 
@@ -143,24 +142,21 @@ const handleSubmit = async (): Promise<void> => {
   };
 
   return (
-    <div className="p-8 bg-white rounded-2xl shadow-lg border-2 border-gray-200 my-8">
+    <SectionCard>
       {/* Header Section with Contact Info */}
       <div className="text-center mb-8">
-        <h1 className="font-sans text-4xl font-bold text-gray-800 mb-2">Get In Touch</h1>
-        <p className="text-gray-600 mb-2 text-lg">I&apos;d love to hear how I can be of service. Send me a message!</p>
-
         {/* Contact Info Display */}
-        <div className="bg-gray-50 rounded-lg p-4 mb-6">
+        <div className="bg-[#EEEEEE] rounded-lg p-4 mb-6">
           <div className="md:text-lg flex items-center justify-center gap-2 mb-3">
             <button
               onClick={handleCopyEmail}
-              className="flex items-center gap-2 hover:bg-gray-200 py-2 px-2 rounded-lg transition-colors duration-200 group"
+              className="flex items-center gap-2 hover:bg-white py-2 px-2 rounded-lg transition-colors duration-200 group"
               title={isCopied ? "Copied!" : "Click to copy email"}
             >
-              {isCopied ? <Check className="w-5 h-5 text-green-600" /> : <Copy className="w-5 h-5 text-blue-600 group-hover:text-blue-800" />}
+              {isCopied ? <Check className="w-5 h-5 text-[#006400]" /> : <Copy className="w-5 h-5 text-[#006400] group-hover:text-[#004d00]" />}
               <span
                 className={`font-sans font-medium transition-colors duration-200 ${
-                  isCopied ? "text-green-600" : "text-gray-800 group-hover:text-blue-800"
+                  isCopied ? "text-[#006400]" : "text-[#0A0A23] group-hover:text-[#006400]"
                 }`}
               >
                 lvillalon1179@sdsu.edu
@@ -172,7 +168,7 @@ const handleSubmit = async (): Promise<void> => {
               href="https://github.com/LuisFVillalon"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-700 hover:text-black transition-colors duration-200"
+              className="flex items-center gap-2 text-[#0A0A23] hover:text-[#006400] transition-colors duration-200"
             >
               <Github className="w-5 h-5" />
               <span className="font-sans">GitHub</span>
@@ -181,7 +177,7 @@ const handleSubmit = async (): Promise<void> => {
               href="https://www.linkedin.com/in/luis-villalon/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors duration-200"
+              className="flex items-center gap-2 text-[#0A0A23] hover:text-[#006400] transition-colors duration-200"
             >
               <Linkedin className="w-5 h-5" />
               <span className="font-sans">LinkedIn</span>
@@ -194,7 +190,7 @@ const handleSubmit = async (): Promise<void> => {
       <div className="space-y-6">
         {/* Full Name */}
         <div>
-          <label htmlFor="fullName" className="md:text-xl font-sans block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="fullName" className="md:text-xl font-sans block text-sm font-semibold text-[#0A0A23] mb-2">
             <User className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
             Full Name *
           </label>
@@ -204,8 +200,8 @@ const handleSubmit = async (): Promise<void> => {
             name="fullName"
             value={formData.fullName}
             onChange={handleInputChange}
-            className={`md:text-xl w-full text-[#333333] px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
-              errors.fullName ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-blue-500"
+            className={`md:text-xl w-full text-[#333333] px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006400] transition-colors duration-200 ${
+              errors.fullName ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-[#006400]"
             }`}
             placeholder="Enter your full name"
           />
@@ -214,7 +210,7 @@ const handleSubmit = async (): Promise<void> => {
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="md:text-lg font-sans block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="email" className="md:text-lg font-sans block text-sm font-semibold text-[#0A0A23] mb-2">
             <Mail className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
             Email Address *
           </label>
@@ -224,8 +220,8 @@ const handleSubmit = async (): Promise<void> => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className={`md:text-xl text-[#333333] w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${
-              errors.email ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-blue-500"
+            className={`md:text-xl text-[#333333] w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006400] transition-colors duration-200 ${
+              errors.email ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-[#006400]"
             }`}
             placeholder="Enter your email address"
           />
@@ -234,7 +230,7 @@ const handleSubmit = async (): Promise<void> => {
 
         {/* Message */}
         <div>
-          <label htmlFor="message" className="md:text-lg font-sans block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="message" className="md:text-lg font-sans block text-sm font-semibold text-[#0A0A23] mb-2">
             <MessageSquare className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
             Message *
           </label>
@@ -244,8 +240,8 @@ const handleSubmit = async (): Promise<void> => {
             rows={6}
             value={formData.message}
             onChange={handleInputChange}
-            className={`md:text-xl text-[#333333] w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 resize-none ${
-              errors.message ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-blue-500"
+            className={`md:text-xl text-[#333333] w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006400] transition-colors duration-200 resize-none ${
+              errors.message ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-[#006400]"
             }`}
             placeholder="Enter your message here..."
           />
@@ -277,7 +273,7 @@ const handleSubmit = async (): Promise<void> => {
           {isSending ? "Sending..." : "Send Message"}
         </button>
       </div>
-    </div>
+    </SectionCard>
   );
 };
 
@@ -286,7 +282,19 @@ export default function Contact(): React.ReactElement {
     <div className="font-[Monospace] flex flex-col items-center justify-start min-h-screen bg-[#FFFFFF]">
       <Navbar />
       <Wrapper>
-        <ContactForm />
+        <section className="flex flex-col gap-6 py-8 md:py-12">
+
+          {/* ── Title ── */}
+          <div className="text-center md:text-left">
+            <h1 className="font-sans text-3xl md:text-5xl font-extrabold text-[#0A0A23]">Get In Touch</h1>
+            <p className="mt-2 text-base md:text-lg text-[#B3B3B3] font-sans font-bold">
+              I&apos;d love to hear how I can be of service. Send me a message!
+            </p>
+          </div>
+
+          <ContactForm />
+
+        </section>
       </Wrapper>
       <Footer />
     </div>

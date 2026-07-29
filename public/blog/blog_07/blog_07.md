@@ -3,7 +3,7 @@ id: 7
 title: "Understanding React Hooks: Why They Exist and How to Use Them Effectively"
 author: "Luis Villalón"
 date: "2026-01-19"
-readTime: "8 min read"
+readTime: "8 min"
 category: "Frontend"
 image_card: "/blog/blog_07/blog_07_card.png"
 ---

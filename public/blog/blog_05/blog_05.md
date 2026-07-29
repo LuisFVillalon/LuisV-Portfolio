@@ -3,7 +3,7 @@ id: 5
 title: "SHPE National Conference 2025: My Experience and the Guide I Wish I Had"
 author: "Luis Villalón"
 date: "2025-11-09"
-readTime: "10 min read"
+readTime: "10 min"
 category: "Career Dev"
 image_card: "/blog/blog_05/blog_05_card.png"
 ---

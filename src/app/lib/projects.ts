@@ -1,24 +1,42 @@
+export type ProjectCategory = 'top' | 'frontend' | 'fullstack' | 'ai' | 'academic';
+
+type CategoryOverride = Partial<Pick<Project, 'description' | 'tech' | 'github_repo' | 'frontend_repo' | 'backend_repo'>>;
+
 export type Project = {
     title: string;
     description: string;
     tech: string;
     github_repo: string;
+    frontend_repo?: string;
+    backend_repo?: string;
     live_app?: string;
     image: string;
     mobileFriendly: boolean;
-    categories: ('top' | 'frontend' | 'backend' | 'academic')[];
+    categories: ProjectCategory[];
+    categoryOverrides?: Partial<Record<ProjectCategory, CategoryOverride>>;
 };
 
 const projects: Project[] = [
     {
-        title: 'Task Master',
-        description: 'Full-stack web application for a user to manage and visualize tasks.',
-        tech: 'Next.js, React.js TypeScript, Tailwind CSS, Python, FastAPI, PostgreSQL, RESTful CRUD Operations',
+        title: 'OneTab',
+        description: 'A full-stack web application enabling users to custom-organize tasks, notes, and habits using categorical tags.',
+        tech: 'Next.js, React.js, TypeScript, Tailwind CSS, Python, FastAPI, PostgreSQL, RESTful CRUD Operations',
         github_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend',
+        frontend_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend', // TODO: confirm link
+        backend_repo: 'https://github.com/LuisFVillalon/TaskMaster-Backend', // TODO: confirm link
         live_app: 'https://task-master-mvp.vercel.app/',
         image: '/projects/frontend/taskmaster.png',
         mobileFriendly: true,
-        categories: ['top', 'frontend'],
+        categories: ['top', 'fullstack', 'ai'],
+        categoryOverrides: {
+            ai: {
+                description: 'Backend application designed to handle AI-driven task management and planning workflows through LLM service calls.',
+                github_repo: 'https://github.com/LuisFVillalon/taskmaster-ai',
+                tech: 'FastAPI, Pydantic, LLM Service Calls, OpenAI (GPT-4o-mini)',
+                frontend_repo: undefined,
+                backend_repo: undefined,
+            },
+        },
     },
     {
         title: 'Agentic Abstraction for Chip Engineering (AACE)',
@@ -28,8 +46,17 @@ const projects: Project[] = [
         live_app: 'https://github.com/LuisFVillalon/Agentic-Abstraction-for-Chip-Engineering',
         image: '/projects/frontend/acee.png',
         mobileFriendly: false,
-        categories: ['top', 'frontend', 'backend'],
-    },    
+        categories: ['top', 'ai'],
+    },
+    {
+        title: 'Operating Systems',
+        description: 'Coursework covering OS organization, process and thread concurrency, synchronization, virtual memory and paging, file systems, I/O and interrupt handling, and deadlock detection/avoidance.',
+        tech: 'C, Unix/Linux, Makefiles, Systems Programming',
+        github_repo: 'https://github.com/LuisFVillalon/Operating-Systems',
+        image: '/projects/academic/os.png',
+        mobileFriendly: false,
+        categories: ['academic'],
+    },
     {
         title: 'The Torchbearer: Algorithm Exam',
         description: 'Documentation for an algorithm that finds the most fuel-efficient path through a directed graph while hitting multiple mandatory checkpoints.',
@@ -39,26 +66,26 @@ const projects: Project[] = [
         image: '/projects/academic/cs480.png',
         mobileFriendly: false,
         categories: ['academic'],
-    },        
+    },
     {
         title: 'NutriNav AI',
-        description: 'A genetic pipeline designed to create nutritionally accurate, safe, and customizable meal plans tailored to a user\'s specific needs.',
-        tech: 'LangGraph, FastAPI, Pydantic, GraphViz API, Next.js, AWS Bedrock, S3, EC2',
+        description: 'Agentic pipeline designed to create nutritionally accurate, safe, and customizable meal plans tailored to a user\'s specific needs.',
+        tech: 'LangGraph, FastAPI, Pydantic, USDA API, Next.js, Gemini 2.5 Flash',
         github_repo: 'https://github.com/LuisFVillalon/NutriNav-AI',
         live_app: 'https://github.com/LuisFVillalon/NutriNav-AI',
         image: '/projects/frontend/nutrinavai.png',
         mobileFriendly: false,
-        categories: ['top', 'frontend', 'backend', 'academic'],
-    },        
+        categories: ['top', 'ai'],
+    },
     {
-        title: 'Task Master',
-        description: 'Backend application of RESTful APIs built for powering a management application. It supports full CRUD operations, data validation, and relational associations between tasks and tags.',
-        tech: 'Python, FastAPI, PostgreSQL, RESTful CRUD Operations',
-        github_repo: 'https://github.com/LuisFVillalon/TaskMaster-Backend',
-        live_app: 'https://task-master-mvp.vercel.app/',
-        image: '/projects/frontend/taskmaster.png',
-        mobileFriendly: false,
-        categories: ['backend'],
+        title: 'LuisV Portfolio',
+        description: 'My personal software engineering portfolio site, featuring a project gallery, Markdown-based blog, and a contact form with email delivery.',
+        tech: 'Next.js, React, TypeScript, Tailwind CSS, Resend',
+        github_repo: 'https://github.com/LuisFVillalon/LuisV-Portfolio',
+        live_app: 'https://luis-v-portfolio.vercel.app',
+        image: '/projects/frontend/webportfolio.png',
+        mobileFriendly: true,
+        categories: ['frontend'],
     },
     {
         title: 'The Crash App',
@@ -75,19 +102,12 @@ const projects: Project[] = [
         description: 'Reddit-clone web application. Create an account, post, comment, and vote!',
         tech: 'HTML, CSS, JavaScript, React.js, Google Firebase Firestore Database and Authentication',
         github_repo: 'https://github.com/LuisFVillalon/WhatsPoppin',
+        frontend_repo: 'https://github.com/LuisFVillalon/WhatsPoppin', // TODO: confirm link
+        backend_repo: 'https://github.com/LuisFVillalon/WhatsPoppin', // TODO: confirm link
         live_app: 'https://luisfvillalon.github.io/WhatsPoppin/',
         image: '/projects/frontend/whatspoppin.png',
         mobileFriendly: false,
-        categories: ['frontend'],
-    },
-    {
-        title: 'Whats Poppin?',
-        description: 'Developed a RESTful backend with Node.js, Express.js, and MongoDB, implementing authentication, API routes, and CRUD functionality for managing event postings.',
-        tech: 'JavaScript. Google Firebase Firestore Database and Authentication',
-        github_repo: 'https://github.com/LuisFVillalon/WhatsPoppin',
-        image: '/projects/backend/whatspoppin.png',
-        mobileFriendly: false,
-        categories: ['backend'],
+        categories: ['fullstack'],
     },
     {
         title: 'Pokedex Catalog',
@@ -101,22 +121,15 @@ const projects: Project[] = [
     },
     {
         title: 'Poke-Photo Tag',
-        description: 'Identify and tag Pokémon in an image with real-time scoring.',
-        tech: 'HTML, CSS, JavaScript, React.js, API',
+        description: 'Identify and tag Pokémon in an image with real-time scoring, backed by a RESTful API with MongoDB for leaderboard management, dynamically storing and updating the top 10 records with automated entry removal.',
+        tech: 'HTML, CSS, JavaScript, React.js, Node.js, Express.js, MongoDB, Mongoose, RESTful API',
         github_repo: 'https://github.com/LuisFVillalon/front-end-pokemon-photo-tag',
+        frontend_repo: 'https://github.com/LuisFVillalon/front-end-pokemon-photo-tag', // TODO: confirm link
+        backend_repo: 'https://github.com/LuisFVillalon/back-end-pokemon-photo-tag', // TODO: confirm link
         live_app: 'https://wheres-that-pokemon.netlify.app/',
         image: '/projects/frontend/pokephototag.png',
         mobileFriendly: false,
-        categories: ['frontend'],
-    },
-    {
-        title: 'Poke-Photo Tag',
-        description: 'Built a RESTful API with MongoDB for efficient leaderboard management, dynamically storing and updating the top 10 records with automated entry removal.',
-        tech: 'JavaScript, Node.js, Express.js, MongoDB, Mongoose, RESTful API, Schema Models, Routes, Controllers',
-        github_repo: 'https://github.com/LuisFVillalon/back-end-pokemon-photo-tag',
-        image: '/projects/backend/pokephototag.png',
-        mobileFriendly: false,
-        categories: ['backend'],
+        categories: ['fullstack'],
     },
     {
         title: 'Tic-Tac-Toe',
@@ -130,32 +143,15 @@ const projects: Project[] = [
     },
     {
         title: 'Blog Template',
-        description: 'A front-end blog template featuring user authentication, post creation, and a message board with CRUD functionality.',
-        tech: 'HTML, CSS, JavaScript, React.js, React Router, REST API, Forms',
+        description: 'A full-stack blog application featuring user authentication, post creation, comments, and token-based authorization, with a React front end and a Node.js/Express REST API back end.',
+        tech: 'React.js, React Router, HTML, CSS, JavaScript, Node.js, Express.js, MongoDB, Mongoose, Passport.js, bcrypt, JWT, REST API',
         github_repo: 'https://github.com/LuisFVillalon/Blog-Template',
+        frontend_repo: 'https://github.com/LuisFVillalon/Blog-Template',
+        backend_repo: 'https://github.com/LuisFVillalon/Blog-API',
         live_app: 'https://nimble-druid-a52a4e.netlify.app/',
         image: '/projects/frontend/blogtemplate.png',
         mobileFriendly: true,
-        categories: ['frontend'],
-    },
-    {
-        title: 'Members Only',
-        description: 'A members-only message board where users can sign up, log in, and post messages, with restricted content visible only to authorized members.',
-        tech: 'HTML, CSS, JavaScript, Node.js, Express.js, MongoDB, Mongoose, Authentication',
-        github_repo: 'https://github.com/LuisFVillalon/Members-Only',
-        live_app: 'https://members-only-9gew.onrender.com/',
-        image: '/projects/frontend/membersonly.png',
-        mobileFriendly: true,
-        categories: ['frontend'],
-    },
-    {
-        title: 'Members Only',
-        description: 'Developed a secure backend with authentication, role-based access control, and MongoDB, enabling user sign-up, encrypted passwords, and dynamic permissions for members and admins.',
-        tech: ' JavaScript, Node.js, Express.js, MongoDB, Mongoose, EJS, CSS, bcrypt, Passport.js',
-        github_repo: 'https://github.com/LuisFVillalon/Members-Only',
-        image: '/projects/backend/membersonly.png',
-        mobileFriendly: false,
-        categories: ['backend'],
+        categories: ['fullstack'],
     },
     {
         title: 'To Do List',
@@ -199,23 +195,26 @@ const projects: Project[] = [
     },
     {
         title: 'LLM Bible Tutor',
-        description: 'An AI-powered Bible tutor that uses RAG with GPT-4o-mini, LangChain, and ChromaDB to deliver grounded, citation-based answers from the Douay–Rheims Bible.',
+        description: 'Implement a Retrieval-Augmented Generation (RAG) pipeline for the Douay-Rheims Bible, enabling an LLM to answer scriptural queries with precise, cited verse references based on semantic vector search.',
         tech: 'Python, OpenAI (GPT-4o-mini, text-embedding-3-small), LangChain, ChromaDB (vector database)',
         github_repo: 'https://github.com/LuisFVillalon/LLM-Bible-Tutor',
         live_app: 'https://github.com/LuisFVillalon/LLM-Bible-Tutor',
         image: '/projects/backend/LLM_bible.png',
         mobileFriendly: false,
-        categories: ['backend', 'academic'],
+        categories: ['ai'],
     },
-    {
-        title: 'Blog API',
-        description: 'Developed a backend API for a blog with user authentication, CRUD functionality for posts and comments, validation, and token-based authorization.',
-        tech: 'JavaScript, Node.js, Express.js, MongoDB, Mongoose, Passport.js, bcrypt, JWT (token-based authentication), MVC pattern (models, controllers, routes)',
-        github_repo: 'https://github.com/LuisFVillalon/Blog-API',
-        image: '/projects/backend/blogtemplate.png',
-        mobileFriendly: false,
-        categories: ['backend'],
-    },
+    // {
+    //     title: 'Members Only',
+    //     description: 'A members-only message board with a secure backend: authentication, role-based access control, and MongoDB, enabling user sign-up, encrypted passwords, and dynamic permissions for members and admins.',
+    //     tech: 'HTML, CSS, JavaScript, Node.js, Express.js, MongoDB, Mongoose, EJS, bcrypt, Passport.js',
+    //     github_repo: 'https://github.com/LuisFVillalon/Members-Only',
+    //     frontend_repo: 'https://github.com/LuisFVillalon/Members-Only', // TODO: confirm link
+    //     backend_repo: 'https://github.com/LuisFVillalon/Members-Only', // TODO: confirm link
+    //     live_app: 'https://members-only-9gew.onrender.com/',
+    //     image: '/projects/frontend/membersonly.png',
+    //     mobileFriendly: true,
+    //     categories: ['fullstack'],
+    // },
     {
         title: 'Assembly Language and Machine Organization',
         description: 'Covered machine architecture, assembly language, data representation, instruction execution, addressing modes, and operating system fundamentals.',
@@ -263,5 +262,10 @@ const projects: Project[] = [
     },
 ];
 
-export const getProjectsByCategory = (category: 'top' | 'frontend' | 'backend' | 'academic') =>
+export const getProjectsByCategory = (category: ProjectCategory) =>
     projects.filter(p => p.categories.includes(category));
+
+export const applyCategoryOverrides = (project: Project, category: ProjectCategory): Project => ({
+    ...project,
+    ...project.categoryOverrides?.[category],
+});

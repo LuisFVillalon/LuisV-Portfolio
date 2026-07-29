@@ -3,7 +3,7 @@ id: 6
 title: "Innovation 4 SDSU — My First Hackathon Experience and What I Learned"
 author: "Luis Villalón"
 date: "2025-11-15"
-readTime: "10 min read"
+readTime: "10 min"
 category: "Career Dev"
 image_card: "/blog/blog_06/blog_06_card.png"
 ---

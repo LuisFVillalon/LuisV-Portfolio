@@ -10,65 +10,55 @@ interface BlogListProps {
 
 export default function BlogShowcase({ posts }: BlogListProps) {
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4 font-sans">Professional Developer Blog</h1>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          Discover insights, tutorials, and tips on web and career development, design, and technology.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts.map((post) => (
-        <Link key={post.id} href={`/blog/${post.id}`}>
-          <article
-            key={post.id}
-            className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer group"
-          >
-            <div className="relative overflow-hidden">
-              <Image
-                src={post.image_card}
-                width={100}
-                height={100}
-                alt={post.title}
-                className="w-full h-48 group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute top-3 left-3">
-                <span className="text-white opacity-[75%] bg-[#0A0A23] backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
-                  {post.category}
-                </span>
-              </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post) => (
+      <Link key={post.id} href={`/blog/${post.id}`}>
+        <article
+          className="bg-white rounded-2xl shadow-lg border border-[#0A0A23]/10 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer group h-full flex flex-col"
+        >
+          <div className="relative overflow-hidden">
+            <Image
+              src={post.image_card}
+              width={100}
+              height={100}
+              alt={post.title}
+              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <div className="absolute top-3 left-3">
+              <span className="text-white opacity-[75%] bg-[#0A0A23] backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
+                {post.category}
+              </span>
             </div>
-            <div className="p-6">
-              <h2 className="font-sans text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                {post.title}
-              </h2>
+          </div>
+          <div className="p-6 flex flex-col flex-1">
+            <h2 className="font-sans text-xl font-bold text-[#0A0A23] mb-3 group-hover:text-[#006400] transition-colors">
+              {post.title}
+            </h2>
 
-              <p className="text-gray-600 mb-4 line-clamp-3">
-                {getPreviewText(post.content)}
-              </p>
+            <p className="text-[#333333] mb-4 line-clamp-3 flex-1">
+              {getPreviewText(post.content)}
+            </p>
 
-              <div className="flex items-center justify-between text-sm text-gray-500">
-                <div className="flex items-center gap-2">
-                  <User size={16} />
-                  <span>{post.author}</span>
+            <div className="flex items-center justify-between text-sm text-[#B3B3B3]">
+              <div className="flex items-center gap-2">
+                <User size={16} />
+                <span>{post.author}</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-1">
+                  <Calendar size={14} />
+                  <span>{post.date}</span>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-1">
-                    <Calendar size={14} />
-                    <span>{post.date}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock size={14} />
-                    <span>{post.readTime}</span>
-                  </div>
+                <div className="flex items-center gap-1">
+                  <Clock size={14} />
+                  <span>{post.readTime}</span>
                 </div>
               </div>
             </div>
-          </article>
-        </Link>
-        ))}
-      </div>
+          </div>
+        </article>
+      </Link>
+      ))}
     </div>
   );
 }

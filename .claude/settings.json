@@ -10,7 +10,20 @@
       "Bash(echo \"exit:$?\")",
       "Bash(taskkill //PID 9284 //F)",
       "Bash(taskkill //PID 23676 //F)",
-      "Bash(tasklist)"
+      "Bash(tasklist)",
+      "Bash(sleep 4; cat /tmp/dev.log)",
+      "Bash(curl -s http://localhost:3004/)",
+      "Bash(cat /tmp/dev.log)",
+      "Bash(until grep *)",
+      "Bash(curl -s http://localhost:3000/ -o /tmp/home.html)",
+      "Bash(curl -s http://localhost:3000/experience -o /tmp/exp.html)",
+      "Bash(kill 34083)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/projects)",
+      "Bash(powershell -Command \"Stop-Process -Id 20236,21476,5568 -Force -ErrorAction SilentlyContinue\")",
+      "Bash(powershell -Command \"Get-CimInstance Win32_Process -Filter \\\\\"Name='node.exe'\\\\\" | Select-Object ProcessId, CommandLine\")",
+      "PowerShell(npx tsc --noEmit)",
+      "Bash(gh repo *)",
+      "Bash(gh api *)"
     ]
   }
 }

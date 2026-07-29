@@ -35,31 +35,31 @@ export default function TableOfContents({ items }: TableOfContentsProps): React.
   const sections = groupIntoSections(items);
 
   return (
-    <nav className="not-prose mb-10 rounded-lg border border-gray-200 bg-gray-50">
+    <nav className="not-prose mb-10 rounded-2xl border border-[#0A0A23]/10 bg-white shadow-lg">
       <button
         type="button"
         onClick={() => setIsOpen((open) => !open)}
         aria-expanded={isOpen}
-        className="flex text-lg w-full items-center justify-between px-5 py-4 text-left font-sans font-bold text-gray-900"
+        className="flex text-lg w-full items-center justify-between px-5 py-4 text-left font-sans font-bold text-[#0A0A23]"
       >
         Table of Contents
         <ChevronDown
           size={20}
-          className={`text-gray-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`text-[#B3B3B3] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
         />
       </button>
       {isOpen && (
         <ul className="text-base space-y-2 px-5 pb-5">
           {sections.map(({ section, subsections }) => (
             <li key={section.slug}>
-              <a href={`#${section.slug}`} className="text-blue-800 hover:underline">
+              <a href={`#${section.slug}`} className="text-[#006400] font-bold hover:underline">
                 {section.text}
               </a>
               {subsections.length > 0 && (
                 <ul className="mt-2 ml-5 space-y-2">
                   {subsections.map((sub) => (
                     <li key={sub.slug}>
-                      <a href={`#${sub.slug}`} className="text-blue-800 hover:underline">
+                      <a href={`#${sub.slug}`} className="text-[#006400] hover:underline">
                         {sub.text}
                       </a>
                     </li>

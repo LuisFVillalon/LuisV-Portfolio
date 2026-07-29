@@ -3,7 +3,7 @@ id: 8
 title: "How to Be an AI-Native Engineer: A Practical Guide to Collaborating with AI in Software Development"
 author: "Luis Villalón"
 date: "2026-07-28"
-readTime: "15 min read"
+readTime: "15 min"
 category: "AI Dev"
 image_card: "/blog/blog_08/blog_08_card.png"
 ---
