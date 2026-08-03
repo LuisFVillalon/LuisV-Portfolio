@@ -122,7 +122,8 @@ Strong prompts provide the AI with specific error messages, expected behaviors, 
 - Walk through this function using the following input and show the intermediate values.  
 - This function returns the wrong output for duplicate values. What is causing the issue?  
 - I expected this function to return X, but it returned Y. Why?  
-  In contrast, weak prompts fail because they are vague and offer no context, forcing AI to guess and increasing the risk of logical errors.
+  
+In contrast, weak prompts fail because they are vague and offer no context, forcing AI to guess and increasing the risk of logical errors.
 
 **Examples of Weak Debugging Prompts**:
 
@@ -246,10 +247,10 @@ Regularly asking these questions keeps you “in the loop,” allowing you to ma
 
    To remain the primary architect of my code, I utilize a streamlined four-step workflow that leverages AI as a thinking partner without outsourcing critical reasoning. 
 
-   **Step 1 (Intent)**: Clearly define the problem using a high-context, specific prompt—including relevant code and error messages—to ensure accuracy and prevent hallucinations.  
-   **Step 2 (Generation)**: Critically evaluate the AI’s proposed solution to	understand the underlying reasoning and decide on the best technical	approach.   
-   **Step 3 (Verification)**: Rigorously test the code for edge cases and vulnerabilities, then refactor it to prioritize human readability and modularity.   
-   **Step 4 (Integration)**: Conduct a final review before merging the code and document the collaboration in an AI Usage Log to build long-term technical judgment. 
+   **Step 1 (Prompt)**: Clearly define the problem using a high-context, specific prompt—including relevant code and error messages—to ensure accuracy and prevent hallucinations.  
+   **Step 2 (Draft)**: Critically evaluate the AI’s proposed solution to	understand the underlying reasoning and decide on the best technical	approach.   
+   **Step 3 (Audit)**: Rigorously test the code for edge cases and vulnerabilities, then refactor it to prioritize human readability and modularity.   
+   **Step 4 (Merge)**: Conduct a final review before merging the code and document the collaboration in an AI Usage Log to build long-term technical judgment. 
 
    **![Personal AI workflow diagram](/blog/blog_08/image1.png)**  
      
