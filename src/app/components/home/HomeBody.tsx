@@ -7,6 +7,7 @@ import ExperienceSection from './ExperienceSection';
 import SelfieSection from './SelfieSection';
 import BlogSection from './BlogSection';
 import LinkedInSection from './LinkedInSection';
+import GitHubStatsSection from '../github/GitHubStatsSection';
 import CTASection from '../CTASection';
 import { SectionCard } from '../Cards/SectionCard';
 import { MarkdownBlogPost } from '@/app/lib/markdownBlogs';
@@ -26,16 +27,19 @@ export default function Homebody({ posts }: HomebodyProps) {
                     <SelfieSection/>
                 </SectionCard>
 
+                {/* ── Featured projects ── */}
+                <SectionCard>
+                    <ProjectCardsSection/>
+                </SectionCard>                
+
                 {/* ── About & Experience preview ── */}
                 <SectionCard>
                     <ExperienceSection/>
                 </SectionCard>
 
-                {/* <TechSection/> */}
-
-                {/* ── Featured projects ── */}
+                {/* ── GitHub stats ── */}
                 <SectionCard>
-                    <ProjectCardsSection/>
+                    <GitHubStatsSection/>
                 </SectionCard>
 
                 {/* ── Latest blog posts ── */}
@@ -47,6 +51,8 @@ export default function Homebody({ posts }: HomebodyProps) {
                 <SectionCard>
                     <LinkedInSection/>
                 </SectionCard>
+
+
 
             </section>
 

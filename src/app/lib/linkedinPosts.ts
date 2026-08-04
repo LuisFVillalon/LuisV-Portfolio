@@ -10,32 +10,32 @@ const linkedinPosts: LinkedInPost[] = [
   {
     id: 1,
     embedUrl: 'https://www.linkedin.com/embed/feed/update/urn:li:share:7488363241639727104?collapsed=1',
-    title: '🌞What I learned in the Summer🌞',
+    title: 'Summer 2k26☀️',
   },
   {
     id: 2,
     embedUrl: 'https://www.linkedin.com/embed/feed/update/urn:li:share:7474256275996893184?collapsed=1',
-    title: '🌡️AI Temp🌡️',
+    title: 'AI Temp🌡️',
   },
   {
     id: 3,
     embedUrl: 'https://www.linkedin.com/embed/feed/update/urn:li:share:7470695378250735616?collapsed=1',
-    title: '🥊Vibing vs. Engineering🥊',
+    title: 'Viber v. Eng.🥊',
   },
     {
     id: 4,
     embedUrl: 'https://www.linkedin.com/embed/feed/update/urn:li:share:7470635373342171136?collapsed=1',
-    title: '👨🏻‍💻Code Thoughtfully👨🏻‍💻',
+    title: 'AI Coding🧑🏽‍💻',
   },
   {
     id: 5,
     embedUrl: 'https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7430085004937916416?collapsed=1',
-    title: '🌐Showcasing Task Master A Full Stack Project🌐',
+    title: 'Task Master📈',
   },
   {
     id: 6,
     embedUrl: 'https://www.linkedin.com/embed/feed/update/urn:li:share:7399281446575775744?collapsed=1',
-    title: '🧠Reflection on First Semester At SDSU🧠',
+    title: 'SDSU Reflection',
   },
 ];
 

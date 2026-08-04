@@ -42,8 +42,6 @@ export default function ExperienceSection() {
                 <p className="text-center text-base text-[#333333]">
                     I am a fourth-year Computer Science undergraduate student at San Diego State University
                     with experience in full-stack development and a growing focus on DevOps and agentic AI systems.
-                    I am passionate about serving the public through building digital applications that strengthen
-                    communities and improve productivity.
                 </p>
             </div>
             <div className='flex flex-col space-y-4'>

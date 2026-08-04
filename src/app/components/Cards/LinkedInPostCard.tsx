@@ -10,6 +10,9 @@ export default function LinkedInPostCard({ post, profileUrl }: { post: LinkedInP
           <span className="shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-[#0A0A23]">
             <Linkedin size={14} className="text-white" />
           </span>
+          {post.title && (
+            <span className="truncate text-sm font-medium text-[#0A0A23]">{post.title}</span>
+          )}
         </div>
         <a href={profileUrl} target="_blank" rel="noopener noreferrer" aria-label="Open on LinkedIn" className="shrink-0 text-[#333333]/50 hover:text-[#006400] transition-colors">
           <ArrowUpRight size={16} />
