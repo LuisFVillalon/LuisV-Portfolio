@@ -6,6 +6,7 @@ import ProjectCardsSection from './ProjectCardsSection';
 import ExperienceSection from './ExperienceSection';
 import SelfieSection from './SelfieSection';
 import BlogSection from './BlogSection';
+import LinkedInSection from './LinkedInSection';
 import CTASection from '../CTASection';
 import { SectionCard } from '../Cards/SectionCard';
 import { MarkdownBlogPost } from '@/app/lib/markdownBlogs';
@@ -40,6 +41,11 @@ export default function Homebody({ posts }: HomebodyProps) {
                 {/* ── Latest blog posts ── */}
                 <SectionCard>
                     <BlogSection posts={posts}/>
+                </SectionCard>
+
+                {/* ── Latest LinkedIn posts ── */}
+                <SectionCard>
+                    <LinkedInSection/>
                 </SectionCard>
 
             </section>
