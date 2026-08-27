@@ -318,9 +318,9 @@ const techTools: techTools[] = [
 const currentlyDoing: currentlyDoing[] = [
     {
         company: 'CodePath',
-        position: 'AI110 | Foundations of AI Engineering',
-        time: 'Jun 2026 - Aug 2026',
-        description: 'Trained in AI-assisted software engineering, applying AI-driven development techniques and the evaluation of AI-generated code to build and evaluate intelligent software systems.',
+        position: 'AI201  | Applications of AI Engineering',
+        time: 'Sep 2026 - Dec 2026',
+        description: 'Trained in AI-assisted software engineering, designing and developing complex systems, evaluating AI-generated code and automating backend integrations.',
         tech:'RAG, Agentic workflows, Machine Learning, Data structures, Algorithms',
         link: 'https://www.codepath.org/'    
     },       

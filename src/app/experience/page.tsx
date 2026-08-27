@@ -54,25 +54,46 @@ export default function ExperiencePage() {
                                 This is how I&apos;ve dedicated years to honing my skills, overcoming challenges,
                                 and evolving as a developer. Pick a category below to explore my experience!
                             </p>
-                            <a href="/sdsu_luis_villalon_tech_online_resume.pdf" download className="shrink-0">
-                                <button
-                                    className="
-                                        text-xl p-2 rounded-md
-                                        text-white shadow-lg
-                                        transition-all duration-150
-                                        hover:shadow-xl hover:-translate-y-1
-                                        border-b-4 border-r-2 border-green-900
-                                        active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
-                                        font-sans
-                                    "
-                                    style={{ background: 'linear-gradient(to right, #22c55e, #3b82f6)' }}
-                                >
-                                    <div className="font-bold flex items-center gap-2">
-                                        <p>Resume</p>
-                                        <Download className="w-5 h-5" />
-                                    </div>
-                                </button>
-                            </a>
+                            <div className="flex flex-col gap-3 shrink-0">
+                                <a href="/resumes/Fullstack_Software_Engineering_Luis_Villalon_Resume.pdf" download>
+                                    <button
+                                        className="
+                                            text-xl p-2 rounded-md
+                                            text-white shadow-lg
+                                            transition-all duration-150
+                                            hover:shadow-xl hover:-translate-y-1
+                                            border-b-4 border-r-2 border-green-900
+                                            active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
+                                            font-sans
+                                        "
+                                        style={{ background: 'linear-gradient(to right, #22c55e, #3b82f6)' }}
+                                    >
+                                        <div className="font-bold flex items-center gap-2">
+                                            <p>Fullstack Resume</p>
+                                            <Download className="w-5 h-5" />
+                                        </div>
+                                    </button>
+                                </a>
+                                <a href="/resumes/AI_LLM_Luis_Villalon_Resume.pdf" download>
+                                    <button
+                                        className="
+                                            text-xl p-2 rounded-md
+                                            text-white shadow-lg
+                                            transition-all duration-150
+                                            hover:shadow-xl hover:-translate-y-1
+                                            border-b-4 border-r-2 border-green-900
+                                            active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
+                                            font-sans
+                                        "
+                                        style={{ background: 'linear-gradient(to right, #22c55e, #3b82f6)' }}
+                                    >
+                                        <div className="font-bold flex items-center gap-2">
+                                            <p>AI/LLM Resume</p>
+                                            <Download className="w-5 h-5" />
+                                        </div>
+                                    </button>
+                                </a>
+                            </div>
                         </div>
 
                         <div className="flex flex-wrap gap-2 mt-6">

@@ -18,13 +18,13 @@ export type Project = {
 
 const projects: Project[] = [
     {
-        title: 'OneTab',
+        title: 'kanso',
         description: 'A full-stack web application enabling users to custom-organize tasks, notes, and habits using categorical tags.',
         tech: 'Next.js, React.js, TypeScript, Tailwind CSS, Python, FastAPI, PostgreSQL, RESTful CRUD Operations',
         github_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend',
         frontend_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend', // TODO: confirm link
         backend_repo: 'https://github.com/LuisFVillalon/TaskMaster-Backend', // TODO: confirm link
-        live_app: 'https://task-master-mvp.vercel.app/',
+        live_app: 'https://kanso-web-app.vercel.app/',
         image: '/projects/frontend/taskmaster.png',
         mobileFriendly: true,
         categories: ['top', 'fullstack', 'ai'],
