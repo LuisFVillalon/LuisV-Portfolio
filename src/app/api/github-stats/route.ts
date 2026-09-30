@@ -36,11 +36,30 @@ function contributionLevel(count: number): 0 | 1 | 2 | 3 | 4 {
   return 4;
 }
 
-function summarizeEvent(type: string, repoName: string, payload: Record<string, unknown>): string {
+// GitHub's Events API no longer includes `commits`/`size` on PushEvent payloads
+// (only `before`/`head`), so the commit count comes from the compare endpoint.
+async function countPushCommits(repoName: string, payload: Record<string, unknown>): Promise<number | null> {
+  if (Array.isArray(payload.commits)) return payload.commits.length;
+  const { before, head } = payload;
+  if (typeof before !== 'string' || typeof head !== 'string' || /^0+$/.test(before)) return null;
+  try {
+    const compare = await githubRestFetch(`https://api.github.com/repos/${repoName}/compare/${before}...${head}`);
+    return typeof compare.total_commits === 'number' ? compare.total_commits : null;
+  } catch {
+    return null;
+  }
+}
+
+function summarizeEvent(
+  type: string,
+  repoName: string,
+  payload: Record<string, unknown>,
+  pushCommits: number | null = null
+): string {
   switch (type) {
     case 'PushEvent': {
-      const commits = Array.isArray(payload.commits) ? payload.commits.length : 0;
-      return `Pushed ${commits} commit${commits === 1 ? '' : 's'} to ${repoName}`;
+      if (pushCommits === null) return `Pushed to ${repoName}`;
+      return `Pushed ${pushCommits} commit${pushCommits === 1 ? '' : 's'} to ${repoName}`;
     }
     case 'PullRequestEvent':
       return `${payload.action ?? 'Updated'} a pull request in ${repoName}`;
@@ -341,14 +360,20 @@ async function fetchRecentActivity(username: string): Promise<GitHubActivityItem
   const events: RestEvent[] = await githubRestFetch(
     `https://api.github.com/users/${username}/events/public?per_page=10`
   );
-  return events.slice(0, 8).map((event) => ({
-    id: event.id,
-    type: event.type,
-    repoName: event.repo.name,
-    repoUrl: `https://github.com/${event.repo.name}`,
-    summary: summarizeEvent(event.type, event.repo.name, event.payload),
-    createdAt: event.created_at,
-  }));
+  return Promise.all(
+    events.slice(0, 8).map(async (event) => {
+      const pushCommits =
+        event.type === 'PushEvent' ? await countPushCommits(event.repo.name, event.payload) : null;
+      return {
+        id: event.id,
+        type: event.type,
+        repoName: event.repo.name,
+        repoUrl: `https://github.com/${event.repo.name}`,
+        summary: summarizeEvent(event.type, event.repo.name, event.payload, pushCommits),
+        createdAt: event.created_at,
+      };
+    })
+  );
 }
 
 // ---- Route handler ----------------------------------------------------------

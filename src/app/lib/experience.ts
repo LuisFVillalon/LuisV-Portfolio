@@ -123,6 +123,24 @@ const education: education[] = [
 ];
 const certificates: certificates[] = [
     {
+        title: 'AI Fluency: Framework and Foundations',
+        institution: 'Anthropic: Claude Academy',
+        time: 'Sept 2026',
+        description: 'Learned Anthropic\'s 4D AI Fluency framework (Delegation, Description, Discernment, Diligence) for deciding when to use AI, prompting it effectively, critically evaluating its outputs, and using it responsibly.',
+        tech: 'AI Fluency, Prompt Design, Output Evaluation, Human-AI Collaboration, Responsible AI',
+        cert_link: 'https://academy.claude.com/verify/c6af0df1db8e5e38e225f58e6e3a9c9b',
+        institution_link: 'https://academy.claude.com/'
+    },
+    {
+        title: 'Claude 101',
+        institution: 'Anthropic: Claude Academy',
+        time: 'Sept 2026',
+        description: 'Learned to integrate Claude into everyday work, including structured prompting, reusable context with Projects and Skills, artifacts, connected tools, and research mode.',
+        tech: 'Prompt Engineering, Claude Projects, Skills, Artifacts, Connectors, Claude Code',
+        cert_link: 'https://academy.claude.com/verify/3222bc453c71b8ccd8c3f58443790589',
+        institution_link: 'https://academy.claude.com/'
+    },       
+    {
         title: 'TIP103 | Advanced Technical Interview Prep',
         institution: 'CodePath',
         time: 'Spring 2026',
