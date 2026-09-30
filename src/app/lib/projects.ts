@@ -24,7 +24,7 @@ const projects: Project[] = [
         github_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend',
         frontend_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend', // TODO: confirm link
         backend_repo: 'https://github.com/LuisFVillalon/TaskMaster-Backend', // TODO: confirm link
-        live_app: 'https://kanso-web-app.vercel.app/',
+        live_app: 'https://kanso-landing.vercel.app/',
         image: '/projects/frontend/taskmaster.png',
         mobileFriendly: true,
         categories: ['top', 'fullstack', 'ai'],
