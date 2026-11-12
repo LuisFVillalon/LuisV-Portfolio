@@ -182,7 +182,7 @@ const projects: Project[] = [
     {
         title: 'Library',
         description: 'A book library app for adding, removing, and updating book entries.',
-        tech: 'HTML, CS, JavaScript, React.js, DOM Manipulation',
+        tech: 'HTML, CSS, JavaScript, React.js, DOM Manipulation',
         github_repo: 'https://github.com/LuisFVillalon/Library-theOdinProject',
         live_app: 'https://luisfvillalon.github.io/Library-theOdinProject/',
         image: '/projects/frontend/library.png',
@@ -191,7 +191,7 @@ const projects: Project[] = [
     },
     {
         title: 'Rock, Paper, Scissors!',
-        description: 'Reddit-clone web application. Create an account, post, comment, and vote!',
+        description: 'Browser rock, paper, scissors game against the computer, which picks at random. First to 5 wins takes the game.',
         tech: 'HTML, CSS, JavaScript',
         github_repo: 'https://github.com/LuisFVillalon/Rock-Paper-Scissors-OdinProject',
         live_app: 'https://luisfvillalon.github.io/Rock-Paper-Scissors-OdinProject/',
