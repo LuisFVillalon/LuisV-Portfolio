@@ -13,6 +13,10 @@ export type Project = {
     image: string;
     mobileFriendly: boolean;
     categories: ProjectCategory[];
+    /** Award badge shown on the homepage tile, e.g. { title: 'First Place', event: 'Some Hackathon 2026' }. */
+    award?: { title: string; event: string };
+    /** One-line measurable result shown on the homepage tile. Rendered only when set. */
+    outcome?: string;
     categoryOverrides?: Partial<Record<ProjectCategory, CategoryOverride>>;
 };
 
@@ -76,6 +80,8 @@ const projects: Project[] = [
         image: '/projects/frontend/ross.png',
         mobileFriendly: false,
         categories: ['top', 'ai'],
+        award: { title: 'First Place', event: 'Swans Applied AI Hackathon 2026' },
+        outcome: 'Won first place at the Swans Applied AI Hackathon 2026, beating 60+ teams.',
     },
     {
         title: 'LuisV Portfolio',

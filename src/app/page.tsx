@@ -8,7 +8,7 @@ export default function Home() {
   const posts = getAllMarkdownBlogPosts();
 
   return (
-    <div className=" flex font-[Monospace] flex-col items-center justify-start min-h-screen bg-[#FFFFFF]">
+    <div className=" flex font-[Monospace] flex-col items-center justify-start min-h-screen bg-[#F5F5F7]">
       <Navbar />
       <Homebody posts={posts} />
       <Footer />
