@@ -42,7 +42,7 @@ export default function IntroTile() {
         <BentoTile className="md:col-span-2 lg:row-span-2 flex flex-col justify-center gap-4 lg:p-7">
             <div className="flex items-center gap-4">
                 <Image
-                    src="/selfie.JPG"
+                    src="/headshot.jpg"
                     alt="Luis Villalon headshot"
                     width={208}
                     height={208}
