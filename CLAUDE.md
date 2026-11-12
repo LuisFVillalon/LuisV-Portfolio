@@ -27,9 +27,9 @@ No test suite is configured.
 
 All site content is defined as typed TypeScript data — not fetched from a CMS or database. To add or update content, edit the relevant file:
 
-- `projects.ts` — project entries; each entry has a `categories` array of `'top' | 'frontend' | 'fullstack' | 'ai' | 'academic'`; `'top'` marks a project as featured on the homepage. An entry can also define `categoryOverrides` — a per-category partial override (description, tech, repo links) applied via `applyCategoryOverrides` when the same project is shown under more than one category page
+- `projects.ts` — project entries; each entry has a `categories` array of `'top' | 'frontend' | 'fullstack' | 'ai' | 'academic'`; `'top'` marks a project as featured on the homepage. An entry can also define `categoryOverrides` — a per-category partial override (description, tech, repo links) applied via `applyCategoryOverrides` when the same project is shown under more than one category page. Optional `award` (`{ title, event }`) and `outcome` (one-line result) render on the homepage project tiles only when set
 - `markdownBlogs.ts` / `blogTypes.ts` — reads blog posts from Markdown files instead of typed data; see "Blog posts" below
-- `experience.ts` — exports separate named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`
+- `experience.ts` — exports separate named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`; plus `profile` (optional `openTo` line shown in the homepage intro) and `resumes` (paths to the PDFs in `public/resumes/`)
 - `testimonials.ts` — testimonial entries
 - `linkedinPosts.ts` — embedded LinkedIn post URLs shown in `LinkedInSection`; to add one, open the post on LinkedIn → Send → Embed this post, and copy the iframe `src` into `embedUrl`
 
@@ -37,7 +37,7 @@ All site content is defined as typed TypeScript data — not fetched from a CMS 
 
 Unlike other content, blog posts are **not** defined in `src/app/lib/` as typed data. Each post lives in its own folder under `public/blog/blog_<n>/` containing a `.md` file with YAML frontmatter (`id`, `title`, `author`, `date`, `readTime`, `category`, `image_card`) followed by the Markdown body. `src/app/lib/markdownBlogs.ts` reads and parses these files server-side with `gray-matter` at request time:
 
-- `getAllMarkdownBlogPosts()` — returns all posts, newest first, used by the blog listing page and the homepage's "Latest Blog Posts" section
+- `getAllMarkdownBlogPosts()` — returns all posts, newest first, used by the blog listing page and the homepage's Writing tile
 - `getMarkdownBlogPostById(id)` — returns a single post by its frontmatter `id`, used by `blog/[slug]/page.tsx`
 
 The Markdown body is rendered with `react-markdown` + `remark-gfm` on the post detail page, which also builds a table of contents from `##`/`###` headings (see `blogTypes.ts`'s `slugifyHeading`). Only posts with a corresponding `.md` file appear on the site.
@@ -46,7 +46,7 @@ The Markdown body is rendered with `react-markdown` + `remark-gfm` on the post d
 
 ```
 src/app/
-├── page.tsx                    # Home (assembles home section components)
+├── page.tsx                    # Home (bento grid of tiles, then GitHub stats + LinkedIn posts)
 ├── about/page.tsx
 ├── experience/page.tsx
 ├── contact/page.tsx
@@ -64,7 +64,7 @@ src/app/
 
 ```
 src/app/components/
-├── home/          # HeroSection, TechSection, ExperienceSection, ProjectCardsSection, BlogSection, LinkedInSection, TestimonialSection, SelfieSection, HomeBody
+├── home/          # HomeBody (bento grid), BentoTile, IntroTile, ProjectTile, InfoTiles (experience/now/stack/writing/contact), LinkedInSection, TechSection (unused)
 ├── blog/          # BlogList, TableOfContents, ScrollToTop
 ├── experience/    # ExperienceComponents
 ├── Cards/         # PanelTemplate, ReviewCard, SectionCard
