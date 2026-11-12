@@ -48,7 +48,7 @@ All site content is TypeScript data in `src/app/lib/` — no CMS or database:
 |---|---|
 | `projects.ts` | Projects; filtered by `categories` array (`top`, `frontend`, `backend`, `academic`) |
 | `blogs.ts` | Blog posts; numeric `id` is the URL slug (`/blog/1`) |
-| `experience.ts` | Named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools` |
+| `experience.ts` | Named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`; plus `profile` (homepage intro `openTo` line) and `resumes` (PDF paths in `public/resumes/`) |
 | `testimonials.ts` | Testimonials |
 
 Pages live under `src/app/` and follow Next.js App Router conventions. Components are organized by feature under `src/app/components/`.
