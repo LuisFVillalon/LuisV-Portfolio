@@ -191,7 +191,7 @@ const certificates: certificates[] = [
         time: 'Oct 2022',
         description: 'Developer certification representing approximately 300 hours of JavaScript work.',
         tech: 'JavaScript, ES6 Features, Regular Expressions, Algorithms, Object-Oriented Programming, Functional Programming',
-        cert_link: 'https://www.freecodecamp.org/certification/LuisBoy/responsive-web-design',
+        cert_link: 'https://www.freecodecamp.org/certification/LuisBoy/javascript-algorithms-and-data-structures',
         institution_link: 'https://www.freecodecamp.org/'
     },        
 ];
