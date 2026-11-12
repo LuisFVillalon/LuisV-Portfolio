@@ -379,11 +379,8 @@ const profile: profile = {
     openTo: 'Early Career New Grad Software Engineer roles',
 };
 
-const resumes = {
-    fullstack: '/resumes/Fullstack_Software_Engineering_Luis_Villalon_Resume.pdf',
-    ai: '/resumes/AI_LLM_Luis_Villalon_Resume.pdf',
-};
+const resume = '/resumes/Luis_Villalon_Resume.pdf';
 
 export {
-    professionalExperience, education, certificates, techTools, currentlyDoing, leadership, profile, resumes
+    professionalExperience, education, certificates, techTools, currentlyDoing, leadership, profile, resume
 };

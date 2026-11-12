@@ -29,7 +29,7 @@ All site content is defined as typed TypeScript data — not fetched from a CMS 
 
 - `projects.ts` — project entries; each entry has a `categories` array of `'top' | 'frontend' | 'fullstack' | 'ai' | 'academic'`; `'top'` marks a project as featured on the homepage. An entry can also define `categoryOverrides` — a per-category partial override (description, tech, repo links) applied via `applyCategoryOverrides` when the same project is shown under more than one category page. Optional `award` (`{ title, event }`) and `outcome` (one-line result) render on the homepage project tiles only when set
 - `markdownBlogs.ts` / `blogTypes.ts` — reads blog posts from Markdown files instead of typed data; see "Blog posts" below
-- `experience.ts` — exports separate named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`; plus `profile` (optional `openTo` line shown in the homepage intro) and `resumes` (paths to the PDFs in `public/resumes/`)
+- `experience.ts` — exports separate named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`; plus `profile` (optional `openTo` line shown in the homepage intro) and `resume` (path to the résumé PDF in `public/resumes/`)
 - `testimonials.ts` — testimonial entries
 - `linkedinPosts.ts` — embedded LinkedIn post URLs shown in `LinkedInSection`; to add one, open the post on LinkedIn → Send → Embed this post, and copy the iframe `src` into `embedUrl`
 

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { getProjectsByCategory } from '@/app/lib/projects';
-import { professionalExperience, profile, resumes } from '@/app/lib/experience';
+import { professionalExperience, profile, resume } from '@/app/lib/experience';
 import { linkedinProfileUrl } from '@/app/lib/linkedinPosts';
 import { BentoTile, primaryButtonClass, secondaryButtonClass } from './BentoTile';
 import { isLiveApp } from './ProjectTile';
@@ -85,11 +85,8 @@ export default function IntroTile() {
             )}
 
             <div className="flex flex-wrap gap-2">
-                <a href={resumes.fullstack} target="_blank" rel="noopener noreferrer" className={primaryButtonClass}>
-                    ↓ Full-stack résumé
-                </a>
-                <a href={resumes.ai} target="_blank" rel="noopener noreferrer" className={secondaryButtonClass}>
-                    ↓ AI/LLM résumé
+                <a href={resume} target="_blank" rel="noopener noreferrer" className={primaryButtonClass}>
+                    ↓ Résumé
                 </a>
                 <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className={secondaryButtonClass}>
                     GitHub

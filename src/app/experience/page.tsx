@@ -13,6 +13,7 @@ import {
     ExperienceBeyondTech,
 } from '../components/experience/ExperienceComponents';
 import { Download } from "lucide-react";
+import { resume } from "../lib/experience";
 import CTASection from "../components/CTASection";
 import { SectionCard, SectionHeading } from "../components/Cards/SectionCard";
 
@@ -55,7 +56,7 @@ export default function ExperiencePage() {
                                 and evolving as a developer. Pick a category below to explore my experience!
                             </p>
                             <div className="flex flex-col gap-3 shrink-0">
-                                <a href="/resumes/Fullstack_Software_Engineering_Luis_Villalon_Resume.pdf" download>
+                                <a href={resume} download>
                                     <button
                                         className="
                                             text-xl p-2 rounded-md
@@ -66,29 +67,10 @@ export default function ExperiencePage() {
                                             active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
                                             font-sans
                                         "
-                                        style={{ background: 'linear-gradient(to right, #22c55e, #3b82f6)' }}
+                                        style={{ backgroundColor: '#15803d', backgroundImage: 'linear-gradient(to right, #22c55e, #3b82f6)' }}
                                     >
                                         <div className="font-bold flex items-center gap-2">
-                                            <p>Fullstack Resume</p>
-                                            <Download className="w-5 h-5" />
-                                        </div>
-                                    </button>
-                                </a>
-                                <a href="/resumes/AI_LLM_Luis_Villalon_Resume.pdf" download>
-                                    <button
-                                        className="
-                                            text-xl p-2 rounded-md
-                                            text-white shadow-lg
-                                            transition-all duration-150
-                                            hover:shadow-xl hover:-translate-y-1
-                                            border-b-4 border-r-2 border-green-900
-                                            active:scale-95 active:shadow-md active:border-b-2 active:translate-y-1
-                                            font-sans
-                                        "
-                                        style={{ background: 'linear-gradient(to right, #22c55e, #3b82f6)' }}
-                                    >
-                                        <div className="font-bold flex items-center gap-2">
-                                            <p>AI/LLM Resume</p>
+                                            <p>Resume</p>
                                             <Download className="w-5 h-5" />
                                         </div>
                                     </button>

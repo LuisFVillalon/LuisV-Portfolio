@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { professionalExperience, currentlyDoing, techTools, resumes } from '@/app/lib/experience';
+import { professionalExperience, currentlyDoing, techTools, resume } from '@/app/lib/experience';
 import { linkedinProfileUrl } from '@/app/lib/linkedinPosts';
 import { MarkdownBlogPost } from '@/app/lib/markdownBlogs';
 import { BentoTile, primaryButtonClass } from './BentoTile';
@@ -120,14 +120,14 @@ const outlineLightButtonClass = `inline-flex items-center rounded-lg px-3.5 py-2
 
 export function ContactTile() {
     return (
-        <div className="md:col-span-2 min-w-0 rounded-2xl bg-gradient-to-br from-[#0A0A23] to-[#1d2a6b] p-4 md:p-5 text-white">
+        <div className="md:col-span-2 min-w-0 rounded-2xl bg-[#0A0A23] bg-[linear-gradient(to_bottom_right,#0A0A23,#1d2a6b)] p-4 md:p-5 text-white">
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.12em] text-[#aab]">Get in touch</p>
             <h2 className="mb-4 font-sans text-lg font-extrabold">Hiring a new-grad software engineer?</h2>
             <div className="flex flex-wrap gap-2">
                 <Link href="/contact" className={primaryButtonClass}>
                     Contact me
                 </Link>
-                <a href={resumes.fullstack} target="_blank" rel="noopener noreferrer" className={outlineLightButtonClass}>
+                <a href={resume} target="_blank" rel="noopener noreferrer" className={outlineLightButtonClass}>
                     Résumé
                 </a>
                 <a href={linkedinProfileUrl} target="_blank" rel="noopener noreferrer" className={outlineLightButtonClass}>
