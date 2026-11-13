@@ -7,7 +7,7 @@ Personal portfolio website built with Next.js 15 and React 19. Showcases project
 - **Framework:** Next.js 15 (App Router), React 19, TypeScript 5
 - **Styling:** Tailwind CSS 3 with CSS variable theming
 - **Email:** Resend API (`/api/contact` route)
-- **Icons:** Font Awesome, Lucide React, React Icons
+- **Icons:** Lucide React, React Icons
 - **Deployment:** Vercel (recommended)
 
 ## Getting Started

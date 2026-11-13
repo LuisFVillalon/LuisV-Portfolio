@@ -17,7 +17,7 @@ No test suite is configured.
 
 - **Framework:** Next.js 15 with App Router, React 19, TypeScript 5
 - **Styling:** Tailwind CSS 3 with CSS variable-based theming (`--background`, `--foreground`)
-- **Icons:** Font Awesome, Lucide React, React Icons
+- **Icons:** Lucide React, React Icons
 - **Email:** Resend (primary), Nodemailer (secondary) via `/api/contact`
 - **Path alias:** `@/*` maps to `./src/*`
 
