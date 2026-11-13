@@ -1,11 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { BentoTile } from '../home/BentoTile';
-import { PROJECT_FILTERS, ProjectFilter as Filter, filterLabel } from './projectFilters';
+import { PROJECT_FILTERS, ProjectFilter as Filter, filterLabel, parseProjectFilter } from './projectFilters';
 
 interface ProjectFilterProps {
-    initial: Filter;
     counts: Record<Filter, number>;
     /** Header copy rendered above the chips. */
     intro: React.ReactNode;
@@ -17,11 +16,10 @@ interface ProjectFilterProps {
  * The Projects page header and filter chips. Filtering happens in place; the choice is
  * mirrored in ?type= so links (and the old /projects/<category> URLs) can open a filtered view.
  */
-export default function ProjectFilter({ initial, counts, intro, views }: ProjectFilterProps) {
-    const [filter, setFilter] = useState<Filter>(initial);
+export default function ProjectFilter({ counts, intro, views }: ProjectFilterProps) {
+    const filter = parseProjectFilter(useSearchParams().getAll('type'));
 
     const select = (next: Filter) => {
-        setFilter(next);
         const url = new URL(window.location.href);
         if (next === 'all') url.searchParams.delete('type');
         else url.searchParams.set('type', next);

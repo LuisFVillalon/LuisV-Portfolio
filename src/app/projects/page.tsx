@@ -3,10 +3,10 @@ import Footer from '../components/Footer';
 import ProjectFilter from '../components/projects/ProjectFilter';
 import { AcademicGroup, AiGroup, FrontendList, FullstackGroup } from '../components/projects/ProjectSections';
 import { getProjectGroups } from '../components/projects/projectGroups';
-import { parseProjectFilter } from '../components/projects/projectFilters';
 
-export default async function ProjectsPage({ searchParams }: { searchParams: Promise<{ type?: string | string[] }> }) {
-    const { type } = await searchParams;
+export const dynamic = 'force-dynamic';
+
+export default function ProjectsPage() {
     const { aiTiles, aiCrossListed, fullstack, frontend, academic, counts } = getProjectGroups();
 
     const ai = <AiGroup tiles={aiTiles} crossListed={aiCrossListed} count={counts.ai} />;
@@ -20,7 +20,6 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
                     Any other filter shows only its own group. */}
                 <section className="grid grid-cols-1 gap-3 py-4 md:grid-cols-2 md:gap-4 md:py-6 lg:grid-cols-4">
                     <ProjectFilter
-                        initial={parseProjectFilter(type)}
                         counts={counts}
                         intro={
                             <>
