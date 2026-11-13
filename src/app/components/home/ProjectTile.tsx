@@ -12,18 +12,64 @@ export const isLiveApp = (project: Project) =>
 export const splitTech = (tech: string) =>
     tech.split(/,\s*(?![^()]*\))/).map((t) => t.trim()).filter(Boolean);
 
-interface ProjectTileProps {
+interface ProjectLinksProps {
     project: Project;
-    featured?: boolean;
+    /** Also link a separate back-end repo when the project has one. */
+    backendLink?: boolean;
 }
 
-export default function ProjectTile({ project, featured = false }: ProjectTileProps) {
+/** "Open app ↗" for live deployments, "Code ↗" for the repo, and optionally "Back-end ↗". */
+export function ProjectLinks({ project, backendLink = false }: ProjectLinksProps) {
+    const live = isLiveApp(project);
+    const backend =
+        backendLink && project.backend_repo && project.backend_repo !== project.github_repo
+            ? project.backend_repo
+            : undefined;
+
+    return (
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+            {live && (
+                <a href={project.live_app} target="_blank" rel="noopener noreferrer" className={inlineLinkClass}>
+                    Open app ↗
+                </a>
+            )}
+            <a href={project.github_repo} target="_blank" rel="noopener noreferrer" className={inlineLinkClass}>
+                Code ↗
+            </a>
+            {backend && (
+                <a href={backend} target="_blank" rel="noopener noreferrer" className={inlineLinkClass}>
+                    Back-end ↗
+                </a>
+            )}
+        </div>
+    );
+}
+
+interface ProjectTileProps {
+    project: Project;
+    /** Spans two grid columns with a larger title and more tech. */
+    featured?: boolean;
+    /** Shows a "★ Featured" pill (the Projects page marks every top project). */
+    featuredMark?: boolean;
+    /** Height classes for the screenshot band; defaults to the homepage sizes. */
+    imageClass?: string;
+    backendLink?: boolean;
+}
+
+export default function ProjectTile({
+    project,
+    featured = false,
+    featuredMark = false,
+    imageClass,
+    backendLink = false,
+}: ProjectTileProps) {
     const live = isLiveApp(project);
     const tech = splitTech(project.tech).slice(0, featured ? 4 : 3).join(' · ');
+    const imageHeight = imageClass ?? `h-[150px] ${featured ? 'lg:h-[132px]' : 'lg:h-[92px]'}`;
 
     return (
         <BentoTile className={`flex flex-col ${featured ? 'md:col-span-2' : ''}`}>
-            <div className={`relative -mx-4 -mt-4 md:-mx-5 md:-mt-5 mb-3 border-b border-[#0A0A23]/10 bg-[#F3F3F5] h-[150px] ${featured ? 'lg:h-[132px]' : 'lg:h-[92px]'}`}>
+            <div className={`relative -mx-4 -mt-4 md:-mx-5 md:-mt-5 mb-3 border-b border-[#0A0A23]/10 bg-[#F3F3F5] ${imageHeight}`}>
                 <Image
                     src={project.image}
                     alt={`${project.title} screenshot`}
@@ -34,6 +80,11 @@ export default function ProjectTile({ project, featured = false }: ProjectTilePr
             </div>
 
             <div className="flex flex-wrap gap-2">
+                {featuredMark && (
+                    <span className="inline-flex items-center rounded-full bg-[#0A0A23] px-2.5 py-1 font-sans text-xs font-bold text-white">
+                        ★ Featured
+                    </span>
+                )}
                 {project.award && (
                     <span className="inline-flex items-center gap-1.5 rounded-full border border-[#f1d27a] bg-[#fff6d6] px-2.5 py-1 font-sans text-xs font-bold text-[#7a4b00]">
                         🏆 {project.award.title} · {project.award.event}
@@ -58,15 +109,8 @@ export default function ProjectTile({ project, featured = false }: ProjectTilePr
             )}
             <p className="mt-2 text-xs text-[#6e6e78]">{tech}</p>
 
-            <div className="mt-auto flex gap-4 pt-3 text-xs">
-                {live && (
-                    <a href={project.live_app} target="_blank" rel="noopener noreferrer" className={inlineLinkClass}>
-                        Open app ↗
-                    </a>
-                )}
-                <a href={project.github_repo} target="_blank" rel="noopener noreferrer" className={inlineLinkClass}>
-                    Code ↗
-                </a>
+            <div className="mt-auto pt-3">
+                <ProjectLinks project={project} backendLink={backendLink} />
             </div>
         </BentoTile>
     );
