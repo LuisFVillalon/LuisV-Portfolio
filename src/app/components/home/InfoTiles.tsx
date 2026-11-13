@@ -42,7 +42,7 @@ export function ExperienceTile() {
 
 export function NowTile() {
     return (
-        <BentoTile label="Now">
+        <BentoTile label="Currently doing">
             <ul className="list-disc space-y-2 pl-4 text-[13px]">
                 {currentlyDoing.map((item) => (
                     <li key={`${item.company}-${item.position}`}>

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Project } from '@/app/lib/projects';
 import { BentoTile, inlineLinkClass } from './BentoTile';
+import ExpandableDescription from './ExpandableDescription';
 
 /** A project counts as "live" when its live_app is a real deployment rather than its GitHub repo. */
 export const isLiveApp = (project: Project) =>
@@ -49,7 +50,7 @@ export default function ProjectTile({ project, featured = false }: ProjectTilePr
             <h3 className={`mt-2 font-sans font-extrabold leading-snug text-[#0A0A23] ${featured ? 'text-xl lg:text-2xl' : 'text-lg lg:text-base'}`}>
                 {project.title}
             </h3>
-            <p className="mt-1 text-[13px] leading-relaxed line-clamp-3 lg:line-clamp-2">{project.description}</p>
+            <ExpandableDescription text={project.description} />
             {project.outcome && (
                 <p className="mt-2 border-l-[3px] border-[#22c55e] bg-[#f4fbf6] px-3 py-1.5 text-[13px]">
                     <span className="font-sans font-bold text-[#0A0A23]">Outcome:</span> {project.outcome}
