@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import { AlertCircle, Check, Copy, Loader2, Send } from 'lucide-react';
 import { primaryButtonClass } from '../home/BentoTile';
-
-export const CONTACT_EMAIL = 'lvillalon1179@sdsu.edu';
+import { CONTACT_EMAIL } from '../../lib/contact';
 
 interface FormData {
     fullName: string;

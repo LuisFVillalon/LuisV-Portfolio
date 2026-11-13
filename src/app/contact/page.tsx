@@ -4,7 +4,8 @@ import { ArrowUpRight, FileDown, FolderGit2, Github, Linkedin, Mail } from 'luci
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { BentoTile, primaryButtonClass } from '../components/home/BentoTile';
-import ContactForm, { CONTACT_EMAIL, CopyEmailButton } from '../components/contact/ContactForm';
+import ContactForm, { CopyEmailButton } from '../components/contact/ContactForm';
+import { CONTACT_EMAIL } from '../lib/contact';
 import { profile, resume } from '../lib/experience';
 import { linkedinProfileUrl } from '../lib/linkedinPosts';
 
