@@ -4,16 +4,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Pixelify+Sans:wght@400..700&display=swap');
 
+/* The site has a single light theme. Pin it so visitors whose device is in
+   dark mode get the same readable colors instead of near-white body text
+   (and dark native form controls) on the site's white tiles. */
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  color-scheme: light;
 }
 
 body {
