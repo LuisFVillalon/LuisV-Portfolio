@@ -57,7 +57,7 @@ const professionalExperience: professionalExperience[] = [
         company: 'Second Course',
         position: 'Full-Stack Intern',
         time: 'Nov 2025 - Jan 2026',
-        description: 'Developed a React Native application with Firestore as a backend for the Apple Store with the purpose of addressing food insecurity among college students.',
+        description: 'Developed a React Native application with Firestore as a backend for the App Store with the purpose of addressing food insecurity among college students.',
         tech:'React Native, Firestore Database, Expo Go, Github',
         link: 'https://www.secondcourse.co/food-security'    
     }, 
@@ -73,7 +73,7 @@ const professionalExperience: professionalExperience[] = [
         company: 'Sports Excitement',
         position: 'Front-End Developer Intern',
         time: 'Dec 2024 - Mar 2025',
-        description: 'Developed responsive a web application, collaborated on UI/UX improvements, and optimized performance for a global sports platform.',
+        description: 'Developed a responsive web application, collaborated on UI/UX improvements, and optimized performance for a global sports platform.',
         tech:'HTML, Tailwind CSS, React.js, Figma, Github, Taiga',
         link: 'https://www.linkedin.com/company/sportsexcitement/posts/?feedView=all'
     },
@@ -89,10 +89,10 @@ const professionalExperience: professionalExperience[] = [
 ];
 const education: education[] = [
     {
-        institution: 'NxP Semiconductors',
+        institution: 'NXP Semiconductors',
         course: 'Engineering Bootcamp: Agentic AI in the Cloud',
         time: 'Feb 2026 - Apr 2026',
-        description: 'Developed and deployed cloud-based agentic AI systems using LangChain, LLM APIs, RAG architectures, multi-agent orchestration, and scalable AWS/GCP under mentorship from the Design & Automation Team at NXP .',
+        description: 'Developed and deployed cloud-based agentic AI systems using LangChain, LLM APIs, RAG architectures, multi-agent orchestration, and scalable AWS/GCP under mentorship from the Design & Automation Team at NXP.',
         tech:'LLM APIs, LangChain, Python, RAG Systems',
         link: 'https://www.nxp.com/'
     },    
