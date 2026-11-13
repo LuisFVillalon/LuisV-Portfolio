@@ -2,10 +2,9 @@ import Image from 'next/image';
 import { getProjectsByCategory } from '@/app/lib/projects';
 import { professionalExperience, profile, resume } from '@/app/lib/experience';
 import { linkedinProfileUrl } from '@/app/lib/linkedinPosts';
+import { GITHUB_URL } from '@/app/lib/contact';
 import { BentoTile, primaryButtonClass, secondaryButtonClass } from './BentoTile';
 import { isLiveApp } from './ProjectTile';
-
-const GITHUB_URL = 'https://github.com/LuisFVillalon';
 
 type Fact = { headline: string; detail: string };
 

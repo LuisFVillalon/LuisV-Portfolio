@@ -1,42 +1,74 @@
+import Link from 'next/link';
+import { FileDown, Github, Linkedin, Mail } from 'lucide-react';
+import { CONTACT_EMAIL, GITHUB_URL } from '../lib/contact';
+import { resume } from '../lib/experience';
+import { linkedinProfileUrl } from '../lib/linkedinPosts';
+
+const pageLinks = [
+    { href: '/about', label: 'About' },
+    { href: '/experience', label: 'Experience' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/contact', label: 'Contact' },
+];
+
+const linkClass = 'font-bold text-[#333333] transition-colors hover:text-[#006400] hover:underline underline-offset-4';
+
+const channelClass = `inline-flex items-center gap-1.5 font-bold text-[#333333] transition-colors
+    hover:text-[#006400] hover:underline underline-offset-4`;
+
 export default function Footer() {
-  return (
-    <div className="text-[#0A0A23] flex justify-between w-full border-t border-gray-250 shadow-md mt-auto ">
-    <footer className=" w-full flex justify-between space-x-5 mx-[10%] md:mx-[20%] my-[0.5%] items-center" style={{ animation: "fadeUp 0.5s ease-in 0s forwards" }}>
-          <p className="text-2xl">
-            Luis Villalon © 2026
-          </p>
-          <div className="flex justify-end items-center space-x-5">
-            <a href="https://www.linkedin.com/in/luis-villalon/" target="_blank" rel="noopener noreferrer">
-              <i className="                        hover:font-black 
-                        hover:cursor-pointer
-                        hover:underline
-                        hover:text-[#006400] transition-colors
-                        fab fa-linkedin text-3xl" 
-              ></i>
-            </a>
-            <a href="https://github.com/LuisFVillalon" target="_blank" rel="noopener noreferrer">
-              <i className="                        hover:font-black 
-                        hover:cursor-pointer
-                        hover:underline
-                        hover:text-[#006400] transition-colors
-                        fab fa-github text-3xl"
-              ></i>
-            </a>
-          </div>
-    </footer>
-    <style>{`
-            @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            }     
-            
-        `}</style>
-    </div>
-  );
+    const year = new Date().getFullYear();
+
+    return (
+        <footer className="mt-auto w-full border-t border-[#0A0A23]/10 bg-[#F5F5F7] font-[Monospace] text-[#333333]">
+            <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-6 text-xs md:px-8 lg:flex-row lg:items-center lg:justify-between">
+                <div className="min-w-0">
+                    <p className="font-sans text-sm font-extrabold text-[#0A0A23]">Luis Villalon</p>
+                    <p className="text-[#6e6e78]">Early Career New Grad SWE</p>
+                </div>
+
+                <nav aria-label="Footer">
+                    <ul className="flex flex-wrap gap-x-4 gap-y-2">
+                        {pageLinks.map(({ href, label }) => (
+                            <li key={href}>
+                                <Link href={href} className={linkClass}>
+                                    {label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+
+                <ul className="flex flex-wrap gap-x-4 gap-y-2">
+                    <li>
+                        <a href={linkedinProfileUrl} target="_blank" rel="noopener noreferrer" className={channelClass}>
+                            <Linkedin className="h-3.5 w-3.5" aria-hidden="true" />
+                            LinkedIn
+                        </a>
+                    </li>
+                    <li>
+                        <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className={channelClass}>
+                            <Github className="h-3.5 w-3.5" aria-hidden="true" />
+                            GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a href={`mailto:${CONTACT_EMAIL}`} className={channelClass}>
+                            <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+                            Email
+                        </a>
+                    </li>
+                    <li>
+                        <a href={resume} target="_blank" rel="noopener noreferrer" className={channelClass}>
+                            <FileDown className="h-3.5 w-3.5" aria-hidden="true" />
+                            Résumé
+                        </a>
+                    </li>
+                </ul>
+
+                <p className="text-[#6e6e78] lg:text-right">© {year} Luis Villalon</p>
+            </div>
+        </footer>
+    );
 }
