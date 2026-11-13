@@ -5,20 +5,27 @@ import { inlineLinkClass } from './BentoTile';
 
 interface ExpandableDescriptionProps {
     text: string;
+    /** Line-clamp classes applied while collapsed. */
+    clamp?: string;
+    className?: string;
 }
 
 /**
  * A project description clamped to a few lines, with a Read more / Read less
  * toggle that only appears when the clamped text is actually cut off.
  */
-export default function ExpandableDescription({ text }: ExpandableDescriptionProps) {
+export default function ExpandableDescription({
+    text,
+    clamp = 'line-clamp-3 lg:line-clamp-2',
+    className = 'mt-1',
+}: ExpandableDescriptionProps) {
     const ref = useRef<HTMLParagraphElement>(null);
     const id = useId();
     const [expanded, setExpanded] = useState(false);
     const [truncated, setTruncated] = useState(false);
 
     // Measure only while clamped; re-measure whenever the element resizes
-    // (viewport changes swap the clamp between 3 and 2 lines as well).
+    // (viewport changes can swap the clamp's line count as well).
     useEffect(() => {
         const el = ref.current;
         if (!el || expanded) return;
@@ -34,7 +41,7 @@ export default function ExpandableDescription({ text }: ExpandableDescriptionPro
             <p
                 id={id}
                 ref={ref}
-                className={`mt-1 text-[13px] leading-relaxed ${expanded ? '' : 'line-clamp-3 lg:line-clamp-2'}`}
+                className={`${className} text-[13px] leading-relaxed ${expanded ? '' : clamp}`}
             >
                 {text}
             </p>
