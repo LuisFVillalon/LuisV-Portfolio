@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { MarkdownBlogPost, TocItem, slugifyHeading } from './blogTypes';
+import { BlogPost, MarkdownBlogPost, TocItem, getBodyToc, getExcerpt, slugifyHeading } from './blogTypes';
 
-export type { MarkdownBlogPost, TocItem };
+export type { BlogPost, MarkdownBlogPost, TocItem };
 
 const BLOG_DIR = path.join(process.cwd(), 'public', 'blog');
 
@@ -97,4 +97,27 @@ export function extractTableOfContents(content: string): { toc: TocItem[]; conte
 
   const strippedContent = lines.slice(bodyStartIndex).join('\n');
   return { toc, content: strippedContent };
+}
+
+function toBlogPost(post: MarkdownBlogPost): BlogPost {
+  const { content: body } = extractTableOfContents(post.content);
+  return { ...post, body, toc: getBodyToc(body), excerpt: getExcerpt(body) };
+}
+
+/** All published posts, newest first, with their derived body, TOC and excerpt. */
+export function getBlogPosts(): BlogPost[] {
+  return getAllMarkdownBlogPosts().map(toBlogPost);
+}
+
+/** A post by its frontmatter id plus its newer/older neighbours and the remaining posts. */
+export function getBlogPostWithNeighbors(id: number) {
+  const posts = getBlogPosts();
+  const index = posts.findIndex((post) => post.id === id);
+  if (index === -1) return null;
+  return {
+    post: posts[index],
+    newer: index > 0 ? posts[index - 1] : null,
+    older: index < posts.length - 1 ? posts[index + 1] : null,
+    others: posts.filter((_, i) => i !== index),
+  };
 }
