@@ -144,7 +144,7 @@ export default function Navbar() {
                 <Link
                     href="/"
                     aria-current={onHome ? 'page' : undefined}
-                    className={`group flex min-w-0 items-center gap-2.5 justify-self-start rounded-full pr-1 ${focusRing}`}
+                    className={`group flex min-w-0 max-w-full items-center gap-2.5 justify-self-start rounded-full pr-1 ${focusRing}`}
                 >
                     <Image
                         src="/headshot.jpg"
