@@ -29,7 +29,7 @@ export default function LinkedInSection() {
       >
         <Linkedin className="text-[#0A0A23]" size={20} />
         <p className="text-[#0A0A23] text-center font-sans font-bold hover:font-black hover:cursor-pointer hover:underline hover:text-[#006400] transition-colors text-xl">
-          Latest LinkedIn Posts
+          Top LinkedIn Posts
         </p>
       </a>
 
