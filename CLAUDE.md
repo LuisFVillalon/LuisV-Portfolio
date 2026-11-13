@@ -49,7 +49,7 @@ src/app/
 ├── page.tsx                    # Home (bento grid of tiles, then GitHub stats + LinkedIn posts)
 ├── about/page.tsx
 ├── experience/page.tsx         # Career timeline: header/education/skills/certificates sidebar beside the role timeline
-├── contact/page.tsx
+├── contact/page.tsx            # Contact bento: dark hero, one-click channel tiles (résumé/LinkedIn/GitHub/projects), form tile
 ├── testimonials/page.tsx
 ├── projects/page.tsx           # Projects hub
 ├── projects/[category]/page.tsx  # Dynamic route — category is one of frontend/fullstack/ai/academic
@@ -66,6 +66,7 @@ src/app/
 src/app/components/
 ├── home/          # HomeBody (bento grid), BentoTile, IntroTile, ProjectTile, InfoTiles (experience/now/stack/writing/contact), LinkedInSection, TechSection (unused)
 ├── blog/          # BlogList, TableOfContents, ScrollToTop
+├── contact/       # ContactForm (client form posting to /api/contact) and CopyEmailButton
 ├── experience/    # ExperienceComponents (header, role timelines, beyond tech, education/skills/certificates tiles)
 ├── Cards/         # PanelTemplate, ReviewCard, SectionCard
 ├── NavBar.tsx     # Responsive nav with mobile hamburger menu
