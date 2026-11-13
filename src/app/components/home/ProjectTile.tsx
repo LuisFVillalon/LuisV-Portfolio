@@ -9,7 +9,7 @@ export const isLiveApp = (project: Project) =>
 
 // Split a tech list on commas that are not inside parentheses,
 // so "Claude (Opus 5.5, Haiku 4.5)" stays one item.
-const splitTech = (tech: string) =>
+export const splitTech = (tech: string) =>
     tech.split(/,\s*(?![^()]*\))/).map((t) => t.trim()).filter(Boolean);
 
 interface ProjectTileProps {

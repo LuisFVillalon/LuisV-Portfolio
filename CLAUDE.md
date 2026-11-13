@@ -29,7 +29,7 @@ All site content is defined as typed TypeScript data — not fetched from a CMS 
 
 - `projects.ts` — project entries; each entry has a `categories` array of `'top' | 'frontend' | 'fullstack' | 'ai' | 'academic'`; `'top'` marks a project as featured on the homepage. An entry can also define `categoryOverrides` — a per-category partial override (description, tech, repo links) applied via `applyCategoryOverrides` when the same project is shown under more than one category page. Optional `award` (`{ title, event }`) and `outcome` (one-line result) render on the homepage project tiles only when set
 - `markdownBlogs.ts` / `blogTypes.ts` — reads blog posts from Markdown files instead of typed data; see "Blog posts" below
-- `experience.ts` — exports separate named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`; plus `profile` (optional `openTo` line shown in the homepage intro) and `resume` (path to the résumé PDF in `public/resumes/`)
+- `experience.ts` — exports separate named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`, `beyondTech` (non-engineering roles shown last, collapsed, on the Experience page); plus `profile` (optional `openTo` line shown in the homepage intro) and `resume` (path to the résumé PDF in `public/resumes/`)
 - `testimonials.ts` — testimonial entries
 - `linkedinPosts.ts` — embedded LinkedIn post URLs shown in `LinkedInSection`; to add one, open the post on LinkedIn → Send → Embed this post, and copy the iframe `src` into `embedUrl`
 
@@ -48,7 +48,7 @@ The Markdown body is rendered with `react-markdown` + `remark-gfm` on the post d
 src/app/
 ├── page.tsx                    # Home (bento grid of tiles, then GitHub stats + LinkedIn posts)
 ├── about/page.tsx
-├── experience/page.tsx
+├── experience/page.tsx         # Career timeline: header/education/skills/certificates sidebar beside the role timeline
 ├── contact/page.tsx
 ├── testimonials/page.tsx
 ├── projects/page.tsx           # Projects hub
@@ -66,7 +66,7 @@ src/app/
 src/app/components/
 ├── home/          # HomeBody (bento grid), BentoTile, IntroTile, ProjectTile, InfoTiles (experience/now/stack/writing/contact), LinkedInSection, TechSection (unused)
 ├── blog/          # BlogList, TableOfContents, ScrollToTop
-├── experience/    # ExperienceComponents
+├── experience/    # ExperienceComponents (header, role timelines, beyond tech, education/skills/certificates tiles)
 ├── Cards/         # PanelTemplate, ReviewCard, SectionCard
 ├── NavBar.tsx     # Responsive nav with mobile hamburger menu
 ├── Footer.tsx

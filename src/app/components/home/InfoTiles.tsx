@@ -4,12 +4,12 @@ import { linkedinProfileUrl } from '@/app/lib/linkedinPosts';
 import { MarkdownBlogPost } from '@/app/lib/markdownBlogs';
 import { BentoTile, primaryButtonClass } from './BentoTile';
 
-const tidy = (text: string) => text.replace(/\s+/g, ' ').trim();
+export const tidy = (text: string) => text.replace(/\s+/g, ' ').trim();
 
 // "Undergraduate Researcher: Adversarial Attacks…" -> "Undergraduate Researcher"
-const shortPosition = (position: string) => tidy(position.split(':')[0]);
+export const shortPosition = (position: string) => tidy(position.split(':')[0]);
 // "Calexico Neighborhood House – Mission Thrift Store…" -> "Calexico Neighborhood House"
-const shortCompany = (company: string) => tidy(company.split(' – ')[0]);
+export const shortCompany = (company: string) => tidy(company.split(' – ')[0]);
 
 export function ExperienceTile() {
     const years = professionalExperience.flatMap((role) => (role.time.match(/\d{4}/g) ?? []).map(Number));
