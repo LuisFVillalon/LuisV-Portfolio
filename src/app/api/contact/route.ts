@@ -2,38 +2,23 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Shown to visitors whenever sending fails; the real error is only logged server-side.
+const GENERIC_ERROR =
+  "Sorry, your message couldn't be sent right now. Please try again later or email me directly.";
 
-// Narrowing helpers
-function isRecord(v: unknown): v is Record<string, unknown> {
-  return typeof v === "object" && v !== null;
+// Escape visitor text before it is placed into the email HTML.
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
-function pickString(o: Record<string, unknown>, key: string): string | undefined {
-  const v = o[key];
-  return typeof v === "string" ? v : undefined;
-}
-
-function getErrorMessage(err: unknown): string {
-  // Strings
-  if (typeof err === "string") return err;
-
-  // Error instances
-  if (err instanceof Error) return err.message || err.name || "Unexpected error";
-
-  // Plain objects (possible Resend error shapes)
-  if (isRecord(err)) {
-    // common fields
-    const msg =
-      pickString(err, "message") ||
-      (isRecord(err.error) && pickString(err.error, "message")) || // nested: { error: { message } }
-      pickString(err, "name") ||
-      (isRecord(err.error) && pickString(err.error, "name"));
-
-    if (msg) return msg;
-  }
-
-  return "Unexpected error";
+// Remove CR/LF so visitor text can't inject extra lines into the subject or headers.
+function stripLineBreaks(value: string): string {
+  return value.replace(/[\r\n]+/g, " ").trim();
 }
 
 export async function POST(req: Request) {
@@ -48,27 +33,34 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Please fill out all fields." }, { status: 400 });
     }
 
+    const subjectName = stripLineBreaks(name);
+    const replyTo = stripLineBreaks(email);
+
+    // Created per request so a missing key fails this request (generic error)
+    // instead of crashing module load and the production build.
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
       from: process.env.FROM_EMAIL!,   // e.g. onboarding@resend.dev
       to: [process.env.TO_EMAIL!],     // your edu inbox
-      subject: `New contact form message from ${name}`,
-      replyTo: email,
+      subject: `New contact form message from ${subjectName}`,
+      replyTo,
       html: `
         <h2>New contact</h2>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
+        <p><b>Name:</b> ${escapeHtml(name)}</p>
+        <p><b>Email:</b> ${escapeHtml(email)}</p>
         <p><b>Message:</b></p>
-        <p>${message}</p>
+        <p>${escapeHtml(message)}</p>
       `,
     });
 
     if (error) {
-      // Resend returns an object; convert to string
-      return NextResponse.json({ ok: false, error: getErrorMessage(error) }, { status: 400 });
+      console.error("Contact form: Resend failed to send email", error);
+      return NextResponse.json({ ok: false, error: GENERIC_ERROR }, { status: 400 });
     }
 
     return NextResponse.json({ ok: true });
   } catch (err: unknown) {
-    return NextResponse.json({ ok: false, error: getErrorMessage(err) }, { status: 500 });
+    console.error("Contact form: unexpected error", err);
+    return NextResponse.json({ ok: false, error: GENERIC_ERROR }, { status: 500 });
   }
 }
