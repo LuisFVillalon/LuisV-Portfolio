@@ -71,7 +71,7 @@ src/app/components/
 ├── experience/    # ExperienceComponents (header, role timelines, beyond tech, education/skills/certificates tiles)
 ├── projects/      # ProjectFilter (client chips), ProjectSections (groups), CompactRow, ShowMoreList, projectGroups/projectFilters helpers
 ├── Cards/         # ReviewCard, SectionCard, LinkedInPostCard
-├── NavBar.tsx     # Responsive nav with mobile hamburger menu
+├── NavBar.tsx     # Sticky slim header: headshot + name (home), centered links marking the current page, Résumé button, accessible slide-down phone menu
 ├── Footer.tsx
 └── Wrapper.tsx    # Page-width container
 ```
