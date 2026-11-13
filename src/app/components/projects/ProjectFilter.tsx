@@ -8,7 +8,7 @@ interface ProjectFilterProps {
     counts: Record<Filter, number>;
     /** Header copy rendered above the chips. */
     intro: React.ReactNode;
-    /** What each filter shows; 'all' is the full three-group page. */
+    /** What each filter shows; 'all' is the full page with every group. */
     views: Record<Filter, React.ReactNode>;
 }
 

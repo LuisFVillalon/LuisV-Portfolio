@@ -1,4 +1,4 @@
-import { getProjectsByCategory, Project } from '@/app/lib/projects';
+import { getAwardProjects, getProjectsByCategory, Project } from '@/app/lib/projects';
 import { ProjectFilter } from './projectFilters';
 
 export const isFeatured = (project: Project) => project.categories.includes('top');
@@ -12,6 +12,8 @@ export const featuredFirst = (projects: Project[]) => [
 
 /** Every project grouped for the Projects page, plus the per-filter counts shown on the chips. */
 export function getProjectGroups() {
+    // Award winners also stay in their normal groups below.
+    const awards = featuredFirst(getAwardProjects());
     const ai = featuredFirst(getProjectsByCategory('ai'));
     const fullstack = featuredFirst(getProjectsByCategory('fullstack'));
     const frontend = getProjectsByCategory('frontend');
@@ -25,11 +27,12 @@ export function getProjectGroups() {
 
     const counts: Record<ProjectFilter, number> = {
         all: total,
+        awards: awards.length,
         ai: ai.length,
         fullstack: fullstack.length,
         frontend: frontend.length,
         academic: academic.length,
     };
 
-    return { aiTiles, aiCrossListed, fullstack, frontend, academic, counts };
+    return { awards, aiTiles, aiCrossListed, fullstack, frontend, academic, counts };
 }

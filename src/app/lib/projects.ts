@@ -13,7 +13,7 @@ export type Project = {
     image: string;
     mobileFriendly: boolean;
     categories: ProjectCategory[];
-    /** Award badge shown on the homepage tile, e.g. { title: 'First Place', event: 'Some Hackathon 2026' }. */
+    /** Award badge shown on the project's tile or compact row, e.g. { title: 'First Place', event: 'Some Hackathon 2026' }. */
     award?: { title: string; event: string };
     /** One-line measurable result shown on the homepage tile. Rendered only when set. */
     outcome?: string;
@@ -95,13 +95,14 @@ const projects: Project[] = [
     },
     {
         title: 'The Crash App',
-        description: 'Web application for students to report hit-and-runs and earn rewards. Winner of Most Creative Project in Innovate 4 SDSU Hackathon 2025!',
+        description: 'Web application for students to report hit-and-runs and earn rewards.',
         tech: 'React.js, Tailwind CSS, Next.js, Forms, JSON files',
         github_repo: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
         live_app: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
         image: '/projects/frontend/thecrashapp.png',
         mobileFriendly: true,
         categories: ['frontend'],
+        award: { title: 'Most Creative Project', event: 'Innovate 4 SDSU Hackathon 2025' },
     },
     {
         title: 'Whats Poppin?',
@@ -270,6 +271,9 @@ const projects: Project[] = [
 
 export const getProjectsByCategory = (category: ProjectCategory) =>
     projects.filter(p => p.categories.includes(category));
+
+/** Every project that has an `award`, in projects.ts order. */
+export const getAwardProjects = () => projects.filter(p => p.award);
 
 export const applyCategoryOverrides = (project: Project, category: ProjectCategory): Project => ({
     ...project,

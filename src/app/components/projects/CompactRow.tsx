@@ -23,6 +23,11 @@ export default function CompactRow({ project, thumb = false }: CompactRowProps) 
             <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                     <h4 className="font-sans text-sm font-extrabold text-[#0A0A23]">{project.title}</h4>
+                    {project.award && (
+                        <span className="inline-flex items-center gap-1 rounded-full border border-[#f1d27a] bg-[#fff6d6] px-2 py-px font-sans text-[11px] font-bold text-[#7a4b00]">
+                            🏆 {project.award.title} · {project.award.event}
+                        </span>
+                    )}
                     {isLiveApp(project) && (
                         <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0c6b33]">
                             <span className="h-[6px] w-[6px] rounded-full bg-[#16a34a]" aria-hidden="true" />

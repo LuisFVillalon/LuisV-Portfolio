@@ -27,7 +27,7 @@ No test suite is configured.
 
 All site content is defined as typed TypeScript data — not fetched from a CMS or database. To add or update content, edit the relevant file:
 
-- `projects.ts` — project entries; each entry has a `categories` array of `'top' | 'frontend' | 'fullstack' | 'ai' | 'academic'`; `'top'` marks a project as featured (homepage tiles, and a "★ Featured" tile leading its group on /projects). An entry can also define `categoryOverrides` — a per-category partial override (description, tech, repo links) applied via `applyCategoryOverrides`; the Projects page uses the `ai` override for the AI cross-reference line of a project whose tile lives under Full-stack. Optional `award` (`{ title, event }`) and `outcome` (one-line result) render on project tiles only when set
+- `projects.ts` — project entries; each entry has a `categories` array of `'top' | 'frontend' | 'fullstack' | 'ai' | 'academic'`; `'top'` marks a project as featured (homepage tiles, and a "★ Featured" tile leading its group on /projects). An entry can also define `categoryOverrides` — a per-category partial override (description, tech, repo links) applied via `applyCategoryOverrides`; the Projects page uses the `ai` override for the AI cross-reference line of a project whose tile lives under Full-stack. Optional `award` (`{ title, event }`) and `outcome` (one-line result) render on project tiles only when set (`award` also on compact list rows)
 - `markdownBlogs.ts` / `blogTypes.ts` — reads blog posts from Markdown files instead of typed data; see "Blog posts" below
 - `experience.ts` — exports separate named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`, `beyondTech` (non-engineering roles shown last, collapsed, on the Experience page); plus `profile` (optional `openTo` line shown in the homepage intro) and `resume` (path to the résumé PDF in `public/resumes/`)
 - `testimonials.ts` — testimonial entries
@@ -52,14 +52,14 @@ src/app/
 ├── experience/page.tsx         # Career timeline: header/education/skills/certificates sidebar beside the role timeline
 ├── contact/page.tsx            # Contact bento: dark hero, one-click channel tiles (résumé/LinkedIn/GitHub/projects), form tile
 ├── testimonials/page.tsx
-├── projects/page.tsx           # Projects: header + filter chips (?type=), AI / Full-stack (+ earlier front-end list) / Coursework groups
+├── projects/page.tsx           # Projects: header + filter chips (?type=), Award-winning / AI / Full-stack (+ earlier front-end list) / Coursework groups
 ├── projects/[category]/page.tsx  # Legacy URLs — 308-redirects /projects/<category> to /projects?type=<category>
 ├── blog/page.tsx               # Blog index: header summary, featured latest post, topic-filterable post list
 ├── blog/[slug]/page.tsx        # Dynamic route — slug matches blog entry id; sticky TOC rail beside the article
 └── api/contact/route.ts        # POST handler; sends email via Resend
 ```
 
-`projects/page.tsx` is a server component: `components/projects/projectGroups.ts` buckets the projects (featured first, award winners leading) and computes the chip counts, and the small client `ProjectFilter` renders the header chips and swaps which group is shown, mirroring the choice in `?type=` (`all`, `ai`, `fullstack`, `frontend`, `academic`). Projects in the `frontend` category render as compact rows in an "Earlier front-end work" list inside Full-stack; coursework renders as an image-free list.
+`projects/page.tsx` is a server component: `components/projects/projectGroups.ts` buckets the projects (featured first, award winners leading) and computes the chip counts, and the small client `ProjectFilter` renders the header chips and swaps which group is shown, mirroring the choice in `?type=` (`all`, `awards`, `ai`, `fullstack`, `frontend`, `academic`; `awards` lists every project with an `award`, which also stays in its own group). Projects in the `frontend` category render as compact rows in an "Earlier front-end work" list inside Full-stack; coursework renders as an image-free list.
 
 ### Components are organized by page/feature
 

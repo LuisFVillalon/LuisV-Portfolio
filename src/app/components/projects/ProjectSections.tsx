@@ -45,6 +45,20 @@ function GroupTiles({ projects }: { projects: Project[] }) {
 
 const lowerFirst = (text: string) => text.charAt(0).toLowerCase() + text.slice(1);
 
+export function AwardsGroup({ projects }: { projects: Project[] }) {
+    return (
+        <>
+            <GroupHeading
+                id="awards"
+                title="Award-Winning Hackathon Projects"
+                count={`${projects.length} projects`}
+                blurb="Projects that placed or won an award at a hackathon. Each also appears in its usual group below."
+            />
+            <GroupTiles projects={projects} />
+        </>
+    );
+}
+
 export function AiGroup({ tiles, crossListed, count }: { tiles: Project[]; crossListed: Project[]; count: number }) {
     return (
         <>
