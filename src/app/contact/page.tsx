@@ -1,302 +1,112 @@
-"use client";
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowUpRight, FileDown, FolderGit2, Github, Linkedin, Mail } from 'lucide-react';
+import Navbar from '../components/NavBar';
+import Footer from '../components/Footer';
+import { BentoTile, primaryButtonClass } from '../components/home/BentoTile';
+import ContactForm, { CopyEmailButton } from '../components/contact/ContactForm';
+import { CONTACT_EMAIL } from '../lib/contact';
+import { profile, resume } from '../lib/experience';
+import { linkedinProfileUrl } from '../lib/linkedinPosts';
 
-import React, { useMemo, useState } from "react";
-import Navbar from "../components/NavBar";
-import Wrapper from "../components/Wrapper";
-import Footer from "../components/Footer";
-import { SectionCard } from "../components/Cards/SectionCard";
-import { Github, Linkedin, Mail, User, MessageSquare, Copy, Check } from "lucide-react";
+const GITHUB_URL = 'https://github.com/LuisFVillalon';
 
-interface FormData {
-  fullName: string;
-  email: string;
-  message: string;
+const channelTileClass = `group flex min-w-0 flex-col justify-between gap-4 rounded-2xl border border-[#0A0A23]/10 bg-white p-4
+    text-[#333333] transition-all hover:-translate-y-0.5 hover:border-[#006400]/40 hover:shadow-md md:p-5`;
+
+interface ChannelTileProps {
+    href: string;
+    icon: React.ReactNode;
+    label: string;
+    title: string;
+    cta: string;
+    /** Site-internal links stay in the tab; everything else opens a new one. */
+    internal?: boolean;
 }
-interface FormErrors {
-  fullName?: string;
-  email?: string;
-  message?: string | null;
-}
 
-const ContactForm: React.FC = () => {
-  const [isCopied, setIsCopied] = useState(false);
-  const [formData, setFormData] = useState<FormData>({ fullName: "", email: "", message: "" });
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSending, setIsSending] = useState(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-
-    if (errors[name as keyof FormErrors]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
-  };
-
-  const validateForm = (): FormErrors => {
-    const newErrors: FormErrors = {};
-    if (!formData.fullName.trim()) newErrors.fullName = "Full name is required";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Please enter a valid email address";
-    if (!formData.message.trim()) newErrors.message = "Message is required";
-    return newErrors;
-  };
-
-  const isFormValid = useMemo(() => {
-    const v = validateForm();
-    return Object.keys(v).length === 0;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formData.fullName, formData.email, formData.message]);
-
-const toErrorMessage = (e: unknown): string => {
-  if (!e) return "Failed to send message. Please try again.";
-
-  if (typeof e === "string") return e;
-
-  if (e instanceof Error) return e.message;
-
-  if (typeof e === "object" && e !== null) {
-    const obj = e as Record<string, unknown>;
-    if (typeof obj.error === "string") return obj.error;
-    if (typeof obj.message === "string") return obj.message;
-    if (typeof obj.name === "string") return obj.name;
-  }
-
-  try {
-    return JSON.stringify(e);
-  } catch {
-    return "Unexpected error";
-  }
-};
-
-
-const handleSubmit = async (): Promise<void> => {
-  const newErrors = validateForm();
-  if (Object.keys(newErrors).length) {
-    setErrors(newErrors);
-    return;
-  }
-
-  try {
-    setIsSending(true);
-    setErrors({});
-
-    const res = await fetch("/api/contact", {   // <-- make sure this matches your API route path
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: formData.fullName,
-        email: formData.email,
-        message: formData.message,
-      }),
-    });
-
-    if (res.ok) {
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setFormData({ fullName: "", email: "", message: "" });
-        setIsSubmitted(false);
-      }, 3000);
-    } else {
-      const err = await res.json().catch(() => ({}));
-      setErrors({ message: toErrorMessage(err) });
-    }
-  } catch (e: unknown) {
-    setErrors({ message: toErrorMessage(e) });
-  } finally {
-    setIsSending(false);
-  }
-};
-
-
-  if (isSubmitted) {
-    return (
-      <SectionCard className="text-center">
-        <div className="w-16 h-16 bg-[#006400] rounded-full flex items-center justify-center mx-auto mb-4">
-          <Check className="w-8 h-8 text-white" />
-        </div>
-        <h2 className="text-2xl md:text-4xl font-bold text-[#006400] mb-2 font-sans">Message Sent!</h2>
-        <p className="text-[#333333] md:text-2xl">Thank you for reaching out. I&apos;ll get back to you soon!</p>
-      </SectionCard>
+function ChannelTile({ href, icon, label, title, cta, internal = false }: ChannelTileProps) {
+    const body = (
+        <>
+            <div className="flex items-start justify-between">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F3F3F5] text-[#0A0A23] transition-colors group-hover:bg-[#0A0A23] group-hover:text-white">
+                    {icon}
+                </span>
+                <ArrowUpRight className="h-4 w-4 text-[#6e6e78] group-hover:text-[#006400]" aria-hidden="true" />
+            </div>
+            <div className="min-w-0">
+                <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#6e6e78]">{label}</p>
+                <p className="truncate font-sans text-base font-extrabold text-[#0A0A23]">{title}</p>
+                <p className="text-xs font-bold text-[#006400] group-hover:underline">{cta}</p>
+            </div>
+        </>
     );
-  }
 
-  const handleCopyEmail = async (): Promise<void> => {
-    const email = "lvillalon1179@sdsu.edu";
-    try {
-      setIsCopied(true);
-      await navigator.clipboard.writeText(email);
-      setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy email:", err);
-      const textArea = document.createElement("textarea");
-      textArea.value = email;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
-    }
-  };
+    return internal ? (
+        <Link href={href} className={channelTileClass}>
+            {body}
+        </Link>
+    ) : (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={channelTileClass}>
+            {body}
+        </a>
+    );
+}
 
-  return (
-    <SectionCard>
-      {/* Header Section with Contact Info */}
-      <div className="text-center mb-8">
-        {/* Contact Info Display */}
-        <div className="bg-[#EEEEEE] rounded-lg p-4 mb-6">
-          <div className="md:text-lg flex items-center justify-center gap-2 mb-3">
-            <button
-              onClick={handleCopyEmail}
-              className="flex items-center gap-2 hover:bg-white py-2 px-2 rounded-lg transition-colors duration-200 group"
-              title={isCopied ? "Copied!" : "Click to copy email"}
-            >
-              {isCopied ? <Check className="w-5 h-5 text-[#006400]" /> : <Copy className="w-5 h-5 text-[#006400] group-hover:text-[#004d00]" />}
-              <span
-                className={`font-sans font-medium transition-colors duration-200 ${
-                  isCopied ? "text-[#006400]" : "text-[#0A0A23] group-hover:text-[#006400]"
-                }`}
-              >
-                lvillalon1179@sdsu.edu
-              </span>
-            </button>
-          </div>
-          <div className="md:text-lg flex items-center justify-center gap-8">
-            <a
-              href="https://github.com/LuisFVillalon"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-[#0A0A23] hover:text-[#006400] transition-colors duration-200"
-            >
-              <Github className="w-5 h-5" />
-              <span className="font-sans">GitHub</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/luis-villalon/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-[#0A0A23] hover:text-[#006400] transition-colors duration-200"
-            >
-              <Linkedin className="w-5 h-5" />
-              <span className="font-sans">LinkedIn</span>
-            </a>
-          </div>
+export default function ContactPage() {
+    return (
+        <div className="flex min-h-screen flex-col items-center justify-start bg-[#F5F5F7] font-[Monospace]">
+            <Navbar />
+            <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
+                {/* DOM order is the phone order: hero, one-click channels, then the form.
+                    On lg the form tile is pinned to the right half and the rest flow around it. */}
+                <section className="grid grid-cols-2 gap-3 py-4 md:gap-4 md:py-6 lg:grid-cols-4">
+                    {/* Same dark gradient as the homepage ContactTile that links here. */}
+                    <div className="col-span-2 flex min-w-0 flex-col gap-4 rounded-2xl bg-[#0A0A23] bg-[linear-gradient(to_bottom_right,#0A0A23,#1d2a6b)] p-5 text-white lg:p-6">
+                        <div className="flex items-center gap-3">
+                            <Image
+                                src="/headshot.jpg"
+                                alt="Luis Villalon headshot"
+                                width={128}
+                                height={128}
+                                priority
+                                className="h-14 w-14 flex-none rounded-xl object-cover"
+                            />
+                            <div className="min-w-0">
+                                <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#aab]">Get in touch</p>
+                                <p className="font-sans text-sm font-bold text-[#86efac]">Software Engineer · Full-Stack · Agentic AI</p>
+                            </div>
+                        </div>
+                        <h1 className="font-sans text-2xl font-extrabold leading-tight lg:text-3xl">
+                            Hiring a new-grad software engineer?
+                        </h1>
+                        {profile.openTo && (
+                            <p className="text-sm text-[#d6d9f0]">
+                                <span className="font-sans font-bold text-white">Open to:</span> {profile.openTo}
+                            </p>
+                        )}
+                        <div className="flex flex-wrap items-center gap-2">
+                            <a href={`mailto:${CONTACT_EMAIL}`} className={primaryButtonClass}>
+                                <Mail className="h-4 w-4" aria-hidden="true" /> Email me
+                            </a>
+                            <CopyEmailButton />
+                        </div>
+                        <p className="break-all text-xs text-[#aab]">{CONTACT_EMAIL}</p>
+                    </div>
+
+                    <ChannelTile href={resume} icon={<FileDown className="h-5 w-5" />} label="Résumé" title="Download PDF" cta="Open résumé →" />
+                    <ChannelTile href={linkedinProfileUrl} icon={<Linkedin className="h-5 w-5" />} label="LinkedIn" title="luis-villalon" cta="Connect →" />
+                    <ChannelTile href={GITHUB_URL} icon={<Github className="h-5 w-5" />} label="GitHub" title="LuisFVillalon" cta="See the code →" />
+                    <ChannelTile href="/projects" icon={<FolderGit2 className="h-5 w-5" />} label="Projects" title="What I've built" cta="Browse projects →" internal />
+
+                    <BentoTile
+                        label="Or send a message"
+                        className="col-span-2 flex flex-col lg:col-start-3 lg:row-span-3 lg:row-start-1 lg:p-6"
+                    >
+                        <ContactForm />
+                    </BentoTile>
+                </section>
+            </div>
+            <Footer />
         </div>
-      </div>
-
-      {/* Contact Form */}
-      <div className="space-y-6">
-        {/* Full Name */}
-        <div>
-          <label htmlFor="fullName" className="md:text-xl font-sans block text-sm font-semibold text-[#0A0A23] mb-2">
-            <User className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
-            Full Name *
-          </label>
-          <input
-            type="text"
-            id="fullName"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleInputChange}
-            className={`md:text-xl w-full text-[#333333] px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006400] transition-colors duration-200 ${
-              errors.fullName ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-[#006400]"
-            }`}
-            placeholder="Enter your full name"
-          />
-          {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
-        </div>
-
-        {/* Email */}
-        <div>
-          <label htmlFor="email" className="md:text-lg font-sans block text-sm font-semibold text-[#0A0A23] mb-2">
-            <Mail className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
-            Email Address *
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            className={`md:text-xl text-[#333333] w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006400] transition-colors duration-200 ${
-              errors.email ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-[#006400]"
-            }`}
-            placeholder="Enter your email address"
-          />
-          {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-        </div>
-
-        {/* Message */}
-        <div>
-          <label htmlFor="message" className="md:text-lg font-sans block text-sm font-semibold text-[#0A0A23] mb-2">
-            <MessageSquare className="w-4 h-4 md:h-5 md:w-5 inline mr-1" />
-            Message *
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={6}
-            value={formData.message}
-            onChange={handleInputChange}
-            className={`md:text-xl text-[#333333] w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006400] transition-colors duration-200 resize-none ${
-              errors.message ? "border-red-500 bg-red-50" : "border-gray-300 focus:border-[#006400]"
-            }`}
-            placeholder="Enter your message here..."
-          />
-          {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
-        </div>
-
-        {/* Form-level error (if any) */}
-        {errors.message && typeof errors.message === "string" && !formData.message && (
-          <p className="text-red-600 text-sm">{errors.message}</p>
-        )}
-
-        {/* Submit */}
-        <button
-          onClick={handleSubmit}
-          disabled={isSending || !isFormValid}
-          aria-busy={isSending}
-          className={`w-full text-2xl p-2 m-2 rounded-md text-white shadow-lg transition-all duration-150 border-b-4 border-r-2 font-sans
-            ${isSending || !isFormValid
-              ? "bg-gray-400 cursor-not-allowed border-gray-600"
-              : "hover:shadow-xl hover:-translate-y-1 active:scale-95 active:shadow-md border-[#004d00] active:border-b-2 active:translate-y-1"
-            }`
-          }
-          style={
-            isSending || !isFormValid
-              ? undefined
-              : { background: 'linear-gradient(to right, #22c55e, #3b82f6)' }
-          }
-        >
-          {isSending ? "Sending..." : "Send Message"}
-        </button>
-      </div>
-    </SectionCard>
-  );
-};
-
-export default function Contact(): React.ReactElement {
-  return (
-    <div className="font-[Monospace] flex flex-col items-center justify-start min-h-screen bg-[#FFFFFF]">
-      <Navbar />
-      <Wrapper>
-        <section className="flex flex-col gap-6 py-8 md:py-12">
-
-          {/* ── Title ── */}
-          <div className="text-center md:text-left">
-            <h1 className="font-sans text-3xl md:text-5xl font-extrabold text-[#0A0A23]">Get In Touch</h1>
-            <p className="mt-2 text-base md:text-lg text-[#B3B3B3] font-sans font-bold">
-              I&apos;d love to hear how I can be of service. Send me a message!
-            </p>
-          </div>
-
-          <ContactForm />
-
-        </section>
-      </Wrapper>
-      <Footer />
-    </div>
-  );
+    );
 }

@@ -49,7 +49,7 @@ src/app/
 ├── page.tsx                    # Home (bento grid of tiles, then GitHub stats + LinkedIn posts)
 ├── about/page.tsx
 ├── experience/page.tsx         # Career timeline: header/education/skills/certificates sidebar beside the role timeline
-├── contact/page.tsx
+├── contact/page.tsx            # Contact bento: dark hero, one-click channel tiles (résumé/LinkedIn/GitHub/projects), form tile
 ├── testimonials/page.tsx
 ├── projects/page.tsx           # Projects: header + filter chips (?type=), AI / Full-stack (+ earlier front-end list) / Coursework groups
 ├── projects/[category]/page.tsx  # Legacy URLs — 308-redirects /projects/<category> to /projects?type=<category>
@@ -66,6 +66,7 @@ src/app/
 src/app/components/
 ├── home/          # HomeBody (bento grid), BentoTile, IntroTile, ProjectTile (also used on /projects), ExpandableDescription (Read more), InfoTiles (experience/now/stack/writing/contact), LinkedInSection, TechSection (unused)
 ├── blog/          # BlogList, TableOfContents, ScrollToTop
+├── contact/       # ContactForm (client form posting to /api/contact) and CopyEmailButton
 ├── experience/    # ExperienceComponents (header, role timelines, beyond tech, education/skills/certificates tiles)
 ├── projects/      # ProjectFilter (client chips), ProjectSections (groups), CompactRow, ShowMoreList, projectGroups/projectFilters helpers
 ├── Cards/         # ReviewCard, SectionCard, LinkedInPostCard
