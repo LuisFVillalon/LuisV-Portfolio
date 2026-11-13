@@ -370,6 +370,59 @@ const leadership: leadership[] = [
     }, 
 ]
 
+// Non-engineering work shown last on the Experience page.
+type beyondTech = {
+    title: string;
+    org: string;
+    link?: string;
+    employers?: { name: string, link: string }[];
+    time: string;
+    description: string;
+    skills: string;
+};
+const beyondTech: beyondTech[] = [
+    {
+        title: 'After School Enrichment Tutor',
+        org: 'SPARKS, Calexico Unified School District',
+        link: 'https://www.cusdk12.org/departments/educational-services/after-school-program/index.html',
+        time: 'Dec 2023 - May 2024',
+        description: 'Led engaging after-school enrichment classes on science, technology, engineering, art, and math (STEAM), fostering curiosity and hands-on learning for students.',
+        skills: 'Leadership, Creativity, Adaptability, Communication, Problem-Solving, Organization, Engagement, Mentorship, Collaboration',
+    },
+    {
+        title: 'Sales',
+        org: 'Retail Industry',
+        employers: [
+            { name: 'Garlan\'s', link: 'https://www.garlans.com' },
+            { name: 'Aeropostale', link: 'https://www.aeropostale.com' },
+        ],
+        time: '1+ year',
+        description: 'Tracked sales performance and consistently met daily goals by engaging customers, driving purchases, and optimizing retail sales strategies.',
+        skills: '',
+    },
+    {
+        title: 'Emergency Medical Technician',
+        org: 'American Medical Response',
+        link: 'https://www.amr.net/',
+        time: 'Feb 2022 - Sept 2022',
+        description: 'Provided emergency medical care and basic life support during 911 calls and interfacility transports, ensuring patient stability and safety.',
+        skills: 'Emergency Response, Patient Care, First Aid, Critical Thinking, Teamwork, Stress Management, Assessment',
+    },
+    {
+        title: 'Customer Service',
+        org: 'Food Service Industry',
+        employers: [
+            { name: 'After\'s', link: 'https://aftersicecream.com/' },
+            { name: 'El Fogon', link: 'https://www.elfogonmexgrill.com/' },
+            { name: 'KFC', link: 'https://www.kfc.com' },
+            { name: 'The Habit', link: 'https://www.habitburger.com' },
+        ],
+        time: '3+ years',
+        description: 'Gained hands-on experience in fast-paced food service environments, providing customer service, preparing food, and working efficiently as part of a team.',
+        skills: '',
+    },
+];
+
 // Homepage intro details. `openTo` (the roles Luis is looking for) renders on the
 // homepage only when set.
 type profile = {
@@ -382,5 +435,5 @@ const profile: profile = {
 const resume = '/resumes/Luis_Villalon_Resume.pdf';
 
 export {
-    professionalExperience, education, certificates, techTools, currentlyDoing, leadership, profile, resume
+    professionalExperience, education, certificates, techTools, currentlyDoing, leadership, beyondTech, profile, resume
 };
