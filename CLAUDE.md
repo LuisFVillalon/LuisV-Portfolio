@@ -37,10 +37,11 @@ All site content is defined as typed TypeScript data — not fetched from a CMS 
 
 Unlike other content, blog posts are **not** defined in `src/app/lib/` as typed data. Each post lives in its own folder under `public/blog/blog_<n>/` containing a `.md` file with YAML frontmatter (`id`, `title`, `author`, `date`, `readTime`, `category`, `image_card`) followed by the Markdown body. `src/app/lib/markdownBlogs.ts` reads and parses these files server-side with `gray-matter` at request time:
 
-- `getAllMarkdownBlogPosts()` — returns all posts, newest first, used by the blog listing page and the homepage's Writing tile
-- `getMarkdownBlogPostById(id)` — returns a single post by its frontmatter `id`, used by `blog/[slug]/page.tsx`
+- `getAllMarkdownBlogPosts()` — returns all posts, newest first, used by the homepage's Writing tile
+- `getBlogPosts()` — the same posts plus fields derived from the body (`body` without the authored TOC block, `toc` from the body's real `##`/`###` headings, `excerpt` from the first prose paragraph), used by the blog index
+- `getBlogPostWithNeighbors(id)` — one post by its frontmatter `id` plus its newer/older posts and the rest, used by `blog/[slug]/page.tsx`
 
-The Markdown body is rendered with `react-markdown` + `remark-gfm` on the post detail page, which also builds a table of contents from `##`/`###` headings (see `blogTypes.ts`'s `slugifyHeading`). Only posts with a corresponding `.md` file appear on the site.
+The Markdown body is rendered with `react-markdown` + `remark-gfm` by `components/blog/PostMarkdown.tsx`; heading ids use `blogTypes.ts`'s `slugifyHeading` so they match the sticky scroll-spy TOC. Topics on the index are the frontmatter `category` values. Only posts with a corresponding `.md` file appear on the site (`.md.draft` files stay hidden).
 
 ### Pages follow Next.js App Router conventions
 
@@ -53,8 +54,8 @@ src/app/
 ├── testimonials/page.tsx
 ├── projects/page.tsx           # Projects: header + filter chips (?type=), AI / Full-stack (+ earlier front-end list) / Coursework groups
 ├── projects/[category]/page.tsx  # Legacy URLs — 308-redirects /projects/<category> to /projects?type=<category>
-├── blog/page.tsx
-├── blog/[slug]/page.tsx        # Dynamic route — slug matches blog entry id
+├── blog/page.tsx               # Blog index: header summary, featured latest post, topic-filterable post list
+├── blog/[slug]/page.tsx        # Dynamic route — slug matches blog entry id; sticky TOC rail beside the article
 └── api/contact/route.ts        # POST handler; sends email via Resend
 ```
 
@@ -65,15 +66,14 @@ src/app/
 ```
 src/app/components/
 ├── home/          # HomeBody (bento grid), BentoTile, IntroTile, ProjectTile (also used on /projects), ExpandableDescription (Read more), InfoTiles (experience/now/stack/writing/contact), LinkedInSection, TechSection (unused)
-├── blog/          # BlogList, TableOfContents, ScrollToTop
+├── blog/          # BlogIndexComponents, PostComponents, PostMarkdown, PostToc, TopicFilter, ReadingProgress, blogStyles
 ├── contact/       # ContactForm (client form posting to /api/contact) and CopyEmailButton
 ├── experience/    # ExperienceComponents (header, role timelines, beyond tech, education/skills/certificates tiles)
 ├── projects/      # ProjectFilter (client chips), ProjectSections (groups), CompactRow, ShowMoreList, projectGroups/projectFilters helpers
 ├── Cards/         # ReviewCard, SectionCard, LinkedInPostCard
 ├── NavBar.tsx     # Responsive nav with mobile hamburger menu
 ├── Footer.tsx
-├── Wrapper.tsx    # Page-width container
-└── CTASection.tsx
+└── Wrapper.tsx    # Page-width container
 ```
 
 ### Styling conventions
