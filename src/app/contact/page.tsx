@@ -5,11 +5,9 @@ import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { BentoTile, primaryButtonClass } from '../components/home/BentoTile';
 import ContactForm, { CopyEmailButton } from '../components/contact/ContactForm';
-import { CONTACT_EMAIL } from '../lib/contact';
+import { CONTACT_EMAIL, GITHUB_URL } from '../lib/contact';
 import { profile, resume } from '../lib/experience';
 import { linkedinProfileUrl } from '../lib/linkedinPosts';
-
-const GITHUB_URL = 'https://github.com/LuisFVillalon';
 
 const channelTileClass = `group flex min-w-0 flex-col justify-between gap-4 rounded-2xl border border-[#0A0A23]/10 bg-white p-4
     text-[#333333] transition-all hover:-translate-y-0.5 hover:border-[#006400]/40 hover:shadow-md md:p-5`;
