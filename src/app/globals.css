@@ -46,6 +46,3 @@ body {
 .typewriter-text {
     animation: blink-cursor 1s infinite;
 }
-
-/* Import Font Awesome at the end */
-@import '@fortawesome/fontawesome-free/css/all.min.css';
