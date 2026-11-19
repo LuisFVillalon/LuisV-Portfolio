@@ -38,7 +38,7 @@ export default function IntroTile() {
     const facts = getProofFacts();
 
     return (
-        <BentoTile className="md:col-span-2 lg:row-span-2 flex flex-col justify-center gap-4 lg:p-7">
+        <BentoTile className="flex flex-col justify-center gap-4 lg:p-7">
             <div className="flex items-center gap-4 lg:gap-6">
                 <Image
                     src="/headshot.jpg"
