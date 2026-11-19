@@ -131,8 +131,10 @@ export default function ProjectTile({
                 </h3>
                 <ExpandableDescription text={project.description} clamp={row ? 'line-clamp-3' : undefined} />
                 {project.outcome && (
-                    <p className={`mt-2 border-l-[3px] ${row ? 'lg:line-clamp-2' : ''} border-[#22c55e] bg-[#f4fbf6] px-3 py-1.5 text-[13px]`}>
-                        <span className="font-sans font-bold text-[#0A0A23]">Outcome:</span> {project.outcome}
+                    <p className="mt-2 border-l-[3px] border-[#22c55e] bg-[#f4fbf6] px-3 py-1.5 text-[13px]">
+                        <span className={row ? 'lg:line-clamp-2' : undefined}>
+                            <span className="font-sans font-bold text-[#0A0A23]">Outcome:</span> {project.outcome}
+                        </span>
                     </p>
                 )}
                 <p className="mt-2 text-xs text-[#6e6e78]">{tech}</p>
