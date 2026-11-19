@@ -4,7 +4,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { ASSISTANT } from "@/app/lib/assistant/config";
-import { underRateLimit, visitorId } from "@/app/lib/assistant/usage";
+import { ipId, underRateLimit } from "@/app/lib/assistant/usage";
 import { EMAIL_PATTERN, escapeHtml, stripLineBreaks } from "@/app/lib/email";
 
 // Shown to visitors whenever sending fails; the real error is only logged server-side.
@@ -36,8 +36,8 @@ export async function POST(req: Request) {
       );
     }
 
-    // Per-visitor limit (only enforced when the assistant's Redis store is configured).
-    if (!(await underRateLimit("contact", visitorId(req), ASSISTANT.leadsPerHour, 60 * 60).catch(() => true))) {
+    // Per-IP limit, so a changed user agent can't reset it (only enforced when the assistant's Redis store is configured).
+    if (!(await underRateLimit("contact", ipId(req), ASSISTANT.leadsPerHour, 60 * 60).catch(() => true))) {
       return NextResponse.json(
         { ok: false, error: "You've sent several messages already. Please try again in an hour or email me directly." },
         { status: 429 },

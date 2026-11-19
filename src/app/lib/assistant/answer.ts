@@ -5,7 +5,7 @@ import { ASSISTANT } from './config';
 import { getAnthropic } from './clients';
 import { buildMessages, FALLBACK_ANSWER, systemBlocks, type HistoryTurn } from './prompt';
 import type { RetrievedChunk } from './retrieve';
-import { costUsd } from './usage';
+import { costUsd, estimateInputCostUsd } from './usage';
 
 export type Source = { id: string; label: string; href: string };
 
@@ -37,16 +37,22 @@ export async function* streamAnswer({
     history?: HistoryTurn[];
     chunks: RetrievedChunk[];
     signal?: AbortSignal;
-    /** Updated with the answer's cost so far as usage arrives, so a cut-off answer is still billed. */
-    meter?: { costUsd: number };
+    /**
+     * Updated with the answer's cost so far as usage arrives, so a cut-off answer is still billed;
+     * `estimateUsd` is the prompt's estimated input cost, for a call cut off before any usage.
+     */
+    meter?: { costUsd: number; estimateUsd: number };
 }): AsyncGenerator<AnswerEvent> {
+    const system = systemBlocks();
+    const messages = buildMessages(question, history, chunks);
+    if (meter) meter.estimateUsd = estimateInputCostUsd(JSON.stringify({ system, messages }));
     const stream = getAnthropic().messages.stream(
         {
             model: ASSISTANT.model,
             max_tokens: ASSISTANT.answerMaxTokens,
             output_config: { effort: ASSISTANT.effort },
-            system: systemBlocks(),
-            messages: buildMessages(question, history, chunks),
+            system,
+            messages,
         },
         { signal },
     );

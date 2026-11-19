@@ -12,6 +12,10 @@ export const ASSISTANT = {
     rewriteMaxTokens: 512,
 
     dailyQuestionLimit: 15,
+    /** Ceiling per IP address per day, across every browser behind it. */
+    dailyIpQuestionLimit: 45,
+    /** Site-wide burst limit across all visitors. */
+    questionsPerMinute: 15,
     maxQuestionChars: 500,
     /** Hard monthly cap on Anthropic spend; the assistant turns itself off when reached. */
     monthlyBudgetUsd: 5,

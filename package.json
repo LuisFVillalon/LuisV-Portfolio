@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "tsx --test src/app/lib/assistant/*.test.ts",
     "assistant:index": "tsx scripts/assistant-index.ts",
     "assistant:chunks": "tsx scripts/assistant-index.ts --dry-run"
   },

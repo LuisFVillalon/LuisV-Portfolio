@@ -11,7 +11,7 @@ import { ASSISTANT, isAssistantConfigured } from '@/app/lib/assistant/config';
 import { appendTurn, deleteConversation, isConversationId } from '@/app/lib/assistant/conversations';
 import type { HistoryTurn } from '@/app/lib/assistant/prompt';
 import { retrieve } from '@/app/lib/assistant/retrieve';
-import { isOverBudget, recordSpend, refundQuestion, spendQuestion, visitorId } from '@/app/lib/assistant/usage';
+import { ipId, isOverBudget, recordSpend, refundQuestion, spendQuestion, visitorId } from '@/app/lib/assistant/usage';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -62,15 +62,16 @@ export async function POST(req: Request) {
         return json({ code: 'unavailable' }, 503);
     }
 
-    const visitor = visitorId(req);
-    let remaining: number | null;
+    const asker = { visitor: visitorId(req), ip: ipId(req) };
+    let spend: Awaited<ReturnType<typeof spendQuestion>>;
     try {
-        remaining = await spendQuestion(visitor);
+        spend = await spendQuestion(asker);
     } catch (err) {
         console.error('Assistant: question counter failed', err);
         return json({ code: 'unavailable' }, 503);
     }
-    if (remaining === null) return json({ code: 'limit', remaining: 0 }, 429);
+    if (!spend.ok) return json(spend.reason === 'limit' ? { code: 'limit', remaining: 0 } : { code: 'busy' }, 429);
+    const { remaining } = spend;
 
     const encoder = new TextEncoder();
     const stream = new ReadableStream<Uint8Array>({
@@ -78,7 +79,8 @@ export async function POST(req: Request) {
             const send = (event: object) => controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`));
             let spent = 0;
             let answering = false;
-            const meter = { costUsd: 0 };
+            const meter = { costUsd: 0, estimateUsd: 0 };
+            const cutOff = () => answering && req.signal.aborted;
             send({ t: 'start', remaining });
             try {
                 const retrieval = await retrieve(question, history);
@@ -91,13 +93,9 @@ export async function POST(req: Request) {
                     else done = event;
                 }
                 if (!done) throw new Error('Answer stream ended without a result');
-                send({
-                    t: 'done',
-                    sources: done.sources.map(({ label, href }) => ({ label, href })),
-                    fallback: done.fallback,
-                    remaining,
-                });
 
+                // Saved before "done" is sent: the client keeps the opt-out toggle disabled until
+                // then, so a later opt-out's delete always lands after this write.
                 if (conversationId && save) {
                     await appendTurn(conversationId, page, {
                         q: question,
@@ -109,17 +107,24 @@ export async function POST(req: Request) {
                 } else if (conversationId && !save) {
                     await deleteConversation(conversationId).catch(() => undefined);
                 }
+                send({
+                    t: 'done',
+                    sources: done.sources.map(({ label, href }) => ({ label, href })),
+                    fallback: done.fallback,
+                    remaining,
+                });
             } catch (err) {
                 console.error('Assistant: answering failed', err);
-                const billed = meter.costUsd > 0 || (answering && req.signal.aborted);
-                const left = billed ? remaining : await refundQuestion(visitor).catch(() => remaining);
+                const billed = meter.costUsd > 0 || cutOff();
+                const left = billed ? remaining : await refundQuestion(asker).catch(() => remaining);
                 try {
                     send({ t: 'error', remaining: left, refunded: !billed });
                 } catch {
                     // The visitor already disconnected.
                 }
             } finally {
-                await recordSpend(spent + meter.costUsd).catch((err) => console.error('Assistant: recording spend failed', err));
+                const answerCost = meter.costUsd || (cutOff() ? meter.estimateUsd : 0);
+                await recordSpend(spent + answerCost).catch((err) => console.error('Assistant: recording spend failed', err));
                 try {
                     controller.close();
                 } catch {
