@@ -58,7 +58,7 @@ interface ProjectTileProps {
      * Home hero variants, both sized to fit the first screen on lg:
      * 'row' puts the screenshot beside the text (the lead project across the top)
      * and clamps the description to two lines; 'compact' is a short
-     * stacked card (screenshot fills the spare height, three-line description, no tech line).
+     * stacked card (short screenshot band, two-line description on lg, no tech line).
      */
     layout?: 'stacked' | 'row' | 'compact';
     className?: string;
@@ -83,8 +83,8 @@ export default function ProjectTile({
             ? // Beside the text on lg: full tile height, a fixed share of the width.
               'h-[150px] lg:-mb-5 lg:mr-5 lg:h-auto lg:w-[36%] lg:flex-none lg:border-b-0 lg:border-r'
             : compact
-              ? // Grows to fill the tile when its grid row is taller than the text needs.
-                'h-[150px] lg:h-auto lg:min-h-[96px] lg:flex-1'
+              ? // A short, fixed band on lg so the hero's project row fits a laptop screen.
+                'h-[150px] lg:h-[96px]'
               : `h-[150px] ${featured ? 'lg:h-[132px]' : 'lg:h-[92px]'}`);
     const titleSize = row
         ? featured
@@ -114,7 +114,7 @@ export default function ProjectTile({
                 />
             </div>
 
-            <div className={`flex min-w-0 flex-1 flex-col ${compact ? 'lg:flex-none' : ''}`}>
+            <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex flex-wrap gap-2">
                     {featuredMark && (
                         <span className="inline-flex items-center rounded-full bg-[#0A0A23] px-2.5 py-1 font-sans text-xs font-bold text-white">
@@ -139,7 +139,7 @@ export default function ProjectTile({
                 </h3>
                 <ExpandableDescription
                     text={project.description}
-                    clamp={row ? 'line-clamp-3 lg:line-clamp-2' : compact ? 'line-clamp-3' : undefined}
+                    clamp={row || compact ? 'line-clamp-3 lg:line-clamp-2' : undefined}
                 />
                 <p className={`mt-2 text-xs text-[#6e6e78] ${row ? 'lg:line-clamp-1' : ''} ${compact ? 'lg:hidden' : ''}`}>
                     {tech}

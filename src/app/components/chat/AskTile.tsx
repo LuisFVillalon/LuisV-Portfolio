@@ -8,13 +8,13 @@ import { AssistantAvatar, brandGradient, Disclosure, focusRing, StarterChips } f
 import { startersFor } from './starters';
 
 /** The home page's "Ask about Luis" bento tile: a real input plus starter chips that open the chat. */
-export default function AskTile() {
+export default function AskTile({ className = '' }: { className?: string }) {
     const { enabled, openWith } = useAssistant();
     const [value, setValue] = useState('');
     if (!enabled) return null;
 
     return (
-        <BentoTile className="md:col-span-2" label="Ask about Luis · AI">
+        <BentoTile className={className} label="Ask about Luis · AI">
             <div className="flex items-start gap-3">
                 <AssistantAvatar size={40} />
                 <div className="min-w-0">

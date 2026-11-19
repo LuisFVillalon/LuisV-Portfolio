@@ -1,17 +1,23 @@
 import Image from 'next/image';
-import { getAwardProjects, getProjectsByCategory } from '@/app/lib/projects';
+import { getAwardProjects, getProjectByTitle } from '@/app/lib/projects';
 import { professionalExperience, profile, resume } from '@/app/lib/experience';
 import { linkedinProfileUrl } from '@/app/lib/linkedinPosts';
 import { GITHUB_URL } from '@/app/lib/contact';
-import { BentoTile, primaryButtonClass, secondaryButtonClass } from './BentoTile';
+import { BentoTile, inlineLinkClass, primaryButtonClass, secondaryButtonClass } from './BentoTile';
 import { isLiveApp } from './ProjectTile';
 
-type Fact = { headline: string; detail: string[] };
+type Fact = { headline: string; detail: string[]; links?: { label: string; href: string }[] };
+
+// Live deployments named in the intro, by their projects.ts title; the URL comes from there.
+const LIVE_APPS = [
+    { title: 'kanso', label: 'kanso' },
+    { title: 'Poke-Photo Tag', label: 'Where\u2019s That Pokémon' },
+    { title: 'Whats Poppin?', label: 'What\u2019s Poppin\u2019' },
+];
 
 // Proof stats are derived from the existing data so they stay in sync with it.
 function getProofFacts(): Fact[] {
     const facts: Fact[] = [];
-    const topProjects = getProjectsByCategory('top');
 
     const awards = getAwardProjects().flatMap((p) => (p.award ? [p.award] : []));
     if (awards.length > 1) {
@@ -31,9 +37,14 @@ function getProofFacts(): Fact[] {
         });
     }
 
-    const live = topProjects.find(isLiveApp);
-    if (live) {
-        facts.push({ headline: 'Live app', detail: [`${live.title}, in production`] });
+    const live = LIVE_APPS.flatMap(({ title, label }) => {
+        const project = getProjectByTitle(title);
+        return project && isLiveApp(project) ? [{ label, href: project.live_app as string }] : [];
+    });
+    if (live.length > 1) {
+        facts.push({ headline: 'Live apps', detail: [], links: live });
+    } else if (live.length === 1) {
+        facts.push({ headline: 'Live app', detail: [], links: live });
     }
 
     return facts;
@@ -73,7 +84,7 @@ export default function IntroTile() {
                 <div className="grid grid-cols-3 gap-2">
                     {facts.map((fact) => (
                         <div key={fact.headline} className="min-w-0 rounded-xl bg-[#F3F3F5] px-2.5 py-2 lg:py-1.5">
-                            <p className="font-sans text-[13px] lg:text-[14px] font-extrabold leading-tight text-[#0A0A23]">
+                            <p className="font-sans text-[13px] lg:whitespace-nowrap font-extrabold leading-tight text-[#0A0A23]">
                                 {fact.headline}
                             </p>
                             {fact.detail.map((line) => (
@@ -81,6 +92,22 @@ export default function IntroTile() {
                                     {line}
                                 </p>
                             ))}
+                            {fact.links && (
+                                <ul className="mt-0.5 text-xs leading-snug">
+                                    {fact.links.map((link) => (
+                                        <li key={link.href} className="lg:truncate">
+                                            <a
+                                                href={link.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={`${inlineLinkClass} underline-offset-2`}
+                                            >
+                                                {link.label} ↗
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
                         </div>
                     ))}
                 </div>

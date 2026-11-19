@@ -1,6 +1,6 @@
 import React from 'react';
 import { BentoTile } from '../home/BentoTile';
-import { ExternalLink, LogoBadge, LivePill, awardPillClass, tileLabelClass } from './AboutParts';
+import { ExternalLink, LogoBadge, LivePill, ProjectThumb, awardPillClass, tileLabelClass } from './AboutParts';
 import { formatEnd, formatRange, formatStart, must, startYear } from './timelineDates';
 import { certificates, education, professionalExperience, profile } from '@/app/lib/experience';
 import { getAwardProjects, getProjectsByCategory } from '@/app/lib/projects';
@@ -14,7 +14,7 @@ type Milestone = {
     current?: boolean;
 };
 
-// Dates, the award and the live app are read from lib/experience.ts and lib/projects.ts.
+// Dates, the award, the live apps and the What's Poppin' screenshot are read from lib/experience.ts and lib/projects.ts.
 function getMilestones(): Milestone[] {
     const odin = must(education, (e) => e.institution === 'The Odin Project', 'The Odin Project');
     const ivc = must(education, (e) => e.institution === 'Imperial Valley College', 'Imperial Valley College');
@@ -30,6 +30,7 @@ function getMilestones(): Milestone[] {
     const topProjects = getProjectsByCategory('top');
     const ross = must(topProjects, (p) => p.title === 'ROSS' && Boolean(p.award), 'ROSS award');
     const kanso = must(topProjects, (p) => p.title === 'kanso', 'kanso');
+    const whatsPoppin = must(getProjectsByCategory('fullstack'), (p) => p.title === 'Whats Poppin?', "What's Poppin'");
     const crashApp = must(getAwardProjects(), (p) => p.title === 'The Crash App', 'The Crash App award');
 
     return [
@@ -64,7 +65,18 @@ function getMilestones(): Milestone[] {
                     <ExternalLink href="https://luisfvillalon.github.io/WhatsPoppin/">here</ExternalLink>.
                 </>
             ),
-            extra: <LogoBadge src="/about/IVC_Logo.png" alt="Imperial Valley College logo" />,
+            extra: (
+                <div className="flex flex-wrap gap-2">
+                    <LogoBadge src="/about/IVC_Logo.png" alt="Imperial Valley College logo" />
+                    {whatsPoppin.live_app && (
+                        <ProjectThumb
+                            href={whatsPoppin.live_app}
+                            src={whatsPoppin.image}
+                            alt="What's Poppin' screenshot (opens the live app)"
+                        />
+                    )}
+                </div>
+            ),
         },
         {
             when: startYear(ectron.time),
@@ -74,6 +86,12 @@ function getMilestones(): Milestone[] {
                     <ExternalLink href={ectron.link}>Ectron Corporation</ExternalLink>, Software Engineer Intern ({formatRange(ectron.time)}), then{' '}
                     <ExternalLink href={sportsExcitement.link}>Sports Excitement</ExternalLink>, Front-End Developer Intern ({formatRange(sportsExcitement.time)}).
                 </>
+            ),
+            extra: (
+                <div className="flex flex-wrap gap-2">
+                    <LogoBadge src="/about/Ectron_Logo.png" alt="Ectron Corporation logo" />
+                    {/* Sports Excitement logo goes here once provided: <LogoBadge src="/about/…" alt="Sports Excitement logo" /> */}
+                </div>
             ),
         },
         {
@@ -85,10 +103,9 @@ function getMilestones(): Milestone[] {
                     <ExternalLink href="https://cs.sdsu.edu/">SDSU</ExternalLink> ({formatStart(sdsu.time)}), after SEO &amp;
                     digital-marketing work for{' '}
                     <ExternalLink href={neighborhoodHouse.link}>Calexico Neighborhood House</ExternalLink> (
-                    {formatRange(neighborhoodHouse.time)}). Full-stack intern at the startup{' '}
-                    <ExternalLink href={secondCourse.link}>Second Course</ExternalLink> ({formatRange(secondCourse.time)}),
-                    building a React Native app with a Firestore backend that addresses food insecurity among college
-                    students.
+                    {formatRange(neighborhoodHouse.time)}). Worked full time the summer before transferring. Full-stack
+                    intern at the startup <ExternalLink href={secondCourse.link}>Second Course</ExternalLink> (
+                    {formatRange(secondCourse.time)}).
                     {crashApp.award && (
                         <>
                             {' '}Won {crashApp.award.title} at the {crashApp.award.event} with{' '}
@@ -97,7 +114,14 @@ function getMilestones(): Milestone[] {
                     )}
                 </>
             ),
-            extra: <LogoBadge src="/about/San_Diego_State_Aztecs_logo.svg.png" alt="SDSU logo" />,
+            extra: (
+                <div className="flex flex-wrap gap-2">
+                    <LogoBadge src="/about/San_Diego_State_Aztecs_logo.svg.png" alt="SDSU logo" />
+                    <LogoBadge src="/about/CNH_Logo.png" alt="Calexico Neighborhood House logo" />
+                    <LogoBadge src="/about/SecondCourse_Logo.png" alt="Second Course logo" />
+                    <ProjectThumb href={crashApp.github_repo} src={crashApp.image} alt="The Crash App" />
+                </div>
+            ),
         },
         {
             when: startYear(ai4Business.time),

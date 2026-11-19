@@ -1,3 +1,5 @@
+import { getProjectByTitle } from './projects';
+
 type professionalExperience = {
     company: string;
     position: string;
@@ -341,7 +343,22 @@ const techTools: techTools[] = [
     },
        
 ];
+// kanso's details come from its projects.ts entry so the two stay in sync.
+const kanso = getProjectByTitle('kanso');
+
 const currentlyDoing: currentlyDoing[] = [
+    ...(kanso
+        ? [
+              {
+                  company: 'kanso',
+                  position: 'Building a live productivity app (tasks, notes, habits)',
+                  time: 'Present',
+                  description: kanso.description,
+                  tech: kanso.tech,
+                  link: kanso.live_app ?? kanso.github_repo,
+              },
+          ]
+        : []),
     {
         company: 'ColorStack',
         position: 'Outreach Chair',

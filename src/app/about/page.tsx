@@ -17,7 +17,7 @@ export default function AboutPage() {
                         <div>
                             <p className={`mb-2 ${tileLabelClass}`}>About · Calexico, CA</p>
                             <h1 className="font-sans text-3xl font-extrabold leading-tight text-[#0A0A23] md:text-4xl">
-                                From a border town to building applied AI.
+                                From a border town to building scalable solutions.
                             </h1>
                             <p className="mt-1 font-sans text-sm font-bold text-[#006400]">
                                 Software Engineer · Full-Stack · Applied AI

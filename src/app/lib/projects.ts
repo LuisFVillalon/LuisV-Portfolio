@@ -280,6 +280,9 @@ const projects: Project[] = [
 export const getProjectsByCategory = (category: ProjectCategory) =>
     projects.filter(p => p.categories.includes(category));
 
+/** One project by its exact title, or undefined. */
+export const getProjectByTitle = (title: string) => projects.find(p => p.title === title);
+
 /** Every project that has an `award`, in projects.ts order. */
 export const getAwardProjects = () => projects.filter(p => p.award);
 
