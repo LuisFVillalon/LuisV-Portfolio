@@ -11,7 +11,7 @@ npm start        # Start production server
 npm run lint     # Run ESLint
 ```
 
-No test suite is configured.
+`npm test` runs the assistant's limit tests (`src/app/lib/assistant/*.test.ts`, node:test via tsx); there is no other test suite.
 
 ## Stack
 

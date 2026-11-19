@@ -42,6 +42,7 @@ npm run dev      # http://localhost:3000
 npm run build    # production build
 npm start        # serve production build
 npm run lint     # ESLint
+npm test         # assistant limit tests (node:test via tsx)
 ```
 
 ## Project Structure
@@ -81,8 +82,10 @@ Both open one chat panel (`src/app/components/chat/`, mounted once in `layout.ts
    rules and the private Assistant facts, `prompt.ts`) and the chunks as `search_result` blocks, so
    Claude's native citations become the source chips. A `refusal` stop reason shows a polite fallback.
 3. `api/assistant/chat` enforces 15 questions per visitor per day (salted hash of IP + user agent),
-   a 500-character cap, and a $5/month Anthropic budget (tracked in Upstash Redis, rewrite calls
-   included); failed answers refund the question.
+   45 per IP address per day, 15 per minute site-wide, a 500-character cap, and a $5/month Anthropic
+   budget (all tracked in Upstash Redis, rewrite calls included). Answers that fail before Claude
+   starts refund the question; cut-off answers are billed. `/api/contact` (also used by the chat's
+   "Message Luis" card) allows 5 messages per IP per hour when Redis is configured.
 
 `retrieve()` and `streamAnswer()` can be called on their own, and chunk ids are stable, so an
 evaluation can score retrieval and answers separately.
