@@ -107,7 +107,7 @@ function getMilestones(): Milestone[] {
                 <>
                     Worked full time as an SEO &amp; digital marketer for{' '}
                     <ExternalLink href={neighborhoodHouse.link}>Calexico Neighborhood House</ExternalLink> (
-                    {formatRange(neighborhoodHouse.time)}), then started the <strong>B.S. in Computer Science</strong> with a{' '}
+                    {formatRange(neighborhoodHouse.time)}), then started a <strong>B.S. in Computer Science</strong> with a{' '}
                     <strong>Minor in Mathematics</strong> at <ExternalLink href="https://cs.sdsu.edu/">SDSU</ExternalLink> (
                     {formatStart(sdsu.time)}). Interned as a full-stack developer at the startup{' '}
                     <ExternalLink href={secondCourse.link}>Second Course</ExternalLink> ({formatRange(secondCourse.time)})
@@ -122,6 +122,11 @@ function getMilestones(): Milestone[] {
             ),
             extra: (
                 <div className="flex flex-col gap-3">
+                    {crashApp.award && (
+                        <span className={`${awardPillClass} self-start`}>
+                            🏆 {crashApp.award.title} · {crashApp.award.event}
+                        </span>
+                    )}
                     <div className="flex flex-wrap gap-2">
                         <LogoBadge src="/about/San_Diego_State_Aztecs_logo.svg.png" alt="SDSU logo" />
                         <LogoBadge src="/about/CNH_Logo.png" alt="Calexico Neighborhood House logo" />
