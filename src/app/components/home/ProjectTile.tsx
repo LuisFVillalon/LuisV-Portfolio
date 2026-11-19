@@ -54,6 +54,12 @@ interface ProjectTileProps {
     /** Height classes for the screenshot band; defaults to the homepage sizes. */
     imageClass?: string;
     backendLink?: boolean;
+    /**
+     * 'row' puts the screenshot beside the text on lg screens (the home hero's
+     * stacked column) and leaves the outcome line to smaller screens.
+     */
+    layout?: 'stacked' | 'row';
+    className?: string;
 }
 
 export default function ProjectTile({
@@ -62,55 +68,80 @@ export default function ProjectTile({
     featuredMark = false,
     imageClass,
     backendLink = false,
+    layout = 'stacked',
+    className = '',
 }: ProjectTileProps) {
+    const row = layout === 'row';
     const live = isLiveApp(project);
     const tech = splitTech(project.tech).slice(0, featured ? 4 : 3).join(' · ');
-    const imageHeight = imageClass ?? `h-[150px] ${featured ? 'lg:h-[132px]' : 'lg:h-[92px]'}`;
+    const imageHeight =
+        imageClass ??
+        (row
+            ? // Beside the text on lg: full tile height, a fixed share of the width.
+              'h-[150px] lg:-mb-5 lg:mr-5 lg:h-auto lg:w-[38%] lg:flex-none lg:border-b-0 lg:border-r'
+            : `h-[150px] ${featured ? 'lg:h-[132px]' : 'lg:h-[92px]'}`);
+    const titleSize = row
+        ? featured
+            ? 'text-xl lg:text-lg'
+            : 'text-lg'
+        : featured
+          ? 'text-xl lg:text-2xl'
+          : 'text-lg lg:text-base';
+    // The outcome line is left out of the lg row layout to keep the hero column compact.
+    const rowHidden = row ? 'lg:hidden' : '';
 
     return (
-        <BentoTile className={`flex flex-col ${featured ? 'md:col-span-2' : ''}`}>
+        <BentoTile className={`flex flex-col ${row ? 'lg:flex-row' : ''} ${featured ? 'md:col-span-2' : ''} ${className}`}>
             <div className={`relative -mx-4 -mt-4 md:-mx-5 md:-mt-5 mb-3 border-b border-[#0A0A23]/10 bg-[#F3F3F5] ${imageHeight}`}>
                 <Image
                     src={project.image}
                     alt={`${project.title} screenshot`}
                     fill
-                    sizes={featured ? '(min-width: 768px) 560px, 100vw' : '(min-width: 1024px) 280px, (min-width: 768px) 360px, 100vw'}
+                    sizes={
+                        row
+                            ? '(min-width: 1024px) 220px, (min-width: 768px) 720px, 100vw'
+                            : featured
+                              ? '(min-width: 768px) 560px, 100vw'
+                              : '(min-width: 1024px) 280px, (min-width: 768px) 360px, 100vw'
+                    }
                     className="object-cover object-top"
                 />
             </div>
 
-            <div className="flex flex-wrap gap-2">
-                {featuredMark && (
-                    <span className="inline-flex items-center rounded-full bg-[#0A0A23] px-2.5 py-1 font-sans text-xs font-bold text-white">
-                        ★ Featured
-                    </span>
-                )}
-                {project.award && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#f1d27a] bg-[#fff6d6] px-2.5 py-1 font-sans text-xs font-bold text-[#7a4b00]">
-                        🏆 {project.award.title} · {project.award.event}
-                    </span>
-                )}
-                {live && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#9edbb5] bg-[#e6f6ec] px-2.5 py-1 font-sans text-xs font-bold text-[#0c6b33]">
-                        <span className="h-[7px] w-[7px] rounded-full bg-[#16a34a]" aria-hidden="true" />
-                        Live
-                    </span>
-                )}
-            </div>
+            <div className="flex min-w-0 flex-1 flex-col">
+                <div className="flex flex-wrap gap-2">
+                    {featuredMark && (
+                        <span className="inline-flex items-center rounded-full bg-[#0A0A23] px-2.5 py-1 font-sans text-xs font-bold text-white">
+                            ★ Featured
+                        </span>
+                    )}
+                    {project.award && (
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-[#f1d27a] bg-[#fff6d6] px-2.5 py-1 font-sans text-xs font-bold text-[#7a4b00]">
+                            🏆 {project.award.title} · {project.award.event}
+                        </span>
+                    )}
+                    {live && (
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-[#9edbb5] bg-[#e6f6ec] px-2.5 py-1 font-sans text-xs font-bold text-[#0c6b33]">
+                            <span className="h-[7px] w-[7px] rounded-full bg-[#16a34a]" aria-hidden="true" />
+                            Live
+                        </span>
+                    )}
+                </div>
 
-            <h3 className={`mt-2 font-sans font-extrabold leading-snug text-[#0A0A23] ${featured ? 'text-xl lg:text-2xl' : 'text-lg lg:text-base'}`}>
-                {project.title}
-            </h3>
-            <ExpandableDescription text={project.description} />
-            {project.outcome && (
-                <p className="mt-2 border-l-[3px] border-[#22c55e] bg-[#f4fbf6] px-3 py-1.5 text-[13px]">
-                    <span className="font-sans font-bold text-[#0A0A23]">Outcome:</span> {project.outcome}
-                </p>
-            )}
-            <p className="mt-2 text-xs text-[#6e6e78]">{tech}</p>
+                <h3 className={`mt-2 font-sans font-extrabold leading-snug text-[#0A0A23] ${titleSize}`}>
+                    {project.title}
+                </h3>
+                <ExpandableDescription text={project.description} clamp={row ? 'line-clamp-3' : undefined} />
+                {project.outcome && (
+                    <p className={`mt-2 border-l-[3px] ${rowHidden} border-[#22c55e] bg-[#f4fbf6] px-3 py-1.5 text-[13px]`}>
+                        <span className="font-sans font-bold text-[#0A0A23]">Outcome:</span> {project.outcome}
+                    </p>
+                )}
+                <p className="mt-2 text-xs text-[#6e6e78]">{tech}</p>
 
-            <div className="mt-auto pt-3">
-                <ProjectLinks project={project} backendLink={backendLink} />
+                <div className="mt-auto pt-3">
+                    <ProjectLinks project={project} backendLink={backendLink} />
+                </div>
             </div>
         </BentoTile>
     );
