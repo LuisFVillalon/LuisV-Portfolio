@@ -4,7 +4,7 @@
 // Only chunks whose content hash changed are re-embedded with Voyage. Unchanged chunks keep
 // their stored dense vector; their BM25 sparse vector is rewritten only when the corpus's
 // average chunk length moved (BM25 length normalization depends on it).
-import { buildCorpus, type Chunk } from './chunks';
+import { buildCorpus, type Chunk, type Corpus } from './chunks';
 import { indexText } from './chunks/types';
 import type { RangeResult } from '@upstash/vector';
 import { getVectorIndex, type ChunkMetadata } from './clients';
@@ -42,8 +42,8 @@ const toMetadata = (chunk: Chunk, avgDocLength: number): ChunkMetadata => {
     return { ...rest, avgDocLength };
 };
 
-export async function syncIndex(chunks?: Chunk[]): Promise<SyncReport> {
-    const corpus = chunks ?? (await buildCorpus());
+export async function syncIndex(input?: Corpus): Promise<SyncReport> {
+    const { chunks: corpus, keep } = input ?? (await buildCorpus());
     if (corpus.length === 0) throw new Error('Corpus is empty; refusing to wipe the index');
 
     const lengths = corpus.map((c) => documentLength(indexText(c)));
@@ -76,11 +76,13 @@ export async function syncIndex(chunks?: Chunk[]): Promise<SyncReport> {
     ];
     for (let i = 0; i < upserts.length; i += 100) await index.upsert(upserts.slice(i, i + 100));
 
-    // Delete chunks that no longer exist, but only for sources that produced chunks this run:
-    // a GitHub outage or a missing private file must not wipe that source from the index.
+    // Delete chunks that no longer exist, but only for sources that produced chunks this run and
+    // not for kept prefixes: a GitHub outage, one repo failing, or a missing private file must not
+    // wipe that content from the index.
     const live = new Set(corpus.map((c) => c.id));
     const sourcesThisRun = new Set(corpus.map((c) => c.id.split(':')[0]));
-    const stale = [...stored.keys()].filter((id) => !live.has(id) && sourcesThisRun.has(id.split(':')[0]));
+    const kept = (id: string) => keep.some((p) => id === p || id.startsWith(`${p}#`) || id.startsWith(`${p}~`));
+    const stale = [...stored.keys()].filter((id) => !live.has(id) && sourcesThisRun.has(id.split(':')[0]) && !kept(id));
     if (stale.length) await index.delete(stale);
 
     return {

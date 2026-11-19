@@ -43,6 +43,7 @@ async function getReadme(repo: Repo): Promise<string | null> {
         const url = `https://raw.githubusercontent.com/${USER}/${repo.name}/${repo.default_branch}/${name}`;
         const res = await fetch(url, { next: { revalidate: DAY } } as RequestInit);
         if (res.ok) return res.text();
+        if (res.status !== 404) throw new Error(`GitHub ${res.status} for ${url}`);
     }
     return null;
 }
@@ -127,16 +128,21 @@ async function repoChunks(repo: Repo): Promise<Chunk[]> {
     return chunks;
 }
 
-/** All public, non-empty repositories. Failures on one repo don't stop the rest. */
-export async function githubChunks(): Promise<Chunk[]> {
+/**
+ * All public, non-empty repositories. Failures on one repo don't stop the rest; the failed
+ * repos' id prefixes come back in `failed` so the indexer keeps their stored chunks.
+ */
+export async function githubChunks(): Promise<{ chunks: Chunk[]; failed: string[] }> {
     const repos = await getJson<Repo[]>(`https://api.github.com/users/${USER}/repos?per_page=100&type=owner&sort=pushed`);
-    const out: Chunk[] = [];
+    const chunks: Chunk[] = [];
+    const failed: string[] = [];
     for (const repo of repos.filter((r) => r.size > 0)) {
         try {
-            out.push(...(await repoChunks(repo)));
+            chunks.push(...(await repoChunks(repo)));
         } catch (err) {
+            failed.push(`github:${slug(repo.name)}`);
             console.warn(`[assistant] skipped GitHub repo ${repo.name}:`, (err as Error).message);
         }
     }
-    return out;
+    return { chunks, failed };
 }

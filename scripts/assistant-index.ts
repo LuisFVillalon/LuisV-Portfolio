@@ -15,7 +15,7 @@ async function main() {
     const github = !args.has('--no-github');
 
     if (args.has('--dry-run')) {
-        const chunks = await buildCorpus({ github });
+        const { chunks } = await buildCorpus({ github });
         const bySource = chunks.reduce<Record<string, number>>((acc, c) => ({ ...acc, [c.sourceType]: (acc[c.sourceType] ?? 0) + 1 }), {});
         for (const c of chunks) {
             console.log(`\n── ${c.id}  (${c.label} → ${c.href})\n${c.header}\n${c.text.slice(0, args.has('--full') ? Infinity : 300)}`);

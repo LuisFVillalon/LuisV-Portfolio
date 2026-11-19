@@ -22,6 +22,8 @@ export const ASSISTANT = {
 
     /** Hybrid search shortlist size, then how many reranked chunks reach Claude. */
     shortlistSize: 20,
+    /** Hybrid search fetches shortlistSize × this, so the source-priority boost can reorder the cut. */
+    candidateMultiplier: 2,
     rerankTopK: 5,
     /** Chunks scoring below this rerank-2.5 relevance score are dropped. */
     rerankMinScore: Number(process.env.ASSISTANT_RERANK_MIN_SCORE ?? 0.3),

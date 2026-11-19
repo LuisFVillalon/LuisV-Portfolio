@@ -3,7 +3,7 @@
 //   {"t":"text","v":"..."}            answer text as it streams
 //   {"t":"replace","v":"..."}         Claude declined; show this instead of the streamed text
 //   {"t":"done","sources":[...],"fallback":bool,"remaining":n}
-//   {"t":"error","remaining":n}       answering failed; the question was refunded
+//   {"t":"error","remaining":n,"refunded":bool}  answering failed; refunded unless Claude had already billed the answer
 // DELETE: forget a saved conversation (the visitor opted out of saving).
 import { NextResponse } from 'next/server';
 import { streamAnswer, type AnswerDone } from '@/app/lib/assistant/answer';
@@ -77,18 +77,20 @@ export async function POST(req: Request) {
         async start(controller) {
             const send = (event: object) => controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`));
             let spent = 0;
+            let answering = false;
+            const meter = { costUsd: 0 };
             send({ t: 'start', remaining });
             try {
                 const retrieval = await retrieve(question, history);
                 spent += retrieval.rewriteCostUsd;
                 let done: AnswerDone | null = null;
-                for await (const event of streamAnswer({ question, history, chunks: retrieval.chunks, signal: req.signal })) {
+                answering = true;
+                for await (const event of streamAnswer({ question, history, chunks: retrieval.chunks, signal: req.signal, meter })) {
                     if (event.type === 'text') send({ t: 'text', v: event.text });
                     else if (event.type === 'replace') send({ t: 'replace', v: event.text });
                     else done = event;
                 }
                 if (!done) throw new Error('Answer stream ended without a result');
-                spent += done.costUsd;
                 send({
                     t: 'done',
                     sources: done.sources.map(({ label, href }) => ({ label, href })),
@@ -109,14 +111,15 @@ export async function POST(req: Request) {
                 }
             } catch (err) {
                 console.error('Assistant: answering failed', err);
-                const refunded = await refundQuestion(visitor).catch(() => remaining);
+                const billed = meter.costUsd > 0 || (answering && req.signal.aborted);
+                const left = billed ? remaining : await refundQuestion(visitor).catch(() => remaining);
                 try {
-                    send({ t: 'error', remaining: refunded });
+                    send({ t: 'error', remaining: left, refunded: !billed });
                 } catch {
                     // The visitor already disconnected.
                 }
             } finally {
-                await recordSpend(spent).catch((err) => console.error('Assistant: recording spend failed', err));
+                await recordSpend(spent + meter.costUsd).catch((err) => console.error('Assistant: recording spend failed', err));
                 try {
                     controller.close();
                 } catch {

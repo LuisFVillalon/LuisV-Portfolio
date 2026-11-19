@@ -36,7 +36,10 @@ export type RetrievalResult = {
     rewriteCostUsd: number;
 };
 
-/** RRF scores are ~1/60 per list; this nudges higher-priority sources without hard filtering. */
+/**
+ * Nudges higher-priority sources without hard filtering: applied to RRF scores (~1/60 per list)
+ * to pick the shortlist, and to rerank scores so priority breaks near-ties.
+ */
 const PRIORITY_BOOST: Record<number, number> = { 1: 1.06, 2: 1.04, 3: 1.02, 4: 1 };
 
 const REWRITE_SYSTEM = `You turn a visitor's latest message in a chat about Luis Villalón (a software engineer) into one standalone search query.
@@ -64,7 +67,12 @@ export async function rewriteQuery(question: string, history: HistoryTurn[]): Pr
     return { query, costUsd: costUsd(res.usage) };
 }
 
-/** Hybrid search over the index: Voyage query embedding + BM25 query terms, fused with RRF. */
+const boost = (priority: number) => PRIORITY_BOOST[priority] ?? 1;
+
+/**
+ * Hybrid search over the index: Voyage query embedding + BM25 query terms, fused with RRF.
+ * Fetches extra candidates so the source-priority boost decides which `topK` make the shortlist.
+ */
 export async function hybridSearch(query: string, topK = ASSISTANT.shortlistSize): Promise<RetrievedChunk[]> {
     const [vector] = await embed([query], 'query');
     const sparse = querySparseVector(query);
@@ -73,7 +81,7 @@ export async function hybridSearch(query: string, topK = ASSISTANT.shortlistSize
         vector,
         ...(sparse.indices.length ? { sparseVector: sparse, weightingStrategy: WeightingStrategy.IDF } : {}),
         fusionAlgorithm: FusionAlgorithm.RRF,
-        topK,
+        topK: topK * ASSISTANT.candidateMultiplier,
         includeMetadata: true,
     });
     return results
@@ -88,10 +96,11 @@ export async function hybridSearch(query: string, topK = ASSISTANT.shortlistSize
                 header: m.header,
                 text: m.text,
                 priority: m.priority,
-                searchScore: r.score * (PRIORITY_BOOST[m.priority] ?? 1),
+                searchScore: r.score * boost(m.priority),
             };
         })
-        .sort((a, b) => b.searchScore - a.searchScore);
+        .sort((a, b) => b.searchScore - a.searchScore)
+        .slice(0, topK);
 }
 
 export async function retrieve(question: string, history: HistoryTurn[] = []): Promise<RetrievalResult> {
@@ -100,10 +109,12 @@ export async function retrieve(question: string, history: HistoryTurn[] = []): P
     const ranked = await rerank(
         query,
         shortlist.map((c) => `${c.header}\n${c.text}`),
-        ASSISTANT.rerankTopK,
+        shortlist.length,
     );
     const chunks = ranked
         .filter((r) => r.score >= ASSISTANT.rerankMinScore)
-        .map((r) => ({ ...shortlist[r.index], rerankScore: r.score }));
+        .map((r) => ({ ...shortlist[r.index], rerankScore: r.score }))
+        .sort((a, b) => b.rerankScore * boost(b.priority) - a.rerankScore * boost(a.priority))
+        .slice(0, ASSISTANT.rerankTopK);
     return { query, shortlist, chunks, rewriteCostUsd };
 }

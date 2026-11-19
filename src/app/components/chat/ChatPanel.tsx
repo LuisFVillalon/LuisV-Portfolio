@@ -149,7 +149,7 @@ export default function ChatPanel({
                         />
                     )}
                     <Disclosure className="mt-2 px-1" />
-                    <SaveNotice save={chat.save} onChange={chat.setSave} className="mt-1 px-1 pl-[1.375rem]" />
+                    <SaveNotice save={chat.save} onChange={chat.setSave} disabled={busy} className="mt-1 px-1 pl-[1.375rem]" />
                 </div>
             </div>
         </>

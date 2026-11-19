@@ -31,11 +31,14 @@ export async function* streamAnswer({
     history = [],
     chunks,
     signal,
+    meter,
 }: {
     question: string;
     history?: HistoryTurn[];
     chunks: RetrievedChunk[];
     signal?: AbortSignal;
+    /** Updated with the answer's cost so far as usage arrives, so a cut-off answer is still billed. */
+    meter?: { costUsd: number };
 }): AsyncGenerator<AnswerEvent> {
     const stream = getAnthropic().messages.stream(
         {
@@ -54,7 +57,19 @@ export async function* streamAnswer({
     };
     let text = '';
 
+    let usage: Parameters<typeof costUsd>[0] | null = null;
+
     for await (const event of stream) {
+        if (event.type === 'message_start') {
+            usage = event.message.usage;
+            if (meter) meter.costUsd = costUsd(usage);
+            continue;
+        }
+        if (event.type === 'message_delta') {
+            if (usage) usage = { ...usage, output_tokens: event.usage.output_tokens };
+            if (meter && usage) meter.costUsd = costUsd(usage);
+            continue;
+        }
         if (event.type !== 'content_block_delta') continue;
         if (event.delta.type === 'text_delta') {
             text += event.delta.text;
@@ -70,6 +85,7 @@ export async function* streamAnswer({
         for (const c of block.citations ?? []) if (c.type === 'search_result_location') cite(c.search_result_index);
     }
     const cost = costUsd(final.usage);
+    if (meter) meter.costUsd = cost;
 
     if (final.stop_reason === 'refusal' || !text.trim()) {
         yield { type: 'replace', text: FALLBACK_ANSWER };

@@ -118,7 +118,9 @@ function AssistantMessage({ msg, onRetry, onMessage }: { msg: Msg; onRetry: () =
                 <AlertTriangle className="mt-0.5 h-4 w-4 flex-none" aria-hidden="true" />
                 <div className="min-w-0">
                     <p className="font-bold">Couldn&apos;t get an answer.</p>
-                    <p className="mt-0.5">The assistant is unavailable right now. This didn&apos;t count toward your limit.</p>
+                    <p className="mt-0.5">
+                        The assistant is unavailable right now.{msg.counted ? '' : " This didn't count toward your limit."}
+                    </p>
                     <button
                         type="button"
                         onClick={onRetry}
@@ -337,21 +339,32 @@ export function BlockedNotice({ reason, limit, onMessage }: { reason: 'limit' | 
 }
 
 /** The visible saving notice with its opt-out (and opt back in). */
-export function SaveNotice({ save, onChange, className = '' }: { save: boolean; onChange: (save: boolean) => void; className?: string }) {
+export function SaveNotice({
+    save,
+    onChange,
+    disabled = false,
+    className = '',
+}: {
+    save: boolean;
+    onChange: (save: boolean) => void;
+    /** While an answer is in flight, so the choice applies to the next question and sticks. */
+    disabled?: boolean;
+    className?: string;
+}) {
     const linkCls = `font-bold text-[#006400] underline underline-offset-2 hover:text-[#0A0A23] ${focusRing}`;
     return (
         <p className={`text-[11px] leading-snug text-[#6e6e78] ${className}`}>
             {save ? (
                 <>
                     Chats are saved for 90 days so Luis can read them and improve the assistant.{' '}
-                    <button type="button" onClick={() => onChange(false)} className={linkCls}>
+                    <button type="button" onClick={() => onChange(false)} disabled={disabled} className={`${linkCls} disabled:cursor-not-allowed disabled:opacity-50`}>
                         Don&apos;t save my chat
                     </button>
                 </>
             ) : (
                 <>
                     This chat isn&apos;t saved.{' '}
-                    <button type="button" onClick={() => onChange(true)} className={linkCls}>
+                    <button type="button" onClick={() => onChange(true)} disabled={disabled} className={`${linkCls} disabled:cursor-not-allowed disabled:opacity-50`}>
                         Allow saving
                     </button>
                 </>

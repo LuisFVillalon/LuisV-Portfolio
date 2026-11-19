@@ -13,6 +13,8 @@ export type Msg = {
     fallback?: boolean;
     /** streaming: text still arriving; error: the request failed (shows Retry). */
     status: 'done' | 'streaming' | 'error';
+    /** On an error: the failed try still counted toward today's limit (Claude had already answered part of it). */
+    counted?: boolean;
 };
 
 /** thinking = request sent, no tokens yet (typing dots); streaming = tokens arriving. */
@@ -44,7 +46,7 @@ type Event =
     | { t: 'text'; v: string }
     | { t: 'replace'; v: string }
     | { t: 'done'; sources: Source[]; fallback: boolean; remaining: number }
-    | { t: 'error'; remaining: number };
+    | { t: 'error'; remaining: number; refunded: boolean };
 
 function readSavePreference(): boolean {
     try {
@@ -56,8 +58,8 @@ function readSavePreference(): boolean {
 
 /**
  * Chat state for the assistant panel: sends questions to /api/assistant/chat, streams the
- * answer in, tracks the visitor's remaining questions, and refunds failed requests (the server
- * refunds them; the count shown always comes from the server).
+ * answer in and tracks the visitor's remaining questions (the server refunds failed requests that
+ * Claude hadn't answered yet; the count shown always comes from the server).
  */
 export function useAssistantChat(page: string) {
     const [messages, setMessages] = useState<Msg[]>([]);
@@ -121,11 +123,13 @@ export function useAssistantChat(page: string) {
             const answerId = nextId();
             let text = '';
 
-            const fail = (left?: number) => {
+            const fail = (left?: number, counted = false) => {
                 if (typeof left === 'number') setRemaining(left);
-                setMessages((m) => [...m.filter((x) => x.id !== answerId), { id: answerId, role: 'assistant', text: '', status: 'error' }]);
+                setMessages((m) => [...m.filter((x) => x.id !== answerId), { id: answerId, role: 'assistant', text: '', status: 'error', counted }]);
                 setPhase('idle');
-                setAnnouncement("Error: the assistant couldn't answer. This didn't count toward your limit. Retry is available.");
+                setAnnouncement(
+                    `Error: the assistant couldn't answer.${counted ? '' : " This didn't count toward your limit."} Retry is available.`,
+                );
             };
 
             try {
@@ -187,7 +191,7 @@ export function useAssistantChat(page: string) {
                         );
                     } else if (e.t === 'error') {
                         finished = true;
-                        fail(e.remaining);
+                        fail(e.remaining, !e.refunded);
                     }
                 };
 
@@ -202,10 +206,10 @@ export function useAssistantChat(page: string) {
                     }
                     if (done) break;
                 }
-                if (!finished) fail();
+                if (!finished) fail(undefined, text.length > 0);
             } catch (err) {
                 if ((err as Error).name === 'AbortError') return;
-                fail();
+                fail(undefined, text.length > 0);
             }
         },
         [page, save],
@@ -223,7 +227,7 @@ export function useAssistantChat(page: string) {
         [ask, maxChars, messages, phase, remaining, unavailable],
     );
 
-    /** Drops the failed answer and asks the last question again (the failed try was refunded). */
+    /** Drops the failed answer and asks the last question again. */
     const retry = useCallback(() => {
         const lastUserIndex = messages.map((m) => m.role).lastIndexOf('user');
         if (lastUserIndex < 0 || phase !== 'idle' || remaining === 0) return;
