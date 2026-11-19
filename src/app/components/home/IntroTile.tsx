@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { getProjectsByCategory } from '@/app/lib/projects';
+import { getAwardProjects, getProjectsByCategory } from '@/app/lib/projects';
 import { professionalExperience, profile, resume } from '@/app/lib/experience';
 import { linkedinProfileUrl } from '@/app/lib/linkedinPosts';
 import { GITHUB_URL } from '@/app/lib/contact';
@@ -13,9 +13,16 @@ function getProofFacts(): Fact[] {
     const facts: Fact[] = [];
     const topProjects = getProjectsByCategory('top');
 
-    const awarded = topProjects.find((p) => p.award);
-    if (awarded?.award) {
-        facts.push({ headline: `🏆 ${awarded.award.title}`, detail: awarded.award.event });
+    const awards = getAwardProjects().flatMap((p) => (p.award ? [p.award] : []));
+    if (awards.length > 1) {
+        // Short form so both wins fit the chip: "1st · Swans Applied AI '26".
+        const short = ({ title, event }: { title: string; event: string }) =>
+            `${title.replace('First Place', '1st').replace(/ Project$/, '')} · ${event
+                .replace(/ Hackathon/, '')
+                .replace(/ (?:19|20)(\d{2})$/, " '$1")}`;
+        facts.push({ headline: `🏆 ${awards.length}x Hackathon Winner`, detail: awards.map(short).join('; ') });
+    } else if (awards.length === 1) {
+        facts.push({ headline: `🏆 ${awards[0].title}`, detail: awards[0].event });
     }
 
     const years = professionalExperience.flatMap((role) => (role.time.match(/\d{4}/g) ?? []).map(Number));
@@ -59,9 +66,9 @@ export default function IntroTile() {
             </div>
 
             <p className="text-sm leading-relaxed lg:text-[13px] lg:leading-normal">
-                CS student at <strong>San Diego State University</strong> (B.S., May 2027). I build full-stack
-                web apps and applied AI systems, from a live productivity app to a first-place legal-AI
-                hackathon project. From Calexico, CA; bilingual EN/ES.
+                CS student at <strong>San Diego State University</strong> (B.S., minor in Mathematics, May 2027). I build
+                full-stack apps and applied-AI products, from a live productivity app to an agentic system for chip
+                design. From Calexico, CA; bilingual EN/ES.
             </p>
 
             {facts.length > 0 && (

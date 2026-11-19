@@ -98,7 +98,7 @@ const education: education[] = [
     },    
     {
         institution: 'San Diego State University',
-        course: 'Bachelor of Science in Computer Science',
+        course: 'Bachelor of Science in Computer Science, Minor in Mathematics',
         time: 'Aug 2025 - May 2027',
         description: '',
         tech:'Python, C++, Data Structures, Algorithms, Software Systems, Computer Architecture, Artificial Intelligence',
@@ -352,7 +352,7 @@ const currentlyDoing: currentlyDoing[] = [
     },     
     {
         company: 'San Diego State University',
-        position: 'Bachelor of Science in Computer Science',
+        position: 'Bachelor of Science in Computer Science, Minor in Mathematics',
         time: 'Aug 2025 - May 2027',
         description: '',
         tech:'Python, C, C++, Data Structures, Algorithms, Software Systems, Computer Architecture, Artificial Intelligence, Operating Systems',

@@ -8,6 +8,8 @@ interface ExpandableDescriptionProps {
     /** Line-clamp classes applied while collapsed. */
     clamp?: string;
     className?: string;
+    /** Bold lead-in shown before the text, e.g. "Outcome:". */
+    label?: string;
 }
 
 /**
@@ -18,6 +20,7 @@ export default function ExpandableDescription({
     text,
     clamp = 'line-clamp-3 lg:line-clamp-2',
     className = 'mt-1',
+    label,
 }: ExpandableDescriptionProps) {
     const ref = useRef<HTMLParagraphElement>(null);
     const id = useId();
@@ -43,6 +46,7 @@ export default function ExpandableDescription({
                 ref={ref}
                 className={`${className} text-[13px] leading-relaxed ${expanded ? '' : clamp}`}
             >
+                {label && <span className="font-sans font-bold text-[#0A0A23]">{label} </span>}
                 {text}
             </p>
             {(truncated || expanded) && (
