@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 import { BentoTile } from '../home/BentoTile';
 import { ExternalLink, LogoBadge, LivePill, ProjectThumb, awardPillClass, tileLabelClass } from './AboutParts';
@@ -29,6 +30,8 @@ function getMilestones(): Milestone[] {
     const codePath = must(certificates, (c) => c.institution === 'CodePath' && c.title.startsWith('AI201'), 'CodePath AI201');
     const topProjects = getProjectsByCategory('top');
     const ross = must(topProjects, (p) => p.title === 'ROSS' && Boolean(p.award), 'ROSS award');
+    const aace = must(topProjects, (p) => p.title.endsWith('(AACE)'), 'AACE');
+    const nxp = must(education, (e) => e.institution === 'NXP Semiconductors', 'NXP Semiconductors');
     const kanso = must(topProjects, (p) => p.title === 'kanso', 'kanso');
     const whatsPoppin = must(getProjectsByCategory('fullstack'), (p) => p.title === 'Whats Poppin?', "What's Poppin'");
     const crashApp = must(getAwardProjects(), (p) => p.title === 'The Crash App', 'The Crash App award');
@@ -128,14 +131,39 @@ function getMilestones(): Milestone[] {
             title: 'Applied AI',
             body: (
                 <>
-                    Undergraduate researcher at <ExternalLink href={ai4Business.link}>AI4Business Lab</ExternalLink>, NXP&apos;s Agentic AI in the Cloud bootcamp, and{' '}
-                    <strong>ROSS</strong>, which won first place at the Swans Applied AI Hackathon, beating 60+ teams.
+                    Undergraduate researcher at <ExternalLink href={ai4Business.link}>AI4Business Lab</ExternalLink>, studying AI agent
+                    safety and adversarial robustness. Built <ExternalLink href={aace.github_repo}>AACE</ExternalLink> in{' '}
+                    <ExternalLink href={nxp.link}>NXP Semiconductors</ExternalLink>&apos; Agentic AI in the Cloud bootcamp, and won first
+                    place at the Swans Applied AI Hackathon by building <ExternalLink href={ross.github_repo}>ROSS</ExternalLink>, beating
+                    60+ teams.
                 </>
             ),
-            extra: ross.award && (
-                <span className={awardPillClass}>
-                    🏆 {ross.award.title} · {ross.award.event}
-                </span>
+            extra: (
+                <div className="flex flex-col gap-3">
+                    {ross.award && (
+                        <span className={`${awardPillClass} self-start`}>
+                            🏆 {ross.award.title} · {ross.award.event}
+                        </span>
+                    )}
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        <Image
+                            src="/about/ross-hackathon-stage.jpg"
+                            alt="Luis and the ROSS team accepting first place at the Swans Applied AI Hackathon 2026"
+                            width={377}
+                            height={439}
+                            sizes="(min-width: 640px) 50vw, 100vw"
+                            className="h-64 w-full rounded-xl object-cover"
+                        />
+                        <Image
+                            src="/about/applied-ai-team.jpg"
+                            alt="Luis with his team"
+                            width={718}
+                            height={433}
+                            sizes="(min-width: 640px) 50vw, 100vw"
+                            className="h-64 w-full rounded-xl object-cover"
+                        />
+                    </div>
+                </div>
             ),
         },
         {
