@@ -46,7 +46,6 @@ function projectChunk(project: Project): Chunk {
     const lines = [
         `Project: ${project.title}`,
         project.award && `Award: ${project.award.title}, ${project.award.event}`,
-        project.outcome && `Result: ${project.outcome}`,
         `Description: ${project.description}`,
         `Tech: ${project.tech}`,
         `Categories on the site: ${project.categories.map((c) => CATEGORY_NAMES[c]).join(', ')}`,

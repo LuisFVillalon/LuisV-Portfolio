@@ -6,7 +6,7 @@ import { GITHUB_URL } from '@/app/lib/contact';
 import { BentoTile, primaryButtonClass, secondaryButtonClass } from './BentoTile';
 import { isLiveApp } from './ProjectTile';
 
-type Fact = { headline: string; detail: string };
+type Fact = { headline: string; detail: string[] };
 
 // Proof stats are derived from the existing data so they stay in sync with it.
 function getProofFacts(): Fact[] {
@@ -15,27 +15,25 @@ function getProofFacts(): Fact[] {
 
     const awards = getAwardProjects().flatMap((p) => (p.award ? [p.award] : []));
     if (awards.length > 1) {
-        // Short form so both wins fit the chip: "1st · Swans Applied AI '26".
+        // One win per line: "1st · Swans Applied AI 2026".
         const short = ({ title, event }: { title: string; event: string }) =>
-            `${title.replace('First Place', '1st').replace(/ Project$/, '')} · ${event
-                .replace(/ Hackathon/, '')
-                .replace(/ (?:19|20)(\d{2})$/, " '$1")}`;
-        facts.push({ headline: `🏆 ${awards.length}x Hackathon Winner`, detail: awards.map(short).join('; ') });
+            `${title.replace('First Place', '1st').replace(/ Project$/, '')} · ${event.replace(/ Hackathon/, '')}`;
+        facts.push({ headline: `🏆 ${awards.length}× Hackathon Winner`, detail: awards.map(short) });
     } else if (awards.length === 1) {
-        facts.push({ headline: `🏆 ${awards[0].title}`, detail: awards[0].event });
+        facts.push({ headline: `🏆 ${awards[0].title}`, detail: [awards[0].event] });
     }
 
     const years = professionalExperience.flatMap((role) => (role.time.match(/\d{4}/g) ?? []).map(Number));
     if (professionalExperience.length > 0) {
         facts.push({
             headline: `${professionalExperience.length} roles`,
-            detail: years.length ? `industry & research since ${Math.min(...years)}` : 'industry & research',
+            detail: [years.length ? `industry & research since ${Math.min(...years)}` : 'industry & research'],
         });
     }
 
     const live = topProjects.find(isLiveApp);
     if (live) {
-        facts.push({ headline: 'Live app', detail: `${live.title}, in production` });
+        facts.push({ headline: 'Live app', detail: [`${live.title}, in production`] });
     }
 
     return facts;
@@ -66,8 +64,8 @@ export default function IntroTile() {
             </div>
 
             <p className="text-sm leading-relaxed lg:text-[13px] lg:leading-normal">
-                CS student at <strong>San Diego State University</strong> (B.S., minor in Mathematics, May 2027). I build
-                full-stack apps and applied-AI products, from a live productivity app to an agentic system for chip
+                Comp. Sci. student at <strong>San Diego State University</strong> (B.S., minor in Math., May 2027). I build
+                full-stack and applied-AI products, from a live productivity app to an agentic system for chip
                 design. From Calexico, CA; bilingual EN/ES.
             </p>
 
@@ -78,7 +76,11 @@ export default function IntroTile() {
                             <p className="font-sans text-[13px] lg:text-[14px] font-extrabold leading-tight text-[#0A0A23]">
                                 {fact.headline}
                             </p>
-                            <p className="mt-0.5 text-[11px] leading-snug text-[#6e6e78]">{fact.detail}</p>
+                            {fact.detail.map((line) => (
+                                <p key={line} className="mt-0.5 text-xs leading-snug text-[#3f3f4a]">
+                                    {line}
+                                </p>
+                            ))}
                         </div>
                     ))}
                 </div>
