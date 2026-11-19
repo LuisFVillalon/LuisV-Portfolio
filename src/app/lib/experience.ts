@@ -51,7 +51,7 @@ const professionalExperience: professionalExperience[] = [
         time: 'Jan 2026 - May 2026',
         description: 'Research AI agent trust, safety, and adversarial robustness, contributing to a three-layer trust-centered AI safety framework and designing a simple agent to study emerging autonomy and security vulnerabilities.',
         tech:'LLM APIs, LangChain, Python, RAG Systems',
-        link: 'https://sites.google.com/sdsu.edu/ai4business/home'    
+        link: 'https://sites.google.com/sdsu.edu/ai4businessv1/home'    
     },     
     {
         company: 'Second Course',
@@ -67,7 +67,7 @@ const professionalExperience: professionalExperience[] = [
         time: 'Mar 2025 - Jun 2025',
         description: 'Strategized SEO and digital marketing to increase thrift store sales and preschool enrollment by coordinating with Shopify devs, managing inventory, and executing data-driven social media campaigns.',
         tech:'Meta Business Suite, Meta Ads Manager, Google Analytics, Shopify',
-        link: 'https://nhclx.org/'    
+        link: 'https://www.facebook.com/nhclx/'    
     }, 
     {
         company: 'Sports Excitement',

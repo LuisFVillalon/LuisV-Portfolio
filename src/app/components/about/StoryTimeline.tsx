@@ -104,7 +104,7 @@ function getMilestones(): Milestone[] {
             title: 'Applied AI',
             body: (
                 <>
-                    Undergraduate researcher at <strong>AI4Business Lab</strong>, NXP&apos;s Agentic AI in the Cloud bootcamp, and{' '}
+                    Undergraduate researcher at <ExternalLink href={ai4Business.link}>AI4Business Lab</ExternalLink>, NXP&apos;s Agentic AI in the Cloud bootcamp, and{' '}
                     <strong>ROSS</strong>, which won first place at the Swans Applied AI Hackathon, beating 60+ teams.
                 </>
             ),
