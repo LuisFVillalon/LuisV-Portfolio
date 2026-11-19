@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { BentoTile } from '../home/BentoTile';
-import { ExternalLink, LogoBadge, LivePill, ProjectThumb, awardPillClass, tileLabelClass } from './AboutParts';
+import { ExternalLink, LogoBadge, LivePill, awardPillClass, tileLabelClass } from './AboutParts';
 import { formatEnd, formatRange, formatStart, must, startYear } from './timelineDates';
 import { certificates, education, professionalExperience, profile } from '@/app/lib/experience';
 import { getAwardProjects, getProjectsByCategory } from '@/app/lib/projects';
@@ -15,7 +15,7 @@ type Milestone = {
     current?: boolean;
 };
 
-// Dates, the award, the live apps and the What's Poppin' screenshot are read from lib/experience.ts and lib/projects.ts.
+// Dates, the award, the live apps and the What's Poppin' live link are read from lib/experience.ts and lib/projects.ts.
 function getMilestones(): Milestone[] {
     const odin = must(education, (e) => e.institution === 'The Odin Project', 'The Odin Project');
     const ivc = must(education, (e) => e.institution === 'Imperial Valley College', 'Imperial Valley College');
@@ -64,7 +64,7 @@ function getMilestones(): Milestone[] {
                 <>
                     A.S. in Computer Science ({formatRange(ivc.time)}): data structures, OOP, Java, assembly. Finished my final
                     project for The Odin Project&apos;s JavaScript curriculum with{' '}
-                    <ExternalLink href="https://github.com/LuisFVillalon/WhatsPoppin">What&apos;s Poppin&apos;</ExternalLink>, live{' '}
+                    <ExternalLink href="https://github.com/LuisFVillalon/WhatsPoppin">What&apos;s Poppin&apos;</ExternalLink> (a Reddit-like clone), live{' '}
                     <ExternalLink href="https://luisfvillalon.github.io/WhatsPoppin/">here</ExternalLink>.
                 </>
             ),
@@ -72,11 +72,14 @@ function getMilestones(): Milestone[] {
                 <div className="flex flex-wrap gap-2">
                     <LogoBadge src="/about/IVC_Logo.png" alt="Imperial Valley College logo" />
                     {whatsPoppin.live_app && (
-                        <ProjectThumb
+                        <a
                             href={whatsPoppin.live_app}
-                            src={whatsPoppin.image}
-                            alt="What's Poppin' screenshot (opens the live app)"
-                        />
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="rounded-xl transition-opacity hover:opacity-80"
+                        >
+                            <LogoBadge src="/about/WhatsPoppin_Icon.png" alt="What's Poppin' logo" />
+                        </a>
                     )}
                 </div>
             ),
@@ -93,7 +96,7 @@ function getMilestones(): Milestone[] {
             extra: (
                 <div className="flex flex-wrap gap-2">
                     <LogoBadge src="/about/Ectron_Logo.png" alt="Ectron Corporation logo" />
-                    {/* Sports Excitement logo goes here once provided: <LogoBadge src="/about/…" alt="Sports Excitement logo" /> */}
+                    <LogoBadge src="/about/SportsExcitement_Logo.png" alt="Sports Excitement logo" />
                 </div>
             ),
         },
