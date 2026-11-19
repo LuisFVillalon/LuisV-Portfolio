@@ -59,7 +59,7 @@ const professionalExperience: professionalExperience[] = [
         time: 'Nov 2025 - Jan 2026',
         description: 'Developed a React Native application with Firestore as a backend for the App Store with the purpose of addressing food insecurity among college students.',
         tech:'React Native, Firestore Database, Expo Go, Github',
-        link: 'https://www.secondcourse.co/food-security'    
+        link: 'https://www.secondcourse.co/'    
     }, 
     {
         company: 'Calexico Neighborhood House – Mission Thrift Store & Happy Kids Preschool and Daycare',
@@ -75,7 +75,7 @@ const professionalExperience: professionalExperience[] = [
         time: 'Dec 2024 - Mar 2025',
         description: 'Developed a responsive web application, collaborated on UI/UX improvements, and optimized performance for a global sports platform.',
         tech:'HTML, Tailwind CSS, React.js, Figma, Github, Taiga',
-        link: 'https://www.linkedin.com/company/sportsexcitement/posts/?feedView=all'
+        link: 'https://sportsexcitement.com/'
     },
     {
         company: 'Ectron Corporation',

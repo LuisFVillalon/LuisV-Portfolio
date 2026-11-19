@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { professionalExperience, currentlyDoing, techTools, resume } from '@/app/lib/experience';
 import { linkedinProfileUrl } from '@/app/lib/linkedinPosts';
 import { MarkdownBlogPost } from '@/app/lib/markdownBlogs';
-import { BentoTile, primaryButtonClass } from './BentoTile';
+import { BentoTile, inlineLinkClass, primaryButtonClass } from './BentoTile';
 
 export const tidy = (text: string) => text.replace(/\s+/g, ' ').trim();
 
@@ -28,7 +28,13 @@ export function ExperienceTile() {
                         className="flex justify-between gap-3 border-b border-[#0A0A23]/10 py-2 text-[13px] last:border-b-0"
                     >
                         <span className="min-w-0">
-                            <span className="font-sans font-bold text-[#0A0A23]">{shortCompany(role.company)}</span>
+                            {role.link ? (
+                                <a href={role.link} target="_blank" rel="noopener noreferrer" className={`font-sans ${inlineLinkClass}`}>
+                                    {shortCompany(role.company)}
+                                </a>
+                            ) : (
+                                <span className="font-sans font-bold text-[#0A0A23]">{shortCompany(role.company)}</span>
+                            )}
                             {' · '}
                             {shortPosition(role.position)}
                         </span>

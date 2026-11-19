@@ -71,7 +71,7 @@ export default function ContactPage() {
                             />
                             <div className="min-w-0">
                                 <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#aab]">Get in touch</p>
-                                <p className="font-sans text-sm font-bold text-[#86efac]">Software Engineer · Full-Stack · Agentic AI</p>
+                                <p className="font-sans text-sm font-bold text-[#86efac]">Software Engineer · Full-Stack · Applied AI</p>
                             </div>
                         </div>
                         <h1 className="font-sans text-2xl font-extrabold leading-tight lg:text-3xl">
