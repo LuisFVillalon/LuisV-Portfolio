@@ -249,7 +249,7 @@ export function CertificatesTile() {
             <ul className="flex flex-col gap-1.5 text-[13px]">
                 {certificates.map((item) => (
                     <li key={item.title} className="leading-snug">
-                        <a href={item.cert_link} target="_blank" rel="noopener noreferrer" className={entryLinkClass}>
+                        <a href={item.cert_link ?? item.institution_link} target="_blank" rel="noopener noreferrer" className={entryLinkClass}>
                             {item.title}
                         </a>
                         <span className="text-xs text-[#6e6e78]"> · {item.institution.replace('Anthropic: ', '')}, {item.time}</span>

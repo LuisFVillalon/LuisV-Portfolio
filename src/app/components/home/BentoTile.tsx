@@ -26,7 +26,7 @@ export function BentoTile({ children, className = '', label, more }: BentoTilePr
             {(label || more) && (
                 <div className="mb-3 flex items-baseline justify-between gap-3">
                     {label && (
-                        <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#6e6e78]">{label}</p>
+                        <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#4a4a55]">{label}</p>
                     )}
                     {more && (
                         <Link href={more.href} className={`shrink-0 text-xs ${inlineLinkClass}`}>

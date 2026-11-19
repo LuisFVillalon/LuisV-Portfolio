@@ -22,7 +22,7 @@ export type Project = {
 const projects: Project[] = [
     {
         title: 'kanso',
-        description: 'A full-stack web application enabling users to custom-organize tasks, notes, and habits using categorical tags.',
+        description: 'Live productivity app that brings tasks, notes, and habits into one place, with a Next.js front end, FastAPI + Postgres backend, and an AI learning-resource recommender.',
         tech: 'Next.js, React.js, TypeScript, Tailwind CSS, Python, FastAPI, PostgreSQL, RESTful CRUD Operations',
         github_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend',
         frontend_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend', // TODO: confirm link

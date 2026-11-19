@@ -36,7 +36,7 @@ type certificates = {
     time: string;
     description: string;
     tech: string;
-    cert_link: string;
+    cert_link?: string;
     institution_link: string;
 };
 type techTools = {
@@ -140,6 +140,14 @@ const certificates: certificates[] = [
         cert_link: 'https://academy.claude.com/verify/3222bc453c71b8ccd8c3f58443790589',
         institution_link: 'https://academy.claude.com/'
     },       
+    {
+        title: 'AI201 | Applications of AI Engineering',
+        institution: 'CodePath',
+        time: 'Sep 2026 - Nov 2026',
+        description: 'Trained in AI-assisted software engineering, designing and developing complex systems, evaluating AI-generated code and automating backend integrations.',
+        tech: 'RAG, Agentic workflows, Machine Learning, Data structures, Algorithms',
+        institution_link: 'https://www.codepath.org/'
+    },
     {
         title: 'TIP103 | Advanced Technical Interview Prep',
         institution: 'CodePath',
@@ -334,14 +342,6 @@ const techTools: techTools[] = [
        
 ];
 const currentlyDoing: currentlyDoing[] = [
-    {
-        company: 'CodePath',
-        position: 'AI201  | Applications of AI Engineering',
-        time: 'Sep 2026 - Dec 2026',
-        description: 'Trained in AI-assisted software engineering, designing and developing complex systems, evaluating AI-generated code and automating backend integrations.',
-        tech:'RAG, Agentic workflows, Machine Learning, Data structures, Algorithms',
-        link: 'https://www.codepath.org/'    
-    },       
     {
         company: 'ColorStack',
         position: 'Outreach Chair',
