@@ -84,6 +84,16 @@ const projects: Project[] = [
         outcome: 'Won first place at the Swans Applied AI Hackathon 2026, beating 60+ teams.',
     },
     {
+        title: "Luis's Personal AI Assistant",
+        description: 'The "Ask AI" chat on this site: a RAG assistant that answers recruiters\' questions about my experience, projects and skills from my own content (site data, résumé, LinkedIn, public GitHub READMEs), cites its sources on every answer, says when it doesn\'t know, and can pass a message to me.',
+        tech: 'Next.js, TypeScript, Claude Haiku 5.5 (Anthropic SDK, native citations, prompt caching), RAG, Voyage AI embeddings + rerank-2.5, Upstash Vector (hybrid dense + BM25), Upstash Redis, Vercel Cron, Resend',
+        github_repo: 'https://github.com/LuisFVillalon/LuisV-Portfolio',
+        live_app: 'https://luis-v-portfolio.vercel.app',
+        image: '/projects/backend/ai-assistant.png',
+        mobileFriendly: true,
+        categories: ['ai'],
+    },
+    {
         title: 'LuisV Portfolio',
         description: 'My personal software engineering portfolio site, featuring a project gallery, Markdown-based blog, and a contact form with email delivery.',
         tech: 'Next.js, React, TypeScript, Tailwind CSS, Resend',

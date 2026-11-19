@@ -1,38 +1,51 @@
 // app/api/contact/route.ts
+// Sends a visitor's message to Luis via Resend. Used by the contact form and by the
+// AI assistant's "Message Luis" card (source: "chat"), which the visitor fills in and sends.
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { ASSISTANT } from "@/app/lib/assistant/config";
+import { underRateLimit, visitorId } from "@/app/lib/assistant/usage";
+import { EMAIL_PATTERN, escapeHtml, stripLineBreaks } from "@/app/lib/email";
 
 // Shown to visitors whenever sending fails; the real error is only logged server-side.
 const GENERIC_ERROR =
   "Sorry, your message couldn't be sent right now. Please try again later or email me directly.";
 
-// Escape visitor text before it is placed into the email HTML.
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-// Remove CR/LF so visitor text can't inject extra lines into the subject or headers.
-function stripLineBreaks(value: string): string {
-  return value.replace(/[\r\n]+/g, " ").trim();
-}
+const LIMITS = { name: 100, email: 200, message: 5000, context: 1500 };
 
 export async function POST(req: Request) {
   try {
-    const { name, email, message } = (await req.json()) as {
-      name?: string;
-      email?: string;
-      message?: string;
+    const { name, email, message, source, context } = (await req.json()) as {
+      name?: unknown;
+      email?: unknown;
+      message?: unknown;
+      source?: unknown;
+      context?: unknown;
     };
 
-    if (!name || !email || !message) {
+    if (typeof name !== "string" || typeof email !== "string" || typeof message !== "string" || !name.trim() || !email.trim() || !message.trim()) {
       return NextResponse.json({ ok: false, error: "Please fill out all fields." }, { status: 400 });
     }
+    if (!EMAIL_PATTERN.test(email.trim()) || email.length > LIMITS.email) {
+      return NextResponse.json({ ok: false, error: "Please enter a valid email address." }, { status: 400 });
+    }
+    if (name.length > LIMITS.name || message.length > LIMITS.message) {
+      return NextResponse.json(
+        { ok: false, error: `Please keep your name under ${LIMITS.name} and your message under ${LIMITS.message} characters.` },
+        { status: 400 },
+      );
+    }
 
+    // Per-visitor limit (only enforced when the assistant's Redis store is configured).
+    if (!(await underRateLimit("contact", visitorId(req), ASSISTANT.leadsPerHour, 60 * 60).catch(() => true))) {
+      return NextResponse.json(
+        { ok: false, error: "You've sent several messages already. Please try again in an hour or email me directly." },
+        { status: 429 },
+      );
+    }
+
+    const fromChat = source === "chat";
+    const chatContext = fromChat && typeof context === "string" ? context.slice(0, LIMITS.context).trim() : "";
     const subjectName = stripLineBreaks(name);
     const replyTo = stripLineBreaks(email);
 
@@ -42,14 +55,17 @@ export async function POST(req: Request) {
     const { error } = await resend.emails.send({
       from: process.env.FROM_EMAIL!,   // e.g. onboarding@resend.dev
       to: [process.env.TO_EMAIL!],     // your edu inbox
-      subject: `New contact form message from ${subjectName}`,
+      subject: fromChat
+        ? `New message via the portfolio AI assistant from ${subjectName}`
+        : `New contact form message from ${subjectName}`,
       replyTo,
       html: `
-        <h2>New contact</h2>
+        <h2>${fromChat ? "New message from the AI assistant chat" : "New contact"}</h2>
         <p><b>Name:</b> ${escapeHtml(name)}</p>
         <p><b>Email:</b> ${escapeHtml(email)}</p>
         <p><b>Message:</b></p>
         <p>${escapeHtml(message)}</p>
+        ${chatContext ? `<p><b>Questions they asked the assistant:</b></p><p style="white-space:pre-wrap">${escapeHtml(chatContext)}</p>` : ""}
       `,
     });
 

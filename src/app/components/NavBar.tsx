@@ -7,6 +7,7 @@ import { useCallback, useEffect, useId, useRef, useState, type MouseEvent } from
 import { Menu, X } from 'lucide-react';
 import { resume } from '@/app/lib/experience';
 import { primaryButtonClass } from './home/BentoTile';
+import AskAIButton from './chat/AskAIButton';
 
 const NAV_LINKS = [
     { href: '/about', label: 'About' },
@@ -181,6 +182,7 @@ export default function Navbar() {
                 </ul>
 
                 <div className="flex items-center gap-2 justify-self-end">
+                    <AskAIButton />
                     <a {...resumeLinkProps} className={`${primaryButtonClass} !py-1.5 ${focusRing}`}>
                         ↓ Résumé
                     </a>
