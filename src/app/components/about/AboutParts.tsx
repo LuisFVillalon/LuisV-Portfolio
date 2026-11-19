@@ -14,6 +14,18 @@ export const LogoBadge = ({ src, alt }: { src: string; alt: string }) => (
     </div>
 );
 
+/** A project screenshot sized and rounded like a LogoBadge, linking out. */
+export const ProjectThumb = ({ href, src, alt }: { href: string; src: string; alt: string }) => (
+    <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative block h-12 w-20 overflow-hidden rounded-xl border border-[#0A0A23]/10 bg-[#F3F3F5] transition-opacity hover:opacity-80"
+    >
+        <Image src={src} alt={alt} fill sizes="80px" className="object-cover object-top" />
+    </a>
+);
+
 export const awardPillClass = 'inline-flex items-center gap-1.5 rounded-full border border-[#f1d27a] bg-[#fff6d6] px-2.5 py-1 font-sans text-xs font-bold text-[#7a4b00]';
 
 export const LivePill = ({ children }: { children: React.ReactNode }) => (

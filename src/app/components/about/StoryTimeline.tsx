@@ -1,7 +1,6 @@
 import React from 'react';
-import Image from 'next/image';
 import { BentoTile } from '../home/BentoTile';
-import { ExternalLink, LogoBadge, LivePill, awardPillClass, tileLabelClass } from './AboutParts';
+import { ExternalLink, LogoBadge, LivePill, ProjectThumb, awardPillClass, tileLabelClass } from './AboutParts';
 import { formatEnd, formatRange, formatStart, must, startYear } from './timelineDates';
 import { certificates, education, professionalExperience, profile } from '@/app/lib/experience';
 import { getAwardProjects, getProjectsByCategory } from '@/app/lib/projects';
@@ -69,20 +68,13 @@ function getMilestones(): Milestone[] {
             extra: (
                 <div className="flex flex-wrap gap-2">
                     <LogoBadge src="/about/IVC_Logo.png" alt="Imperial Valley College logo" />
-                    <a
-                        href={whatsPoppin.live_app}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="relative block h-12 w-20 overflow-hidden rounded-xl border border-[#0A0A23]/10 bg-[#F3F3F5] transition-opacity hover:opacity-80"
-                    >
-                        <Image
+                    {whatsPoppin.live_app && (
+                        <ProjectThumb
+                            href={whatsPoppin.live_app}
                             src={whatsPoppin.image}
                             alt="What's Poppin' screenshot (opens the live app)"
-                            fill
-                            sizes="80px"
-                            className="object-cover object-top"
                         />
-                    </a>
+                    )}
                 </div>
             ),
         },
@@ -127,6 +119,7 @@ function getMilestones(): Milestone[] {
                     <LogoBadge src="/about/San_Diego_State_Aztecs_logo.svg.png" alt="SDSU logo" />
                     <LogoBadge src="/about/CNH_Logo.png" alt="Calexico Neighborhood House logo" />
                     <LogoBadge src="/about/SecondCourse_Logo.png" alt="Second Course logo" />
+                    <ProjectThumb href={crashApp.github_repo} src={crashApp.image} alt="The Crash App" />
                 </div>
             ),
         },
