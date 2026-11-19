@@ -39,14 +39,14 @@ export default function IntroTile() {
 
     return (
         <BentoTile className="md:col-span-2 lg:row-span-2 flex flex-col justify-center gap-4 lg:p-7">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 lg:gap-6">
                 <Image
                     src="/headshot.jpg"
                     alt="Luis Villalon headshot"
-                    width={208}
-                    height={208}
+                    width={320}
+                    height={320}
                     priority
-                    className="h-[76px] w-[76px] lg:h-[104px] lg:w-[104px] flex-none rounded-2xl object-cover"
+                    className="h-[76px] w-[76px] lg:h-[156px] lg:w-[156px] flex-none rounded-2xl object-cover"
                 />
                 <div className="min-w-0">
                     <h1 className="font-sans text-2xl lg:text-4xl font-extrabold leading-tight text-[#0A0A23]">
