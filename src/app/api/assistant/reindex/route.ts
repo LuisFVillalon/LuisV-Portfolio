@@ -7,7 +7,7 @@ import { syncIndex } from '@/app/lib/assistant/indexer';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
-export const maxDuration = 300;
+export const maxDuration = 60; // Hobby plan ceiling; only changed chunks are re-embedded
 
 export async function GET(req: Request) {
     if (!isAuthorizedCron(req)) return NextResponse.json({ ok: false, error: 'unauthorized' }, { status: 401 });
