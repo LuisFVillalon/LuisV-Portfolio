@@ -52,7 +52,13 @@ export function NowTile() {
             <ul className="list-disc space-y-2 pl-4 text-[13px]">
                 {currentlyDoing.map((item) => (
                     <li key={`${item.company}-${item.position}`}>
-                        <span className="font-sans font-bold text-[#0A0A23]">{tidy(item.company)}</span>
+                        {item.link ? (
+                            <a href={item.link} target="_blank" rel="noopener noreferrer" className={`font-sans ${inlineLinkClass}`}>
+                                {tidy(item.company)}
+                            </a>
+                        ) : (
+                            <span className="font-sans font-bold text-[#0A0A23]">{tidy(item.company)}</span>
+                        )}
                         {', '}
                         {tidy(item.position)}
                         <span className="text-xs text-[#6e6e78]"> · {tidy(item.time)}</span>

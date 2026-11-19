@@ -43,7 +43,7 @@ const projects: Project[] = [
     },
     {
         title: 'Agentic Abstraction for Chip Engineering (AACE)',
-        description: 'Agentic pipeline to create visual and interactive diagrams from chip design code.',
+        description: 'Multi-agent pipeline (Architect, Auditor, Stylist) that turns SystemVerilog/Verilog RTL into interactive architecture diagrams, built with LangGraph and LLMs on AWS Bedrock (Gemini/OpenAI fallback), FastAPI, Pydantic, Graphviz DOT, and Next.js.',
         tech: 'LangGraph, FastAPI, Pydantic, GraphViz API, Next.js, AWS Bedrock, S3, EC2',
         github_repo: 'https://github.com/LuisFVillalon/Agentic-Abstraction-for-Chip-Engineering',
         live_app: 'https://github.com/LuisFVillalon/Agentic-Abstraction-for-Chip-Engineering',
