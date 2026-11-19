@@ -81,7 +81,7 @@ function getMilestones(): Milestone[] {
             title: 'Transferred to San Diego State',
             body: (
                 <>
-                    Started the <strong>B.S. in Computer Science</strong> at{' '}
+                    Started the <strong>B.S. in Computer Science</strong> with a <strong>Minor in Mathematics</strong> at{' '}
                     <ExternalLink href="https://cs.sdsu.edu/">SDSU</ExternalLink> ({formatStart(sdsu.time)}), after SEO &amp;
                     digital-marketing work for{' '}
                     <ExternalLink href={neighborhoodHouse.link}>Calexico Neighborhood House</ExternalLink> (
