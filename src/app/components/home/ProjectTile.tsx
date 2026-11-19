@@ -57,7 +57,7 @@ interface ProjectTileProps {
     /**
      * Home hero variants, both sized to fit the first screen on lg:
      * 'row' puts the screenshot beside the text (the lead project across the top)
-     * and clamps the description and outcome to two lines; 'compact' is a short
+     * and clamps the description to two lines; 'compact' is a short
      * stacked card (screenshot fills the spare height, three-line description, no tech line).
      */
     layout?: 'stacked' | 'row' | 'compact';
@@ -141,16 +141,6 @@ export default function ProjectTile({
                     text={project.description}
                     clamp={row ? 'line-clamp-3 lg:line-clamp-2' : compact ? 'line-clamp-3' : undefined}
                 />
-                {project.outcome && (
-                    <div className="mt-2 flex flex-col border-l-[3px] border-[#22c55e] bg-[#f4fbf6] px-3 py-1.5">
-                        <ExpandableDescription
-                            label="Outcome:"
-                            text={project.outcome}
-                            clamp={row ? 'lg:line-clamp-2' : ''}
-                            className=""
-                        />
-                    </div>
-                )}
                 <p className={`mt-2 text-xs text-[#6e6e78] ${row ? 'lg:line-clamp-1' : ''} ${compact ? 'lg:hidden' : ''}`}>
                     {tech}
                 </p>

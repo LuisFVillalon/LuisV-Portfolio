@@ -16,7 +16,6 @@ export type Project = {
     /** Award badge shown on the project's tile or compact row, e.g. { title: 'First Place', event: 'Some Hackathon 2026' }. */
     award?: { title: string; event: string };
     /** One-line measurable result shown on the homepage tile. Rendered only when set. */
-    outcome?: string;
     categoryOverrides?: Partial<Record<ProjectCategory, CategoryOverride>>;
 };
 
@@ -73,7 +72,7 @@ const projects: Project[] = [
     },
     {
         title: 'ROSS',
-        description: 'Read-only Clio Manage integration that digests a personal-injury matter into a cited 90-second case brief for attorneys and a curated, view-tracked portal for treating providers. First Place winner of the Swans Applied AI Hackathon 2026!',
+        description: 'AI tool on Clio Manage that turns a personal-injury case into a cited 90-second brief for attorneys and a tracked portal for doctors. Beat 60+ teams for first place.',
         tech: 'Node.js, JavaScript (ES Modules), Claude (Opus 5.5, Haiku 4.5), Anthropic SDK, Clio API (OAuth), SQLite, BM25 RAG, Tesseract OCR, Poppler',
         github_repo: 'https://github.com/LuisFVillalon/ROSS',
         live_app: 'https://github.com/LuisFVillalon/ROSS',
@@ -81,7 +80,6 @@ const projects: Project[] = [
         mobileFriendly: false,
         categories: ['top', 'ai'],
         award: { title: 'First Place', event: 'Swans Applied AI Hackathon 2026' },
-        outcome: 'Won first place at the Swans Applied AI Hackathon 2026, beating 60+ teams.',
     },
     {
         title: "Luis's Personal AI Assistant",
