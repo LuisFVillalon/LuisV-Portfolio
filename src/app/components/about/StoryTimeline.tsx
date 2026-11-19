@@ -105,16 +105,16 @@ function getMilestones(): Milestone[] {
             title: 'Transferred to San Diego State',
             body: (
                 <>
-                    Started the <strong>B.S. in Computer Science</strong> with a <strong>Minor in Mathematics</strong> at{' '}
-                    <ExternalLink href="https://cs.sdsu.edu/">SDSU</ExternalLink> ({formatStart(sdsu.time)}), after SEO &amp;
-                    digital-marketing work for{' '}
+                    Worked full time as an SEO &amp; digital marketer for{' '}
                     <ExternalLink href={neighborhoodHouse.link}>Calexico Neighborhood House</ExternalLink> (
-                    {formatRange(neighborhoodHouse.time)}). Worked full time the summer before transferring. Full-stack
-                    intern at the startup <ExternalLink href={secondCourse.link}>Second Course</ExternalLink> (
-                    {formatRange(secondCourse.time)}).
+                    {formatRange(neighborhoodHouse.time)}), then started the <strong>B.S. in Computer Science</strong> with a{' '}
+                    <strong>Minor in Mathematics</strong> at <ExternalLink href="https://cs.sdsu.edu/">SDSU</ExternalLink> (
+                    {formatStart(sdsu.time)}). Interned as a full-stack developer at the startup{' '}
+                    <ExternalLink href={secondCourse.link}>Second Course</ExternalLink> ({formatRange(secondCourse.time)})
+                    {crashApp.award ? '' : '.'}
                     {crashApp.award && (
                         <>
-                            {' '}Won {crashApp.award.title} at the {crashApp.award.event} with{' '}
+                            {' '}and won {crashApp.award.title} at the {crashApp.award.event} with{' '}
                             <ExternalLink href={crashApp.github_repo}>{crashApp.title}</ExternalLink>.
                         </>
                     )}
@@ -132,8 +132,8 @@ function getMilestones(): Milestone[] {
                         alt="Luis and teammates receiving awards at a hackathon"
                         width={2048}
                         height={1361}
-                        sizes="(min-width: 640px) 50vw, 100vw"
-                        className="h-64 w-full rounded-xl object-cover sm:w-1/2"
+                        sizes="240px"
+                        className="h-36 w-auto self-start rounded-lg"
                     />
                 </div>
             ),
@@ -157,22 +157,22 @@ function getMilestones(): Milestone[] {
                             🏆 {ross.award.title} · {ross.award.event}
                         </span>
                     )}
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <div className="flex flex-wrap gap-3">
                         <Image
                             src="/about/ross-hackathon-stage.jpg"
                             alt="Luis and the ROSS team accepting first place at the Swans Applied AI Hackathon 2026"
                             width={377}
                             height={439}
-                            sizes="(min-width: 640px) 50vw, 100vw"
-                            className="h-64 w-full rounded-xl object-cover"
+                            sizes="240px"
+                            className="h-36 w-auto rounded-lg"
                         />
                         <Image
                             src="/about/applied-ai-team.jpg"
                             alt="Luis with his team"
                             width={718}
                             height={433}
-                            sizes="(min-width: 640px) 50vw, 100vw"
-                            className="h-64 w-full rounded-xl object-cover"
+                            sizes="240px"
+                            className="h-36 w-auto rounded-lg"
                         />
                     </div>
                 </div>
