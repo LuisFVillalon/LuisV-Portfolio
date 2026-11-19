@@ -28,6 +28,8 @@ export function ExperienceTile() {
                         className="flex justify-between gap-3 border-b border-[#0A0A23]/10 py-2 text-[13px] last:border-b-0"
                     >
                         <span className="min-w-0">
+                            <span className="font-sans font-bold text-[#0A0A23]">{shortPosition(role.position)}</span>
+                            {' · '}
                             {role.link ? (
                                 <a href={role.link} target="_blank" rel="noopener noreferrer" className={`font-sans ${inlineLinkClass} !font-normal`}>
                                     {shortCompany(role.company)}
@@ -35,8 +37,6 @@ export function ExperienceTile() {
                             ) : (
                                 <span className="font-sans text-[#0A0A23]">{shortCompany(role.company)}</span>
                             )}
-                            {' · '}
-                            <span className="font-sans font-bold text-[#0A0A23]">{shortPosition(role.position)}</span>
                         </span>
                         <span className="shrink-0 whitespace-nowrap text-xs text-[#6e6e78]">{tidy(role.time)}</span>
                     </li>
