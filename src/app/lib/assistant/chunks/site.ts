@@ -182,7 +182,7 @@ function experienceChunks(): Chunk[] {
             label: 'Home',
             href: '/',
             text: [
-                'Luis Fernando Villalón: Software Engineer · Full-Stack · Agentic AI.',
+                'Luis Fernando Villalón: Software Engineer · Full-Stack · Applied AI.',
                 profile.openTo && `Open to: ${profile.openTo}.`,
                 `Résumé: ${resume}`,
                 `LinkedIn: ${linkedinProfileUrl}`,

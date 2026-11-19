@@ -17,10 +17,10 @@ export default function AboutPage() {
                         <div>
                             <p className={`mb-2 ${tileLabelClass}`}>About · Calexico, CA</p>
                             <h1 className="font-sans text-3xl font-extrabold leading-tight text-[#0A0A23] md:text-4xl">
-                                From a border town to building agentic AI.
+                                From a border town to building applied AI.
                             </h1>
                             <p className="mt-1 font-sans text-sm font-bold text-[#006400]">
-                                Software Engineer · Full-Stack · Agentic AI
+                                Software Engineer · Full-Stack · Applied AI
                             </p>
                             <p className="mt-3 text-sm leading-relaxed md:text-base">
                                 Hi, I&apos;m <strong>Luis Villalon</strong>, a <strong>Software Engineer</strong> from{' '}

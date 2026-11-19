@@ -66,7 +66,7 @@ export function AiGroup({ tiles, crossListed, count }: { tiles: Project[]; cross
                 id="ai"
                 title="AI Applications"
                 count={`${count} projects`}
-                blurb="Agentic pipelines, LLMs, and retrieval, built into working tools."
+                blurb="LLMs, retrieval, and AI pipelines, applied to real problems."
             />
             <GroupTiles projects={tiles} />
             {/* Projects whose tile lives under Full-stack get one line here, using their AI-specific overrides. */}

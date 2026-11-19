@@ -53,14 +53,14 @@ export default function IntroTile() {
                         Luis Fernando Villalón
                     </h1>
                     <p className="mt-1 font-sans text-sm font-bold text-[#006400]">
-                        Software Engineer · Full-Stack · Agentic AI
+                        Software Engineer · Full-Stack · Applied AI
                     </p>
                 </div>
             </div>
 
             <p className="text-sm leading-relaxed lg:text-[13px] lg:leading-normal">
                 CS student at <strong>San Diego State University</strong> (B.S., May 2027). I build full-stack
-                web apps and agentic AI systems, from a live productivity app to a first-place legal-AI
+                web apps and applied AI systems, from a live productivity app to a first-place legal-AI
                 hackathon project. From Calexico, CA; bilingual EN/ES.
             </p>
 
