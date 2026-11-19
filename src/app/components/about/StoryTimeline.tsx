@@ -2,7 +2,7 @@ import React from 'react';
 import { BentoTile } from '../home/BentoTile';
 import { ExternalLink, LogoBadge, LivePill, awardPillClass, tileLabelClass } from './AboutParts';
 import { formatEnd, formatRange, formatStart, must, startYear } from './timelineDates';
-import { certificates, currentlyDoing, education, professionalExperience, profile } from '@/app/lib/experience';
+import { certificates, education, professionalExperience, profile } from '@/app/lib/experience';
 import { getAwardProjects, getProjectsByCategory } from '@/app/lib/projects';
 
 type Milestone = {
@@ -26,7 +26,7 @@ function getMilestones(): Milestone[] {
     const secondCourse = role('Second Course');
     const neighborhoodHouse = must(professionalExperience, (r) => r.company.startsWith('Calexico Neighborhood House'), 'Calexico Neighborhood House');
     const ai4Business = role('AI4Business Lab');
-    const codePath = must(currentlyDoing, (c) => c.company === 'CodePath', 'CodePath');
+    const codePath = must(certificates, (c) => c.institution === 'CodePath' && c.title.startsWith('AI201'), 'CodePath AI201');
     const topProjects = getProjectsByCategory('top');
     const ross = must(topProjects, (p) => p.title === 'ROSS' && Boolean(p.award), 'ROSS award');
     const kanso = must(topProjects, (p) => p.title === 'kanso', 'kanso');
@@ -119,8 +119,8 @@ function getMilestones(): Milestone[] {
             title: 'Building, leading, and job hunting',
             body: (
                 <>
-                    <strong>kanso</strong>, my full-stack tasks/notes/habits app, is live. Taking CodePath&apos;s AI201 (
-                    {formatRange(codePath.time)}) and serving as ColorStack Outreach Chair. I am currently exploring careers in{' '}
+                    <strong>kanso</strong>, my full-stack tasks/notes/habits app, is live. Completed CodePath&apos;s AI201 (
+                    {formatRange(codePath.time)}), and I&apos;m serving as ColorStack Outreach Chair. I am currently exploring careers in{' '}
                     <strong>Full-Stack</strong> and <strong>Applied AI</strong> development and <strong>Cybersecurity</strong>.
                     I graduate in{' '}
                     <strong>{formatEnd(sdsu.time)}</strong>
