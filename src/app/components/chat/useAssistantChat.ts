@@ -68,11 +68,19 @@ export function useAssistantChat(page: string) {
     const [limit, setLimit] = useState(15);
     const [maxChars, setMaxChars] = useState(500);
     const [unavailable, setUnavailable] = useState<Unavailable>(null);
+    /** The site-wide per-minute limit was hit: nothing was charged; asking again works after a minute. */
+    const [crowded, setCrowded] = useState(false);
     const [announcement, setAnnouncement] = useState('');
     const [save, setSaveState] = useState(true);
     const conversationId = useRef<string>('');
     const abort = useRef<AbortController | null>(null);
     const statusLoaded = useRef(false);
+
+    useEffect(() => {
+        if (!crowded) return;
+        const timer = window.setTimeout(() => setCrowded(false), 60_000);
+        return () => window.clearTimeout(timer);
+    }, [crowded]);
 
     useEffect(() => {
         conversationId.current = newConversationId();
@@ -156,6 +164,13 @@ export function useAssistantChat(page: string) {
                         setAnnouncement("You've used today's questions.");
                         return;
                     }
+                    if (err.code === 'busy') {
+                        setMessages(history);
+                        setCrowded(true);
+                        setPhase('idle');
+                        setAnnouncement('The assistant is getting a lot of questions right now. Please try again in a minute, or reach Luis directly.');
+                        return;
+                    }
                     if (err.code === 'budget' || err.code === 'off') {
                         setUnavailable(err.code);
                         setPhase('idle');
@@ -218,23 +233,23 @@ export function useAssistantChat(page: string) {
     const send = useCallback(
         (raw: string) => {
             const question = raw.trim().slice(0, maxChars);
-            if (!question || phase !== 'idle' || remaining === 0 || unavailable) return false;
+            if (!question || phase !== 'idle' || remaining === 0 || unavailable || crowded) return false;
             const history = messages;
             setMessages((m) => [...m, { id: nextId(), role: 'user', text: question, status: 'done' }]);
             void ask(question, history);
             return true;
         },
-        [ask, maxChars, messages, phase, remaining, unavailable],
+        [ask, crowded, maxChars, messages, phase, remaining, unavailable],
     );
 
     /** Drops the failed answer and asks the last question again. */
     const retry = useCallback(() => {
         const lastUserIndex = messages.map((m) => m.role).lastIndexOf('user');
-        if (lastUserIndex < 0 || phase !== 'idle' || remaining === 0) return;
+        if (lastUserIndex < 0 || phase !== 'idle' || remaining === 0 || crowded) return;
         const history = messages.slice(0, lastUserIndex);
         setMessages((m) => m.filter((x) => x.status !== 'error'));
         void ask(messages[lastUserIndex].text, history);
-    }, [ask, messages, phase, remaining]);
+    }, [ask, crowded, messages, phase, remaining]);
 
     const clear = useCallback(() => {
         abort.current?.abort();
@@ -259,6 +274,7 @@ export function useAssistantChat(page: string) {
         retry,
         clear,
         limited: remaining === 0 && phase === 'idle',
+        crowded,
         /** Visitor questions so far, for the "Message Luis" context. */
         questions: messages.filter((m) => m.role === 'user').map((m) => m.text),
     };

@@ -55,7 +55,7 @@ export default function ChatPanel({
     useDialog({ open, onClose, dialogRef, initialFocus: inputRef, lockScroll: phone });
 
     const busy = chat.phase !== 'idle';
-    const blocked = chat.unavailable ?? (chat.limited ? 'limit' : null);
+    const blocked = chat.unavailable ?? (chat.limited ? 'limit' : chat.crowded ? 'busy' : null);
     const openLead = () => setLeadOpen(true);
     const closeLead = () => {
         setLeadOpen(false);

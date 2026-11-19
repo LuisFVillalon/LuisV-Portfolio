@@ -306,8 +306,16 @@ export function Composer({
     );
 }
 
-/** Replaces the composer when the visitor's questions are used up or the assistant is off. */
-export function BlockedNotice({ reason, limit, onMessage }: { reason: 'limit' | NonNullable<Unavailable>; limit: number; onMessage: () => void }) {
+/** Replaces the composer when the visitor's questions are used up, the assistant is busy for a minute, or it is off. */
+export function BlockedNotice({
+    reason,
+    limit,
+    onMessage,
+}: {
+    reason: 'limit' | 'busy' | NonNullable<Unavailable>;
+    limit: number;
+    onMessage: () => void;
+}) {
     const ref = useRef<HTMLDivElement>(null);
     // The composer (which had focus) was just removed; keep focus inside the dialog.
     useEffect(() => {
@@ -315,6 +323,7 @@ export function BlockedNotice({ reason, limit, onMessage }: { reason: 'limit' | 
     }, []);
     const copy = {
         limit: [`You've used today's ${limit} questions.`, 'Come back tomorrow, or reach Luis directly.'],
+        busy: ['The assistant is getting a lot of questions right now.', 'Please try again in a minute, or reach Luis directly.'],
         budget: ['The assistant is taking a break until next month.', 'Luis is still easy to reach directly.'],
         off: ["The assistant isn't available right now.", 'You can still reach Luis directly.'],
         unavailable: ["The assistant isn't available right now.", 'Please try again later, or reach Luis directly.'],
