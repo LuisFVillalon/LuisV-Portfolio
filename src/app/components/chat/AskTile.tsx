@@ -19,11 +19,11 @@ export default function AskTile() {
                 <AssistantAvatar size={40} />
                 <div className="min-w-0">
                     <p className="font-sans text-lg font-extrabold leading-tight text-[#0A0A23]">Short on time? Just ask.</p>
-                    <p className="mt-0.5 text-[13px]">An AI assistant that answers from Luis&apos;s projects, roles and writing.</p>
+                    <p className="mt-0.5 text-[13px] lg:text-xs">An AI assistant that answers from Luis&apos;s projects, roles and writing.</p>
                 </div>
             </div>
             <form
-                className="mt-3"
+                className="mt-3 lg:mt-2.5"
                 onSubmit={(e) => {
                     e.preventDefault();
                     openWith(value);
@@ -52,10 +52,10 @@ export default function AskTile() {
                     </button>
                 </div>
             </form>
-            <div className="mt-2.5">
+            <div className="mt-2.5 lg:mt-2">
                 <StarterChips items={startersFor('/').slice(0, 3)} onPick={(q) => openWith(q)} />
             </div>
-            <Disclosure className="mt-2.5" />
+            <Disclosure className="mt-2.5 lg:mt-2" />
         </BentoTile>
     );
 }

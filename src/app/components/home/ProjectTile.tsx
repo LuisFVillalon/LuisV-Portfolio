@@ -55,10 +55,12 @@ interface ProjectTileProps {
     imageClass?: string;
     backendLink?: boolean;
     /**
-     * 'row' puts the screenshot beside the text on lg screens (the home hero's
-     * stacked column) and clamps the outcome line to two lines there.
+     * Home hero variants, both sized to fit the first screen on lg:
+     * 'row' puts the screenshot beside the text (the lead project across the top)
+     * and clamps the description and outcome to two lines; 'compact' is a short
+     * stacked card (screenshot fills the spare height, three-line description, no tech line).
      */
-    layout?: 'stacked' | 'row';
+    layout?: 'stacked' | 'row' | 'compact';
     className?: string;
 }
 
@@ -72,19 +74,25 @@ export default function ProjectTile({
     className = '',
 }: ProjectTileProps) {
     const row = layout === 'row';
+    const compact = layout === 'compact';
     const live = isLiveApp(project);
     const tech = splitTech(project.tech).slice(0, featured ? 4 : 3).join(' · ');
     const imageHeight =
         imageClass ??
         (row
             ? // Beside the text on lg: full tile height, a fixed share of the width.
-              'h-[150px] lg:-mb-5 lg:mr-5 lg:h-auto lg:w-[38%] lg:flex-none lg:border-b-0 lg:border-r'
-            : `h-[150px] ${featured ? 'lg:h-[132px]' : 'lg:h-[92px]'}`);
+              'h-[150px] lg:-mb-5 lg:mr-5 lg:h-auto lg:w-[36%] lg:flex-none lg:border-b-0 lg:border-r'
+            : compact
+              ? // Grows to fill the tile when its grid row is taller than the text needs.
+                'h-[150px] lg:h-auto lg:min-h-[96px] lg:flex-1'
+              : `h-[150px] ${featured ? 'lg:h-[132px]' : 'lg:h-[92px]'}`);
     const titleSize = row
         ? featured
             ? 'text-xl lg:text-lg'
             : 'text-lg'
-        : featured
+        : compact
+          ? 'text-lg lg:text-[15px] lg:leading-tight'
+          : featured
           ? 'text-xl lg:text-2xl'
           : 'text-lg lg:text-base';
 
@@ -106,7 +114,7 @@ export default function ProjectTile({
                 />
             </div>
 
-            <div className="flex min-w-0 flex-1 flex-col">
+            <div className={`flex min-w-0 flex-1 flex-col ${compact ? 'lg:flex-none' : ''}`}>
                 <div className="flex flex-wrap gap-2">
                     {featuredMark && (
                         <span className="inline-flex items-center rounded-full bg-[#0A0A23] px-2.5 py-1 font-sans text-xs font-bold text-white">
@@ -129,7 +137,10 @@ export default function ProjectTile({
                 <h3 className={`mt-2 font-sans font-extrabold leading-snug text-[#0A0A23] ${titleSize}`}>
                     {project.title}
                 </h3>
-                <ExpandableDescription text={project.description} clamp={row ? 'line-clamp-3' : undefined} />
+                <ExpandableDescription
+                    text={project.description}
+                    clamp={row ? 'line-clamp-3 lg:line-clamp-2' : compact ? 'line-clamp-3' : undefined}
+                />
                 {project.outcome && (
                     <p className="mt-2 border-l-[3px] border-[#22c55e] bg-[#f4fbf6] px-3 py-1.5 text-[13px]">
                         <span className={row ? 'lg:line-clamp-2' : undefined}>
@@ -137,9 +148,11 @@ export default function ProjectTile({
                         </span>
                     </p>
                 )}
-                <p className="mt-2 text-xs text-[#6e6e78]">{tech}</p>
+                <p className={`mt-2 text-xs text-[#6e6e78] ${row ? 'lg:line-clamp-1' : ''} ${compact ? 'lg:hidden' : ''}`}>
+                    {tech}
+                </p>
 
-                <div className="mt-auto pt-3">
+                <div className={`mt-auto ${row || compact ? 'pt-3 lg:pt-2' : 'pt-3'}`}>
                     <ProjectLinks project={project} backendLink={backendLink} />
                 </div>
             </div>
