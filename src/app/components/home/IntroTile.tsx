@@ -29,11 +29,21 @@ function getProofFacts(): Fact[] {
         facts.push({ headline: `🏆 ${awards[0].title}`, detail: [awards[0].event] });
     }
 
-    const years = professionalExperience.flatMap((role) => (role.time.match(/\d{4}/g) ?? []).map(Number));
+    // One role type per line, counted from the titles: "3 industry internships" / "1 research role" / "1 full-time role".
+    const kinds = [
+        { test: (pos: string) => /\bIntern\b/.test(pos), one: 'industry internship', many: 'industry internships' },
+        { test: (pos: string) => /Research/.test(pos), one: 'research role', many: 'research roles' },
+    ];
+    const counts = [0, 0, 0];
+    for (const { position } of professionalExperience) {
+        const i = kinds.findIndex((k) => k.test(position));
+        counts[i === -1 ? 2 : i]++;
+    }
+    const labels = [...kinds, { one: 'full-time role', many: 'full-time roles' }];
     if (professionalExperience.length > 0) {
         facts.push({
             headline: `${professionalExperience.length} roles`,
-            detail: [years.length ? `industry & research since ${Math.min(...years)}` : 'industry & research'],
+            detail: labels.flatMap((l, i) => (counts[i] ? [`${counts[i]} ${counts[i] === 1 ? l.one : l.many}`] : [])),
         });
     }
 

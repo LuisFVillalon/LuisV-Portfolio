@@ -355,7 +355,7 @@ const currentlyDoing: currentlyDoing[] = [
                   time: 'Present',
                   description: kanso.description,
                   tech: kanso.tech,
-                  link: kanso.live_app ?? kanso.github_repo,
+                  link: 'https://kanso-landing.vercel.app/',
               },
           ]
         : []),
