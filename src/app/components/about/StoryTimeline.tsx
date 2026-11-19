@@ -118,11 +118,20 @@ function getMilestones(): Milestone[] {
                 </>
             ),
             extra: (
-                <div className="flex flex-wrap gap-2">
-                    <LogoBadge src="/about/San_Diego_State_Aztecs_logo.svg.png" alt="SDSU logo" />
-                    <LogoBadge src="/about/CNH_Logo.png" alt="Calexico Neighborhood House logo" />
-                    <LogoBadge src="/about/SecondCourse_Logo.png" alt="Second Course logo" />
-                    <ProjectThumb href={crashApp.github_repo} src={crashApp.image} alt="The Crash App" />
+                <div className="flex flex-col gap-3">
+                    <div className="flex flex-wrap gap-2">
+                        <LogoBadge src="/about/San_Diego_State_Aztecs_logo.svg.png" alt="SDSU logo" />
+                        <LogoBadge src="/about/CNH_Logo.png" alt="Calexico Neighborhood House logo" />
+                        <LogoBadge src="/about/SecondCourse_Logo.png" alt="Second Course logo" />
+                    </div>
+                    <Image
+                        src="/blog/blog_06/4.png"
+                        alt="Luis and teammates receiving awards at a hackathon"
+                        width={2048}
+                        height={1361}
+                        sizes="(min-width: 640px) 50vw, 100vw"
+                        className="h-64 w-full rounded-xl object-cover sm:w-1/2"
+                    />
                 </div>
             ),
         },
