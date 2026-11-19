@@ -11,7 +11,7 @@ npm start        # Start production server
 npm run lint     # Run ESLint
 ```
 
-No test suite is configured.
+`npm test` runs the assistant's limit tests (`src/app/lib/assistant/*.test.ts`, node:test via tsx); there is no other test suite.
 
 ## Stack
 
@@ -19,6 +19,7 @@ No test suite is configured.
 - **Styling:** Tailwind CSS 3 with CSS variable-based theming (`--background`, `--foreground`)
 - **Icons:** Lucide React, React Icons
 - **Email:** Resend (primary), Nodemailer (secondary) via `/api/contact`
+- **AI assistant:** Claude Haiku 5.5 via `@anthropic-ai/sdk`, Voyage AI (embeddings + rerank), Upstash Vector (hybrid) + Upstash Redis, Vercel Cron (`vercel.json`)
 - **Path alias:** `@/*` maps to `./src/*`
 
 ## Architecture
@@ -31,6 +32,7 @@ All site content is defined as typed TypeScript data — not fetched from a CMS 
 - `markdownBlogs.ts` / `blogTypes.ts` — reads blog posts from Markdown files instead of typed data; see "Blog posts" below
 - `experience.ts` — exports separate named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`, `beyondTech` (non-engineering roles shown last, collapsed, on the Experience page); plus `profile` (optional `openTo` line shown in the homepage intro) and `resume` (path to the résumé PDF in `public/resumes/`)
 - `testimonials.ts` — testimonial entries
+- `assistant/` — the "Ask AI" assistant's server code (not content): `chunks/` (corpus builders per source), `indexer.ts` (Upstash Vector sync), `retrieve.ts`, `answer.ts`, `prompt.ts` (persona + rules), `usage.ts` (limits, budget), `conversations.ts`, `private.ts` (LinkedIn file + Assistant facts from env vars or the gitignored `.private/`); see "AI assistant" below
 - `linkedinPosts.ts` — embedded LinkedIn post URLs shown in `LinkedInSection`; to add one, open the post on LinkedIn → Send → Embed this post, and copy the iframe `src` into `embedUrl`
 
 ### Blog posts (Markdown-based)
@@ -56,7 +58,8 @@ src/app/
 ├── projects/[category]/page.tsx  # Legacy URLs — 308-redirects /projects/<category> to /projects?type=<category>
 ├── blog/page.tsx               # Blog index: header summary, featured latest post, topic-filterable post list
 ├── blog/[slug]/page.tsx        # Dynamic route — slug matches blog entry id; sticky TOC rail beside the article
-└── api/contact/route.ts        # POST handler; sends email via Resend
+├── api/contact/route.ts        # POST handler; sends email via Resend (also the assistant's "Message Luis" card, source: "chat")
+└── api/assistant/              # chat (streamed NDJSON answer, DELETE = forget a saved chat), status, reindex + digest (Vercel Cron)
 ```
 
 `projects/page.tsx` is a server component: `components/projects/projectGroups.ts` buckets the projects (featured first, award winners leading) and computes the chip counts, and the small client `ProjectFilter` renders the header chips and swaps which group is shown, mirroring the choice in `?type=` (`all`, `awards`, `ai`, `fullstack`, `frontend`, `academic`; `awards` lists every project with an `award`, which also stays in its own group). Projects in the `frontend` category render as compact rows in an "Earlier front-end work" list inside Full-stack; coursework renders as an image-free list.
@@ -67,6 +70,7 @@ src/app/
 src/app/components/
 ├── home/          # HomeBody (bento grid), BentoTile, IntroTile, ProjectTile (also used on /projects), ExpandableDescription (Read more), InfoTiles (experience/now/stack/writing/contact), LinkedInSection, TechSection (unused)
 ├── blog/          # BlogIndexComponents, PostComponents, PostMarkdown, PostToc, TopicFilter, ReadingProgress, blogStyles
+├── chat/          # AI assistant UI: AssistantProvider (mounted in layout.tsx), ChatPanel, AskAIButton (header), AskTile (home), LeadCard, useAssistantChat, useDialog
 ├── contact/       # ContactForm (client form posting to /api/contact) and CopyEmailButton
 ├── experience/    # ExperienceComponents (header, role timelines, beyond tech, education/skills/certificates tiles)
 ├── projects/      # ProjectFilter (client chips), ProjectSections (groups), CompactRow, ShowMoreList, projectGroups/projectFilters helpers
@@ -75,6 +79,10 @@ src/app/components/
 ├── Footer.tsx
 └── Wrapper.tsx    # Page-width container
 ```
+
+### AI assistant
+
+The chat is hidden unless `isAssistantConfigured()` (`lib/assistant/config.ts`) finds `ANTHROPIC_API_KEY`, `VOYAGE_API_KEY`, the Upstash Vector and Redis variables; the routes then answer 503. Limits, model and retrieval settings live in `ASSISTANT` in that file. The repo is public: the LinkedIn file and Assistant facts are loaded from env vars (`ASSISTANT_LINKEDIN_PROFILE`, `ASSISTANT_FACTS`) or the gitignored `.private/` folder, never committed. `npm run assistant:chunks` prints the corpus without keys; `npm run assistant:index` syncs it (also `prebuild`, and daily via `/api/assistant/reindex`). After changing site content, nothing else is needed: the next build or daily job re-embeds changed chunks.
 
 ### Styling conventions
 
@@ -85,7 +93,7 @@ src/app/components/
 
 ### Environment variables
 
-The contact form requires these vars in `.env.local`:
+`.env.example` lists every variable (the AI assistant's are optional). The contact form requires these vars in `.env.local`:
 
 ```
 RESEND_API_KEY=   # Resend API key
@@ -95,6 +103,7 @@ TO_EMAIL=         # Recipient address
 
 ### Adding content
 
+- **Assistant answers:** edit the persona and rules in `src/app/lib/assistant/prompt.ts`; private facts go in the `ASSISTANT_FACTS` env var
 - **New project:** Add an entry to `src/app/lib/projects.ts` with the appropriate `categories`, and place images in `public/projects/`
 - **New blog post:** Create `public/blog/blog_<n>/blog_<n>.md` with frontmatter (`id`, `title`, `author`, `date`, `readTime`, `category`, `image_card`) plus the Markdown body, and place any referenced images alongside it in the same folder; the `id` is used as the URL segment in `/blog/[slug]`
 - **New LinkedIn post:** Add an entry to `src/app/lib/linkedinPosts.ts` with the embed URL copied from LinkedIn's "Embed this post" dialog

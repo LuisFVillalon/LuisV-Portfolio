@@ -2,6 +2,7 @@ import IntroTile from './IntroTile';
 import ProjectTile from './ProjectTile';
 import { ExperienceTile, NowTile, StackTile, WritingTile, ContactTile } from './InfoTiles';
 import LinkedInSection from './LinkedInSection';
+import AskTile from '../chat/AskTile';
 import GitHubStatsSection from '../github/GitHubStatsSection';
 import { SectionCard } from '../Cards/SectionCard';
 import { getProjectsByCategory } from '@/app/lib/projects';
@@ -20,9 +21,11 @@ export default function Homebody({ posts }: HomebodyProps) {
         <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
             {/* ── Bento: everything a recruiter needs on the first screen ──
                 DOM order is the mobile priority order; on lg the dense grid
-                packs intro (2×2), the award project (2×1), then two 1×1 projects. */}
+                packs intro (2×2), the AI assistant tile (2×1, only when the assistant
+                is configured), the award project (2×1), then the 1×1 projects. */}
             <section className="grid grid-cols-1 gap-3 py-4 md:grid-cols-2 md:gap-4 md:py-6 lg:grid-cols-4 lg:grid-flow-dense">
                 <IntroTile />
+                <AskTile />
                 {orderedProjects.map((project, i) => (
                     <ProjectTile key={project.title} project={project} featured={i === 0} />
                 ))}

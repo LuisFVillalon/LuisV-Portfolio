@@ -4,11 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "tsx scripts/assistant-index.ts",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "tsx --test src/app/lib/assistant/*.test.ts",
+    "assistant:index": "tsx scripts/assistant-index.ts",
+    "assistant:chunks": "tsx scripts/assistant-index.ts --dry-run"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.10.0",
+    "@upstash/redis": "^1.41.0",
+    "@upstash/vector": "^1.2.4",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.517.0",
     "next": "15.1.11",
@@ -18,7 +25,8 @@
     "react-icons": "^5.4.0",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
-    "resend": "^6.0.3"
+    "resend": "^6.0.3",
+    "unpdf": "^1.9.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -31,6 +39,7 @@
     "eslint-config-next": "15.1.6",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }
