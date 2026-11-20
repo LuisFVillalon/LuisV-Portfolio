@@ -49,7 +49,10 @@ export default function AboutPage() {
                                 I am fluent in <strong>Spanish</strong> and <strong>English</strong>. When I&apos;m not working
                                 academically or professionally, I enjoy spending time <strong>outdoors</strong>, whether it is{' '}
                                 <strong>working out</strong>, <strong>playing basketball</strong>, or <strong>going for a run</strong>.
-                                Alternatively, I love working on <strong>personal apps</strong> or watching a good show or movie like{' '}
+                                Alternatively, I like to spend my free time reading <strong>classic novels</strong> like{' '}
+                                <ExternalLink href="https://en.wikipedia.org/wiki/Nineteen_Eighty-Four" italic>1984</ExternalLink> or{' '}
+                                <ExternalLink href="https://en.wikipedia.org/wiki/A_Tale_of_Two_Cities" italic>A Tale of Two Cities</ExternalLink>,
+                                or watching a good show or movie like{' '}
                                 <ExternalLink href="https://www.imdb.com/title/tt0141842/" italic>the Sopranos</ExternalLink> or{' '}
                                 <ExternalLink href="https://www.imdb.com/title/tt3783958/" italic>La La Land</ExternalLink>.
                             </p>
