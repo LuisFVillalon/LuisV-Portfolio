@@ -181,7 +181,7 @@ function getMilestones(): Milestone[] {
                     beating 60+ teams
                 </>,
                 <>
-                    Completed <ExternalLink href={codePath.institution_link}>CodePath</ExternalLink>&apos;s AI201 ({formatRange(codePath.time)})
+                    Completed <ExternalLink href={codePath.institution_link}>CodePath</ExternalLink>&apos;s AI201: Applications of AI Engineering ({formatRange(codePath.time)})
                 </>,
             ],
             extra: (
