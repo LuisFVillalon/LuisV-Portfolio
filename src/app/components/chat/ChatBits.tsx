@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { Info, Sparkles } from 'lucide-react';
 
 // Small pieces shared by the chat panel and its entry points (header button, home tile).
@@ -12,17 +11,15 @@ export const focusRing =
 /** Brand gradient used by the site's primary button and the active-nav underline. */
 export const brandGradient = 'bg-[linear-gradient(to_right,#22c55e,#3b82f6)]';
 
-/** Headshot with a small sparkle badge: "Luis's assistant", never Luis himself. */
+/** Round brand-gradient badge with a white sparkle: "Luis's assistant", never Luis himself. */
 export function AssistantAvatar({ size = 32 }: { size?: number }) {
     return (
-        <span className="relative inline-flex flex-none" style={{ width: size, height: size }}>
-            <Image src="/headshot.jpg" alt="" width={size * 2} height={size * 2} className="h-full w-full rounded-full object-cover" />
-            <span
-                aria-hidden="true"
-                className={`absolute -bottom-0.5 -right-0.5 flex h-[45%] w-[45%] items-center justify-center rounded-full border-2 border-white ${brandGradient}`}
-            >
-                <Sparkles className="h-[70%] w-[70%] text-white" strokeWidth={2.5} />
-            </span>
+        <span
+            aria-hidden="true"
+            className={`inline-flex flex-none items-center justify-center rounded-full ${brandGradient}`}
+            style={{ width: size, height: size }}
+        >
+            <Sparkles className="h-[55%] w-[55%] text-white" strokeWidth={2.25} />
         </span>
     );
 }
