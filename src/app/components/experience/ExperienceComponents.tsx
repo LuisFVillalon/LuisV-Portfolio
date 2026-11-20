@@ -4,7 +4,6 @@ import {
     education,
     certificates,
     techTools,
-    currentlyDoing,
     leadership,
     beyondTech,
     profile,
@@ -27,14 +26,6 @@ const companyDetail = (company: string) => tidy(company.split(' – ').slice(1).
 
 // Engineering skills only; marketing tools stay on the record through the roles themselves.
 const HIDDEN_SKILL_SUBJECTS = new Set(['Digital Marketing']);
-
-// SDSU and ColorStack are listed in currentlyDoing as well as education/leadership;
-// show each of them only once on this page.
-const currentOnly = currentlyDoing.filter(
-    (item) =>
-        !education.some((e) => e.institution === item.company) &&
-        !leadership.some((l) => l.company === item.company && l.position === item.position),
-);
 
 type TimelineItem = {
     key: string;
@@ -140,12 +131,11 @@ export function ProfessionalTimeline() {
 }
 
 export function AlongsideTimeline() {
-    const items = [...currentOnly, ...leadership];
-    if (items.length === 0) return null;
+    if (leadership.length === 0) return null;
     return (
-        <BentoTile label="Alongside school · leadership & current programs">
+        <BentoTile label="Alongside school · leadership">
             <Timeline
-                items={items.map((item) => ({
+                items={leadership.map((item) => ({
                     key: `${item.company}-${item.position}`,
                     time: item.time,
                     title: tidy(item.position),
