@@ -5,13 +5,14 @@ type MonthYear = { month: string; year: string };
 
 const parsePart = (part: string): MonthYear => {
     const [month = '', year = ''] = part.trim().split(/\s+/);
-    // "June" -> "Jun", "Sept" -> "Sep"
+    // "June" -> "Jun", "Sept" -> "Sep"; seasons ("Fall 2026") stay whole
+    if (/^(spring|summer|fall|autumn|winter)$/i.test(month)) return { month, year };
     return { month: month.slice(0, 3), year };
 };
 
 const splitRange = (time: string) => time.split(/\s+[-–]\s+/).map(parsePart);
 
-/** "Jun 2024 - Aug 2024" -> "Jun – Aug 2024"; "Jul 2022 - Apr 2024" -> "Jul 2022 – Apr 2024"; "Oct 2022" -> "Oct 2022". */
+/** "Jun 2024 - Aug 2024" -> "Jun – Aug 2024"; "Jul 2022 - Apr 2024" -> "Jul 2022 – Apr 2024"; "Oct 2022" -> "Oct 2022"; "Fall 2026" -> "Fall 2026". */
 export function formatRange(time: string): string {
     const [start, end] = splitRange(time);
     if (!end) return `${start.month} ${start.year}`;
