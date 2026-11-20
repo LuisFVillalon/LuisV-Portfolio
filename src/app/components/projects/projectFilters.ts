@@ -1,11 +1,12 @@
 // Filter values for the Projects page. Kept free of project data so the client filter stays small.
-/** The Projects page filter values; each one except 'all' and 'awards' (projects with an award) is also a ProjectCategory. */
-export const PROJECT_FILTERS = ['all', 'awards', 'ai', 'fullstack', 'frontend', 'academic'] as const;
+/** The Projects page filter values; each one except 'all', 'awards' (projects with an award) and 'live' (projects with a live deployment) is also a ProjectCategory. */
+export const PROJECT_FILTERS = ['all', 'awards', 'live', 'ai', 'fullstack', 'frontend', 'academic'] as const;
 export type ProjectFilter = (typeof PROJECT_FILTERS)[number];
 
 export const filterLabel: Record<ProjectFilter, string> = {
     all: 'All',
     awards: 'Awards',
+    live: 'Live',
     ai: 'AI',
     fullstack: 'Full-stack',
     frontend: 'Front-end',
