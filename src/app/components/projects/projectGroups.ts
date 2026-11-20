@@ -18,7 +18,7 @@ export function getProjectGroups() {
     const fullstack = featuredFirst(getProjectsByCategory('fullstack'));
     const frontend = getProjectsByCategory('frontend');
     const academic = getProjectsByCategory('academic');
-    const total = new Set([...ai, ...fullstack, ...frontend, ...academic].map((p) => p.title)).size;
+    const total = new Set([...awards, ...ai, ...fullstack, ...frontend, ...academic].map((p) => p.title)).size;
 
     // A project in both Full-stack and AI gets its tile under Full-stack and a cross-reference line under AI.
     const fullstackTitles = new Set(fullstack.map((p) => p.title));

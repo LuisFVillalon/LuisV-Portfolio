@@ -109,7 +109,7 @@ const projects: Project[] = [
         live_app: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
         image: '/projects/frontend/thecrashapp.png',
         mobileFriendly: true,
-        categories: ['frontend'],
+        categories: [],
         award: { title: 'Most Creative Project', event: 'Innovate 4 SDSU Hackathon 2025' },
     },
     {

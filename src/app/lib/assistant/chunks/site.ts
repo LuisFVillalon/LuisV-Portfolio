@@ -2,7 +2,7 @@
 // education entry, certificate and skill group; blog posts split at their headings.
 import { getBlogPosts } from '../../markdownBlogs';
 import { slugifyHeading } from '../../blogTypes';
-import { getProjectsByCategory, type Project, type ProjectCategory } from '../../projects';
+import { getAwardProjects, getProjectsByCategory, type Project, type ProjectCategory } from '../../projects';
 import {
     beyondTech,
     certificates,
@@ -25,19 +25,22 @@ const CATEGORY_NAMES: Record<ProjectCategory, string> = {
     academic: 'Coursework',
 };
 
-/** Every project once, in projects.ts order (getProjectsByCategory covers all categories). */
+/** Every project once, in projects.ts order (categories, then award winners, which may have no category). */
 function allProjects(): Project[] {
     const seen = new Set<string>();
     const list: Project[] = [];
     for (const category of ['top', 'ai', 'fullstack', 'frontend', 'academic'] as ProjectCategory[]) {
-        for (const project of getProjectsByCategory(category)) {
-            if (!seen.has(project.title)) {
-                seen.add(project.title);
-                list.push(project);
-            }
+        for (const project of getProjectsByCategory(category)) add(project);
+    }
+    getAwardProjects().forEach(add);
+    return list;
+
+    function add(project: Project) {
+        if (!seen.has(project.title)) {
+            seen.add(project.title);
+            list.push(project);
         }
     }
-    return list;
 }
 
 function projectChunk(project: Project): Chunk {
@@ -48,7 +51,7 @@ function projectChunk(project: Project): Chunk {
         project.award && `Award: ${project.award.title}, ${project.award.event}`,
         `Description: ${project.description}`,
         `Tech: ${project.tech}`,
-        `Categories on the site: ${project.categories.map((c) => CATEGORY_NAMES[c]).join(', ')}`,
+        project.categories.length > 0 && `Categories on the site: ${project.categories.map((c) => CATEGORY_NAMES[c]).join(', ')}`,
         `Code: ${project.github_repo}`,
         project.frontend_repo && project.frontend_repo !== project.github_repo && `Front-end repo: ${project.frontend_repo}`,
         project.backend_repo && `Back-end repo: ${project.backend_repo}`,
