@@ -46,7 +46,7 @@ function Timeline({ items }: { items: TimelineItem[] }) {
                     <p className={`${mutedClass} hidden whitespace-nowrap pt-0.5 text-right md:block`}>{tidy(item.time)}</p>
                     <div className="relative flex justify-center" aria-hidden="true">
                         {i < items.length - 1 && <span className="absolute bottom-[-20px] top-3 w-px bg-[#0A0A23]/15" />}
-                        <span className={`relative mt-1.5 h-3 w-3 rounded-full border-2 ${i === 0 ? 'border-[#22c55e] bg-[#22c55e]' : 'border-[#0A0A23]/40 bg-white'}`} />
+                        <span className={`relative mt-1.5 h-3 w-3 rounded-full border-2 ${/present/i.test(item.time) ? 'border-[#22c55e] bg-[#22c55e]' : 'border-[#0A0A23]/40 bg-white'}`} />
                     </div>
                     <div className="min-w-0">
                         <p className={`${mutedClass} md:hidden`}>{tidy(item.time)}</p>
