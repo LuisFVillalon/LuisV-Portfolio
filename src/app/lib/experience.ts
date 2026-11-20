@@ -93,7 +93,7 @@ const education: education[] = [
     {
         institution: 'NXP Semiconductors',
         course: 'Engineering Bootcamp: Agentic AI in the Cloud',
-        time: 'Feb 2026 - Apr 2026',
+        time: 'Feb 2026 - May 2026',
         description: 'Developed and deployed cloud-based agentic AI systems using LangChain, LLM APIs, RAG architectures, multi-agent orchestration, and scalable AWS/GCP under mentorship from the Design & Automation Team at NXP.',
         tech:'LLM APIs, LangChain, Python, RAG Systems',
         link: 'https://www.nxp.com/'
