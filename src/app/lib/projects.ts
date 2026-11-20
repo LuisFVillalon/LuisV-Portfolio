@@ -30,16 +30,16 @@ const projects: Project[] = [
         live_app: 'https://kanso-landing.vercel.app/',
         image: '/projects/frontend/taskmaster.png',
         mobileFriendly: true,
-        categories: ['top', 'fullstack', 'ai'],
-        categoryOverrides: {
-            ai: {
-                description: 'Backend application designed to handle AI-driven task management and planning workflows through LLM service calls.',
-                github_repo: 'https://github.com/LuisFVillalon/taskmaster-ai',
-                tech: 'FastAPI, Pydantic, LLM Service Calls, OpenAI (GPT-4o-mini)',
-                frontend_repo: undefined,
-                backend_repo: undefined,
-            },
-        },
+        categories: ['top', 'fullstack'],
+    },
+    {
+        title: 'kanso AI',
+        description: "kanso's learning-resource recommender: given a note, an LLM plans a topic, level and search queries, then a deterministic pipeline searches DuckDuckGo, filters sponsored and paywalled results, checks for dead links, scores credibility, and returns one video, one article and one exercise, each with a reason.",
+        tech: 'Python, FastAPI, Pydantic, OpenAI / Gemini, DuckDuckGo Search, httpx, Supabase JWT Auth, Fly.io',
+        github_repo: 'https://github.com/LuisFVillalon/kanso-ai',
+        image: '/projects/frontend/taskmaster.png',
+        mobileFriendly: false,
+        categories: ['ai'],
     },
     {
         title: 'Agentic Abstraction for Chip Engineering (AACE)',
@@ -99,7 +99,7 @@ const projects: Project[] = [
         live_app: 'https://luis-v-portfolio.vercel.app',
         image: '/projects/frontend/webportfolio.png',
         mobileFriendly: true,
-        categories: ['frontend'],
+        categories: ['fullstack'],
     },
     {
         title: 'The Crash App',
