@@ -101,6 +101,15 @@ const professionalExperience: professionalExperience[] = [
 ];
 const education: education[] = [
     {
+        institution: 'San Diego State University',
+        course: 'Bachelor of Science in Computer Science, Minor in Mathematics',
+        time: 'Aug 2025 - May 2027',
+        description: 'Transferred from Imperial Valley College to complete a B.S. in Computer Science with a Minor in Mathematics, going deeper into algorithms, software systems, computer architecture, operating systems, and artificial intelligence.',
+        courses: ['Data Structures', 'Algorithms', 'Software Systems', 'Computer Architecture', 'Operating Systems', 'Artificial Intelligence'],
+        tech:'Python, C, C++',
+        link: 'https://cs.sdsu.edu/'
+    },
+    {
         institution: 'NXP Semiconductors',
         course: 'Engineering Bootcamp: Agentic AI in the Cloud',
         time: 'Feb 2026 - May 2026',
@@ -109,15 +118,6 @@ const education: education[] = [
         tech:'LLM APIs, LangChain, Python',
         built: ['Agentic Abstraction for Chip Engineering (AACE)'],
         link: 'https://www.nxp.com/'
-    },    
-    {
-        institution: 'San Diego State University',
-        course: 'Bachelor of Science in Computer Science, Minor in Mathematics',
-        time: 'Aug 2025 - May 2027',
-        description: 'Transferred from Imperial Valley College to complete a B.S. in Computer Science with a Minor in Mathematics, going deeper into algorithms, software systems, computer architecture, operating systems, and artificial intelligence.',
-        courses: ['Data Structures', 'Algorithms', 'Software Systems', 'Computer Architecture', 'Operating Systems', 'Artificial Intelligence'],
-        tech:'Python, C, C++',
-        link: 'https://cs.sdsu.edu/'
     },
     {
         institution: 'Imperial Valley College',
