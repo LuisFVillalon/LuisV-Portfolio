@@ -50,7 +50,7 @@ export function Disclosure({ className = '' }: { className?: string }) {
     return (
         <p className={`flex items-start gap-1.5 text-[11px] leading-snug text-[#6e6e78] ${className}`}>
             <Info className="mt-px h-3 w-3 flex-none" aria-hidden="true" />
-            <span>AI answers from Luis&apos;s portfolio, résumé, GitHub and LinkedIn. It may be imperfect; check the linked sources.</span>
+            <span>AI answers may be imperfect; check the linked sources.</span>
         </p>
     );
 }
