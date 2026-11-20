@@ -180,26 +180,6 @@ const certificates: certificates[] = [
         institution_link: 'https://www.codepath.org/'
     },    
     {
-        title: 'SEO',
-        institution: 'HubSpot Academy',
-        time: 'Feb 2025',
-        description: 'Learned the fundamentals of search engine optimization, including keyword research, on-page and technical SEO, and link-building strategies to improve website visibility and rankings.',
-        topics: ['Keyword Research', 'Backlink Strategies', 'Content Optimization', 'on-page SEO', 'Performance Tracking'],
-        tech: '',
-        cert_link: 'https://app-na2.hubspot.com/academy/achievements/mdm3m2ys/en/1/luis-villalon/seo',
-        institution_link: 'https://academy.hubspot.com/'
-    },
-    {
-        title: 'SEO II',
-        institution: 'HubSpot Academy',
-        time: 'Feb 2025',
-        description: 'Learned foundational SEO principles, focusing on advanced strategies like topic clustering, content optimization, and technical SEO to drive higher search rankings and organic traffic',
-        topics: ['Keyword Research', 'Backlink Strategies', 'Content Optimization', 'on-page SEO', 'Performance Tracking'],
-        tech: '',
-        cert_link: 'https://app-na2.hubspot.com/academy/achievements/mdm3m2ys/en/1/luis-villalon/seo',
-        institution_link: 'https://academy.hubspot.com/'
-    },
-    {
         title: 'Introduction to MongoDB (Learning Path)',
         institution: 'MongoDB',
         time: 'May 2023',
@@ -230,7 +210,7 @@ const certificates: certificates[] = [
         description: 'Developer certification representing approximately 300 hours of responsive web design work.',
         topics: ['Responsive Design', 'Web Accessibility'],
         tech: 'HTML, CSS, CSS Frameworks',
-        cert_link: 'https://www.freecodecamp.org/certification/LuisBoy/responsive-web-design',
+        cert_link: 'https://www.freecodecamp.org/certification/luisboy/responsive-web-design',
         institution_link: 'https://www.freecodecamp.org/'
     },
     {
@@ -240,7 +220,7 @@ const certificates: certificates[] = [
         description: 'Developer certification representing approximately 300 hours of JavaScript work.',
         topics: ['ES6 Features', 'Regular Expressions', 'Algorithms', 'Object-Oriented Programming', 'Functional Programming'],
         tech: 'JavaScript',
-        cert_link: 'https://www.freecodecamp.org/certification/LuisBoy/javascript-algorithms-and-data-structures',
+        cert_link: 'https://www.freecodecamp.org/certification/luisboy/javascript-algorithms-and-data-structures',
         institution_link: 'https://www.freecodecamp.org/'
     },        
 ];
