@@ -228,12 +228,14 @@ function WhatILearned({
     topicsLabel,
     topics,
     tech,
+    courses = [],
     built,
 }: {
     description: string;
     topicsLabel: string;
     topics: string[];
     tech: string;
+    courses?: { name: string; link?: string }[];
     built?: string[];
 }) {
     const projects = builtProjects(built);
@@ -244,6 +246,24 @@ function WhatILearned({
                 {description && <p className="leading-relaxed">{tidy(description)}</p>}
                 <ChipGroup label={topicsLabel} items={topics} />
                 <ChipGroup label="Tech" items={splitTech(tech)} />
+                {courses.length > 0 && (
+                    <div>
+                        <p className={learnedLabelClass}>Courses ({courses.length})</p>
+                        <ol className="list-decimal space-y-0.5 pl-5 text-xs leading-snug">
+                            {courses.map((course) => (
+                                <li key={course.name}>
+                                    {course.link ? (
+                                        <a href={course.link} target="_blank" rel="noopener noreferrer" className={inlineLinkClass}>
+                                            {course.name}
+                                        </a>
+                                    ) : (
+                                        course.name
+                                    )}
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                )}
                 {projects.length > 0 && (
                     <p className="text-xs">
                         <span className="font-sans font-bold text-[#0A0A23]">Built: </span>
@@ -326,7 +346,13 @@ export function CertificatesTile() {
                             {item.title}
                         </a>
                         <span className="text-xs text-[#6e6e78]"> · {item.institution.replace('Anthropic: ', '')}, {item.time}</span>
-                        <WhatILearned description={item.description} topicsLabel="Topics" topics={item.topics} tech={item.tech} />
+                        <WhatILearned
+                            description={item.description}
+                            topicsLabel="Topics"
+                            topics={item.topics}
+                            tech={item.tech}
+                            courses={item.courses}
+                        />
                     </li>
                 ))}
             </ul>

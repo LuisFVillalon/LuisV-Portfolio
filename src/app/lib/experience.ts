@@ -46,6 +46,8 @@ type certificates = {
     topics: string[];
     /** Languages and tools only; '' when none. */
     tech: string;
+    /** Courses within a learning path, each optionally linked to its own certificate. */
+    courses?: { name: string; link?: string }[];
     cert_link?: string;
     institution_link: string;
 };
@@ -198,13 +200,27 @@ const certificates: certificates[] = [
         institution_link: 'https://academy.hubspot.com/'
     },
     {
-        title: 'MongoDB Certifications',
+        title: 'Introduction to MongoDB (Learning Path)',
         institution: 'MongoDB',
         time: 'May 2023',
-        description: 'Completed several certifications verifying my knowledge of MongoDB NoSQL.',
-        topics: ['Connection', 'Aggregation', 'CRUD', 'Data Modeling', 'Indexes', 'Transactions', 'Document Model'],
-        tech: 'MongoDB Atlas',
-        cert_link: 'https://www.linkedin.com/in/luis-villalon/details/certifications/',
+        description: "Completed MongoDB's 11-course learning path (~16 hours), covering MongoDB Atlas and how to model, query and tune a document database.",
+        topics: ['CRUD operations', 'Document model & data modeling', 'Indexes', 'Aggregation', 'Transactions', 'Atlas Search', 'Connecting from an app'],
+        tech: '',
+        // Each course's own proof of completion (May 10-12, 2023); Getting Started has no certificate on file.
+        courses: [
+            { name: 'Getting Started with MongoDB Atlas' },
+            { name: 'MongoDB CRUD Operations: Insert and Find Documents', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-4e3af1ae-13e6-4900-833b-56e716cf5544-certificate.pdf' },
+            { name: 'MongoDB and the Document Model', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-6ab3d8e3-afc1-4165-8a8f-12fd3709938a-certificate.pdf' },
+            { name: 'MongoDB Atlas Search', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-7ad917f5-83ac-4e2d-8f63-5ed52f7f7d54-certificate.pdf' },
+            { name: 'MongoDB Indexes', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-8449adb4-562d-484c-a1cc-9b31094740eb-certificate.pdf' },
+            { name: 'MongoDB Transactions', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-8e6ceafe-90e6-45b0-a1b5-783357b79dce-certificate.pdf' },
+            { name: 'Connecting to a MongoDB Database', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-b0507899-39ae-4502-8bb0-28d6aa5e6fde-certificate.pdf' },
+            { name: 'MongoDB CRUD Operations: Replace and Delete Documents', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-bb03370d-335a-4810-8146-65a1019868fc-certificate.pdf' },
+            { name: 'MongoDB CRUD Operations: Modifying Query Results', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-c29325bd-de71-4507-8134-563dc4b02cd9-certificate.pdf' },
+            { name: 'MongoDB Data Modeling Intro', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-edac7760-318d-450f-8c0f-83cbb47c5196-certificate.pdf' },
+            { name: 'MongoDB Aggregation', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-9adc80cb-196a-43d1-a88e-11ab316bc731-certificate.pdf' },
+        ],
+        cert_link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-9adc80cb-196a-43d1-a88e-11ab316bc731-certificate.pdf',
         institution_link: 'https://www.mongodb.com/'
     },    
     {

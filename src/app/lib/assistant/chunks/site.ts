@@ -137,6 +137,7 @@ function experienceChunks(): Chunk[] {
                     c.description,
                     c.topics.length > 0 && `Covers: ${c.topics.join(', ')}`,
                     c.tech && `Tools: ${c.tech}`,
+                    c.courses && c.courses.length > 0 && `Courses: ${c.courses.map((course) => course.name).join('; ')}`,
                     c.cert_link && `Verification: ${c.cert_link}`,
                 ]
                     .filter(Boolean)
