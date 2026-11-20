@@ -3,7 +3,7 @@ import React from 'react';
 import { BentoTile } from '../home/BentoTile';
 import { ExternalLink, LogoBadge, LivePill, awardPillClass, tileLabelClass } from './AboutParts';
 import { formatEnd, formatRange, formatStart, must, startYear } from './timelineDates';
-import { certificates, education, professionalExperience, profile } from '@/app/lib/experience';
+import { certificates, education, leadership, professionalExperience, profile } from '@/app/lib/experience';
 import { getAwardProjects, getProjectsByCategory } from '@/app/lib/projects';
 
 type Milestone = {
@@ -32,6 +32,7 @@ function getMilestones(): Milestone[] {
     const ross = must(topProjects, (p) => p.title === 'ROSS' && Boolean(p.award), 'ROSS award');
     const aace = must(topProjects, (p) => p.title.endsWith('(AACE)'), 'AACE');
     const nxp = must(education, (e) => e.institution === 'NXP Semiconductors', 'NXP Semiconductors');
+    const colorStack = must(leadership, (l) => l.company === 'ColorStack', 'ColorStack');
     const kanso = must(topProjects, (p) => p.title === 'kanso', 'kanso');
     const whatsPoppin = must(getProjectsByCategory('fullstack'), (p) => p.title === 'Whats Poppin?', "What's Poppin'");
     const crashApp = must(getAwardProjects(), (p) => p.title === 'The Crash App', 'The Crash App award');
@@ -62,25 +63,32 @@ function getMilestones(): Milestone[] {
             title: 'Imperial Valley College',
             body: (
                 <>
-                    A.S. in Computer Science ({formatRange(ivc.time)}): data structures, OOP, Java, assembly. Finished my final
-                    project for The Odin Project&apos;s JavaScript curriculum with{' '}
-                    <ExternalLink href="https://github.com/LuisFVillalon/WhatsPoppin">What&apos;s Poppin&apos;</ExternalLink> (a Reddit-like clone), live{' '}
+                    A.S. in Computer Science ({formatRange(ivc.time)}): data structures, OOP, Java, assembly. Built{' '}
+                    <ExternalLink href="https://github.com/LuisFVillalon/WhatsPoppin">What&apos;s Poppin&apos;</ExternalLink> (a Reddit-like clone)
+                    as the final project for The Odin Project&apos;s JavaScript curriculum, live{' '}
                     <ExternalLink href="https://luisfvillalon.github.io/WhatsPoppin/">here</ExternalLink>.
                 </>
             ),
             extra: (
-                <div className="flex flex-wrap gap-2">
-                    <LogoBadge src="/about/IVC_Logo.png" alt="Imperial Valley College logo" />
+                <div className="flex flex-col gap-3">
                     {whatsPoppin.live_app && (
-                        <a
-                            href={whatsPoppin.live_app}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="rounded-xl transition-opacity hover:opacity-80"
-                        >
-                            <LogoBadge src="/about/WhatsPoppin_Icon.png" alt="What's Poppin' logo" />
+                        <a href={whatsPoppin.live_app} target="_blank" rel="noopener noreferrer" className="self-start">
+                            <LivePill>What&apos;s Poppin&apos; · Live</LivePill>
                         </a>
                     )}
+                    <div className="flex flex-wrap gap-2">
+                        <LogoBadge src="/about/IVC_Logo.png" alt="Imperial Valley College logo" />
+                        {whatsPoppin.live_app && (
+                            <a
+                                href={whatsPoppin.live_app}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="rounded-xl transition-opacity hover:opacity-80"
+                            >
+                                <LogoBadge src="/about/WhatsPoppin_Icon.png" alt="What's Poppin' logo" />
+                            </a>
+                        )}
+                    </div>
                 </div>
             ),
         },
@@ -148,11 +156,12 @@ function getMilestones(): Milestone[] {
             title: 'Applied AI',
             body: (
                 <>
-                    Undergraduate researcher at <ExternalLink href={ai4Business.link}>AI4Business Lab</ExternalLink>, studying AI agent
-                    safety and adversarial robustness. Built <ExternalLink href={aace.github_repo}>AACE</ExternalLink> in{' '}
-                    <ExternalLink href={nxp.link}>NXP Semiconductors</ExternalLink>&apos; Agentic AI in the Cloud bootcamp, and won first
-                    place at the Swans Applied AI Hackathon by building <ExternalLink href={ross.github_repo}>ROSS</ExternalLink>, beating
-                    60+ teams.
+                    Undergraduate researcher at <ExternalLink href={ai4Business.link}>AI4Business Lab</ExternalLink> (
+                    {formatRange(ai4Business.time)}), studying AI agent safety and adversarial robustness. Built{' '}
+                    <ExternalLink href={aace.github_repo}>AACE</ExternalLink> in <ExternalLink href={nxp.link}>NXP Semiconductors</ExternalLink>
+                    &apos; Agentic AI in the Cloud bootcamp ({formatRange(nxp.time)}). Won first place at the Swans Applied AI Hackathon
+                    by building <ExternalLink href={ross.github_repo}>ROSS</ExternalLink>, beating 60+ teams. Completed{' '}
+                    <ExternalLink href={codePath.institution_link}>CodePath</ExternalLink>&apos;s AI201 ({formatRange(codePath.time)}).
                 </>
             ),
             extra: (
@@ -188,14 +197,13 @@ function getMilestones(): Milestone[] {
             title: 'Building, leading, and job hunting',
             body: (
                 <>
-                    <strong>kanso</strong>, my full-stack tasks/notes/habits app, is live. Completed CodePath&apos;s AI201 (
-                    {formatRange(codePath.time)}), and I&apos;m serving as ColorStack Outreach Chair. I am currently exploring careers in{' '}
-                    <strong>Full-Stack</strong> and <strong>Applied AI</strong> development and <strong>Cybersecurity</strong>.
-                    I graduate in{' '}
-                    <strong>{formatEnd(sdsu.time)}</strong>
+                    {kanso.live_app ? <ExternalLink href={kanso.live_app}>kanso</ExternalLink> : <strong>kanso</strong>}, a digital clarity notebook, is live. Serve as{' '}
+                    <ExternalLink href={colorStack.link}>ColorStack</ExternalLink> Outreach Chair ({formatStart(colorStack.time)} – Present).
+                    Most of my experience is in <strong>full-stack</strong> and <strong>applied AI</strong>, and I&apos;m open to starting
+                    my career in any software engineering role. Graduating <strong>{formatEnd(sdsu.time)}</strong>
                     {profile.openTo ? (
                         <>
-                            {' '}and I&apos;m looking for <strong>{profile.openTo}</strong>.
+                            {' '}and seeking <strong>{profile.openTo}</strong>.
                         </>
                     ) : (
                         '.'
