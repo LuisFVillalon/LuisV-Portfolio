@@ -141,6 +141,15 @@ const education: education[] = [
 ];
 const certificates: certificates[] = [
     {
+        title: 'AI201 | Applications of AI Engineering',
+        institution: 'CodePath',
+        time: 'Fall 2026',
+        description: 'Trained in AI-assisted software engineering, designing and developing complex systems, evaluating AI-generated code and automating backend integrations.',
+        topics: ['RAG', 'Agentic workflows', 'Machine Learning', 'Data structures', 'Algorithms'],
+        tech: '',
+        institution_link: 'https://www.codepath.org/'
+    },
+    {
         title: 'AI Fluency: Framework and Foundations',
         institution: 'Anthropic: Claude Academy',
         time: 'Sept 2026',
@@ -160,15 +169,6 @@ const certificates: certificates[] = [
         cert_link: 'https://academy.claude.com/verify/3222bc453c71b8ccd8c3f58443790589',
         institution_link: 'https://academy.claude.com/'
     },       
-    {
-        title: 'AI201 | Applications of AI Engineering',
-        institution: 'CodePath',
-        time: 'Sep 2026 - Nov 2026',
-        description: 'Trained in AI-assisted software engineering, designing and developing complex systems, evaluating AI-generated code and automating backend integrations.',
-        topics: ['RAG', 'Agentic workflows', 'Machine Learning', 'Data structures', 'Algorithms'],
-        tech: '',
-        institution_link: 'https://www.codepath.org/'
-    },
     {
         title: 'TIP103 | Advanced Technical Interview Prep',
         institution: 'CodePath',
