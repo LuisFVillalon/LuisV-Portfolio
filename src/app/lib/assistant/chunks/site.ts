@@ -110,7 +110,13 @@ function experienceChunks(): Chunk[] {
                 section: 'Education',
                 label: `Education · ${e.institution}`,
                 href: '/experience',
-                text: [`${e.course} at ${e.institution} (${e.time})`, e.description, e.tech && `Topics: ${e.tech}`]
+                text: [
+                    `${e.course} at ${e.institution} (${e.time})`,
+                    e.description,
+                    e.courses.length > 0 && `Coursework: ${e.courses.join(', ')}`,
+                    e.tech && `Tech: ${e.tech}`,
+                    e.built && e.built.length > 0 && `Built: ${e.built.join(', ')}`,
+                ]
                     .filter(Boolean)
                     .join('\n'),
             }),
@@ -129,7 +135,8 @@ function experienceChunks(): Chunk[] {
                 text: [
                     `Certificate: ${c.title} from ${c.institution} (${c.time})`,
                     c.description,
-                    c.tech && `Covers: ${c.tech}`,
+                    c.topics.length > 0 && `Covers: ${c.topics.join(', ')}`,
+                    c.tech && `Tools: ${c.tech}`,
                     c.cert_link && `Verification: ${c.cert_link}`,
                 ]
                     .filter(Boolean)

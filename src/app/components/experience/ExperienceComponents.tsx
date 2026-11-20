@@ -11,6 +11,7 @@ import {
     resume,
 } from '@/app/lib/experience';
 import { linkedinProfileUrl } from '@/app/lib/linkedinPosts';
+import { getProjectByTitle } from '@/app/lib/projects';
 import { BentoTile, primaryButtonClass, secondaryButtonClass, inlineLinkClass } from '../home/BentoTile';
 import { tidy, shortPosition, shortCompany } from '../home/InfoTiles';
 import { splitTech } from '../home/ProjectTile';
@@ -196,6 +197,71 @@ export function BeyondTech() {
     );
 }
 
+const chipClass = 'rounded-full bg-white px-2 py-0.5 text-xs text-[#0A0A23] ring-1 ring-[#0A0A23]/10';
+const learnedLabelClass = 'mb-1 font-sans text-xs font-bold text-[#0A0A23]';
+
+function ChipGroup({ label, items }: { label: string; items: string[] }) {
+    if (items.length === 0) return null;
+    return (
+        <div>
+            <p className={learnedLabelClass}>{label}</p>
+            <div className="flex flex-wrap gap-1.5">
+                {items.map((item) => (
+                    <span key={item} className={chipClass}>{item}</span>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+// Resolves project titles from projects.ts; a renamed or missing project fails the build instead of rendering a dead link.
+const builtProjects = (titles: string[] = []) =>
+    titles.map((title) => {
+        const project = getProjectByTitle(title);
+        if (!project) throw new Error(`Experience: no project titled "${title}" in projects.ts`);
+        return { title, href: project.live_app ?? project.github_repo };
+    });
+
+// Closed, an entry looks like a plain list row; opened, it shows what the program or certificate covered.
+function WhatILearned({
+    description,
+    topicsLabel,
+    topics,
+    tech,
+    built,
+}: {
+    description: string;
+    topicsLabel: string;
+    topics: string[];
+    tech: string;
+    built?: string[];
+}) {
+    const projects = builtProjects(built);
+    return (
+        <details className="mt-1">
+            <summary className={toggleClass}>What I learned</summary>
+            <div className="mt-2 flex flex-col gap-2 rounded-xl bg-[#F5F5F7] p-3 text-[13px]">
+                {description && <p className="leading-relaxed">{tidy(description)}</p>}
+                <ChipGroup label={topicsLabel} items={topics} />
+                <ChipGroup label="Tech" items={splitTech(tech)} />
+                {projects.length > 0 && (
+                    <p className="text-xs">
+                        <span className="font-sans font-bold text-[#0A0A23]">Built: </span>
+                        {projects.map((project, i) => (
+                            <React.Fragment key={project.title}>
+                                {i > 0 && ', '}
+                                <a href={project.href} target="_blank" rel="noopener noreferrer" className={inlineLinkClass}>
+                                    {project.title}
+                                </a>
+                            </React.Fragment>
+                        ))}
+                    </p>
+                )}
+            </div>
+        </details>
+    );
+}
+
 export function EducationTile() {
     return (
         <BentoTile label="Education">
@@ -207,6 +273,13 @@ export function EducationTile() {
                         </a>
                         <span className="block text-xs">{item.course}</span>
                         <span className={mutedClass}>{tidy(item.time)}</span>
+                        <WhatILearned
+                            description={item.description}
+                            topicsLabel="Coursework"
+                            topics={item.courses}
+                            tech={item.tech}
+                            built={item.built}
+                        />
                     </li>
                 ))}
             </ul>
@@ -253,6 +326,7 @@ export function CertificatesTile() {
                             {item.title}
                         </a>
                         <span className="text-xs text-[#6e6e78]"> · {item.institution.replace('Anthropic: ', '')}, {item.time}</span>
+                        <WhatILearned description={item.description} topicsLabel="Topics" topics={item.topics} tech={item.tech} />
                     </li>
                 ))}
             </ul>
