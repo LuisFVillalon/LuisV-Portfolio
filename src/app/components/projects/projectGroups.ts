@@ -1,4 +1,5 @@
 import { getAwardProjects, getProjectsByCategory, Project } from '@/app/lib/projects';
+import { isLiveApp } from '../home/ProjectTile';
 import { ProjectFilter } from './projectFilters';
 
 export const isFeatured = (project: Project) => project.categories.includes('top');
@@ -18,7 +19,10 @@ export function getProjectGroups() {
     const fullstack = featuredFirst(getProjectsByCategory('fullstack'));
     const frontend = getProjectsByCategory('frontend');
     const academic = getProjectsByCategory('academic');
-    const total = new Set([...awards, ...ai, ...fullstack, ...frontend, ...academic].map((p) => p.title)).size;
+    const everyProject = [...new Map([...awards, ...ai, ...fullstack, ...frontend, ...academic].map((p) => [p.title, p])).values()];
+    const total = everyProject.length;
+    // Live deployments also stay in their normal groups, like award winners.
+    const live = featuredFirst(everyProject.filter(isLiveApp));
 
     // A project in both Full-stack and AI gets its tile under Full-stack and a cross-reference line under AI.
     const fullstackTitles = new Set(fullstack.map((p) => p.title));
@@ -28,11 +32,12 @@ export function getProjectGroups() {
     const counts: Record<ProjectFilter, number> = {
         all: total,
         awards: awards.length,
+        live: live.length,
         ai: ai.length,
         fullstack: fullstack.length,
         frontend: frontend.length,
         academic: academic.length,
     };
 
-    return { awards, aiTiles, aiCrossListed, fullstack, frontend, academic, counts };
+    return { awards, live, aiTiles, aiCrossListed, fullstack, frontend, academic, counts };
 }

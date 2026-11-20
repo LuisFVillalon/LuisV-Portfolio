@@ -1,23 +1,24 @@
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 import ProjectFilter from '../components/projects/ProjectFilter';
-import { AcademicGroup, AiGroup, AwardsGroup, FrontendList, FullstackGroup } from '../components/projects/ProjectSections';
+import { AcademicGroup, AiGroup, AwardsGroup, FrontendList, FullstackGroup, LiveGroup } from '../components/projects/ProjectSections';
 import { getProjectGroups } from '../components/projects/projectGroups';
 
 export const dynamic = 'force-dynamic';
 
 export default function ProjectsPage() {
-    const { awards, aiTiles, aiCrossListed, fullstack, frontend, academic, counts } = getProjectGroups();
+    const { awards, live, aiTiles, aiCrossListed, fullstack, frontend, academic, counts } = getProjectGroups();
 
     const ai = <AiGroup tiles={aiTiles} crossListed={aiCrossListed} count={counts.ai} />;
     const academicGroup = <AcademicGroup projects={academic} />;
     const awardsGroup = <AwardsGroup projects={awards} />;
+    const liveGroup = <LiveGroup projects={live} />;
 
     return (
         <div className="flex min-h-screen flex-col items-center bg-[#F5F5F7] font-[Monospace]">
             <Navbar />
             <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
-                {/* With "All" selected: award winners, AI, Full-stack (front-end work as a compact list inside it), then coursework.
+                {/* With "All" selected: award winners, live apps, AI, Full-stack (front-end work as a compact list inside it), then coursework.
                     Any other filter shows only its own group. */}
                 <section className="grid grid-cols-1 gap-3 py-4 md:grid-cols-2 md:gap-4 md:py-6 lg:grid-cols-4">
                     <ProjectFilter
@@ -29,7 +30,7 @@ export default function ProjectsPage() {
                                     What I&apos;ve built
                                 </h1>
                                 <p className="mt-2 text-[13px] leading-relaxed">
-                                    {counts.all} projects, award winners first, then AI, Full-stack, and coursework. Featured
+                                    {counts.all} projects, award winners first, then live apps, AI, Full-stack, and coursework. Featured
                                     work leads each group; open any app or jump straight to the code.
                                 </p>
                             </>
@@ -38,6 +39,7 @@ export default function ProjectsPage() {
                             all: (
                                 <>
                                     {awardsGroup}
+                                    {liveGroup}
                                     {ai}
                                     <FullstackGroup projects={fullstack} frontendCount={frontend.length} />
                                     <FrontendList projects={frontend} />
@@ -45,6 +47,7 @@ export default function ProjectsPage() {
                                 </>
                             ),
                             awards: awardsGroup,
+                            live: liveGroup,
                             ai,
                             fullstack: <FullstackGroup projects={fullstack} frontendCount={frontend.length} />,
                             frontend: <FrontendList projects={frontend} standalone />,

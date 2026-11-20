@@ -59,6 +59,20 @@ export function AwardsGroup({ projects }: { projects: Project[] }) {
     );
 }
 
+export function LiveGroup({ projects }: { projects: Project[] }) {
+    return (
+        <>
+            <GroupHeading
+                id="live"
+                title="Live Projects"
+                count={`${projects.length} projects`}
+                blurb="Projects deployed and running that you can open and use right now. Each also appears in its usual group below."
+            />
+            <GroupTiles projects={projects} />
+        </>
+    );
+}
+
 export function AiGroup({ tiles, crossListed, count }: { tiles: Project[]; crossListed: Project[]; count: number }) {
     return (
         <>
