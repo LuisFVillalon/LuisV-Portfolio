@@ -14,7 +14,7 @@ const STARTERS: { match: (path: string) => boolean; questions: string[] }[] = [
     },
     {
         match: () => true,
-        questions: ['What is kanso about?', 'What types of roles is Luis looking for?', "What's his AI experience?", 'What is he working on now?'],
+        questions: ['What is kanso about?', "What are some of Luis's soft skills?", "What's his AI experience?", 'What is he working on now?'],
     },
 ];
 
