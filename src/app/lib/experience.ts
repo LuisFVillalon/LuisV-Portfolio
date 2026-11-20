@@ -251,7 +251,7 @@ const techTools: techTools[] = [
         ]
     },
 {
-        subject: 'Agentic AI',
+        subject: 'Applied AI',
         tools: [
             {
                 tool: 'LangGraph',

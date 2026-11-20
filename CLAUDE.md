@@ -51,7 +51,7 @@ The Markdown body is rendered with `react-markdown` + `remark-gfm` by `component
 src/app/
 ├── page.tsx                    # Home (bento grid of tiles, then GitHub stats + LinkedIn posts)
 ├── about/page.tsx
-├── experience/page.tsx         # Career timeline: header/education/skills/certificates sidebar beside the role timeline
+├── experience/page.tsx         # Career timeline: header + at-a-glance strip (current role, degree, languages, certificates; each links to its tile), then an education/certificates/skills sidebar beside the role timeline
 ├── contact/page.tsx            # Contact bento: dark hero, one-click channel tiles (résumé/LinkedIn/GitHub/projects), form tile
 ├── testimonials/page.tsx
 ├── projects/page.tsx           # Projects: header + filter chips (?type=), Award-winning / AI / Full-stack (+ earlier front-end list) / Coursework groups, plus a Live group shown only under its chip
