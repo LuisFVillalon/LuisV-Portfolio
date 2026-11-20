@@ -206,7 +206,7 @@ const certificates: certificates[] = [
         description: "Completed MongoDB's 11-course learning path (~16 hours), covering MongoDB Atlas and how to model, query and tune a document database.",
         topics: ['CRUD operations', 'Document model & data modeling', 'Indexes', 'Aggregation', 'Transactions', 'Atlas Search', 'Connecting from an app'],
         tech: '',
-        // Each course's own proof of completion (May 10-12, 2023); Getting Started has no certificate on file.
+        // The title links to the learning-path certificate; each course links to its own (May 10-12, 2023). Getting Started has no certificate of its own.
         courses: [
             { name: 'Getting Started with MongoDB Atlas' },
             { name: 'MongoDB CRUD Operations: Insert and Find Documents', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-4e3af1ae-13e6-4900-833b-56e716cf5544-certificate.pdf' },
@@ -220,7 +220,7 @@ const certificates: certificates[] = [
             { name: 'MongoDB Data Modeling Intro', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-edac7760-318d-450f-8c0f-83cbb47c5196-certificate.pdf' },
             { name: 'MongoDB Aggregation', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-9adc80cb-196a-43d1-a88e-11ab316bc731-certificate.pdf' },
         ],
-        cert_link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-9adc80cb-196a-43d1-a88e-11ab316bc731-certificate.pdf',
+        cert_link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-e0fa28a9-4056-40ae-8af9-89ed40629f11-certificate.pdf',
         institution_link: 'https://www.mongodb.com/'
     },    
     {
