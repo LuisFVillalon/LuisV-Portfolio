@@ -107,7 +107,7 @@ function getMilestones(): Milestone[] {
                 <>
                     Worked full time as an SEO &amp; digital marketer for{' '}
                     <ExternalLink href={neighborhoodHouse.link}>Calexico Neighborhood House</ExternalLink> (
-                    {formatRange(neighborhoodHouse.time)}), then started a <strong>B.S. in Computer Science</strong> with a{' '}
+                    {formatRange(neighborhoodHouse.time)}) before starting a <strong>B.S. in Computer Science</strong> with a{' '}
                     <strong>Minor in Mathematics</strong> at <ExternalLink href="https://cs.sdsu.edu/">SDSU</ExternalLink> (
                     {formatStart(sdsu.time)}). Interned as a full-stack developer at the startup{' '}
                     <ExternalLink href={secondCourse.link}>Second Course</ExternalLink> ({formatRange(secondCourse.time)})
