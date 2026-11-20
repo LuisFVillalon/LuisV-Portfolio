@@ -351,7 +351,7 @@ const currentlyDoing: currentlyDoing[] = [
         ? [
               {
                   company: 'kanso',
-                  position: 'Building a live productivity app (tasks, notes, habits)',
+                  position: 'Building a digital clarity notebook (tasks, notes, habits, mood)',
                   time: 'Present',
                   description: kanso.description,
                   tech: kanso.tech,

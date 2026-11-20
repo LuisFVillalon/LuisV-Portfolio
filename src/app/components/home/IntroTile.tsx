@@ -86,7 +86,7 @@ export default function IntroTile() {
 
             <p className="text-sm leading-relaxed lg:text-[13px] lg:leading-normal">
                 Comp. Sci. student at <strong>San Diego State University</strong> (B.S., minor in Math., May 2027). I build
-                full-stack and applied-AI products, from a live productivity app to an agentic system for chip
+                full-stack and applied-AI products, from a digital clarity notebook to an agentic system for chip
                 design. From Calexico, CA; bilingual EN/ES.
             </p>
 
