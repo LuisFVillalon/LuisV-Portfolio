@@ -54,7 +54,7 @@ src/app/
 ├── experience/page.tsx         # Career timeline: header/education/skills/certificates sidebar beside the role timeline
 ├── contact/page.tsx            # Contact bento: dark hero, one-click channel tiles (résumé/LinkedIn/GitHub/projects), form tile
 ├── testimonials/page.tsx
-├── projects/page.tsx           # Projects: header + filter chips (?type=), Award-winning / Live / AI / Full-stack (+ earlier front-end list) / Coursework groups
+├── projects/page.tsx           # Projects: header + filter chips (?type=), Award-winning / AI / Full-stack (+ earlier front-end list) / Coursework groups, plus a Live group shown only under its chip
 ├── projects/[category]/page.tsx  # Legacy URLs — 308-redirects /projects/<category> to /projects?type=<category>
 ├── blog/page.tsx               # Blog index: header summary, featured latest post, topic-filterable post list
 ├── blog/[slug]/page.tsx        # Dynamic route — slug matches blog entry id; sticky TOC rail beside the article
@@ -62,7 +62,7 @@ src/app/
 └── api/assistant/              # chat (streamed NDJSON answer, DELETE = forget a saved chat), status, reindex + digest (Vercel Cron)
 ```
 
-`projects/page.tsx` is a server component: `components/projects/projectGroups.ts` buckets the projects (featured first, award winners leading) and computes the chip counts, and the small client `ProjectFilter` renders the header chips and swaps which group is shown, mirroring the choice in `?type=` (`all`, `awards`, `live`, `ai`, `fullstack`, `frontend`, `academic`; `awards` lists every project with an `award` and `live` every project with a live deployment (`isLiveApp`), each of which also stays in its own group). Projects in the `frontend` category render as compact rows in an "Earlier front-end work" list inside Full-stack; coursework renders as an image-free list.
+`projects/page.tsx` is a server component: `components/projects/projectGroups.ts` buckets the projects (featured first, award winners leading) and computes the chip counts, and the small client `ProjectFilter` renders the header chips and swaps which group is shown, mirroring the choice in `?type=` (`all`, `awards`, `ai`, `fullstack`, `frontend`, `academic`, `live`; `awards` lists every project with an `award` and `live` every project with a live deployment (`isLiveApp`), each of which also stays in its own group). Projects in the `frontend` category render as compact rows in an "Earlier front-end work" list inside Full-stack; coursework renders as an image-free list.
 
 ### Components are organized by page/feature
 
