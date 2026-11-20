@@ -37,6 +37,7 @@ const projects: Project[] = [
         description: "kanso's learning-resource recommender: given a note, an LLM plans a topic, level and search queries, then a deterministic pipeline searches DuckDuckGo, filters sponsored and paywalled results, checks for dead links, scores credibility, and returns one video, one article and one exercise, each with a reason.",
         tech: 'Python, FastAPI, Pydantic, OpenAI / Gemini, DuckDuckGo Search, httpx, Supabase JWT Auth, Fly.io',
         github_repo: 'https://github.com/LuisFVillalon/kanso-ai',
+        live_app: 'https://kanso-landing.vercel.app/',
         image: '/projects/frontend/taskmaster.png',
         mobileFriendly: false,
         categories: ['ai'],
@@ -89,6 +90,15 @@ const projects: Project[] = [
         live_app: 'https://luis-v-portfolio.vercel.app',
         image: '/projects/backend/ai-assistant.png',
         mobileFriendly: true,
+        categories: ['ai'],
+    },
+    {
+        title: 'NutriNav AI',
+        description: 'Multi-agent meal planner that turns a user profile into a personalized 1-day meal plan: a deterministic Nutritionist agent computes calorie and macro targets (Mifflin-St Jeor), a GPT-4o Chef agent writes recipes to hit them, and a USDA/WHO compliance checker rejects unsafe plans and feeds corrections back to the Chef for up to three retries. A vision agent estimates calories and macros from a food photo.',
+        tech: 'Python, OpenAI GPT-4o (vision), asyncio, USDA FoodData Central API',
+        github_repo: 'https://github.com/LuisFVillalon/NutriNav-AI',
+        image: '/projects/backend/nutrinav.png',
+        mobileFriendly: false,
         categories: ['ai'],
     },
     {
