@@ -9,7 +9,8 @@ import { getAwardProjects, getProjectsByCategory } from '@/app/lib/projects';
 type Milestone = {
     when: string;
     title: string;
-    body: React.ReactNode;
+    /** One milestone per bullet; dates go at the end of each line. */
+    body: React.ReactNode[];
     extra?: React.ReactNode;
     /** The current, still-open milestone gets a dashed outline. */
     current?: boolean;
@@ -41,15 +42,18 @@ function getMilestones(): Milestone[] {
         {
             when: startYear(odin.time),
             title: 'Taught myself to code',
-            body: (
+            body: [
+                <>Front-end, back-end and SEO through free resources</>,
                 <>
-                    Front-end, back-end and SEO through free resources:{' '}
-                    <ExternalLink href="https://www.theodinproject.com/">The Odin Project</ExternalLink> (Full Stack JavaScript,{' '}
-                    {formatRange(odin.time)}), <ExternalLink href="https://www.freecodecamp.org/">freeCodeCamp</ExternalLink>{' '}
-                    certifications ({formatRange(freeCodeCamp.time)}) and{' '}
-                    <ExternalLink href="https://academy.hubspot.com/">HubSpot Academy</ExternalLink>.
-                </>
-            ),
+                    <ExternalLink href="https://www.theodinproject.com/">The Odin Project</ExternalLink>, Full Stack JavaScript ({formatRange(odin.time)})
+                </>,
+                <>
+                    <ExternalLink href="https://www.freecodecamp.org/">freeCodeCamp</ExternalLink> certifications ({formatRange(freeCodeCamp.time)})
+                </>,
+                <>
+                    <ExternalLink href="https://academy.hubspot.com/">HubSpot Academy</ExternalLink>
+                </>,
+            ],
             extra: (
                 <div className="flex flex-wrap gap-2">
                     <LogoBadge src="/about/TOP_Logo.png" alt="The Odin Project logo" />
@@ -61,14 +65,14 @@ function getMilestones(): Milestone[] {
         {
             when: startYear(ivc.time),
             title: 'Imperial Valley College',
-            body: (
+            body: [
+                <>A.S. in Computer Science: data structures, OOP, Java, assembly ({formatRange(ivc.time)})</>,
                 <>
-                    A.S. in Computer Science ({formatRange(ivc.time)}): data structures, OOP, Java, assembly. Built{' '}
-                    <ExternalLink href="https://github.com/LuisFVillalon/WhatsPoppin">What&apos;s Poppin&apos;</ExternalLink> (a Reddit-like clone)
-                    as the final project for The Odin Project&apos;s JavaScript curriculum, live{' '}
-                    <ExternalLink href="https://luisfvillalon.github.io/WhatsPoppin/">here</ExternalLink>.
-                </>
-            ),
+                    Built <ExternalLink href="https://github.com/LuisFVillalon/WhatsPoppin">What&apos;s Poppin&apos;</ExternalLink> (a Reddit-like
+                    clone) as the final project for The Odin Project&apos;s JavaScript curriculum, live{' '}
+                    <ExternalLink href="https://luisfvillalon.github.io/WhatsPoppin/">here</ExternalLink>
+                </>,
+            ],
             extra: (
                 <div className="flex flex-col gap-3">
                     {whatsPoppin.live_app && (
@@ -95,12 +99,15 @@ function getMilestones(): Milestone[] {
         {
             when: startYear(ectron.time),
             title: 'First internships',
-            body: (
+            body: [
                 <>
-                    <ExternalLink href={ectron.link}>Ectron Corporation</ExternalLink>, Software Engineer Intern ({formatRange(ectron.time)}), then{' '}
-                    <ExternalLink href={sportsExcitement.link}>Sports Excitement</ExternalLink>, Front-End Developer Intern ({formatRange(sportsExcitement.time)}).
-                </>
-            ),
+                    <ExternalLink href={ectron.link}>Ectron Corporation</ExternalLink>, Software Engineer Intern ({formatRange(ectron.time)})
+                </>,
+                <>
+                    <ExternalLink href={sportsExcitement.link}>Sports Excitement</ExternalLink>, Front-End Developer Intern (
+                    {formatRange(sportsExcitement.time)})
+                </>,
+            ],
             extra: (
                 <div className="flex flex-wrap gap-2">
                     <LogoBadge src="/about/Ectron_Logo.png" alt="Ectron Corporation logo" />
@@ -111,23 +118,28 @@ function getMilestones(): Milestone[] {
         {
             when: startYear(sdsu.time),
             title: 'Transferred to San Diego State',
-            body: (
+            body: [
                 <>
-                    Worked full time as an SEO &amp; digital marketer for{' '}
-                    <ExternalLink href={neighborhoodHouse.link}>Calexico Neighborhood House</ExternalLink> (
-                    {formatRange(neighborhoodHouse.time)}) before starting a <strong>B.S. in Computer Science</strong> with a{' '}
-                    <strong>Minor in Mathematics</strong> at <ExternalLink href="https://cs.sdsu.edu/">SDSU</ExternalLink> (
-                    {formatStart(sdsu.time)}). Interned as a full-stack developer at the startup{' '}
-                    <ExternalLink href={secondCourse.link}>Second Course</ExternalLink> ({formatRange(secondCourse.time)})
-                    {crashApp.award ? '' : '.'}
-                    {crashApp.award && (
-                        <>
-                            {' '}and won {crashApp.award.title} at the {crashApp.award.event} with{' '}
-                            <ExternalLink href={crashApp.github_repo}>{crashApp.title}</ExternalLink>.
-                        </>
-                    )}
-                </>
-            ),
+                    SEO &amp; digital marketer, full time at{' '}
+                    <ExternalLink href={neighborhoodHouse.link}>Calexico Neighborhood House</ExternalLink> ({formatRange(neighborhoodHouse.time)})
+                </>,
+                <>
+                    Started a <strong>B.S. in Computer Science</strong> with a <strong>Minor in Mathematics</strong> at{' '}
+                    <ExternalLink href="https://cs.sdsu.edu/">SDSU</ExternalLink> ({formatStart(sdsu.time)})
+                </>,
+                <>
+                    Full-stack developer intern at the startup <ExternalLink href={secondCourse.link}>Second Course</ExternalLink> (
+                    {formatRange(secondCourse.time)})
+                </>,
+                ...(crashApp.award
+                    ? [
+                          <>
+                              {crashApp.award.title}, {crashApp.award.event}, with{' '}
+                              <ExternalLink href={crashApp.github_repo}>{crashApp.title}</ExternalLink>
+                          </>,
+                      ]
+                    : []),
+            ],
             extra: (
                 <div className="flex flex-col gap-3">
                     {crashApp.award && (
@@ -154,17 +166,24 @@ function getMilestones(): Milestone[] {
         {
             when: startYear(ai4Business.time),
             title: 'Applied AI',
-            body: (
+            body: [
                 <>
-                    Undergraduate researcher at <ExternalLink href={ai4Business.link}>AI4Business Lab</ExternalLink> (
-                    {formatRange(ai4Business.time)}), studying AI agent safety and adversarial robustness. Mentored by{' '}
-                    <ExternalLink href={nxp.link}>NXP Semiconductors</ExternalLink>&apos; Design Automation team, helped build{' '}
-                    <ExternalLink href={aace.github_repo}>AACE</ExternalLink>, an agentic system that fast-tracks semantic understanding of
-                    chip designs ({formatRange(nxp.time)}). Won first place at the Swans Applied AI Hackathon
-                    by building <ExternalLink href={ross.github_repo}>ROSS</ExternalLink>, beating 60+ teams. Completed{' '}
-                    <ExternalLink href={codePath.institution_link}>CodePath</ExternalLink>&apos;s AI201 ({formatRange(codePath.time)}).
-                </>
-            ),
+                    Undergraduate researcher at <ExternalLink href={ai4Business.link}>AI4Business Lab</ExternalLink>, studying AI agent safety
+                    and adversarial robustness ({formatRange(ai4Business.time)})
+                </>,
+                <>
+                    Mentored by <ExternalLink href={nxp.link}>NXP Semiconductors</ExternalLink>&apos; Design Automation team, helped build{' '}
+                    <ExternalLink href={aace.github_repo}>AACE</ExternalLink>, an agentic system that fast-tracks semantic understanding of chip
+                    designs ({formatRange(nxp.time)})
+                </>,
+                <>
+                    Won first place at the Swans Applied AI Hackathon by building <ExternalLink href={ross.github_repo}>ROSS</ExternalLink>,
+                    beating 60+ teams
+                </>,
+                <>
+                    Completed <ExternalLink href={codePath.institution_link}>CodePath</ExternalLink>&apos;s AI201 ({formatRange(codePath.time)})
+                </>,
+            ],
             extra: (
                 <div className="flex flex-col gap-3">
                     {ross.award && (
@@ -196,21 +215,24 @@ function getMilestones(): Milestone[] {
         {
             when: 'Now',
             title: 'Building, leading, and job hunting',
-            body: (
+            body: [
                 <>
-                    {kanso.live_app ? <ExternalLink href={kanso.live_app}>kanso</ExternalLink> : <strong>kanso</strong>}, a digital clarity notebook, is live. Serve as{' '}
-                    <ExternalLink href={colorStack.link}>ColorStack</ExternalLink> Outreach Chair ({formatStart(colorStack.time)} – Present).
-                    Most of my experience is in <strong>full-stack</strong> and <strong>applied AI</strong>, and I&apos;m open to starting
-                    my career in any software engineering role. Graduating <strong>{formatEnd(sdsu.time)}</strong>
-                    {profile.openTo ? (
+                    Developing {kanso.live_app ? <ExternalLink href={kanso.live_app}>kanso</ExternalLink> : <strong>kanso</strong>}, a digital
+                    clarity notebook
+                </>,
+                <>
+                    Serving as <ExternalLink href={colorStack.link}>ColorStack</ExternalLink> SDSU chapter Outreach Chair (
+                    {formatStart(colorStack.time)} – Present)
+                </>,
+                <>
+                    Graduating <strong>{formatEnd(sdsu.time)}</strong>
+                    {profile.openTo && (
                         <>
-                            {' '}and seeking <strong>{profile.openTo}</strong>.
+                            {' '}and seeking <strong>{profile.openTo}</strong>
                         </>
-                    ) : (
-                        '.'
                     )}
-                </>
-            ),
+                </>,
+            ],
             extra: kanso.live_app && (
                 <a href={kanso.live_app} target="_blank" rel="noopener noreferrer" className="inline-block">
                     <LivePill>{kanso.title} · Live</LivePill>
@@ -245,7 +267,11 @@ export default function StoryTimeline() {
                         </p>
                         <BentoTile className={m.current ? 'border-dashed border-[#22c55e] bg-[#f4fbf6]' : ''}>
                             <h3 className="font-sans text-base font-extrabold text-[#0A0A23]">{m.title}</h3>
-                            <p className="mt-1 text-[13px] leading-relaxed">{m.body}</p>
+                            <ul className="mt-1 list-disc space-y-1 pl-5 text-[13px] leading-relaxed marker:text-[#22c55e]">
+                                {m.body.map((item, i) => (
+                                    <li key={i}>{item}</li>
+                                ))}
+                            </ul>
                             {m.extra && <div className="mt-3">{m.extra}</div>}
                         </BentoTile>
                     </li>
