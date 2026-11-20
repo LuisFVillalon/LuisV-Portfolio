@@ -13,7 +13,12 @@ type education = {
     course: string;
     time: string;
     description: string;
+    /** Subjects studied, shown under "What I learned" on the Experience page. */
+    courses: string[];
+    /** Languages and tools only; '' when none. */
     tech: string;
+    /** Titles of projects in projects.ts built during this program, linked under "What I learned". */
+    built?: string[];
     link: string;
 };
 type currentlyDoing = {
@@ -37,7 +42,12 @@ type certificates = {
     institution: string;
     time: string;
     description: string;
+    /** Subjects covered, shown under "What I learned" on the Experience page. */
+    topics: string[];
+    /** Languages and tools only; '' when none. */
     tech: string;
+    /** Courses within a learning path, each optionally linked to its own certificate. */
+    courses?: { name: string; link?: string }[];
     cert_link?: string;
     institution_link: string;
 };
@@ -95,23 +105,27 @@ const education: education[] = [
         course: 'Engineering Bootcamp: Agentic AI in the Cloud',
         time: 'Feb 2026 - May 2026',
         description: 'Developed and deployed cloud-based agentic AI systems using LangChain, LLM APIs, RAG architectures, multi-agent orchestration, and scalable AWS/GCP under mentorship from the Design & Automation Team at NXP.',
-        tech:'LLM APIs, LangChain, Python, RAG Systems',
+        courses: ['RAG Systems', 'Multi-Agent Orchestration', 'Cloud Deployment (AWS/GCP)'],
+        tech:'LLM APIs, LangChain, Python',
+        built: ['Agentic Abstraction for Chip Engineering (AACE)'],
         link: 'https://www.nxp.com/'
     },    
     {
         institution: 'San Diego State University',
         course: 'Bachelor of Science in Computer Science, Minor in Mathematics',
         time: 'Aug 2025 - May 2027',
-        description: '',
-        tech:'Python, C++, Data Structures, Algorithms, Software Systems, Computer Architecture, Artificial Intelligence',
+        description: 'Transferred from Imperial Valley College to complete a B.S. in Computer Science with a Minor in Mathematics, going deeper into algorithms, software systems, computer architecture, operating systems, and artificial intelligence.',
+        courses: ['Data Structures', 'Algorithms', 'Software Systems', 'Computer Architecture', 'Operating Systems', 'Artificial Intelligence'],
+        tech:'Python, C, C++',
         link: 'https://cs.sdsu.edu/'
     },
     {
         institution: 'Imperial Valley College',
         course: 'Associate of Science in Computer Science',
         time: 'June 2023 - Dec 2024',
-        description: '',
-        tech:'Data Structures, Object Oriented Programming, Java, Assembly Language',
+        description: 'Earned an A.S. in Computer Science, building foundations in object-oriented programming and data structures with Java, plus assembly language, before transferring to San Diego State University.',
+        courses: ['Data Structures', 'Object Oriented Programming', 'Assembly Language'],
+        tech:'Java',
         link: 'https://www.imperial.edu/'
     },
     {
@@ -119,7 +133,9 @@ const education: education[] = [
         course: 'Full Stack JavaScript',
         time: 'Jul 2022 - Apr 2024',
         description: 'Completed the Full Stack JavaScript curriculum from The Odin Project, gaining hands-on experience with front-end and back-end technologies.',
+        courses: [],
         tech:'HTML, CSS, JavaScript, React.js, Node.js, Express.js, MongoDB',
+        built: ['Whats Poppin?', 'Tic-Tac-Toe', 'Library'],
         link: 'https://www.theodinproject.com/'
     }
 ];
@@ -129,7 +145,8 @@ const certificates: certificates[] = [
         institution: 'Anthropic: Claude Academy',
         time: 'Sept 2026',
         description: 'Learned Anthropic\'s 4D AI Fluency framework (Delegation, Description, Discernment, Diligence) for deciding when to use AI, prompting it effectively, critically evaluating its outputs, and using it responsibly.',
-        tech: 'AI Fluency, Prompt Design, Output Evaluation, Human-AI Collaboration, Responsible AI',
+        topics: ['AI Fluency', 'Prompt Design', 'Output Evaluation', 'Human-AI Collaboration', 'Responsible AI'],
+        tech: '',
         cert_link: 'https://academy.claude.com/verify/c6af0df1db8e5e38e225f58e6e3a9c9b',
         institution_link: 'https://academy.claude.com/'
     },
@@ -138,7 +155,8 @@ const certificates: certificates[] = [
         institution: 'Anthropic: Claude Academy',
         time: 'Sept 2026',
         description: 'Learned to integrate Claude into everyday work, including structured prompting, reusable context with Projects and Skills, artifacts, connected tools, and research mode.',
-        tech: 'Prompt Engineering, Claude Projects, Skills, Artifacts, Connectors, Claude Code',
+        topics: ['Prompt Engineering'],
+        tech: 'Claude Projects, Skills, Artifacts, Connectors, Claude Code',
         cert_link: 'https://academy.claude.com/verify/3222bc453c71b8ccd8c3f58443790589',
         institution_link: 'https://academy.claude.com/'
     },       
@@ -147,7 +165,8 @@ const certificates: certificates[] = [
         institution: 'CodePath',
         time: 'Sep 2026 - Nov 2026',
         description: 'Trained in AI-assisted software engineering, designing and developing complex systems, evaluating AI-generated code and automating backend integrations.',
-        tech: 'RAG, Agentic workflows, Machine Learning, Data structures, Algorithms',
+        topics: ['RAG', 'Agentic workflows', 'Machine Learning', 'Data structures', 'Algorithms'],
+        tech: '',
         institution_link: 'https://www.codepath.org/'
     },
     {
@@ -155,7 +174,8 @@ const certificates: certificates[] = [
         institution: 'CodePath',
         time: 'Spring 2026',
         description:  'Strengthened data structures and algorithms proficiency through intensive technical interview preparation and peer-based problem solving.',
-        tech: 'Data Structures, Algorithms, Collaboration, Critical Thinking',
+        topics: ['Data Structures', 'Algorithms', 'Collaboration', 'Critical Thinking'],
+        tech: '',
         cert_link: 'https://drive.google.com/file/d/1NytGYb7hFF5FIvmpa5_flASpNuvmOtp_/view',
         institution_link: 'https://www.codepath.org/'
     },    
@@ -164,7 +184,8 @@ const certificates: certificates[] = [
         institution: 'HubSpot Academy',
         time: 'Feb 2025',
         description: 'Learned the fundamentals of search engine optimization, including keyword research, on-page and technical SEO, and link-building strategies to improve website visibility and rankings.',
-        tech: 'Keyword Research, Backlink Strategies, Content Optimization, on-page SEO, Performance Tracking',
+        topics: ['Keyword Research', 'Backlink Strategies', 'Content Optimization', 'on-page SEO', 'Performance Tracking'],
+        tech: '',
         cert_link: 'https://app-na2.hubspot.com/academy/achievements/mdm3m2ys/en/1/luis-villalon/seo',
         institution_link: 'https://academy.hubspot.com/'
     },
@@ -173,17 +194,33 @@ const certificates: certificates[] = [
         institution: 'HubSpot Academy',
         time: 'Feb 2025',
         description: 'Learned foundational SEO principles, focusing on advanced strategies like topic clustering, content optimization, and technical SEO to drive higher search rankings and organic traffic',
-        tech: 'Keyword Research, Backlink Strategies, Content Optimization, on-page SEO, Performance Tracking',
+        topics: ['Keyword Research', 'Backlink Strategies', 'Content Optimization', 'on-page SEO', 'Performance Tracking'],
+        tech: '',
         cert_link: 'https://app-na2.hubspot.com/academy/achievements/mdm3m2ys/en/1/luis-villalon/seo',
         institution_link: 'https://academy.hubspot.com/'
     },
     {
-        title: 'MongoDB Certifications',
+        title: 'Introduction to MongoDB (Learning Path)',
         institution: 'MongoDB',
         time: 'May 2023',
-        description: 'Completed several certifications verifying my knowledge of MongoDB NoSQL.',
-        tech: 'Connection, Atlas, Aggregation, CRUD, Data Modeling, Indexes, Transactions, Document Model',
-        cert_link: 'https://www.linkedin.com/in/luis-villalon/details/certifications/',
+        description: "Completed MongoDB's 11-course learning path (~16 hours), covering MongoDB Atlas and how to model, query and tune a document database.",
+        topics: ['CRUD operations', 'Document model & data modeling', 'Indexes', 'Aggregation', 'Transactions', 'Atlas Search', 'Connecting from an app'],
+        tech: '',
+        // The title links to the learning-path certificate; each course links to its own (May 10-12, 2023). Getting Started has no certificate of its own.
+        courses: [
+            { name: 'Getting Started with MongoDB Atlas' },
+            { name: 'MongoDB CRUD Operations: Insert and Find Documents', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-4e3af1ae-13e6-4900-833b-56e716cf5544-certificate.pdf' },
+            { name: 'MongoDB and the Document Model', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-6ab3d8e3-afc1-4165-8a8f-12fd3709938a-certificate.pdf' },
+            { name: 'MongoDB Atlas Search', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-7ad917f5-83ac-4e2d-8f63-5ed52f7f7d54-certificate.pdf' },
+            { name: 'MongoDB Indexes', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-8449adb4-562d-484c-a1cc-9b31094740eb-certificate.pdf' },
+            { name: 'MongoDB Transactions', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-8e6ceafe-90e6-45b0-a1b5-783357b79dce-certificate.pdf' },
+            { name: 'Connecting to a MongoDB Database', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-b0507899-39ae-4502-8bb0-28d6aa5e6fde-certificate.pdf' },
+            { name: 'MongoDB CRUD Operations: Replace and Delete Documents', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-bb03370d-335a-4810-8146-65a1019868fc-certificate.pdf' },
+            { name: 'MongoDB CRUD Operations: Modifying Query Results', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-c29325bd-de71-4507-8134-563dc4b02cd9-certificate.pdf' },
+            { name: 'MongoDB Data Modeling Intro', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-edac7760-318d-450f-8c0f-83cbb47c5196-certificate.pdf' },
+            { name: 'MongoDB Aggregation', link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-9adc80cb-196a-43d1-a88e-11ab316bc731-certificate.pdf' },
+        ],
+        cert_link: 'https://ti-user-certificates.s3.us-east-1.amazonaws.com/ae62dcd7-abdc-4e90-a570-83eccba49043/f2aa516f-6634-4cdc-98a7-274d513040f0-luis-villalon-e0fa28a9-4056-40ae-8af9-89ed40629f11-certificate.pdf',
         institution_link: 'https://www.mongodb.com/'
     },    
     {
@@ -191,7 +228,8 @@ const certificates: certificates[] = [
         institution: 'freeCodeCamp',
         time: 'Oct 2022',
         description: 'Developer certification representing approximately 300 hours of responsive web design work.',
-        tech: 'HTML, CSS, Responsive Design, CSS Frameworks, Web Accessibility',
+        topics: ['Responsive Design', 'Web Accessibility'],
+        tech: 'HTML, CSS, CSS Frameworks',
         cert_link: 'https://www.freecodecamp.org/certification/LuisBoy/responsive-web-design',
         institution_link: 'https://www.freecodecamp.org/'
     },
@@ -200,7 +238,8 @@ const certificates: certificates[] = [
         institution: 'freeCodeCamp',
         time: 'Oct 2022',
         description: 'Developer certification representing approximately 300 hours of JavaScript work.',
-        tech: 'JavaScript, ES6 Features, Regular Expressions, Algorithms, Object-Oriented Programming, Functional Programming',
+        topics: ['ES6 Features', 'Regular Expressions', 'Algorithms', 'Object-Oriented Programming', 'Functional Programming'],
+        tech: 'JavaScript',
         cert_link: 'https://www.freecodecamp.org/certification/LuisBoy/javascript-algorithms-and-data-structures',
         institution_link: 'https://www.freecodecamp.org/'
     },        
