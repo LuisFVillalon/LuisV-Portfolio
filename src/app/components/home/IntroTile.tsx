@@ -121,7 +121,7 @@ export default function IntroTile() {
                             {fact.links && (
                                 <ul className="mt-0.5 list-inside list-disc pl-1 text-xs leading-snug">
                                     {fact.links.map((link) => (
-                                        <li key={link.href} className="lg:truncate">
+                                        <li key={link.href} className="lg:truncate lg:pb-[3px] lg:-mb-[3px]">
                                             <a
                                                 href={link.href}
                                                 target="_blank"
