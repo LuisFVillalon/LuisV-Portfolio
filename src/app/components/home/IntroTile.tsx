@@ -6,7 +6,9 @@ import { GITHUB_URL } from '@/app/lib/contact';
 import { BentoTile, inlineLinkClass, primaryButtonClass, secondaryButtonClass } from './BentoTile';
 import { isLiveApp } from './ProjectTile';
 
-type Fact = { headline: string; detail: string[]; links?: { label: string; href: string }[] };
+// A detail line; `lead` (an award placing such as "1st") renders italic before `text`.
+type Detail = { lead?: string; text: string };
+type Fact = { headline: string; detail: Detail[]; bullets?: boolean; links?: { label: string; href: string }[] };
 
 // Live deployments named in the intro, by their projects.ts title; the URL comes from there.
 const LIVE_APPS = [
@@ -22,11 +24,13 @@ function getProofFacts(): Fact[] {
     const awards = getAwardProjects().flatMap((p) => (p.award ? [p.award] : []));
     if (awards.length > 1) {
         // One win per line: "1st · Swans Applied AI 2026".
-        const short = ({ title, event }: { title: string; event: string }) =>
-            `${title.replace('First Place', '1st').replace(/ Project$/, '')} · ${event.replace(/ Hackathon/, '')}`;
+        const short = ({ title, event }: { title: string; event: string }): Detail => ({
+            lead: title.replace('First Place', '1st').replace(/ Project$/, ''),
+            text: ` · ${event.replace(/ Hackathon/, '')}`,
+        });
         facts.push({ headline: `🏆 ${awards.length}× Hackathon Winner`, detail: awards.map(short) });
     } else if (awards.length === 1) {
-        facts.push({ headline: `🏆 ${awards[0].title}`, detail: [awards[0].event] });
+        facts.push({ headline: `🏆 ${awards[0].title}`, detail: [{ text: awards[0].event }] });
     }
 
     // One role type per line, counted from the titles: "3 industry internships" / "1 research role" / "1 full-time role".
@@ -43,7 +47,10 @@ function getProofFacts(): Fact[] {
     if (professionalExperience.length > 0) {
         facts.push({
             headline: `${professionalExperience.length} roles`,
-            detail: labels.flatMap((l, i) => (counts[i] ? [`${counts[i]} ${counts[i] === 1 ? l.one : l.many}`] : [])),
+            detail: labels.flatMap((l, i) =>
+                counts[i] ? [{ text: `${counts[i]} ${counts[i] === 1 ? l.one : l.many}` }] : []
+            ),
+            bullets: true,
         });
     }
 
@@ -97,13 +104,22 @@ export default function IntroTile() {
                             <p className="font-sans text-[13px] lg:whitespace-nowrap font-extrabold leading-tight text-[#0A0A23]">
                                 {fact.headline}
                             </p>
-                            {fact.detail.map((line) => (
-                                <p key={line} className="mt-0.5 text-xs leading-snug text-[#3f3f4a]">
-                                    {line}
-                                </p>
-                            ))}
+                            {fact.bullets ? (
+                                <ul className="mt-0.5 list-inside list-disc pl-1 text-xs leading-snug text-[#3f3f4a]">
+                                    {fact.detail.map((line) => (
+                                        <li key={line.text}>{line.text}</li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                fact.detail.map((line) => (
+                                    <p key={`${line.lead}${line.text}`} className="mt-0.5 text-xs leading-snug text-[#3f3f4a]">
+                                        {line.lead && <em>{line.lead}</em>}
+                                        {line.text}
+                                    </p>
+                                ))
+                            )}
                             {fact.links && (
-                                <ul className="mt-0.5 text-xs leading-snug">
+                                <ul className="mt-0.5 list-inside list-disc pl-1 text-xs leading-snug">
                                     {fact.links.map((link) => (
                                         <li key={link.href} className="lg:truncate">
                                             <a
