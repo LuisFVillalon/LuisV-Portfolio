@@ -16,13 +16,15 @@ interface BentoTileProps {
     children: React.ReactNode;
     className?: string;
     label?: string;
+    /** Optional anchor id, so other tiles can link to this one. */
+    id?: string;
     /** Optional click-through shown on the right of the label row. */
     more?: { href: string; text: string };
 }
 
-export function BentoTile({ children, className = '', label, more }: BentoTileProps) {
+export function BentoTile({ children, className = '', label, id, more }: BentoTileProps) {
     return (
-        <div className={`relative min-w-0 overflow-hidden rounded-2xl border border-[#0A0A23]/10 bg-white p-4 md:p-5 text-[#333333] ${className}`}>
+        <div id={id} className={`relative min-w-0 scroll-mt-20 overflow-hidden rounded-2xl border border-[#0A0A23]/10 bg-white p-4 md:p-5 text-[#333333] ${className}`}>
             {(label || more) && (
                 <div className="mb-3 flex items-baseline justify-between gap-3">
                     {label && (

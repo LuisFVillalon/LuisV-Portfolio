@@ -133,7 +133,7 @@ export function ProfessionalTimeline() {
 export function AlongsideTimeline() {
     if (leadership.length === 0) return null;
     return (
-        <BentoTile label="Alongside school · leadership">
+        <BentoTile id="alongside" label="Alongside school · leadership">
             <Timeline
                 items={leadership.map((item) => ({
                     key: `${item.company}-${item.position}`,
@@ -274,7 +274,7 @@ function WhatILearned({
 
 export function EducationTile() {
     return (
-        <BentoTile label="Education">
+        <BentoTile id="education" label="Education">
             <ul>
                 {education.map((item) => (
                     <li key={item.institution} className="border-b border-[#0A0A23]/10 py-2 text-[13px] first:pt-0 last:border-b-0 last:pb-0">
@@ -299,7 +299,7 @@ export function EducationTile() {
 
 export function SkillsTile() {
     return (
-        <BentoTile label="Skills">
+        <BentoTile id="skills" label="Skills">
             <div className="flex flex-col gap-2.5">
                 {techTools
                     .filter((group) => !HIDDEN_SKILL_SUBJECTS.has(group.subject))
@@ -328,7 +328,7 @@ export function SkillsTile() {
 
 export function CertificatesTile() {
     return (
-        <BentoTile label={`Certificates · ${certificates.length}`}>
+        <BentoTile id="certificates" label={`Certificates · ${certificates.length}`}>
             <ul className="flex flex-col gap-1.5 text-[13px]">
                 {certificates.map((item) => (
                     <li key={item.title} className="leading-snug">
@@ -347,5 +347,67 @@ export function CertificatesTile() {
                 ))}
             </ul>
         </BentoTile>
+    );
+}
+
+// At-a-glance strip: one linked tile per thing a recruiter checks first, each jumping to its full section.
+// Everything is read from experience.ts, so the strip follows the data.
+const glanceTileClass = 'block min-w-0 rounded-2xl border border-[#0A0A23]/10 bg-white p-3 transition-colors hover:border-[#22c55e] md:p-4';
+const glanceKickerClass = 'text-[11px] font-bold uppercase tracking-[0.12em] text-[#6e6e78]';
+const glanceTitleClass = 'mt-1 font-sans text-[15px] font-extrabold leading-snug text-[#0A0A23]';
+const GLANCE_SKILL_SUBJECT = 'Programming Languages';
+const GLANCE_CERT_COUNT = 3;
+
+export function GlanceStrip() {
+    const current = leadership.find((item) => /present/i.test(item.time));
+    const degree = education.find((item) => /^bachelor/i.test(item.course));
+    const [degreeName, ...degreeRest] = (degree?.course ?? '').split(',');
+    const gradDate = tidy(degree?.time.split(' - ').pop() ?? '');
+    const languages = techTools.find((group) => group.subject === GLANCE_SKILL_SUBJECT)?.tools ?? [];
+    const newestCerts = certificates.slice(0, GLANCE_CERT_COUNT);
+    return (
+        <nav aria-label="At a glance" className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
+            {current && (
+                <a href="#alongside" className={glanceTileClass}>
+                    <p className={glanceKickerClass}>Currently doing</p>
+                    <p className={glanceTitleClass}>{tidy(current.position)}</p>
+                    <p className="text-xs font-bold text-[#006400]">{current.company}</p>
+                    <p className={mutedClass}>{tidy(current.time)}</p>
+                </a>
+            )}
+            {degree && (
+                <a href="#education" className={glanceTileClass}>
+                    <p className={glanceKickerClass}>Education</p>
+                    <p className={glanceTitleClass}>{tidy(degreeName)}</p>
+                    <p className="text-xs font-bold text-[#006400]">{degree.institution}</p>
+                    <p className={mutedClass}>
+                        {degreeRest.length > 0 && `${tidy(degreeRest.join(','))} · `}Grad {gradDate}
+                    </p>
+                </a>
+            )}
+            {languages.length > 0 && (
+                <a href="#skills" className={glanceTileClass}>
+                    <p className={glanceKickerClass}>{GLANCE_SKILL_SUBJECT}</p>
+                    <div className="mt-1.5 flex flex-wrap gap-1">
+                        {languages.map(({ tool }) => (
+                            <span key={tool} className="rounded-full bg-[#F3F3F5] px-2 py-0.5 text-xs text-[#0A0A23]">{tool}</span>
+                        ))}
+                    </div>
+                </a>
+            )}
+            {certificates.length > 0 && (
+                <a href="#certificates" className={glanceTileClass}>
+                    <p className={glanceKickerClass}>Certificates · {certificates.length}</p>
+                    <ul className="mt-1 space-y-0.5 text-xs leading-snug">
+                        {newestCerts.map((item) => (
+                            <li key={item.title} className="truncate font-sans font-bold text-[#0A0A23]">{item.title}</li>
+                        ))}
+                    </ul>
+                    {certificates.length > newestCerts.length && (
+                        <p className={`${mutedClass} mt-0.5`}>+{certificates.length - newestCerts.length} more</p>
+                    )}
+                </a>
+            )}
+        </nav>
     );
 }
