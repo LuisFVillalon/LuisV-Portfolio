@@ -157,9 +157,10 @@ function getMilestones(): Milestone[] {
             body: (
                 <>
                     Undergraduate researcher at <ExternalLink href={ai4Business.link}>AI4Business Lab</ExternalLink> (
-                    {formatRange(ai4Business.time)}), studying AI agent safety and adversarial robustness. Built{' '}
-                    <ExternalLink href={aace.github_repo}>AACE</ExternalLink> in <ExternalLink href={nxp.link}>NXP Semiconductors</ExternalLink>
-                    &apos; Agentic AI in the Cloud bootcamp ({formatRange(nxp.time)}). Won first place at the Swans Applied AI Hackathon
+                    {formatRange(ai4Business.time)}), studying AI agent safety and adversarial robustness. Mentored by{' '}
+                    <ExternalLink href={nxp.link}>NXP Semiconductors</ExternalLink>&apos; Design Automation team, helped build{' '}
+                    <ExternalLink href={aace.github_repo}>AACE</ExternalLink>, an agentic system that fast-tracks semantic understanding of
+                    chip designs ({formatRange(nxp.time)}). Won first place at the Swans Applied AI Hackathon
                     by building <ExternalLink href={ross.github_repo}>ROSS</ExternalLink>, beating 60+ teams. Completed{' '}
                     <ExternalLink href={codePath.institution_link}>CodePath</ExternalLink>&apos;s AI201 ({formatRange(codePath.time)}).
                 </>
