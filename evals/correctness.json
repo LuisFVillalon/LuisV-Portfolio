@@ -1,0 +1,326 @@
+{
+  "criterion": "Factual Correctness: at least 27 of 30 answers Correct, and no answer states a wrong high-stakes fact (degree, graduation date, employer, job title, award result).",
+  "status": "DRAFT: key facts drafted from the public site data (src/app/lib/experience.ts, src/app/lib/projects.ts, the About page and the public résumé PDF). The site owner must review and correct them before the eval is run; items with a `note` flag something the draft was unsure of.",
+  "items": [
+    {
+      "id": "edu-degree",
+      "category": "education",
+      "question": "What degree is Luis working on, and at which school?",
+      "keyFacts": [
+        { "fact": "Bachelor of Science (B.S.) in Computer Science", "highStakes": true },
+        { "fact": "San Diego State University (SDSU)", "highStakes": true },
+        { "fact": "Minor in Mathematics", "highStakes": true }
+      ],
+      "note": "The site lists the Minor in Mathematics; the résumé PDF lists only the B.S. in Computer Science. Confirm the minor should be required."
+    },
+    {
+      "id": "edu-graduation",
+      "category": "education",
+      "question": "When is Luis expected to graduate?",
+      "keyFacts": [
+        { "fact": "Expected graduation: May 2027", "highStakes": true },
+        { "fact": "From San Diego State University", "highStakes": true }
+      ]
+    },
+    {
+      "id": "edu-transfer",
+      "category": "education",
+      "question": "Where did Luis study before San Diego State University?",
+      "keyFacts": [
+        { "fact": "Imperial Valley College", "highStakes": true },
+        { "fact": "Associate of Science (A.S.) in Computer Science", "highStakes": true },
+        { "fact": "Transferred to San Diego State University afterwards", "highStakes": false }
+      ],
+      "note": "The site gives Imperial Valley College as June 2023 - Dec 2024; dates left out of the key facts on purpose. Add them if they should be required."
+    },
+    {
+      "id": "edu-nxp-bootcamp",
+      "category": "education",
+      "question": "What was the NXP bootcamp Luis took part in?",
+      "keyFacts": [
+        { "fact": "NXP Semiconductors Engineering Bootcamp: Agentic AI in the Cloud", "highStakes": false },
+        { "fact": "Feb 2026 - May 2026", "highStakes": false },
+        { "fact": "Built the Agentic Abstraction for Chip Engineering (AACE) project there", "highStakes": false }
+      ]
+    },
+    {
+      "id": "role-ai4business",
+      "category": "experience",
+      "question": "What did Luis do at the AI4Business Lab?",
+      "keyFacts": [
+        { "fact": "Title: Undergraduate Researcher", "highStakes": true },
+        { "fact": "Jan 2026 - May 2026", "highStakes": false },
+        { "fact": "Researched trust, safety and adversarial robustness of AI agents", "highStakes": false },
+        { "fact": "Contributed to a three-layer trust-centered AI safety framework", "highStakes": false }
+      ],
+      "note": "The site's full title is 'Undergraduate Researcher: Adversarial Attacks & Defenses in Deep Learning'; 'Undergraduate Researcher' alone is treated as enough."
+    },
+    {
+      "id": "role-second-course",
+      "category": "experience",
+      "question": "What was Luis's role at Second Course, and what did he work on?",
+      "keyFacts": [
+        { "fact": "Company: Second Course", "highStakes": true },
+        { "fact": "Title: Full-Stack Intern", "highStakes": true },
+        { "fact": "Nov 2025 - Jan 2026", "highStakes": false },
+        { "fact": "Worked on a React Native app with a Firestore/Firebase backend", "highStakes": false },
+        { "fact": "The app addresses food insecurity among college students", "highStakes": false }
+      ],
+      "note": "CONFLICT: the site says 'Full-Stack Intern', the résumé PDF says 'Computer Science Intern'. Pick the title the grader should require (or list both as acceptable)."
+    },
+    {
+      "id": "role-sports-excitement",
+      "category": "experience",
+      "question": "Tell me about Luis's internship at Sports Excitement.",
+      "keyFacts": [
+        { "fact": "Title: Front-End Developer Intern", "highStakes": true },
+        { "fact": "Dec 2024 - Mar 2025", "highStakes": false },
+        { "fact": "Built a responsive web application / interfaces with React and Tailwind CSS", "highStakes": false },
+        { "fact": "Worked on UI/UX for a global sports platform", "highStakes": false }
+      ]
+    },
+    {
+      "id": "role-ectron",
+      "category": "experience",
+      "question": "What did Luis build at Ectron Corporation?",
+      "keyFacts": [
+        { "fact": "Title: Software Engineer Intern", "highStakes": true },
+        { "fact": "Summer 2024 (Jun 2024 - Aug 2024)", "highStakes": false },
+        { "fact": "A full-stack asset-tracking application", "highStakes": false },
+        { "fact": "Helped workers locate tools and equipment at job sites", "highStakes": false }
+      ],
+      "note": "CONFLICT: the site says Jun 2024 - Aug 2024, the résumé PDF says May 2024 - Aug 2024. Confirm the start month."
+    },
+    {
+      "id": "role-calexico-neighborhood-house",
+      "category": "experience",
+      "question": "What was Luis's role at Calexico Neighborhood House?",
+      "keyFacts": [
+        { "fact": "Title: SEO & Digital Marketing Strategist", "highStakes": true },
+        { "fact": "Mar 2025 - Jun 2025", "highStakes": false },
+        { "fact": "For the Mission Thrift Store and Happy Kids Preschool and Daycare", "highStakes": false },
+        { "fact": "SEO and digital marketing to increase thrift store sales and preschool enrollment", "highStakes": false }
+      ]
+    },
+    {
+      "id": "role-colorstack",
+      "category": "experience",
+      "question": "What is Luis's role in ColorStack?",
+      "keyFacts": [
+        { "fact": "Title: Outreach Chair", "highStakes": true },
+        { "fact": "ColorStack (SDSU chapter)", "highStakes": true },
+        { "fact": "Since Jan 2026, still current", "highStakes": false },
+        { "fact": "Leads recruitment strategy and digital outreach, connecting members with career opportunities", "highStakes": false }
+      ],
+      "note": "CONFLICT: the site says Jan 2026 - Present, the résumé PDF says Feb 2026 - Present. The résumé also lists him as 'ColorStack (SDSU Chapter Founder)'; confirm whether 'founder' belongs here."
+    },
+    {
+      "id": "role-internships-list",
+      "category": "experience",
+      "question": "Which companies has Luis interned at?",
+      "keyFacts": [
+        { "fact": "Ectron Corporation", "highStakes": true },
+        { "fact": "Sports Excitement", "highStakes": true },
+        { "fact": "Second Course", "highStakes": true }
+      ],
+      "note": "AI4Business Lab (research) and Calexico Neighborhood House (marketing) are not counted as internships here; mentioning them is fine."
+    },
+    {
+      "id": "role-first-swe-internship",
+      "category": "experience",
+      "question": "What was Luis's first software engineering internship?",
+      "keyFacts": [
+        { "fact": "Software Engineer Intern at Ectron Corporation", "highStakes": true },
+        { "fact": "Summer 2024", "highStakes": false }
+      ]
+    },
+    {
+      "id": "role-current",
+      "category": "experience",
+      "question": "What is Luis doing right now?",
+      "keyFacts": [
+        { "fact": "Studying for a B.S. in Computer Science at San Diego State University", "highStakes": true },
+        { "fact": "Building kanso, a digital clarity notebook", "highStakes": false },
+        { "fact": "Outreach Chair at ColorStack", "highStakes": true }
+      ]
+    },
+    {
+      "id": "proj-ross",
+      "category": "projects",
+      "question": "What is ROSS?",
+      "keyFacts": [
+        { "fact": "An AI tool built on Clio Manage", "highStakes": false },
+        { "fact": "Turns a personal-injury case into a cited 90-second brief for attorneys", "highStakes": false },
+        { "fact": "Gives doctors a tracked portal", "highStakes": false }
+      ]
+    },
+    {
+      "id": "proj-ross-award",
+      "category": "awards",
+      "question": "Did ROSS win anything?",
+      "keyFacts": [
+        { "fact": "First Place", "highStakes": true },
+        { "fact": "Swans Applied AI Hackathon 2026", "highStakes": true },
+        { "fact": "Beat more than 60 teams", "highStakes": false }
+      ]
+    },
+    {
+      "id": "proj-ross-tech",
+      "category": "projects",
+      "question": "What tech stack did Luis use for ROSS?",
+      "keyFacts": [
+        { "fact": "Node.js", "highStakes": false },
+        { "fact": "Claude via the Anthropic SDK", "highStakes": false },
+        { "fact": "Clio API", "highStakes": false },
+        { "fact": "BM25 retrieval (RAG)", "highStakes": false },
+        { "fact": "SQLite", "highStakes": false }
+      ]
+    },
+    {
+      "id": "proj-kanso",
+      "category": "projects",
+      "question": "What is kanso?",
+      "keyFacts": [
+        { "fact": "A digital clarity notebook that brings tasks, notes, habits and mood into one place", "highStakes": false },
+        { "fact": "Next.js front end", "highStakes": false },
+        { "fact": "FastAPI + PostgreSQL backend", "highStakes": false },
+        { "fact": "Includes an AI learning-resource recommender", "highStakes": false }
+      ],
+      "note": "The résumé adds that kanso was built solo; not required here."
+    },
+    {
+      "id": "proj-kanso-ai",
+      "category": "projects",
+      "question": "How does kanso's AI recommender work?",
+      "keyFacts": [
+        { "fact": "Given a note, an LLM plans a topic, level and search queries", "highStakes": false },
+        { "fact": "A deterministic pipeline searches DuckDuckGo", "highStakes": false },
+        { "fact": "Filters sponsored and paywalled results and checks for dead links", "highStakes": false },
+        { "fact": "Returns one video, one article and one exercise, each with a reason", "highStakes": false }
+      ]
+    },
+    {
+      "id": "proj-whats-poppin",
+      "category": "projects",
+      "question": "What is What's Poppin'?",
+      "keyFacts": [
+        { "fact": "A Reddit-clone web application", "highStakes": false },
+        { "fact": "Users can create an account, post, comment and vote", "highStakes": false },
+        { "fact": "Built with React and Google Firebase (Firestore and Authentication)", "highStakes": false }
+      ],
+      "note": "The site also lists it under The Odin Project; not required here."
+    },
+    {
+      "id": "proj-ai-assistant",
+      "category": "projects",
+      "question": "How does this site's AI assistant work?",
+      "keyFacts": [
+        { "fact": "A RAG assistant that answers from Luis's own content (site data, résumé, LinkedIn, public GitHub READMEs)", "highStakes": false },
+        { "fact": "Answers with Claude Haiku 5.5", "highStakes": false },
+        { "fact": "Uses Voyage AI embeddings and reranking", "highStakes": false },
+        { "fact": "Searches an Upstash Vector index (hybrid dense + BM25)", "highStakes": false },
+        { "fact": "Cites its sources", "highStakes": false }
+      ]
+    },
+    {
+      "id": "proj-aace",
+      "category": "projects",
+      "question": "What is the AACE project?",
+      "keyFacts": [
+        { "fact": "Agentic Abstraction for Chip Engineering", "highStakes": false },
+        { "fact": "A multi-agent pipeline (Architect, Auditor, Stylist) that turns SystemVerilog/Verilog RTL into architecture diagrams", "highStakes": false },
+        { "fact": "Built with LangGraph and LLMs on AWS Bedrock", "highStakes": false },
+        { "fact": "Built during the NXP Agentic AI in the Cloud bootcamp", "highStakes": false }
+      ],
+      "note": "The résumé says it was a five-person team project; not required here."
+    },
+    {
+      "id": "award-list",
+      "category": "awards",
+      "question": "What hackathon awards has Luis won?",
+      "keyFacts": [
+        { "fact": "First Place at the Swans Applied AI Hackathon 2026 (ROSS)", "highStakes": true },
+        { "fact": "Most Creative Project at the Innovate 4 SDSU Hackathon 2025 (The Crash App)", "highStakes": true }
+      ]
+    },
+    {
+      "id": "award-crash-app",
+      "category": "awards",
+      "question": "What is The Crash App?",
+      "keyFacts": [
+        { "fact": "A web application for students to report hit-and-runs and earn rewards", "highStakes": false },
+        { "fact": "Won Most Creative Project at the Innovate 4 SDSU Hackathon 2025", "highStakes": true }
+      ]
+    },
+    {
+      "id": "skills-languages",
+      "category": "skills",
+      "question": "What programming languages does Luis know?",
+      "keyFacts": [
+        { "fact": "Python", "highStakes": false },
+        { "fact": "C++", "highStakes": false },
+        { "fact": "Java", "highStakes": false },
+        { "fact": "JavaScript", "highStakes": false },
+        { "fact": "TypeScript", "highStakes": false }
+      ],
+      "note": "The résumé also lists SQL, and the SDSU entry lists C; neither is required here."
+    },
+    {
+      "id": "skills-applied-ai",
+      "category": "skills",
+      "question": "What applied AI skills does Luis have?",
+      "keyFacts": [
+        { "fact": "LangGraph", "highStakes": false },
+        { "fact": "RAG systems", "highStakes": false },
+        { "fact": "LLM APIs", "highStakes": false }
+      ]
+    },
+    {
+      "id": "cert-codepath",
+      "category": "certificates",
+      "question": "What CodePath courses has Luis completed?",
+      "keyFacts": [
+        { "fact": "AI201: Applications of AI Engineering (Fall 2026)", "highStakes": false },
+        { "fact": "TIP103: Advanced Technical Interview Prep (Spring 2026)", "highStakes": false }
+      ]
+    },
+    {
+      "id": "cert-anthropic",
+      "category": "certificates",
+      "question": "Does Luis have any certificates from Anthropic?",
+      "keyFacts": [
+        { "fact": "AI Fluency: Framework and Foundations", "highStakes": false },
+        { "fact": "Claude 101", "highStakes": false },
+        { "fact": "From Anthropic's Claude Academy, Sept 2026", "highStakes": false }
+      ]
+    },
+    {
+      "id": "profile-location",
+      "category": "profile",
+      "question": "Where is Luis from, and where is he based?",
+      "keyFacts": [
+        { "fact": "From Calexico, California", "highStakes": false },
+        { "fact": "Studies in San Diego, CA (San Diego State University)", "highStakes": false }
+      ],
+      "note": "'From Calexico' comes from the About page and the homepage intro, which the assistant's site chunker does not index; the assistant can only know it through the Assistant facts or LinkedIn. Confirm both facts and where he is based now."
+    },
+    {
+      "id": "profile-spoken-languages",
+      "category": "profile",
+      "question": "What languages does Luis speak?",
+      "keyFacts": [
+        { "fact": "English", "highStakes": false },
+        { "fact": "Spanish", "highStakes": false }
+      ],
+      "note": "From the About page ('fluent in Spanish and English') and the homepage intro ('bilingual EN/ES'), neither of which the site chunker indexes; see profile-location."
+    },
+    {
+      "id": "profile-roles-sought",
+      "category": "profile",
+      "question": "What kind of roles is Luis looking for?",
+      "keyFacts": [
+        { "fact": "Early Career / New Grad Software Engineer roles", "highStakes": false }
+      ]
+    }
+  ]
+}

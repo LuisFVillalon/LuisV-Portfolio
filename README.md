@@ -42,7 +42,8 @@ npm run dev      # http://localhost:3000
 npm run build    # production build
 npm start        # serve production build
 npm run lint     # ESLint
-npm test         # assistant limit tests (node:test via tsx)
+npm test         # assistant limit tests and eval scoring tests (node:test via tsx)
+npm run eval:correctness   # Ask AI factual-correctness eval (real API calls; see evals/README.md)
 ```
 
 ## Project Structure

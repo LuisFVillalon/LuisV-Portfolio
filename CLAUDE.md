@@ -11,7 +11,7 @@ npm start        # Start production server
 npm run lint     # Run ESLint
 ```
 
-`npm test` runs the assistant's limit tests (`src/app/lib/assistant/*.test.ts`, node:test via tsx); there is no other test suite.
+`npm test` runs the assistant's limit tests (`src/app/lib/assistant/*.test.ts`) and the eval scoring tests (`evals/lib/*.test.ts`), node:test via tsx; there is no other test suite.
 
 ## Stack
 
