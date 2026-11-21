@@ -115,7 +115,16 @@ describe('parseGraderOutput', () => {
 });
 
 describe('grader request', () => {
-    const item: EvalItem = { id: 'edu-graduation', question: 'When does Luis graduate?', keyFacts: facts, highStakes: true, category: 'education', note: 'private reviewer note' };
+    const item: EvalItem = {
+        id: 'edu-graduation',
+        question: 'When does Luis graduate?',
+        keyFacts: [
+            { fact: facts[0], highStakes: true },
+            { fact: facts[1], highStakes: false },
+        ],
+        category: 'education',
+        note: 'private reviewer note',
+    };
 
     test('uses the stronger grader model with a JSON schema output format', () => {
         const req = graderRequest(item, 'May 2027.', []);
@@ -127,20 +136,19 @@ describe('grader request', () => {
         const content = graderRequest(item, 'He graduates in May 2027.', ['Ref fact']).messages[0].content as string;
         assert.match(content, /When does Luis graduate\?/);
         assert.match(content, /- Expected graduation: May 2027/);
+        assert.match(content, /- From San Diego State University/);
         assert.match(content, /He graduates in May 2027\./);
         assert.match(content, /- Ref fact/);
         assert.doesNotMatch(content, /private reviewer note/);
     });
 
-    test('the reference lists high-stakes items’ facts only, once each', () => {
+    test('the reference lists high-stakes facts only, once each', () => {
         const items: EvalItem[] = [
             item,
             { ...item, id: 'dup' },
-            { id: 'skills', question: 'Skills?', keyFacts: ['Python'], highStakes: false, category: 'skills' },
+            { id: 'skills', question: 'Skills?', keyFacts: [{ fact: 'Python', highStakes: false }], category: 'skills' },
         ];
-        const ref = highStakesReference(items);
-        assert.equal(ref.length, 2);
-        assert.ok(ref.every((r) => !r.startsWith('Python')));
+        assert.deepEqual(highStakesReference(items), ['Expected graduation: May 2027 (re: When does Luis graduate?)']);
     });
 
     test('grader cost uses Sonnet prices', () => {

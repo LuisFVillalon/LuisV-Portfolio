@@ -46,17 +46,21 @@ async function main() {
 
     console.log(`Factual correctness: ${items.length} question(s), answering with ${ASSISTANT.model}\n`);
     const results: ItemResult[] = [];
+    const skippedByCostCap: string[] = [];
     let spent = 0;
     for (const [n, item] of items.entries()) {
         if (spent >= args.maxCostUsd) {
-            console.warn(`Stopping: estimated spend $${spent.toFixed(4)} reached --max-cost $${args.maxCostUsd}`);
+            skippedByCostCap.push(...items.slice(n).map((i) => i.id));
+            console.warn(`Stopping: estimated spend $${spent.toFixed(4)} reached --max-cost $${args.maxCostUsd}; ${skippedByCostCap.length} question(s) not run`);
             break;
         }
         const r: ItemResult = { item, answer: '', sources: [], retrieved: [], answerLatencyMs: 0, gradeLatencyMs: 0, answerCostUsd: 0, gradeCostUsd: 0 };
         const meter = { costUsd: 0, estimateUsd: 0 };
+        let rewriteCostUsd = 0;
         let t = performance.now();
         try {
             const retrieval = await retrieve(item.question);
+            rewriteCostUsd = retrieval.rewriteCostUsd;
             r.retrieved = retrieval.chunks.map((c) => c.id);
             for await (const event of streamAnswer({ question: item.question, chunks: retrieval.chunks, meter })) {
                 if (event.type === 'done') {
@@ -64,7 +68,7 @@ async function main() {
                     r.sources = event.sources.map(({ label, href }) => ({ label, href }));
                 }
             }
-            r.answerCostUsd = meter.costUsd + retrieval.rewriteCostUsd;
+            r.answerCostUsd = meter.costUsd + rewriteCostUsd;
             r.answerLatencyMs = performance.now() - t;
 
             t = performance.now();
@@ -73,10 +77,10 @@ async function main() {
             r.gradeCostUsd = graderCostUsd(res.usage);
             if (res.stop_reason !== 'end_turn') throw new Error(`Grader stopped with ${res.stop_reason}`);
             const text = res.content.map((b) => (b.type === 'text' ? b.text : '')).join('');
-            r.grade = parseGraderOutput(text, item.keyFacts);
+            r.grade = parseGraderOutput(text, item.keyFacts.map((f) => f.fact));
         } catch (err) {
             r.error = err instanceof Error ? err.message : String(err);
-            r.answerCostUsd ||= meter.costUsd;
+            r.answerCostUsd = meter.costUsd + rewriteCostUsd;
             if (!r.answerLatencyMs) r.answerLatencyMs = performance.now() - t;
         }
         spent += r.answerCostUsd + r.gradeCostUsd;
@@ -84,7 +88,7 @@ async function main() {
         console.log(`[${n + 1}/${items.length}] ${item.id}: ${r.grade?.label ?? `ERROR (${r.error})`}`);
     }
 
-    const summary = summarize(results, dataset.items.length);
+    const summary = summarize(results, dataset.items.length, skippedByCostCap);
     fs.mkdirSync(RESULTS_DIR, { recursive: true });
     const stamp = info.startedAt.replace(/[:.]/g, '-');
     const base = path.join(RESULTS_DIR, `correctness-${stamp}`);

@@ -14,13 +14,13 @@ Each answer gets one label from the grader:
 | **Partial** | Nothing is wrong, but at least one required key fact is missing (this includes "I don't have that information"). |
 | **Incorrect** | At least one fact is wrong: a key fact is contradicted, or the answer says something that conflicts with the reference facts. |
 
-The grader also marks each key fact `present`, `missing` or `contradicted`, and lists any wrong statements, flagging those about a degree, graduation date, employer, job title or award result as high-stakes. A high-stakes wrong statement fails the whole run, on any question. The final label is the stricter of the grader's own label and the one its per-fact verdicts imply, so a lenient label can't pass a missing or contradicted fact. A question that errors (API failure, unparseable grade) counts as not Correct and fails the run.
+The grader also marks each key fact `present`, `missing` or `contradicted`, and lists any wrong statements, flagging those about a degree, graduation date, employer, job title or award result as high-stakes. Each key fact in the dataset carries its own `highStakes` flag, set only for facts about a degree, graduation date, employer, job title or award result; dates of a role and descriptions of the work are not high-stakes. An answer has a high-stakes error when a key fact marked high-stakes is graded `contradicted`, or the grader flags any wrong statement as high-stakes, whatever else it listed. One high-stakes error fails the whole run, on any question. A contradicted descriptive fact makes the answer Incorrect but is not a high-stakes error. The final label is the stricter of the grader's own label and the one its per-fact verdicts imply, so a lenient label can't pass a missing or contradicted fact. A question that errors (API failure, unparseable grade) counts as not Correct and fails the run.
 
 ### Files
 
 | File | What it is |
 |---|---|
-| `correctness.json` | The 30 questions: `id`, `question`, `keyFacts`, `highStakes`, `category`, and an optional reviewer `note` (never shown to the grader). **Draft:** drafted from the public site data and résumé; the site owner corrects it before the first run. |
+| `correctness.json` | The 30 questions: `id`, `question`, `keyFacts` (each `{ fact, highStakes }`), `category`, and an optional reviewer `note` (never shown to the grader). **Draft:** drafted from the public site data and résumé; the site owner corrects it before the first run. |
 | `lib/grader.ts` | **The grader in one place:** model (`claude-sonnet-5-5`), effort, prompt, JSON output schema, and the parsing and label rules. |
 | `lib/score.ts` | The pass/fail rule and the high-stakes check. |
 | `correctness.ts` | The runner: answers each question with the real pipeline, grades it, writes the reports. |
@@ -36,7 +36,7 @@ npm run eval:correctness -- --id edu-graduation   # one question
 npm run eval:correctness -- --max-cost 0.5        # stop starting questions past $0.50 (default $1)
 ```
 
-Each question runs the same `retrieve()` + `streamAnswer()` path the chat route uses: single-turn, no history, with the Assistant facts loaded from `ASSISTANT_FACTS` or `.private/` as on the site. The script prints the Correct/Partial/Incorrect counts, any high-stakes errors and PASS or FAIL, and writes a Markdown and a JSON report to `evals/results/` (gitignored). The reports include each question, answer, cited sources, retrieved chunks, the grader's verdict per fact, latency and estimated cost. A run of fewer than 30 questions applies the same 90% rule to the questions run and is marked partial. The exit code is 0 on PASS, 1 on FAIL and 2 on a setup error.
+Each question runs the same `retrieve()` + `streamAnswer()` path the chat route uses: single-turn, no history, with the Assistant facts loaded from `ASSISTANT_FACTS` or `.private/` as on the site. The script prints the Correct/Partial/Incorrect counts, any high-stakes errors and PASS or FAIL, and writes a Markdown and a JSON report to `evals/results/` (gitignored). The reports include each question, answer, cited sources, retrieved chunks, the grader's verdict per fact, latency and estimated cost. A run of fewer than 30 questions chosen with `--limit` or `--id` applies the same 90% rule to the questions run and is marked partial. A run the `--max-cost` cap cuts short lists the questions it didn't run and always FAILs, so a cost-capped run can never pass. The exit code is 0 on PASS, 1 on FAIL and 2 on a setup error.
 
 **Cost:** about $0.01-0.02 per question (Claude Haiku 5.5 answer plus Claude Sonnet 5.5 grade), so roughly $0.30-0.60 for all 30. Voyage embedding and rerank calls aren't counted; they cost a fraction of a cent.
 

@@ -68,7 +68,7 @@ export const GRADER_SCHEMA = {
 } as const;
 
 /**
- * The grader's user message. `referenceFacts` are the key facts of every high-stakes item in the
+ * The grader's user message. `referenceFacts` are the high-stakes key facts of the whole
  * dataset, so a wrong degree, date, employer, title or award is caught in any answer, not only
  * in the item that asks about it.
  */
@@ -77,7 +77,7 @@ export function graderUserMessage(item: EvalItem, answer: string, referenceFacts
         `Question: ${item.question}`,
         '',
         'Required key facts:',
-        ...item.keyFacts.map((f) => `- ${f}`),
+        ...item.keyFacts.map((f) => `- ${f.fact}`),
         '',
         'Reference facts about Luis (for spotting wrong statements; not required in this answer):',
         ...referenceFacts.map((f) => `- ${f}`),
@@ -88,11 +88,11 @@ export function graderUserMessage(item: EvalItem, answer: string, referenceFacts
     ].join('\n');
 }
 
-/** Key facts of every high-stakes item, de-duplicated, each prefixed with the question it answers. */
+/** Every high-stakes key fact in the dataset, de-duplicated, each followed by the question it answers. */
 export function highStakesReference(items: EvalItem[]): string[] {
     const out: string[] = [];
-    for (const item of items.filter((i) => i.highStakes)) {
-        for (const fact of item.keyFacts) {
+    for (const item of items) {
+        for (const { fact } of item.keyFacts.filter((f) => f.highStakes)) {
             const line = `${fact} (re: ${item.question})`;
             if (!out.includes(line)) out.push(line);
         }
@@ -135,6 +135,9 @@ export function labelFromVerdicts(facts: Pick<FactVerdict, 'verdict'>[], wrongSt
     return 'Correct';
 }
 
+/** Whether the grader's copy of a key fact names that fact: case and surrounding space are ignored. */
+export const sameFact = (a: string, b: string) => a.trim().toLowerCase() === b.trim().toLowerCase();
+
 const worse = (a: Label, b: Label) => (LABELS.indexOf(a) >= LABELS.indexOf(b) ? a : b);
 
 /**
@@ -161,9 +164,8 @@ export function parseGraderOutput(text: string, keyFacts: string[]): Grade {
             throw new Error(`Grader facts[${i}] is invalid`);
         return { fact: f.fact, verdict: f.verdict as FactVerdict['verdict'], evidence: typeof f.evidence === 'string' ? f.evidence : '' };
     });
-    const norm = (s: string) => s.trim().toLowerCase();
     for (const kf of keyFacts) {
-        const n = facts.filter((f) => norm(f.fact) === norm(kf)).length;
+        const n = facts.filter((f) => sameFact(f.fact, kf)).length;
         if (n !== 1) throw new Error(`Grader gave ${n} verdicts for key fact "${kf}"`);
     }
     if (facts.length !== keyFacts.length) throw new Error(`Grader returned ${facts.length} fact verdicts for ${keyFacts.length} key facts`);

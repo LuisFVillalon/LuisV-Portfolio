@@ -1,5 +1,5 @@
 // Markdown and JSON reports for a correctness run.
-import { GRADER_MODEL } from './grader';
+import { GRADER_MODEL, sameFact } from './grader';
 import { hasHighStakesError, type ItemResult, type Summary } from './score';
 
 export type RunInfo = { startedAt: string; answerModel: string; dataset: string; datasetSize: number };
@@ -9,7 +9,11 @@ const sec = (ms: number) => `${(ms / 1000).toFixed(1)}s`;
 const cell = (s: string) => s.replace(/\|/g, '\\|').replace(/\n/g, ' ');
 
 export function verdictLine(s: Summary): string {
-    const scope = s.partial ? ` (partial run: ${s.total} questions; the 27-of-30 line applies to the full set)` : '';
+    const scope = s.skippedByCostCap.length
+        ? ` (cut short by the --max-cost cap: ${s.total} run, ${s.skippedByCostCap.length} not run: ${s.skippedByCostCap.join(', ')})`
+        : s.partial
+          ? ` (partial run: ${s.total} questions; the 27-of-30 line applies to the full set)`
+          : '';
     return `${s.pass ? 'PASS' : 'FAIL'}${scope}`;
 }
 
@@ -52,7 +56,8 @@ export function markdownReport(info: RunInfo, summary: Summary, results: ItemRes
             lines.push(`**Verdict: ${g.label}**${adjusted}. ${g.reason}`, '');
             for (const f of g.facts) {
                 const mark = f.verdict === 'present' ? '✅' : f.verdict === 'missing' ? '⬜' : '❌';
-                lines.push(`- ${mark} ${f.verdict}: ${f.fact}${f.evidence ? ` (answer: “${f.evidence}”)` : ''}`);
+                const hs = r.item.keyFacts.some((k) => k.highStakes && sameFact(k.fact, f.fact)) ? ' (high-stakes)' : '';
+                lines.push(`- ${mark} ${f.verdict}${hs}: ${f.fact}${f.evidence ? ` (answer: “${f.evidence}”)` : ''}`);
             }
             for (const w of g.wrongStatements) lines.push(`- ❌ wrong${w.highStakes ? ' (high-stakes)' : ''}: ${w.statement}`);
             lines.push('');

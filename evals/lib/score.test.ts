@@ -7,9 +7,10 @@ import { parseArgs } from './args';
 import { loadDataset, selectItems, validateDataset, type EvalItem } from './dataset';
 import { loadEvalEnv, REDIS_ENV_VARS } from './env';
 import type { Grade, Label } from './grader';
+import { verdictLine } from './report';
 import { hasHighStakesError, summarize } from './score';
 
-const item = (id: string, highStakes = false): EvalItem => ({ id, question: `${id}?`, keyFacts: ['fact'], highStakes, category: 'test' });
+const item = (id: string, highStakes = false): EvalItem => ({ id, question: `${id}?`, keyFacts: [{ fact: 'fact', highStakes }], category: 'test' });
 
 const grade = (label: Label, over: Partial<Grade> = {}): Grade => ({
     label,
@@ -92,14 +93,81 @@ describe('summarize: high-stakes facts', () => {
         assert.equal(hasHighStakesError(r), true);
     });
 
-    test('a low-stakes wrong statement on a high-stakes item does not count', () => {
-        const r = result('role', 'Incorrect', { highStakes: true, grade: { wrongStatements: [{ statement: 'Used Vue', highStakes: false }] } });
+    test('a low-stakes wrong statement does not count when no high-stakes fact is contradicted', () => {
+        const r = result('role', 'Incorrect', {
+            highStakes: true,
+            grade: { facts: [{ fact: 'fact', verdict: 'present', evidence: '' }], wrongStatements: [{ statement: 'Used Vue', highStakes: false }] },
+        });
         assert.equal(hasHighStakesError(r), false);
     });
 
-    test('backstop: a contradicted fact on a high-stakes item with no wrong statements listed counts', () => {
-        assert.equal(hasHighStakesError(result('role', 'Incorrect', { highStakes: true })), true);
-        assert.equal(hasHighStakesError(result('skill', 'Incorrect', { highStakes: false })), false);
+    const roleItem: EvalItem = {
+        id: 'edu-graduation',
+        question: 'When does Luis graduate?',
+        keyFacts: [
+            { fact: 'Expected graduation: May 2027', highStakes: true },
+            { fact: 'The app addresses food insecurity', highStakes: false },
+        ],
+        category: 'test',
+    };
+    const roleGrade = (gradVerdict: 'present' | 'contradicted', appVerdict: 'present' | 'contradicted', wrongStatements: Grade['wrongStatements']): Grade => ({
+        label: 'Incorrect',
+        facts: [
+            { fact: 'Expected graduation: May 2027', verdict: gradVerdict, evidence: '' },
+            { fact: 'the app addresses food insecurity ', verdict: appVerdict, evidence: '' },
+        ],
+        wrongStatements,
+        reason: '',
+    });
+
+    test('a contradicted high-stakes fact counts even when the grader lists it as low-stakes', () => {
+        const g = roleGrade('contradicted', 'present', [{ statement: 'Graduates May 2026', highStakes: false }]);
+        assert.equal(hasHighStakesError({ item: roleItem, grade: g }), true);
+    });
+
+    test('a contradicted high-stakes fact counts when the grader lists only another low-stakes statement', () => {
+        const g = roleGrade('contradicted', 'present', [{ statement: 'Used Vue', highStakes: false }]);
+        assert.equal(hasHighStakesError({ item: roleItem, grade: g }), true);
+    });
+
+    test('a contradicted high-stakes fact counts with no wrong statements listed', () => {
+        assert.equal(hasHighStakesError({ item: roleItem, grade: roleGrade('contradicted', 'present', []) }), true);
+    });
+
+    test('a contradicted descriptive fact on an item with high-stakes facts is Incorrect but not high-stakes', () => {
+        const r = { item: roleItem, grade: roleGrade('present', 'contradicted', []), answerCostUsd: 0, gradeCostUsd: 0 };
+        assert.equal(hasHighStakesError(r), false);
+        const s = summarize([r], 1);
+        assert.equal(s.counts.Incorrect, 1);
+        assert.deepEqual(s.highStakesErrors, []);
+    });
+});
+
+describe('summarize: the --max-cost cap', () => {
+    test('a full run cut short by the cost cap fails even when every question run is Correct', () => {
+        const skipped = ['s0', 's1', 's2', 's3', 's4'];
+        const s = summarize(run(25, 0, 0), 30, skipped);
+        assert.equal(s.counts.Correct, 25);
+        assert.equal(s.pass, false);
+        assert.equal(s.partial, false);
+        assert.deepEqual(s.skippedByCostCap, skipped);
+        assert.match(s.failures.join(), /cut short by the --max-cost cap: 5 question\(s\) not run/);
+        assert.match(verdictLine(s), /^FAIL \(cut short by the --max-cost cap: 25 run, 5 not run: s0, s1, s2, s3, s4\)/);
+    });
+
+    test('a deliberate --limit run is partial, not cost-capped, and can pass', () => {
+        const s = summarize(run(3, 0, 0), 30);
+        assert.equal(s.pass, true);
+        assert.equal(s.partial, true);
+        assert.deepEqual(s.skippedByCostCap, []);
+        assert.match(verdictLine(s), /^PASS \(partial run: 3 questions/);
+    });
+
+    test('a --limit run cut short by the cost cap still fails', () => {
+        const s = summarize(run(2, 0, 0), 30, ['s0']);
+        assert.equal(s.pass, false);
+        assert.equal(s.partial, true);
+        assert.match(verdictLine(s), /^FAIL \(cut short by the --max-cost cap/);
     });
 });
 
@@ -118,11 +186,17 @@ describe('dataset', () => {
         const d = loadDataset(path.join(process.cwd(), 'evals', 'correctness.json'));
         assert.equal(d.items.length, 30);
         assert.equal(new Set(d.items.map((i) => i.id)).size, 30);
+        const grad = d.items.find((i) => i.id === 'edu-graduation');
+        assert.ok(grad?.keyFacts.some((f) => f.fact === 'Expected graduation: May 2027' && f.highStakes));
+        const secondCourse = d.items.find((i) => i.id === 'role-second-course');
+        assert.equal(secondCourse?.keyFacts.find((f) => f.fact.startsWith('The app addresses food insecurity'))?.highStakes, false);
     });
 
     test('rejects duplicate ids and empty key facts', () => {
         assert.throws(() => validateDataset({ items: [item('a'), item('a')] }), /duplicate id/);
         assert.throws(() => validateDataset({ items: [{ ...item('a'), keyFacts: [] }] }), /keyFacts/);
+        assert.throws(() => validateDataset({ items: [{ ...item('a'), keyFacts: ['plain string'] }] }), /keyFacts/);
+        assert.throws(() => validateDataset({ items: [{ ...item('a'), keyFacts: [{ fact: 'x' }] }] }), /highStakes true or false/);
         assert.throws(() => validateDataset({}), /no "items"/);
     });
 

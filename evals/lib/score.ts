@@ -1,7 +1,7 @@
 // Criterion #1 pass/fail: at least 90% of answers Correct (27 of 30) and no answer states a
 // wrong high-stakes fact. Pure functions, so the rule is unit-tested.
 import type { EvalItem } from './dataset';
-import type { Grade, Label } from './grader';
+import { sameFact, type Grade, type Label } from './grader';
 
 export const PASS_RATE = 0.9;
 /** Size of the full dataset the 27-of-30 line was agreed for. */
@@ -23,15 +23,14 @@ export type ItemResult = {
 };
 
 /**
- * True when this answer states a wrong high-stakes fact: the grader flagged a wrong statement as
- * high-stakes, or (as a backstop) a high-stakes item has a contradicted key fact the grader did
- * not list as a wrong statement.
+ * True when this answer states a wrong high-stakes fact: a key fact marked high-stakes is graded
+ * contradicted, or the grader flagged a wrong statement as high-stakes, whatever else it listed.
  */
 export function hasHighStakesError(r: Pick<ItemResult, 'item' | 'grade'>): boolean {
     const g = r.grade;
     if (!g) return false;
     if (g.wrongStatements.some((w) => w.highStakes)) return true;
-    return r.item.highStakes && g.wrongStatements.length === 0 && g.facts.some((f) => f.verdict === 'contradicted');
+    return g.facts.some((f) => f.verdict === 'contradicted' && r.item.keyFacts.some((k) => k.highStakes && sameFact(k.fact, f.fact)));
 }
 
 export type Summary = {
@@ -44,14 +43,17 @@ export type Summary = {
     pass: boolean;
     /** Why the run failed, when it did. */
     failures: string[];
-    /** True when fewer than the full 30 questions ran (--limit / --id): the verdict is indicative only. */
+    /** True when --limit / --id chose fewer than the full 30 questions: the verdict is indicative only. */
     partial: boolean;
+    /** Ids of selected questions never run because the --max-cost cap was reached; any fails the run. */
+    skippedByCostCap: string[];
     costUsd: { answer: number; grade: number; total: number };
 };
 
 export function summarize(
     results: Pick<ItemResult, 'item' | 'grade' | 'error' | 'answerCostUsd' | 'gradeCostUsd'>[],
     datasetSize = FULL_RUN_SIZE,
+    skippedByCostCap: string[] = [],
 ): Summary {
     const counts: Record<Label, number> = { Correct: 0, Partial: 0, Incorrect: 0 };
     let errors = 0;
@@ -64,6 +66,7 @@ export function summarize(
     const needed = Math.ceil(total * PASS_RATE - 1e-9);
     const highStakesErrors = results.filter(hasHighStakesError).map((r) => r.item.id);
     const failures: string[] = [];
+    if (skippedByCostCap.length) failures.push(`cut short by the --max-cost cap: ${skippedByCostCap.length} question(s) not run`);
     if (total === 0) failures.push('no questions ran');
     if (counts.Correct < needed) failures.push(`${counts.Correct} of ${total} Correct; ${needed} needed`);
     if (highStakesErrors.length) failures.push(`wrong high-stakes fact in: ${highStakesErrors.join(', ')}`);
@@ -78,7 +81,8 @@ export function summarize(
         highStakesErrors,
         pass: failures.length === 0,
         failures,
-        partial: total < datasetSize,
+        partial: total + skippedByCostCap.length < datasetSize,
+        skippedByCostCap,
         costUsd: { answer, grade, total: answer + grade },
     };
 }

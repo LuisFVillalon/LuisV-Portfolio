@@ -2,13 +2,17 @@
 import fs from 'fs';
 import path from 'path';
 
+export type KeyFact = {
+    fact: string;
+    /** True when the fact is a degree, graduation date, employer, job title or award result. */
+    highStakes: boolean;
+};
+
 export type EvalItem = {
     id: string;
     question: string;
     /** Facts a fully correct answer must state. Drafted from the site, corrected by the site owner. */
-    keyFacts: string[];
-    /** True when the key facts include a degree, graduation date, employer, job title or award result. */
-    highStakes: boolean;
+    keyFacts: KeyFact[];
     category: string;
     /** Reviewer note on a fact the draft was unsure of. Not shown to the grader. */
     note?: string;
@@ -28,9 +32,12 @@ export function validateDataset(raw: unknown): Dataset {
         else if (seen.has(item.id)) problems.push(`${where}: duplicate id`);
         else seen.add(item.id);
         if (typeof item?.question !== 'string' || !item.question.trim()) problems.push(`${where}: missing question`);
-        if (!Array.isArray(item?.keyFacts) || item.keyFacts.length === 0 || item.keyFacts.some((f) => typeof f !== 'string' || !f.trim()))
-            problems.push(`${where}: keyFacts must be a non-empty list of strings`);
-        if (typeof item?.highStakes !== 'boolean') problems.push(`${where}: highStakes must be true or false`);
+        if (
+            !Array.isArray(item?.keyFacts) ||
+            item.keyFacts.length === 0 ||
+            item.keyFacts.some((f) => typeof f?.fact !== 'string' || !f.fact.trim() || typeof f.highStakes !== 'boolean')
+        )
+            problems.push(`${where}: keyFacts must be a non-empty list of { fact, highStakes } with highStakes true or false`);
         if (typeof item?.category !== 'string' || !item.category) problems.push(`${where}: missing category`);
     });
     if (problems.length) throw new Error(`Invalid dataset:\n  ${problems.join('\n  ')}`);
