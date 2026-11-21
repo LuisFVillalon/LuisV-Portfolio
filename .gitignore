@@ -37,6 +37,9 @@ yarn-error.log*
 # private AI-assistant content (LinkedIn file, Assistant facts): never committed
 /.private/
 
+# Ask AI eval reports (answers, verdicts, costs from local runs)
+/evals/results/
+
 # vercel
 .vercel
 

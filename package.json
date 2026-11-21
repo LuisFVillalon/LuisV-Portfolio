@@ -8,9 +8,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "tsx --test src/app/lib/assistant/*.test.ts",
+    "test": "tsx --test src/app/lib/assistant/*.test.ts evals/lib/*.test.ts",
     "assistant:index": "tsx scripts/assistant-index.ts",
-    "assistant:chunks": "tsx scripts/assistant-index.ts --dry-run"
+    "assistant:chunks": "tsx scripts/assistant-index.ts --dry-run",
+    "eval:correctness": "tsx evals/correctness.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.10.0",
