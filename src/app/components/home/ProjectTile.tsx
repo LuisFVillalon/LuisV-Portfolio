@@ -76,7 +76,7 @@ export default function ProjectTile({
     const row = layout === 'row';
     const compact = layout === 'compact';
     const live = isLiveApp(project);
-    const tech = splitTech(project.tech).slice(0, featured ? 4 : 3).join(' · ');
+    const tech = splitTech(project.tech).join(' · ');
     const imageHeight =
         imageClass ??
         (row
@@ -126,6 +126,11 @@ export default function ProjectTile({
                             🏆 {project.award.title} · {project.award.event}
                         </span>
                     )}
+                    {project.capstone && (
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-[#c7c9f5] bg-[#eef0ff] px-2.5 py-1 font-sans text-xs font-bold text-[#33368f]">
+                            🎓 Capstone{project.capstone.program && ` · ${project.capstone.program}`}
+                        </span>
+                    )}
                     {live && (
                         <span className="inline-flex items-center gap-1.5 rounded-full border border-[#9edbb5] bg-[#e6f6ec] px-2.5 py-1 font-sans text-xs font-bold text-[#0c6b33]">
                             <span className="h-[7px] w-[7px] rounded-full bg-[#16a34a]" aria-hidden="true" />
@@ -141,7 +146,7 @@ export default function ProjectTile({
                     text={project.description}
                     clamp={row || compact ? 'line-clamp-3 lg:line-clamp-2' : undefined}
                 />
-                <p className={`mt-2 text-xs text-[#6e6e78] ${row ? 'lg:line-clamp-1' : ''} ${compact ? 'lg:hidden' : ''}`}>
+                <p className={`mt-2 text-xs text-[#6e6e78] ${compact ? 'lg:hidden' : ''}`}>
                     {tech}
                 </p>
 

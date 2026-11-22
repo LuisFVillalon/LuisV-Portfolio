@@ -11,7 +11,7 @@ interface CompactRowProps {
 
 /** One dense line per project, for the long tail: earlier front-end work and coursework. */
 export default function CompactRow({ project, thumb = false }: CompactRowProps) {
-    const tech = splitTech(project.tech).slice(0, 4).join(' · ');
+    const tech = splitTech(project.tech).join(' · ');
 
     return (
         <li className="flex min-w-0 gap-3 border-b border-[#0A0A23]/10 py-3 last:border-b-0">
@@ -26,6 +26,11 @@ export default function CompactRow({ project, thumb = false }: CompactRowProps) 
                     {project.award && (
                         <span className="inline-flex items-center gap-1 rounded-full border border-[#f1d27a] bg-[#fff6d6] px-2 py-px font-sans text-[11px] font-bold text-[#7a4b00]">
                             🏆 {project.award.title} · {project.award.event}
+                        </span>
+                    )}
+                    {project.capstone && (
+                        <span className="inline-flex items-center gap-1 rounded-full border border-[#c7c9f5] bg-[#eef0ff] px-2 py-px font-sans text-[11px] font-bold text-[#33368f]">
+                            🎓 Capstone{project.capstone.program && ` · ${project.capstone.program}`}
                         </span>
                     )}
                     {isLiveApp(project) && (

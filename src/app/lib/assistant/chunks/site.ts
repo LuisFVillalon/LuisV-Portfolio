@@ -49,6 +49,7 @@ function projectChunk(project: Project): Chunk {
     const lines = [
         `Project: ${project.title}`,
         project.award && `Award: ${project.award.title}, ${project.award.event}`,
+        project.capstone && `Capstone project${project.capstone.program ? ` (${project.capstone.program})` : ''}`,
         `Description: ${project.description}`,
         `Tech: ${project.tech}`,
         project.categories.length > 0 && `Categories on the site: ${project.categories.map((c) => CATEGORY_NAMES[c]).join(', ')}`,
@@ -77,11 +78,15 @@ function projectChunk(project: Project): Chunk {
     });
 }
 
+// Bulleted descriptions become sentences; points that already end in punctuation keep it.
+const descriptionText = (description: string | string[]) =>
+    Array.isArray(description) ? description.map((point) => (/[.:!?]$/.test(point) ? point : `${point}.`)).join(' ') : description;
+
 function experienceChunks(): Chunk[] {
     const chunks: Chunk[] = [];
     const role = (
         kind: string,
-        r: { company: string; position: string; time: string; description: string; tech: string; link: string },
+        r: { company: string; position: string; time: string; description: string | string[]; tech: string; link: string },
     ) =>
         makeChunk({
             id: `site:${kind}:${slug(r.company)}-${slug(r.position)}`,
@@ -92,7 +97,7 @@ function experienceChunks(): Chunk[] {
             href: '/experience',
             text: [
                 `${r.position} at ${r.company} (${r.time})`,
-                r.description,
+                descriptionText(r.description),
                 r.tech && `Skills and tools: ${r.tech}`,
                 r.link && `Organization link: ${r.link}`,
             ]
@@ -115,10 +120,10 @@ function experienceChunks(): Chunk[] {
                 href: '/experience',
                 text: [
                     `${e.course} at ${e.institution} (${e.time})`,
-                    e.description,
+                    descriptionText(e.description),
                     e.courses.length > 0 && `Coursework: ${e.courses.join(', ')}`,
                     e.tech && `Tech: ${e.tech}`,
-                    e.built && e.built.length > 0 && `Built: ${e.built.join(', ')}`,
+                    e.built && e.built.length > 0 && `Built: ${e.built.map((b) => (typeof b === 'string' ? b : b.title)).join(', ')}`,
                 ]
                     .filter(Boolean)
                     .join('\n'),
@@ -137,10 +142,11 @@ function experienceChunks(): Chunk[] {
                 href: '/experience',
                 text: [
                     `Certificate: ${c.title} from ${c.institution} (${c.time})`,
-                    c.description,
+                    descriptionText(c.description),
                     c.topics.length > 0 && `Covers: ${c.topics.join(', ')}`,
                     c.tech && `Tools: ${c.tech}`,
                     c.courses && c.courses.length > 0 && `Courses: ${c.courses.map((course) => course.name).join('; ')}`,
+                    c.built && c.built.length > 0 && `Built: ${c.built.map((b) => (typeof b === 'string' ? b : b.title)).join(', ')}`,
                     c.cert_link && `Verification: ${c.cert_link}`,
                 ]
                     .filter(Boolean)

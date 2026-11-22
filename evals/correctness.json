@@ -205,6 +205,7 @@
       "question": "What is What's Poppin'?",
       "keyFacts": [
         { "fact": "A Reddit-clone web application", "highStakes": false },
+         { "fact": "The Odin Project final project (javascript curriculum)", "highStakes": true },
         { "fact": "Users can create an account, post, comment and vote", "highStakes": false },
         { "fact": "Built with React and Google Firebase (Firestore and Authentication)", "highStakes": false }
       ],
@@ -230,7 +231,7 @@
         { "fact": "Agentic Abstraction for Chip Engineering", "highStakes": false },
         { "fact": "A multi-agent pipeline (Architect, Auditor, Stylist) that turns SystemVerilog/Verilog RTL into architecture diagrams", "highStakes": false },
         { "fact": "Built with LangGraph and LLMs on AWS Bedrock", "highStakes": false },
-        { "fact": "Built during the NXP Agentic AI in the Cloud bootcamp", "highStakes": false }
+        { "fact": "Built during the NXP Agentic AI in the Cloud bootcamp", "highStakes": true }
       ],
       "note": "The résumé says it was a five-person team project; not required here."
     },

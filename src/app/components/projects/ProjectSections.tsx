@@ -92,7 +92,7 @@ export function AiGroup({ tiles, crossListed, count }: { tiles: Project[]; cross
                             <p className="text-[13px]">
                                 <span className="font-sans font-bold text-[#0A0A23]">{project.title}</span> (featured under
                                 Full-stack) also has an AI service: {lowerFirst(project.description)}{' '}
-                                <span className="text-xs text-[#6e6e78]">{splitTech(project.tech).slice(0, 3).join(' · ')}</span>
+                                <span className="text-xs text-[#6e6e78]">{splitTech(project.tech).join(' · ')}</span>
                             </p>
                             <div className="shrink-0">
                                 <ProjectLinks project={project} />

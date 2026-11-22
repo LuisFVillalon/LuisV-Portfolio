@@ -4,28 +4,30 @@ type professionalExperience = {
     company: string;
     position: string;
     time: string;
-    description: string;
+    /** A paragraph, or an array of points rendered as a bulleted list. */
+    description: string | string[];
     tech: string;
-    link: string;    
+    link: string;
   };
 type education = {
     institution: string;
     course: string;
     time: string;
-    description: string;
+    /** A paragraph, or an array of points rendered as a bulleted list. */
+    description: string | string[];
     /** Subjects studied, shown under "What I learned" on the Experience page. */
     courses: string[];
     /** Languages and tools only; '' when none. */
     tech: string;
-    /** Titles of projects in projects.ts built during this program, linked under "What I learned". */
-    built?: string[];
+    /** Titles of projects in projects.ts built during this program, linked under "What I learned"; `label` shortens the link text. */
+    built?: (string | { title: string; label: string })[];
     link: string;
 };
 type currentlyDoing = {
     company: string;
     position: string;
     time: string;
-    description: string;
+    description: string | string[];
     tech: string;
     link: string;
 };
@@ -33,7 +35,7 @@ type leadership = {
     company: string;
     position: string;
     time: string;
-    description: string;
+    description: string | string[];
     tech: string;
     link: string;
 };
@@ -41,19 +43,26 @@ type certificates = {
     title: string;
     institution: string;
     time: string;
-    description: string;
+    /** A paragraph, or an array of points rendered as a bulleted list. */
+    description: string | string[];
     /** Subjects covered, shown under "What I learned" on the Experience page. */
     topics: string[];
     /** Languages and tools only; '' when none. */
     tech: string;
     /** Courses within a learning path, each optionally linked to its own certificate. */
     courses?: { name: string; link?: string }[];
+    /** Titles of projects in projects.ts built during this program, linked under "What I learned"; `label` shortens the link text. */
+    built?: (string | { title: string; label: string })[];
     cert_link?: string;
     institution_link: string;
 };
 type techTools = {
     subject: string;
-    tools: { tool: string, link: string }[];
+    /**
+     * `featured` tools are the ones the homepage Stack tile shows (the rest become a "+N" link to
+     * /experience#skills); `short` is an optional shorter name used there.
+     */
+    tools: { tool: string, link: string, featured?: boolean, short?: string }[];
 };
 
 const professionalExperience: professionalExperience[] = [
@@ -61,40 +70,61 @@ const professionalExperience: professionalExperience[] = [
         company: 'AI4Business Lab',
         position: 'Undergraduate Researcher: Adversarial Attacks & Defenses in Deep Learning',
         time: 'Jan 2026 - May 2026',
-        description: 'Research AI agent trust, safety, and adversarial robustness, contributing to a three-layer trust-centered AI safety framework and designing a simple agent to study emerging autonomy and security vulnerabilities.',
-        tech:'LLM APIs, LangChain, Python, RAG Systems',
+        description: [
+            'Designed a deterministic Python agent that chooses which tools to use, and used it to study how that decision-making could be exploited',
+            'Reviewed research on prompt injection and data poisoning in weekly team discussions',
+            'Learned a three-layer trust-centered AI safety framework: psychological trust, technical safety, and security',
+        ],
+        tech:'Python, Agent design, Orchestration, Tool-use logic, AI security',
         link: 'https://sites.google.com/sdsu.edu/ai4businessv1/home'    
     },     
     {
         company: 'Second Course',
         position: 'Full-Stack Intern',
         time: 'Nov 2025 - Jan 2026',
-        description: 'Developed a React Native application with Firestore as a backend for the App Store with the purpose of addressing food insecurity among college students.',
-        tech:'React Native, Firestore Database, Expo Go, Github',
+        description: [
+            "Improved a React Native and Firestore app used by 300+ college students to reduce food insecurity, and helped ship it to the App Store",
+            "Connected app screens to Firebase/Firestore API calls, coordinating with the team's backend work to get data flowing into the app",
+            "Fixed login and sign-up screens that broke when the keyboard opened, and restyled the news feed food card to match the app's theme",
+            "Cleaned and restructured the codebase by removing unused files and making the code more modular and readable"
+        ],
+        tech:'TypeScript, Tailwind CSS, React Native, Firestore Database, Expo Go, Github',
         link: 'https://www.secondcourse.co/'    
     }, 
     {
         company: 'Calexico Neighborhood House – Mission Thrift Store & Happy Kids Preschool and Daycare',
         position: 'SEO & Digital Marketing Strategist',
         time: 'Mar 2025 - Jun 2025',
-        description: 'Strategized SEO and digital marketing to increase thrift store sales and preschool enrollment by coordinating with Shopify devs, managing inventory, and executing data-driven social media campaigns.',
-        tech:'Meta Business Suite, Meta Ads Manager, Google Analytics, Shopify',
+        description: [
+            "Managed a $500+ enrollment marketing budget across door-to-door outreach, Instagram, newspaper and radio ads, signs across town, and tabling events; summer enrollment fell by about 37% (an estimate, from 80 to 50 children), versus the usual drop of more than half",
+            "Organized an open house and school tours, and handled 3 to 5 parent inquiries per week by phone, email, and through the online enrollment form",
+            "Managed the thrift store's Shopify store and its eBay and Letgo listings, assigning SKU numbers and organizing inventory for online sales",
+            "Built the thrift store's online sales operation, which generated over $600 during his time there"
+        ],
+        tech:'Meta Business Suite, Google Analytics, Shopify, Canva, eBay, Letgo',
         link: 'https://www.facebook.com/nhclx/'    
     }, 
     {
         company: 'Sports Excitement',
         position: 'Front-End Developer Intern',
         time: 'Dec 2024 - Mar 2025',
-        description: 'Developed a responsive web application, collaborated on UI/UX improvements, and optimized performance for a global sports platform.',
-        tech:'HTML, Tailwind CSS, React.js, Figma, Github, Taiga',
+        description: [
+            "Rebuilt the login, sign-in, and sign-up pages for a youth sports social network from a Figma design as responsive front-end screens using CSS media queries",
+            "Collaborated with backend, UI/UX, and marketing teams, as well as a scrum master, in weekly sprint meetings with approximately 10 teammates; completed assigned tasks and delivered front-end work that was not yet connected to a backend"
+        ],
+        tech:'Tailwind CSS, React.js, Figma, Github, Taiga',
         link: 'https://sportsexcitement.com/'
     },
     {
         company: 'Ectron Corporation',
         position: 'Software Engineer Intern',
         time: 'Jun 2024 - Aug 2024',
-        description: 'Led and collaborated in the development of a full-stack asset tracking application designed for commercial use. The application helped workers quickly locate essential tools and equipment upon arrival at job sites, improving efficiency and reducing downtime.',
-        tech:'HTML, CSS, React.js, Next.js, Plasmic CMS, Express.js, Node.js, Microsoft Azure SQL Database',
+        description: [
+            "Architected the system design for an asset-tracking prototype that shows field workers where job-site tools and equipment are located on an interactive map",
+            "Developed the front end in React and Next.js, learned Plasmic CMS, and integrated Azure Maps and Azure SQL to locate 8 tracked assets, with click-to-zoom navigation from the asset list to the map",
+            "Mentored three interns with no prior HTML or CSS experience, guiding them as they built the Express.js backend"
+        ],
+        tech: 'React.js, Next.js, Plasmic CMS, Azure Maps, Azure SQL Database, Express.js',
         link: 'https://ectron.com/'    
     },
 
@@ -104,18 +134,26 @@ const education: education[] = [
         institution: 'San Diego State University',
         course: 'Bachelor of Science in Computer Science, Minor in Mathematics',
         time: 'Aug 2025 - May 2027',
-        description: 'Transferred from Imperial Valley College to complete a B.S. in Computer Science with a Minor in Mathematics, going deeper into algorithms, software systems, computer architecture, operating systems, and artificial intelligence.',
-        courses: ['Data Structures', 'Algorithms', 'Software Systems', 'Computer Architecture', 'Operating Systems', 'Artificial Intelligence'],
-        tech:'Python, C, C++',
+        description: [
+            'Built a focus on data science and machine learning to turn data into better applied AI products',
+            'Pursued cybersecurity coursework to design more secure systems, preparing for a career in security',
+        ],
+        courses: ['Data Structures', 'Algorithms', 'Data Science', 'Machine Learning', 'Operating Systems', 'UNIX System Admin.', 'Software Security', 'Data Privacy'],
+        built: ['Operating Systems', 'The Torchbearer: Algorithm Exam', 'NutriNav AI'],
+        tech:'Python, C, C++, UNIX',
         link: 'https://cs.sdsu.edu/'
     },
     {
         institution: 'NXP Semiconductors',
         course: 'Engineering Bootcamp: Agentic AI in the Cloud',
         time: 'Feb 2026 - May 2026',
-        description: 'Developed and deployed cloud-based agentic AI systems using LangChain, LLM APIs, RAG architectures, multi-agent orchestration, and scalable AWS/GCP under mentorship from the Design & Automation Team at NXP.',
-        courses: ['RAG Systems', 'Multi-Agent Orchestration', 'Cloud Deployment (AWS/GCP)'],
-        tech:'LLM APIs, LangChain, Python',
+        description: [
+            'Contributed to a multi-agent pipeline (Architect, Auditor, Stylist) that converts RTL hardware code into structured output, with verification loops to check accuracy',
+            'Implemented the frontend and backend for a cloud-hosted agentic system on AWS, using Bedrock for models, S3 for run storage, and EC2 for hosting',
+            "Collaborated with a team of five undergraduates under mentorship from NXP's Design & Automation Team",
+        ],
+        courses: ['Agent design', 'Tool-use logic', 'Prompt design', 'Verification Loops', 'Multi-Agent Orchestration', 'Cloud Infrastructure'],
+        tech:'Python, FastAPI, Pydantic, LangGraph, Next.js, AWS Bedrock, S3, EC2, Graphviz',
         built: ['Agentic Abstraction for Chip Engineering (AACE)'],
         link: 'https://www.nxp.com/'
     },
@@ -126,16 +164,26 @@ const education: education[] = [
         description: 'Earned an A.S. in Computer Science, building foundations in object-oriented programming and data structures with Java, plus assembly language, before transferring to San Diego State University.',
         courses: ['Data Structures', 'Object Oriented Programming', 'Assembly Language'],
         tech:'Java',
+        built: [
+            'Pokedex',
+            'Hang-Man',
+            { title: 'Introduction to Object Oriented Programming', label: 'Intro to OOP' },
+            'Introduction to Data Structures',
+            'Assembly Language and Machine Organization',
+        ],
         link: 'https://www.imperial.edu/'
     },
     {
         institution: 'The Odin Project',
         course: 'Full Stack JavaScript',
         time: 'Jul 2022 - Apr 2024',
-        description: 'Completed the Full Stack JavaScript curriculum from The Odin Project, gaining hands-on experience with front-end and back-end technologies.',
-        courses: [],
+        description: [
+            "Completed The Odin Project's Full Stack JavaScript curriculum, building all nine projects",
+            'Built a blog with JWT authentication and a REST API, a Pokémon photo game with a MongoDB leaderboard API, and a Reddit-style app on Firebase, among others',
+        ],
+        courses: ['Frontend', 'Backend', 'Full-stack', 'MERN'],
         tech:'HTML, CSS, JavaScript, React.js, Node.js, Express.js, MongoDB',
-        built: ['Whats Poppin?', 'Tic-Tac-Toe', 'Library'],
+        built: ['Whats Poppin?', 'Blog Template', 'Poke-Photo Tag', 'Pokedex Catalog', 'To Do List', 'Memory Card Game', 'Tic-Tac-Toe', 'Library', 'Rock, Paper, Scissors!'],
         link: 'https://www.theodinproject.com/'
     }
 ];
@@ -144,9 +192,17 @@ const certificates: certificates[] = [
         title: 'AI201 | Applications of AI Engineering',
         institution: 'CodePath',
         time: 'Fall 2026',
-        description: 'Trained in AI-assisted software engineering, designing and developing complex systems, evaluating AI-generated code and automating backend integrations.',
-        topics: ['RAG', 'Agentic workflows', 'Machine Learning', 'Data structures', 'Algorithms'],
-        tech: '',
+        description: [
+            'Built four AI systems:',
+            'A RAG pipeline with a relevance gate',
+            'A tool-using agent with MCP and failure handling',
+            'A fine-tuned text classifier evaluated against a baseline and a staff-labeled set',
+            'A confidence-scored API with rate limiting, audit logging, and adversarial testing',
+            'Each system was tested against acceptance criteria written before any results existed.'
+        ],
+        topics: ['Retrieval-augmented generation', 'Agentic workflows and MCP', 'Fine-tuning and model evaluation', 'API design and rate limiting', 'Adversarial testing'],
+        tech: 'Python',
+        built: ['The Unofficial Guide', 'FitFindr', 'TakeMeter', 'Provenance Guard'],
         institution_link: 'https://www.codepath.org/'
     },
     {
@@ -230,7 +286,8 @@ const techTools: techTools[] = [
         tools: [
             {
                 tool: 'Python',
-                link: 'https://python.org/'
+                link: 'https://python.org/',
+                featured: true,
             },
             {
                 tool: 'C++',
@@ -238,7 +295,8 @@ const techTools: techTools[] = [
             },
             {
                 tool: 'Java',
-                link: 'https://docs.oracle.com/en/java/'
+                link: 'https://docs.oracle.com/en/java/',
+                featured: true,
             },
             {
                 tool: 'JavaScript',
@@ -246,25 +304,24 @@ const techTools: techTools[] = [
             },
             {
                 tool: 'TypeScript',
-                link: 'https://www.typescriptlang.org/docs/'
+                link: 'https://www.typescriptlang.org/docs/',
+                featured: true,
             },            
         ]
     },
-{
+    {
         subject: 'Applied AI',
         tools: [
-            {
-                tool: 'LangGraph',
-                link: 'https://www.langchain.com/langgraph'
-            },
+            { tool: 'Model Context Protocol (MCP)', short: 'MCP', link: 'https://modelcontextprotocol.io/', featured: true },
+            { tool: 'Claude Code', link: 'https://docs.claude.com/en/docs/claude-code/overview' },
+            { tool: 'AWS Bedrock', link: 'https://docs.aws.amazon.com/bedrock/' },
+            { tool: 'LangGraph', link: 'https://www.langchain.com/langgraph', featured: true },
             {
                 tool: 'RAG Systems',
-                link: 'https://aws.amazon.com/what-is/retrieval-augmented-generation/'
+                short: 'RAG',
+                link: 'https://aws.amazon.com/what-is/retrieval-augmented-generation/',
+                featured: true,
             },
-            {
-                tool: 'LLM APIs',
-                link: 'https://www.ibm.com/think/insights/llm-apis'
-            }, 
         ]
     },    
     {
@@ -280,20 +337,25 @@ const techTools: techTools[] = [
             },        
             {
                 tool: 'Tailwind CSS',
-                link: 'https://tailwindcss.com/docs/installation/using-vite'
+                short: 'Tailwind',
+                link: 'https://tailwindcss.com/docs/installation/using-vite',
             },
             {
                 tool: 'Next.js',
-                link: 'https://nextjs.org/docs'
+                link: 'https://nextjs.org/docs',
+                featured: true,
             },
             {
                 tool: 'React.js',
-                link: 'https://legacy.reactjs.org/docs/getting-started.html'
+                short: 'React',
+                link: 'https://legacy.reactjs.org/docs/getting-started.html',
+                featured: true,
             },
             {
                 tool: 'React Native',
-                link: 'https://reactnative.dev/'
-            },            
+                link: 'https://reactnative.dev/',
+            },          
+            { tool: 'Figma', link: 'https://www.figma.com/developers' },
         ]
     },
     {
@@ -301,15 +363,18 @@ const techTools: techTools[] = [
         tools: [
             {
                 tool: 'Node.js',
-                link: 'https://nodejs.org/docs/latest/api/'
+                link: 'https://nodejs.org/docs/latest/api/',
+                featured: true,
             },
+            { tool: 'Express.js', short: 'Express', link: 'https://expressjs.com/' },
             {
                 tool: 'Pydantic',
                 link: 'https://pydantic.dev/docs/validation/latest/get-started/'
             },            
             {
                 tool: 'FastAPI',
-                link: 'https://fastapi.tiangolo.com/'
+                link: 'https://fastapi.tiangolo.com/',
+                featured: true,
             },
             {
                 tool: 'Restful APIs',
@@ -318,26 +383,39 @@ const techTools: techTools[] = [
         ]
     },    
     {
-        subject: 'Databases',
+        subject: 'Cloud & Data',
         tools: [
+            { tool: 'Azure Maps', link: 'https://learn.microsoft.com/en-us/azure/azure-maps/' },
+            { tool: 'AWS S3', link: 'https://docs.aws.amazon.com/s3/' },
+            { tool: 'AWS EC2', link: 'https://docs.aws.amazon.com/ec2/' },
             {
                 tool: 'MongoDB',
-                link: 'https://www.mongodb.com/docs/'
+                link: 'https://www.mongodb.com/docs/',
+                featured: true,
             },
             {
                 tool: 'Google Firebase',
-                link: 'https://firebase.google.com/docs'
+                short: 'Firebase',
+                link: 'https://firebase.google.com/docs',
             },
             {
                 tool: 'PostgreSQL',
-                link: 'https://www.postgresql.org/docs/'
+                link: 'https://www.postgresql.org/docs/',
+                featured: true,
             },
             {
                 tool: 'Supabase',
-                link: 'https://supabase.com/'
+                link: 'https://supabase.com/',
+                featured: true,
             }
         ]
     },
+    {
+        subject: 'Systems',
+        tools: [
+            { tool: 'UNIX/Linux command line', short: 'Linux', link: 'https://www.gnu.org/software/bash/manual/', featured: true },
+        ]
+    },    
     {
         subject: 'Version Control & Project Management',
         tools: [
@@ -382,7 +460,11 @@ const currentlyDoing: currentlyDoing[] = [
         company: 'ColorStack',
         position: 'Outreach Chair',
         time: 'Jan 2026 - Present',
-        description: 'Lead recruitment strategy and digital presence while building partnerships with industry professionals and campus organizations to drive member growth and connect members with career opportunities',
+        description: [
+            "Collaborated in the launch of this chapter, including its website and a Discord announcement channel that now connects 20 members; maintain the website",
+            "Participated in the chapter's launch events this semester, including a meeting and a tabling event, building the foundation for student recruitment",
+            'Plan workshops and speaker events that give students access to industry professionals',
+        ],
         tech:'Leadership, Teamwork, Communication, Networking, Community',
         link: 'https://www.colorstack.org/'    
     },     
@@ -400,7 +482,11 @@ const leadership: leadership[] = [
         company: 'ColorStack',
         position: 'Outreach Chair',
         time: 'Jan 2026 - Present',
-        description: 'Lead recruitment strategy and digital presence while building partnerships with industry professionals and campus organizations to drive member growth and connect members with career opportunities',
+        description: [
+            "Collaborated in the launch of this chapter, including its website and a Discord announcement channel that now connects 20 members; maintain the website",
+            "Participated in the chapter's launch events this semester, including a meeting and a tabling event, building the foundation for student recruitment",
+            'Plan workshops and speaker events that give students access to industry professionals',
+        ],
         tech:'Leadership, Teamwork, Communication, Networking, Community',
         link: 'https://www.colorstack.org/'    
     }, 
@@ -434,7 +520,7 @@ const beyondTech: beyondTech[] = [
         ],
         time: '1+ year',
         description: 'Tracked sales performance and consistently met daily goals by engaging customers, driving purchases, and optimizing retail sales strategies.',
-        skills: '',
+        skills: 'Customer service, Sales, Inventory management, Collaboration, Leadership, Initiative',
     },
     {
         title: 'Emergency Medical Technician',
@@ -455,7 +541,7 @@ const beyondTech: beyondTech[] = [
         ],
         time: '3+ years',
         description: 'Gained hands-on experience in fast-paced food service environments, providing customer service, preparing food, and working efficiently as part of a team.',
-        skills: '',
+        skills: 'Customer service, Teamwork, Multitasking, Food safety',
     },
 ];
 

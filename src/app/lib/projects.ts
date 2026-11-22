@@ -15,6 +15,8 @@ export type Project = {
     categories: ProjectCategory[];
     /** Award badge shown on the project's tile or compact row, e.g. { title: 'First Place', event: 'Some Hackathon 2026' }. */
     award?: { title: string; event: string };
+    /** Capstone badge shown on the project's tile or compact row; `program` (e.g. 'CodePath AI201') follows "Capstone" when set. Not an award: it doesn't put the project in the Awards group. */
+    capstone?: { program?: string };
     /** One-line measurable result shown on the homepage tile. Rendered only when set. */
     categoryOverrides?: Partial<Record<ProjectCategory, CategoryOverride>>;
 };
@@ -23,7 +25,7 @@ const projects: Project[] = [
     {
         title: 'kanso',
         description: 'Digital clarity notebook that brings tasks, notes, habits, and mood into one place, with a Next.js front end, FastAPI + Postgres backend, and an AI learning-resource recommender.',
-        tech: 'Next.js, React.js, TypeScript, Tailwind CSS, Python, FastAPI, PostgreSQL, RESTful CRUD Operations',
+        tech: 'Next.js, React.js, TypeScript, Tailwind CSS, Python, FastAPI, PostgreSQL, Supabase Auth, RESTful CRUD Operations',
         github_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend',
         frontend_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend', // TODO: confirm link
         backend_repo: 'https://github.com/LuisFVillalon/TaskMaster-Backend', // TODO: confirm link
@@ -35,7 +37,7 @@ const projects: Project[] = [
     {
         title: 'kanso AI',
         description: "kanso's learning-resource recommender: given a note, an LLM plans a topic, level and search queries, then a deterministic pipeline searches DuckDuckGo, filters sponsored and paywalled results, checks for dead links, scores credibility, and returns one video, one article and one exercise, each with a reason.",
-        tech: 'Python, FastAPI, Pydantic, OpenAI / Gemini, DuckDuckGo Search, httpx, Supabase JWT Auth, Fly.io',
+        tech: 'Python, FastAPI, Pydantic, OpenAI / Gemini, DuckDuckGo Search, Supabase JWT Auth, Fly.io',
         github_repo: 'https://github.com/LuisFVillalon/kanso-ai',
         live_app: 'https://kanso-landing.vercel.app/',
         image: '/projects/frontend/taskmaster.png',
@@ -74,7 +76,7 @@ const projects: Project[] = [
     {
         title: 'ROSS',
         description: 'AI tool on Clio Manage that turns a personal-injury case into a cited 90-second brief for attorneys and a tracked portal for doctors. Beat 60+ teams for first place.',
-        tech: 'Node.js, JavaScript (ES Modules), Claude (Opus 5.5, Haiku 4.5), Anthropic SDK, Clio API (OAuth), SQLite, BM25 RAG, Tesseract OCR, Poppler',
+        tech: 'Python, Clio API (OAuth), Claude Code, BM25 keyword retrieval, PDF citation highlighting',
         github_repo: 'https://github.com/LuisFVillalon/ROSS',
         live_app: 'https://github.com/LuisFVillalon/ROSS',
         image: '/projects/frontend/ross.png',
@@ -85,7 +87,7 @@ const projects: Project[] = [
     {
         title: "Luis's Personal AI Assistant",
         description: 'The "Ask AI" chat on this site: a RAG assistant that answers recruiters\' questions about my experience, projects and skills from my own content (site data, résumé, LinkedIn, public GitHub READMEs), cites its sources on every answer, says when it doesn\'t know, and can pass a message to me.',
-        tech: 'Next.js, TypeScript, Claude Haiku 5.5 (Anthropic SDK, native citations, prompt caching), RAG, Voyage AI embeddings + rerank-2.5, Upstash Vector (hybrid dense + BM25), Upstash Redis, Vercel Cron, Resend',
+        tech: 'Next.js, TypeScript, Claude Haiku 5.5, RAG, Voyage AI, Upstash Vector & Redis, Vercel Cron',
         github_repo: 'https://github.com/LuisFVillalon/LuisV-Portfolio',
         live_app: 'https://luis-v-portfolio.vercel.app',
         image: '/projects/backend/ai-assistant.png',
@@ -95,9 +97,47 @@ const projects: Project[] = [
     {
         title: 'NutriNav AI',
         description: 'Multi-agent meal planner that turns a user profile into a personalized 1-day meal plan: a deterministic Nutritionist agent computes calorie and macro targets (Mifflin-St Jeor), a GPT-4o Chef agent writes recipes to hit them, and a USDA/WHO compliance checker rejects unsafe plans and feeds corrections back to the Chef for up to three retries. A vision agent estimates calories and macros from a food photo.',
-        tech: 'Python, OpenAI GPT-4o (vision), asyncio, USDA FoodData Central API',
+        tech: 'Python, OpenAI GPT-4o, Verification Loops, USDA FoodData Central API',
         github_repo: 'https://github.com/LuisFVillalon/NutriNav-AI',
         image: '/projects/backend/nutrinav.png',
+        mobileFriendly: false,
+        categories: ['ai', 'academic'],
+    },
+    // CodePath AI201 assignments, one repo per project.
+    {
+        title: 'FitFindr',
+        description: "Agent that turns a plain-language thrift request (\"vintage graphic tee under $30\") into a matching secondhand listing, 1–3 outfits built from the user's wardrobe, and a ready-to-post fit-card caption, calling its search tool over MCP. The capstone runs it as a Flask web service with a structured JSON request log, a measured cost per run, and a per-user rate limit, load-tested at 10× normal traffic.",
+        tech: 'Python, Gemini API, MCP, Flask, Structured Logging, Rate Limiting',
+        github_repo: 'https://github.com/LuisFVillalon/ai201-project2-fitfindr-starter-v2026',
+        image: '/projects/ai201/fitfindr.svg',
+        mobileFriendly: false,
+        categories: ['ai'],
+        capstone: { program: 'CodePath AI201' },
+    },
+    {
+        title: 'Provenance Guard',
+        description: 'Web service that estimates whether a piece of writing came from a person or an AI. It combines a local GPT-2 predictability score with a stylometry signal (sentence-length spread, word variety, punctuation) into one confidence and a plain-English label, writes every decision to an audit log, and lets writers appeal a decision.',
+        tech: 'Python, Flask, Flask-Limiter, Hugging Face Transformers (GPT-2), Stylometry, REST API',
+        github_repo: 'https://github.com/LuisFVillalon/ai201-project4-provenance-guard-starter-v2026',
+        image: '/projects/ai201/provenance-guard.svg',
+        mobileFriendly: false,
+        categories: ['ai'],
+    },
+    {
+        title: 'The Unofficial Guide',
+        description: "RAG system over a corpus of city guides that answers travel questions with the source files it used. Guides are chunked by Markdown section so answers aren't stitched from fragments, and a relevance gate refuses questions the guides can't answer instead of letting the model invent details. Checked against five written criteria, three runs each.",
+        tech: 'Python, RAG, ChromaDB, all-MiniLM-L6-v2 Embeddings, Gemini API, Flask',
+        github_repo: 'https://github.com/LuisFVillalon/ai201-project1-unofficial-guide-starter-v2026',
+        image: '/projects/ai201/unofficial-guide.svg',
+        mobileFriendly: false,
+        categories: ['ai'],
+    },
+    {
+        title: 'TakeMeter',
+        description: 'Text classifier that sorts r/SaaS posts into four labels (idea validation, marketing, sales & monetization, operations), comparing a fine-tuned DistilBERT model against a zero-shot baseline on a hand-labeled dataset, with per-label F1 and a confusion matrix across three seeds.',
+        tech: 'Python, Hugging Face Transformers, DistilBERT, PyTorch, scikit-learn, Jupyter',
+        github_repo: 'https://github.com/LuisFVillalon/ai201-project3-takemeter-starter-v2026',
+        image: '/projects/ai201/takemeter.svg',
         mobileFriendly: false,
         categories: ['ai'],
     },
@@ -114,7 +154,7 @@ const projects: Project[] = [
     {
         title: 'The Crash App',
         description: 'Web application for students to report hit-and-runs and earn rewards.',
-        tech: 'React.js, Tailwind CSS, Next.js, Forms, JSON files',
+        tech: 'React.js, Tailwind CSS, Next.js, Forms',
         github_repo: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
         live_app: 'https://github.com/LuisFVillalon/innovate-4-sdsu-hackathon-2025',
         image: '/projects/frontend/thecrashapp.png',
@@ -133,6 +173,7 @@ const projects: Project[] = [
         image: '/projects/frontend/whatspoppin.png',
         mobileFriendly: false,
         categories: ['fullstack'],
+        capstone: { program: 'The Odin Project' },
     },
     {
         title: 'Pokedex Catalog',
@@ -221,7 +262,7 @@ const projects: Project[] = [
     {
         title: 'LLM Bible Tutor',
         description: 'Implement a Retrieval-Augmented Generation (RAG) pipeline for the Douay-Rheims Bible, enabling an LLM to answer scriptural queries with precise, cited verse references based on semantic vector search.',
-        tech: 'Python, OpenAI (GPT-4o-mini, text-embedding-3-small), LangChain, ChromaDB (vector database)',
+        tech: 'Python, OpenAI (GPT-4o-mini, text-embedding-3-small), ChromaDB',
         github_repo: 'https://github.com/LuisFVillalon/LLM-Bible-Tutor',
         live_app: 'https://github.com/LuisFVillalon/LLM-Bible-Tutor',
         image: '/projects/backend/LLM_bible.png',

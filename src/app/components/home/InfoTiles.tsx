@@ -69,29 +69,60 @@ export function NowTile() {
     );
 }
 
-// Non-engineering groups are left off the homepage stack tile.
-const HIDDEN_STACK_SUBJECTS = new Set(['Version Control & Project Management', 'Digital Marketing']);
+// Homepage stack rows, in order: each row merges the techTools groups it lists. Groups not
+// listed (version control, digital marketing, systems) stay on /experience only.
+const STACK_ROWS: { label: string; subjects: string[] }[] = [
+    { label: 'Languages', subjects: ['Programming Languages'] },
+    { label: 'AI', subjects: ['Applied AI'] },
+    { label: 'Full-stack', subjects: ['Frontend Development', 'Backend Development'] },
+    { label: 'Data & Cloud', subjects: ['Cloud & Data'] },
+];
+
+// Fallback when a row marks no tool as featured.
+const STACK_TOOLS_PER_ROW = 3;
+
+const stackChipClass = 'rounded-full px-2 py-0.5 text-xs transition-colors hover:bg-[#0A0A23] hover:text-white';
 
 export function StackTile() {
-    const tools = techTools
-        .filter((group) => !HIDDEN_STACK_SUBJECTS.has(group.subject))
-        .flatMap((group) => group.tools);
+    const rows = STACK_ROWS.map(({ label, subjects }) => {
+        const tools = techTools.filter((group) => subjects.includes(group.subject)).flatMap((group) => group.tools);
+        const featured = tools.filter((t) => t.featured);
+        const shown = featured.length ? featured : tools.slice(0, STACK_TOOLS_PER_ROW);
+        return { label, shown, hidden: tools.length - shown.length };
+    }).filter((row) => row.shown.length > 0);
 
     return (
-        <BentoTile label="Stack">
-            <div className="flex flex-wrap gap-1.5">
-                {tools.map(({ tool, link }) => (
-                    <a
-                        key={tool}
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-full bg-[#F3F3F5] px-2 py-0.5 text-xs text-[#0A0A23] hover:bg-[#0A0A23] hover:text-white transition-colors"
-                    >
-                        {tool}
-                    </a>
+        <BentoTile label="Stack" more={{ href: '/experience#skills', text: 'All skills →' }}>
+            <dl className="flex flex-col gap-2.5">
+                {rows.map(({ label, shown, hidden }) => (
+                    <div key={label}>
+                        <dt className="mb-1 font-sans text-xs font-bold text-[#0A0A23]">{label}</dt>
+                        <dd className="flex flex-wrap gap-1">
+                            {shown.map(({ tool, short, link }) => (
+                                <a
+                                    key={tool}
+                                    href={link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title={short ? tool : undefined}
+                                    className={`${stackChipClass} bg-[#F3F3F5] text-[#0A0A23]`}
+                                >
+                                    {short ?? tool}
+                                </a>
+                            ))}
+                            {hidden > 0 && (
+                                <Link
+                                    href="/experience#skills"
+                                    aria-label={`${hidden} more ${label} skills`}
+                                    className={`${stackChipClass} border border-[#0A0A23]/15 text-[#6e6e78]`}
+                                >
+                                    +{hidden}
+                                </Link>
+                            )}
+                        </dd>
+                    </div>
                 ))}
-            </div>
+            </dl>
         </BentoTile>
     );
 }

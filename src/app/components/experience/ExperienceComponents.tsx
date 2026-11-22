@@ -33,7 +33,7 @@ type TimelineItem = {
     title: string;
     org: React.ReactNode;
     focus?: string;
-    description: string;
+    description: string | string[];
     tags: string[];
     tagLabel: string;
 };
@@ -55,7 +55,15 @@ function Timeline({ items }: { items: TimelineItem[] }) {
                             {item.org}
                             {item.focus && <span className="text-[#6e6e78]"> · {item.focus}</span>}
                         </p>
-                        <p className="mt-1.5 text-[13px] leading-relaxed">{tidy(item.description)}</p>
+                        {Array.isArray(item.description) ? (
+                            <ul className="mt-1.5 list-disc space-y-0.5 pl-5 text-[13px] leading-relaxed">
+                                {item.description.map((point) => (
+                                    <li key={point}>{tidy(point)}</li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="mt-1.5 text-[13px] leading-relaxed">{tidy(item.description)}</p>
+                        )}
                         {item.tags.length > 0 && (
                             <details className="mt-1.5">
                                 <summary className={toggleClass}>{item.tagLabel} ({item.tags.length})</summary>
@@ -205,11 +213,12 @@ function ChipGroup({ label, items }: { label: string; items: string[] }) {
 }
 
 // Resolves project titles from projects.ts; a renamed or missing project fails the build instead of rendering a dead link.
-const builtProjects = (titles: string[] = []) =>
-    titles.map((title) => {
+const builtProjects = (entries: (string | { title: string; label: string })[] = []) =>
+    entries.map((entry) => {
+        const { title, label } = typeof entry === 'string' ? { title: entry, label: entry } : entry;
         const project = getProjectByTitle(title);
         if (!project) throw new Error(`Experience: no project titled "${title}" in projects.ts`);
-        return { title, href: project.live_app ?? project.github_repo };
+        return { title, label, href: project.live_app ?? project.github_repo };
     });
 
 // Closed, an entry looks like a plain list row; opened, it shows what the program or certificate covered.
@@ -221,19 +230,27 @@ function WhatILearned({
     courses = [],
     built,
 }: {
-    description: string;
+    description: string | string[];
     topicsLabel: string;
     topics: string[];
     tech: string;
     courses?: { name: string; link?: string }[];
-    built?: string[];
+    built?: (string | { title: string; label: string })[];
 }) {
     const projects = builtProjects(built);
     return (
         <details className="mt-1">
             <summary className={toggleClass}>What I learned</summary>
             <div className="mt-2 flex flex-col gap-2 rounded-xl bg-[#F5F5F7] p-3 text-[13px]">
-                {description && <p className="leading-relaxed">{tidy(description)}</p>}
+                {Array.isArray(description) ? (
+                    <ul className="list-disc space-y-0.5 pl-5 leading-relaxed">
+                        {description.map((point) => (
+                            <li key={point}>{tidy(point)}</li>
+                        ))}
+                    </ul>
+                ) : (
+                    description && <p className="leading-relaxed">{tidy(description)}</p>
+                )}
                 <ChipGroup label={topicsLabel} items={topics} />
                 <ChipGroup label="Tech" items={splitTech(tech)} />
                 {courses.length > 0 && (
@@ -261,7 +278,7 @@ function WhatILearned({
                             <React.Fragment key={project.title}>
                                 {i > 0 && ', '}
                                 <a href={project.href} target="_blank" rel="noopener noreferrer" className={inlineLinkClass}>
-                                    {project.title}
+                                    {project.label}
                                 </a>
                             </React.Fragment>
                         ))}
@@ -342,6 +359,7 @@ export function CertificatesTile() {
                             topics={item.topics}
                             tech={item.tech}
                             courses={item.courses}
+                            built={item.built}
                         />
                     </li>
                 ))}
