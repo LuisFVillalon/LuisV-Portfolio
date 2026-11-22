@@ -110,7 +110,7 @@ const professionalExperience: professionalExperience[] = [
         time: 'Dec 2024 - Mar 2025',
         description: [
             "Rebuilt the login, sign-in, and sign-up pages for a youth sports social network from a Figma design as responsive front-end screens using CSS media queries",
-            "Collaborated with backend, UI/UX, and marketing teams, as well as a scrum master, in weekly sprint meetings with approximately 10 teammates; completed assigned tasks and delivered front-end work that was not yet connected to a backend"
+            "Collaborated with backend, UI/UX, and marketing teams, as well as a scrum master, in weekly sprint meetings with approximately 10 teammates; completed assigned tasks and delivered front-end work"
         ],
         tech:'Tailwind CSS, React.js, Figma, Github, Taiga',
         link: 'https://sportsexcitement.com/'
