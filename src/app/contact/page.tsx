@@ -88,7 +88,12 @@ export default function ContactPage() {
                             </a>
                             <CopyEmailButton />
                         </div>
-                        <p className="break-all text-xs text-[#aab]">{CONTACT_EMAIL}</p>
+                        <a
+                            href={`mailto:${CONTACT_EMAIL}`}
+                            className="w-fit max-w-full break-all font-sans text-base font-bold text-white underline decoration-[#86efac]/60 decoration-2 underline-offset-4 transition-colors hover:text-[#86efac] hover:decoration-[#86efac] lg:text-lg"
+                        >
+                            {CONTACT_EMAIL}
+                        </a>
                     </div>
 
                     <ChannelTile href={resume} icon={<FileDown className="h-5 w-5" />} label="Résumé" title="Download PDF" cta="Open résumé →" />
