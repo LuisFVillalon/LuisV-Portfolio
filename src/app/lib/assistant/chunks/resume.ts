@@ -7,7 +7,8 @@ import { extractText } from 'unpdf';
 import { resume } from '../../experience';
 import { makeChunk, slug, splitRecursive, type Chunk } from './types';
 
-const SECTION = /^[A-Z][A-Z &]{3,}$/;
+// Headings may be ALL CAPS or Title Case; names are normalized to upper case below.
+const SECTION = /^(?:[A-Z][A-Z &]{3,}|Education|Experience|Projects|(?:Technical )?Skills|Certifications|Leadership)$/;
 const MONTH = '(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\\.?';
 const ENTRY_START = new RegExp(`\\s\\|\\s|${MONTH}\\s+\\d{4}\\s*[-–]|Expected\\s+${MONTH}`);
 const ENTRY_SECTIONS = new Set(['EXPERIENCE', 'LEADERSHIP', 'PROJECTS']);
@@ -29,7 +30,7 @@ export async function readResumeText(): Promise<string> {
 function entries(lines: string[]): string[][] {
     const out: string[][] = [];
     for (const line of lines) {
-        const isBullet = /^[•\-*]/.test(line);
+        const isBullet = /^[•\-*–]/.test(line);
         if (!isBullet && ENTRY_START.test(line) && (out.length === 0 || out[out.length - 1].length > 1)) out.push([line]);
         else if (out.length === 0) out.push([line]);
         else out[out.length - 1].push(line);
@@ -47,7 +48,7 @@ export async function resumeChunks(): Promise<Chunk[]> {
     // The name / links header before the first section heading.
     const sections: { name: string; lines: string[] }[] = [{ name: 'Header', lines: [] }];
     for (const line of lines) {
-        if (SECTION.test(line)) sections.push({ name: line, lines: [] });
+        if (SECTION.test(line)) sections.push({ name: line.toUpperCase(), lines: [] });
         else sections[sections.length - 1].lines.push(line);
     }
 
@@ -76,7 +77,7 @@ export async function resumeChunks(): Promise<Chunk[]> {
             for (const entry of entries(section.lines)) {
                 const role = entry[0].split(/\s\|\s/)[0].replace(new RegExp(`\\s+${MONTH}.*$`), '').trim();
                 // Roles read "Title  Dates" then "Organization, City": name both.
-                const org = section.name !== 'PROJECTS' && entry[1] && !/^[•\-*]/.test(entry[1]) ? entry[1].split(',')[0] : '';
+                const org = section.name !== 'PROJECTS' && entry[1] && !/^[•\-*–]/.test(entry[1]) ? entry[1].split(',')[0] : '';
                 const title = org ? `${role}, ${org}` : role;
                 add(section.name, title, entry.join('\n'), `${slug(section.name)}:${slug(title)}`);
             }
