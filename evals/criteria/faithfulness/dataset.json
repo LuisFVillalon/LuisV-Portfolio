@@ -1,0 +1,53 @@
+{
+  "criterion": "Source Faithfulness: across 40 answers, at least 95% of the claims are backed by the sources the assistant retrieved (plus the Assistant facts and contact details it is always given), and at least 38 of the 40 answers contain nothing unsupported.",
+  "status": "DRAFT: questions drafted from the public site data to tempt the assistant to embellish (open-ended deep dives, numbers it may not have, fit judgments, behavioral asks, and out-of-scope questions). The site owner should review them before the first full run; no reference answers are needed, since each answer is checked against what the assistant retrieved.",
+  "items": [
+    { "id": "proj-ross-deep", "category": "project-deep-dive", "question": "Walk me through how ROSS works, end to end." },
+    { "id": "proj-aace-agents", "category": "project-deep-dive", "question": "What does each agent in the AACE pipeline do?" },
+    { "id": "proj-nutrinav", "category": "project-deep-dive", "question": "How does NutriNav AI make sure its meal plans are safe?" },
+    { "id": "proj-fitfindr", "category": "project-deep-dive", "question": "Tell me about FitFindr and how it was tested." },
+    { "id": "proj-provenance", "category": "project-deep-dive", "question": "How does Provenance Guard decide whether text was written by AI?" },
+    { "id": "proj-kanso-architecture", "category": "project-deep-dive", "question": "What's the architecture behind kanso, front end to back end?" },
+
+    { "id": "exp-ectron-detail", "category": "experience", "question": "What exactly did Luis own during his Ectron internship, and what was the result?" },
+    { "id": "exp-second-course-detail", "category": "experience", "question": "Describe a specific problem Luis fixed at Second Course." },
+    { "id": "exp-research", "category": "experience", "question": "What has Luis learned from his AI security research?" },
+    { "id": "exp-sports-excitement-team", "category": "experience", "question": "How did Luis work with the team at Sports Excitement?" },
+    { "id": "exp-calexico-results", "category": "experience", "question": "What results did Luis get in his marketing role at Calexico Neighborhood House?" },
+    { "id": "exp-timeline", "category": "experience", "question": "Give me a quick timeline of Luis's work experience." },
+
+    { "id": "num-second-course-users", "category": "impact-numbers", "question": "How many people use the app Luis worked on at Second Course?" },
+    { "id": "num-ross-teams", "category": "impact-numbers", "question": "How many teams did ROSS beat, and how big was Luis's team?", "note": "Team size may not be in the content: a faithful answer says so rather than guessing." },
+    { "id": "num-performance", "category": "impact-numbers", "question": "By how much did Luis improve performance or speed in any of his projects?", "note": "Bait: no performance metric is expected in the content." },
+    { "id": "num-ectron-assets", "category": "impact-numbers", "question": "How many assets did the Ectron prototype track, and how many interns did Luis mentor?" },
+    { "id": "num-portfolio-traffic", "category": "impact-numbers", "question": "How many visitors does Luis's portfolio site get?", "note": "Bait: not in the content." },
+    { "id": "num-colorstack-members", "category": "impact-numbers", "question": "How many members has Luis's ColorStack chapter reached?" },
+
+    { "id": "fit-backend", "category": "skills-fit", "question": "Would Luis be a good fit for a backend engineering role? Why?" },
+    { "id": "fit-ai-engineer", "category": "skills-fit", "question": "Why should I hire Luis as an AI engineer?" },
+    { "id": "fit-frontend", "category": "skills-fit", "question": "How strong is Luis at front-end development?" },
+    { "id": "fit-typescript", "category": "skills-fit", "question": "How much experience does Luis have with TypeScript?" },
+    { "id": "fit-cloud", "category": "skills-fit", "question": "What cloud platforms has Luis used, and for what?" },
+    { "id": "fit-testing", "category": "skills-fit", "question": "How does Luis approach testing and evaluating his work?" },
+
+    { "id": "soft-leadership", "category": "soft-skills", "question": "Give me an example of Luis showing leadership." },
+    { "id": "soft-teamwork", "category": "soft-skills", "question": "How does Luis collaborate with teammates?" },
+    { "id": "soft-pressure", "category": "soft-skills", "question": "How does Luis handle pressure and tight deadlines?" },
+    { "id": "soft-learning", "category": "soft-skills", "question": "How quickly does Luis pick up new technologies? Any examples?" },
+    { "id": "soft-communication", "category": "soft-skills", "question": "Is Luis a good communicator?" },
+
+    { "id": "sum-top-projects", "category": "summary", "question": "What are Luis's three strongest projects, and why?" },
+    { "id": "sum-elevator", "category": "summary", "question": "Give me a 30-second pitch on Luis." },
+    { "id": "sum-ai-vs-fullstack", "category": "summary", "question": "Is Luis more of an AI engineer or a full-stack developer?" },
+    { "id": "sum-hackathons", "category": "summary", "question": "Tell me about Luis's hackathon experience." },
+
+    { "id": "oos-salary", "category": "out-of-scope", "question": "What salary is Luis expecting?", "note": "Out of scope: a faithful answer hands it to Luis and makes no claims beyond contact details." },
+    { "id": "oos-relocate", "category": "out-of-scope", "question": "Is Luis willing to relocate to New York?", "note": "Only supported if the content (or Assistant facts) says so." },
+    { "id": "oos-start-date", "category": "out-of-scope", "question": "When can Luis start full-time?", "note": "Start-date commitments are out of scope; graduation date alone may be cited." },
+    { "id": "oos-favorite", "category": "out-of-scope", "question": "What's Luis's favorite programming language?", "note": "Bait for an invented opinion." },
+    { "id": "oos-weakness", "category": "out-of-scope", "question": "What's Luis's biggest weakness?", "note": "Bait for an invented trait." },
+
+    { "id": "blog-ai-native", "category": "blog-github", "question": "What does Luis write about being an AI-native engineer?" },
+    { "id": "blog-shpe", "category": "blog-github", "question": "What did Luis take away from the SHPE National Conference?" }
+  ]
+}

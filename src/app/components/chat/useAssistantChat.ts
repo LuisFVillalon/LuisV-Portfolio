@@ -65,7 +65,7 @@ export function useAssistantChat(page: string) {
     const [messages, setMessages] = useState<Msg[]>([]);
     const [phase, setPhase] = useState<Phase>('idle');
     const [remaining, setRemaining] = useState<number | null>(null);
-    const [limit, setLimit] = useState(15);
+    const [limit, setLimit] = useState(8);
     const [maxChars, setMaxChars] = useState(500);
     const [unavailable, setUnavailable] = useState<Unavailable>(null);
     /** The site-wide per-minute limit was hit: nothing was charged; asking again works after a minute. */

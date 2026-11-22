@@ -26,11 +26,11 @@ const projects: Project[] = [
         title: 'kanso',
         description: 'Digital clarity notebook that brings tasks, notes, habits, and mood into one place, with a Next.js front end, FastAPI + Postgres backend, and an AI learning-resource recommender.',
         tech: 'Next.js, React.js, TypeScript, Tailwind CSS, Python, FastAPI, PostgreSQL, Supabase Auth, RESTful CRUD Operations',
-        github_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend',
-        frontend_repo: 'https://github.com/LuisFVillalon/TaskMaster-Frontend', // TODO: confirm link
-        backend_repo: 'https://github.com/LuisFVillalon/TaskMaster-Backend', // TODO: confirm link
+        github_repo: 'https://github.com/LuisFVillalon/kanso-Frontend',
+        frontend_repo: 'https://github.com/LuisFVillalon/kanso-Frontend', 
+        backend_repo: 'https://github.com/LuisFVillalon/kanso-Backend', 
         live_app: 'https://kanso-landing.vercel.app/',
-        image: '/projects/frontend/taskmaster.png',
+        image: '/projects/frontend/kanso.png',
         mobileFriendly: true,
         categories: ['top', 'fullstack'],
     },
@@ -40,7 +40,7 @@ const projects: Project[] = [
         tech: 'Python, FastAPI, Pydantic, OpenAI / Gemini, DuckDuckGo Search, Supabase JWT Auth, Fly.io',
         github_repo: 'https://github.com/LuisFVillalon/kanso-ai',
         live_app: 'https://kanso-landing.vercel.app/',
-        image: '/projects/frontend/taskmaster.png',
+        image: '/projects/frontend/kanso.png',
         mobileFriendly: false,
         categories: ['ai'],
     },
@@ -76,7 +76,7 @@ const projects: Project[] = [
     {
         title: 'ROSS',
         description: 'AI tool on Clio Manage that turns a personal-injury case into a cited 90-second brief for attorneys and a tracked portal for doctors. Beat 60+ teams for first place.',
-        tech: 'Python, Clio API (OAuth), Claude Code, BM25 keyword retrieval, PDF citation highlighting',
+        tech: 'JavaScript, Clio API (OAuth), Node.js, SQLite, Claude Code, BM25 keyword retrieval, PDF citation highlighting',
         github_repo: 'https://github.com/LuisFVillalon/ROSS',
         live_app: 'https://github.com/LuisFVillalon/ROSS',
         image: '/projects/frontend/ross.png',
@@ -87,7 +87,7 @@ const projects: Project[] = [
     {
         title: "Luis's Personal AI Assistant",
         description: 'The "Ask AI" chat on this site: a RAG assistant that answers recruiters\' questions about my experience, projects and skills from my own content (site data, résumé, LinkedIn, public GitHub READMEs), cites its sources on every answer, says when it doesn\'t know, and can pass a message to me.',
-        tech: 'Next.js, TypeScript, Claude Haiku 5.5, RAG, Voyage AI, Upstash Vector & Redis, Vercel Cron',
+        tech: 'Next.js, TypeScript, Claude Sonnet 5.5, RAG, Voyage AI, Upstash Vector & Redis, Vercel Cron',
         github_repo: 'https://github.com/LuisFVillalon/LuisV-Portfolio',
         live_app: 'https://luis-v-portfolio.vercel.app',
         image: '/projects/backend/ai-assistant.png',
@@ -167,8 +167,8 @@ const projects: Project[] = [
         description: 'Reddit-clone web application. Create an account, post, comment, and vote!',
         tech: 'HTML, CSS, JavaScript, React.js, Google Firebase Firestore Database and Authentication',
         github_repo: 'https://github.com/LuisFVillalon/WhatsPoppin',
-        frontend_repo: 'https://github.com/LuisFVillalon/WhatsPoppin', // TODO: confirm link
-        backend_repo: 'https://github.com/LuisFVillalon/WhatsPoppin', // TODO: confirm link
+        frontend_repo: 'https://github.com/LuisFVillalon/WhatsPoppin', 
+        backend_repo: 'https://github.com/LuisFVillalon/WhatsPoppin', 
         live_app: 'https://luisfvillalon.github.io/WhatsPoppin/',
         image: '/projects/frontend/whatspoppin.png',
         mobileFriendly: false,
@@ -190,8 +190,8 @@ const projects: Project[] = [
         description: 'Identify and tag Pokémon in an image with real-time scoring, backed by a RESTful API with MongoDB for leaderboard management, dynamically storing and updating the top 10 records with automated entry removal.',
         tech: 'HTML, CSS, JavaScript, React.js, Node.js, Express.js, MongoDB, Mongoose, RESTful API',
         github_repo: 'https://github.com/LuisFVillalon/front-end-pokemon-photo-tag',
-        frontend_repo: 'https://github.com/LuisFVillalon/front-end-pokemon-photo-tag', // TODO: confirm link
-        backend_repo: 'https://github.com/LuisFVillalon/back-end-pokemon-photo-tag', // TODO: confirm link
+        frontend_repo: 'https://github.com/LuisFVillalon/front-end-pokemon-photo-tag', 
+        backend_repo: 'https://github.com/LuisFVillalon/back-end-pokemon-photo-tag', 
         live_app: 'https://wheres-that-pokemon.netlify.app/',
         image: '/projects/frontend/pokephototag.png',
         mobileFriendly: false,
@@ -274,8 +274,8 @@ const projects: Project[] = [
     //     description: 'A members-only message board with a secure backend: authentication, role-based access control, and MongoDB, enabling user sign-up, encrypted passwords, and dynamic permissions for members and admins.',
     //     tech: 'HTML, CSS, JavaScript, Node.js, Express.js, MongoDB, Mongoose, EJS, bcrypt, Passport.js',
     //     github_repo: 'https://github.com/LuisFVillalon/Members-Only',
-    //     frontend_repo: 'https://github.com/LuisFVillalon/Members-Only', // TODO: confirm link
-    //     backend_repo: 'https://github.com/LuisFVillalon/Members-Only', // TODO: confirm link
+    //     frontend_repo: 'https://github.com/LuisFVillalon/Members-Only', 
+    //     backend_repo: 'https://github.com/LuisFVillalon/Members-Only', 
     //     live_app: 'https://members-only-9gew.onrender.com/',
     //     image: '/projects/frontend/membersonly.png',
     //     mobileFriendly: true,

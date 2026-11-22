@@ -1,0 +1,116 @@
+{
+  "criterion": "Contact Conversion: at least 9 of 10 hiring-intent conversations give a clear way to contact Luis, with a working link; at most 1 of 10 simple factual questions adds a contact pitch nobody asked for.",
+  "status": "draft: Luis reviews the conversations (are these the hiring signals recruiters actually send?) before relying on the result. Items alternate hiring/factual so --limit covers both.",
+  "items": [
+    {
+      "id": "hire-explicit-reach",
+      "kind": "hiring",
+      "turns": ["I'm a recruiter hiring new grad software engineers. What's the best way to reach Luis?"],
+      "note": "The plainest case: asks for contact outright."
+    },
+    {
+      "id": "fact-degree",
+      "kind": "factual",
+      "turns": ["What degree is Luis working on, and at which school?"]
+    },
+    {
+      "id": "hire-implicit-backend",
+      "kind": "hiring",
+      "turns": ["We're hiring for a new grad backend engineer. Does Luis have backend experience?"],
+      "note": "Implicit: states a hiring need but asks a fit question, not for contact. The answer should answer it and then offer a way to reach Luis."
+    },
+    {
+      "id": "fact-graduation",
+      "kind": "factual",
+      "turns": ["When is Luis expected to graduate?"]
+    },
+    {
+      "id": "hire-explicit-interview",
+      "kind": "hiring",
+      "turns": ["I'd like to set up an interview with Luis. How do I do that?"],
+      "note": "Scheduling is a commitment the assistant hands to Luis: it should still give a clear way to reach him."
+    },
+    {
+      "id": "fact-languages",
+      "kind": "factual",
+      "turns": ["What programming languages does Luis know?"]
+    },
+    {
+      "id": "hire-implicit-ai-fit",
+      "kind": "hiring",
+      "turns": ["Our startup is looking for an early-career AI engineer. Would Luis be a good fit?"],
+      "note": "Implicit: a fit question with a stated opening."
+    },
+    {
+      "id": "fact-awards",
+      "kind": "factual",
+      "turns": ["What hackathon awards has Luis won?"]
+    },
+    {
+      "id": "hire-pass-message",
+      "kind": "hiring",
+      "turns": ["Can you pass a message to Luis? We have a new grad SWE opening on our team and he looks like a match."],
+      "note": "The assistant can't send anything itself; it should point to the Message Luis button and give a working link (contact page or LinkedIn)."
+    },
+    {
+      "id": "fact-codepath",
+      "kind": "factual",
+      "turns": ["What CodePath courses has Luis completed?"]
+    },
+    {
+      "id": "hire-statement-no-question",
+      "kind": "hiring",
+      "turns": ["I'm a hiring manager. ROSS is really impressive, I think he'd be great on our team."],
+      "note": "Implicit, and not a question at all: the assistant has to read the intent."
+    },
+    {
+      "id": "fact-ectron",
+      "kind": "factual",
+      "turns": ["What did Luis build at Ectron Corporation?"]
+    },
+    {
+      "id": "hire-open-to-roles",
+      "kind": "hiring",
+      "turns": ["Is Luis open to full-time roles after he graduates? We're putting together our new grad class."],
+      "note": "Availability is in scope as 'open to'; start dates are not. Either way it should end with a way to reach him."
+    },
+    {
+      "id": "fact-kanso",
+      "kind": "factual",
+      "turns": ["What is kanso?"]
+    },
+    {
+      "id": "conv-ross-then-talk",
+      "kind": "hiring",
+      "turns": ["What is ROSS?", "Nice. We're hiring new grads on our applied AI team, and I'd love to talk with him."],
+      "note": "Multi-turn: a factual opener, then hiring intent. Only the second answer is graded."
+    },
+    {
+      "id": "fact-spoken-languages",
+      "kind": "factual",
+      "turns": ["What languages does Luis speak?"]
+    },
+    {
+      "id": "conv-ectron-then-reach",
+      "kind": "hiring",
+      "turns": ["What did Luis build at Ectron Corporation?", "That's close to what our team does. How can I get in touch with him about a role?"],
+      "note": "Multi-turn: explicit contact ask after a factual turn."
+    },
+    {
+      "id": "fact-transfer",
+      "kind": "factual",
+      "turns": ["Where did Luis study before San Diego State University?"]
+    },
+    {
+      "id": "conv-recruiter-phone-screen",
+      "kind": "hiring",
+      "turns": ["Hi!", "I'm a recruiter at a fintech company. What full-stack work has Luis done?", "Great, we'd like to move him forward to a phone screen."],
+      "note": "Three turns: greeting, fit question, then a next-step statement without a question."
+    },
+    {
+      "id": "fact-ross-tech",
+      "kind": "factual",
+      "turns": ["What tech stack did Luis use for ROSS?"]
+    }
+  ]
+}

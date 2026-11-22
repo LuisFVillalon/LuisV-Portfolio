@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
 import type { EvalItem } from './dataset';
-import { graderCostUsd, graderRequest, highStakesReference, labelFromVerdicts, parseGraderOutput, GRADER_MODEL } from './grader';
+import { graderCostUsd, GRADER_MODEL } from '../../core/grader';
+import { graderRequest, highStakesReference, labelFromVerdicts, parseGraderOutput } from './grader';
 
 const facts = ['Expected graduation: May 2027', 'From San Diego State University'];
 

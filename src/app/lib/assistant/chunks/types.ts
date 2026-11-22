@@ -30,9 +30,17 @@ export type Chunk = {
     text: string;
     /** sha256 of header + text; the indexing job re-embeds a chunk only when this changes. */
     hash: string;
+    /**
+     * Contextual retrieval: a sentence or two Claude writes at indexing time situating the chunk
+     * in its source document. Embedded, BM25-indexed and reranked with the chunk, but never shown
+     * to the answering model (it's model-written, not Luis's content). Set by the indexer.
+     */
+    context?: string;
+    /** Hash of what the context was written from (document + chunk + prompt version); a change regenerates it. */
+    contextHash?: string;
 };
 
-export type ChunkInput = Omit<Chunk, 'priority' | 'header' | 'hash'>;
+export type ChunkInput = Omit<Chunk, 'priority' | 'header' | 'hash' | 'context' | 'contextHash'>;
 
 export function makeChunk(input: ChunkInput): Chunk {
     const header = `[${SOURCE_NAMES[input.sourceType]}] ${input.title}${input.section ? ` · ${input.section}` : ''}`;
@@ -41,8 +49,9 @@ export function makeChunk(input: ChunkInput): Chunk {
     return { ...input, text, header, priority: SOURCE_PRIORITY[input.sourceType], hash };
 }
 
-/** The text that gets embedded and sparse-indexed: context header plus body. */
-export const indexText = (chunk: Pick<Chunk, 'header' | 'text'>) => `${chunk.header}\n${chunk.text}`;
+/** The text that gets embedded, sparse-indexed and reranked: header, contextual-retrieval context (if any), body. */
+export const indexText = (chunk: Pick<Chunk, 'header' | 'text' | 'context'>) =>
+    chunk.context ? `${chunk.header}\n${chunk.context}\n${chunk.text}` : `${chunk.header}\n${chunk.text}`;
 
 /** URL-safe id fragment. */
 export function slug(value: string): string {

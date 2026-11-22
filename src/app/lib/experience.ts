@@ -122,7 +122,7 @@ const professionalExperience: professionalExperience[] = [
         description: [
             "Architected the system design for an asset-tracking prototype that shows field workers where job-site tools and equipment are located on an interactive map",
             "Developed the front end in React and Next.js, learned Plasmic CMS, and integrated Azure Maps and Azure SQL to locate 8 tracked assets, with click-to-zoom navigation from the asset list to the map",
-            "Mentored three interns with no prior HTML or CSS experience, guiding them as they built the Express.js backend"
+            "Mentored two interns with no prior HTML or CSS experience, guiding them as they built the Express.js backend"
         ],
         tech: 'React.js, Next.js, Plasmic CMS, Azure Maps, Azure SQL Database, Express.js',
         link: 'https://ectron.com/'    
@@ -518,7 +518,7 @@ const beyondTech: beyondTech[] = [
             { name: 'Garlan\'s', link: 'https://www.garlans.com' },
             { name: 'Aeropostale', link: 'https://www.aeropostale.com' },
         ],
-        time: '1+ year',
+        time: '2022',
         description: 'Tracked sales performance and consistently met daily goals by engaging customers, driving purchases, and optimizing retail sales strategies.',
         skills: 'Customer service, Sales, Inventory management, Collaboration, Leadership, Initiative',
     },
@@ -539,7 +539,7 @@ const beyondTech: beyondTech[] = [
             { name: 'KFC', link: 'https://www.kfc.com' },
             { name: 'The Habit', link: 'https://www.habitburger.com' },
         ],
-        time: '3+ years',
+        time: '2016 - 2020',
         description: 'Gained hands-on experience in fast-paced food service environments, providing customer service, preparing food, and working efficiently as part of a team.',
         skills: 'Customer service, Teamwork, Multitasking, Food safety',
     },

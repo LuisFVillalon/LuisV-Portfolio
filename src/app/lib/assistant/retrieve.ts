@@ -4,6 +4,7 @@
 import type Anthropic from '@anthropic-ai/sdk';
 import { FusionAlgorithm, WeightingStrategy } from '@upstash/vector';
 import { ASSISTANT } from './config';
+import { indexText } from './chunks/types';
 import { getAnthropic, getVectorIndex } from './clients';
 import type { HistoryTurn } from './prompt';
 import { trimHistory } from './prompt';
@@ -18,6 +19,8 @@ export type RetrievedChunk = {
     href: string;
     header: string;
     text: string;
+    /** Contextual-retrieval context (search only: used to rerank, never shown to Claude). */
+    context?: string;
     priority: number;
     /** Hybrid (RRF) score, after the source-priority boost. */
     searchScore: number;
@@ -95,6 +98,7 @@ export async function hybridSearch(query: string, topK = ASSISTANT.shortlistSize
                 href: m.href,
                 header: m.header,
                 text: m.text,
+                ...(m.context ? { context: m.context } : {}),
                 priority: m.priority,
                 searchScore: r.score * boost(m.priority),
             };
@@ -106,9 +110,11 @@ export async function hybridSearch(query: string, topK = ASSISTANT.shortlistSize
 export async function retrieve(question: string, history: HistoryTurn[] = []): Promise<RetrievalResult> {
     const { query, costUsd: rewriteCostUsd } = await rewriteQuery(question, history);
     const shortlist = await hybridSearch(query);
+    // The reranker sees the same text that was embedded (header, context, body), so contextual
+    // retrieval helps this step too; Claude later gets only header + body.
     const ranked = await rerank(
         query,
-        shortlist.map((c) => `${c.header}\n${c.text}`),
+        shortlist.map((c) => indexText(c)),
         shortlist.length,
     );
     const chunks = ranked

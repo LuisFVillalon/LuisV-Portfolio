@@ -11,7 +11,9 @@ npm start        # Start production server
 npm run lint     # Run ESLint
 ```
 
-`npm test` runs the assistant's limit tests (`src/app/lib/assistant/*.test.ts`) and the eval scoring tests (`evals/lib/*.test.ts`), node:test via tsx; there is no other test suite.
+`npm test` runs the assistant's limit tests (`src/app/lib/assistant/*.test.ts`) and the eval tests (`evals/**/*.test.ts`), node:test via tsx; there is no other test suite. The Ask AI evals are `npm run eval:<criterion>` (see `evals/README.md`); #6–#8 (`eval:limits`, `eval:logging`, `eval:digest`) need no keys and cost $0.
+
+The Ask AI evals (`npm run eval:<criterion>`, all through `evals/run.ts`) make real, paid API calls. `evals/core/` is the shared harness and each criterion lives in `evals/criteria/<name>/` (dataset, grader, score, report); see `evals/README.md`.
 
 ## Stack
 
@@ -19,7 +21,7 @@ npm run lint     # Run ESLint
 - **Styling:** Tailwind CSS 3 with CSS variable-based theming (`--background`, `--foreground`)
 - **Icons:** Lucide React, React Icons
 - **Email:** Resend (primary), Nodemailer (secondary) via `/api/contact`
-- **AI assistant:** Claude Haiku 5.5 via `@anthropic-ai/sdk`, Voyage AI (embeddings + rerank), Upstash Vector (hybrid) + Upstash Redis, Vercel Cron (`vercel.json`)
+- **AI assistant:** Claude Sonnet 5.5 via `@anthropic-ai/sdk`, Voyage AI (embeddings + rerank), Upstash Vector (hybrid) + Upstash Redis, Vercel Cron (`vercel.json`)
 - **Path alias:** `@/*` maps to `./src/*`
 
 ## Architecture
@@ -32,7 +34,7 @@ All site content is defined as typed TypeScript data — not fetched from a CMS 
 - `markdownBlogs.ts` / `blogTypes.ts` — reads blog posts from Markdown files instead of typed data; see "Blog posts" below
 - `experience.ts` — exports separate named arrays: `professionalExperience`, `education`, `currentlyDoing`, `leadership`, `certificates`, `techTools`, `beyondTech` (non-engineering roles shown last, collapsed, on the Experience page); plus `profile` (optional `openTo` line shown in the homepage intro) and `resume` (path to the résumé PDF in `public/resumes/`)
 - `testimonials.ts` — testimonial entries
-- `assistant/` — the "Ask AI" assistant's server code (not content): `chunks/` (corpus builders per source), `indexer.ts` (Upstash Vector sync), `retrieve.ts`, `answer.ts`, `prompt.ts` (persona + rules), `usage.ts` (limits, budget), `conversations.ts`, `private.ts` (LinkedIn file + Assistant facts from env vars or the gitignored `.private/`); see "AI assistant" below
+- `assistant/` — the "Ask AI" assistant's server code (not content): `chunks/` (corpus builders per source), `indexer.ts` (Upstash Vector sync), `retrieve.ts`, `answer.ts`, `chatHandlers.ts` and `digest.ts` (the chat and digest route handlers, with injectable dependencies for the evals), `prompt.ts` (persona + rules), `usage.ts` (limits, budget), `conversations.ts`, `private.ts` (LinkedIn file + Assistant facts from env vars or the gitignored `.private/`); see "AI assistant" below
 - `linkedinPosts.ts` — embedded LinkedIn post URLs shown in `LinkedInSection`; to add one, open the post on LinkedIn → Send → Embed this post, and copy the iframe `src` into `embedUrl`
 
 ### Blog posts (Markdown-based)

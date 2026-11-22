@@ -1,13 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
-import fs from 'fs';
-import os from 'os';
 import path from 'path';
-import { parseArgs } from './args';
-import { loadDataset, selectItems, validateDataset, type EvalItem } from './dataset';
-import { loadEvalEnv, REDIS_ENV_VARS } from './env';
+import { verdictLine } from '../../core/summary';
+import { loadDataset, validateDataset, type EvalItem } from './dataset';
 import type { Grade, Label } from './grader';
-import { verdictLine } from './report';
 import { hasHighStakesError, summarize } from './score';
 
 const item = (id: string, highStakes = false): EvalItem => ({ id, question: `${id}?`, keyFacts: [{ fact: 'fact', highStakes }], category: 'test' });
@@ -183,7 +179,7 @@ describe('summarize: errors', () => {
 
 describe('dataset', () => {
     test('the shipped correctness dataset is valid: 30 unique items', () => {
-        const d = loadDataset(path.join(process.cwd(), 'evals', 'correctness.json'));
+        const d = loadDataset(path.join('evals', 'criteria', 'correctness', 'dataset.json'));
         assert.equal(d.items.length, 30);
         assert.equal(new Set(d.items.map((i) => i.id)).size, 30);
         const grad = d.items.find((i) => i.id === 'edu-graduation');
@@ -198,37 +194,5 @@ describe('dataset', () => {
         assert.throws(() => validateDataset({ items: [{ ...item('a'), keyFacts: ['plain string'] }] }), /keyFacts/);
         assert.throws(() => validateDataset({ items: [{ ...item('a'), keyFacts: [{ fact: 'x' }] }] }), /highStakes true or false/);
         assert.throws(() => validateDataset({}), /no "items"/);
-    });
-
-    test('selectItems applies --id and --limit', () => {
-        const items = [item('a'), item('b'), item('c')];
-        assert.deepEqual(selectItems(items, { limit: 2 }).map((i) => i.id), ['a', 'b']);
-        assert.deepEqual(selectItems(items, { id: 'c' }).map((i) => i.id), ['c']);
-        assert.equal(selectItems(items, {}).length, 3);
-        assert.throws(() => selectItems(items, { id: 'z' }), /No item with id "z"/);
-    });
-});
-
-describe('flags', () => {
-    test('parses --limit, --id and --max-cost', () => {
-        assert.deepEqual(parseArgs(['--limit', '3']), { limit: 3, maxCostUsd: 1 });
-        assert.deepEqual(parseArgs(['--id', 'edu-graduation', '--max-cost', '0.25']), { id: 'edu-graduation', maxCostUsd: 0.25 });
-    });
-
-    test('rejects bad values and unknown flags', () => {
-        assert.throws(() => parseArgs(['--limit', '0']), /positive whole number/);
-        assert.throws(() => parseArgs(['--limit']), /needs a value/);
-        assert.throws(() => parseArgs(['--limit', '2', '--id', 'x']), /not both/);
-        assert.throws(() => parseArgs(['--fast']), /Unknown flag/);
-    });
-});
-
-describe('environment', () => {
-    test('removes the Redis variables and reports missing keys', () => {
-        const env: Record<string, string | undefined> = { ANTHROPIC_API_KEY: 'k', UPSTASH_REDIS_REST_URL: 'u', UPSTASH_REDIS_REST_TOKEN: 't', KV_REST_API_URL: 'u', KV_REST_API_TOKEN: 't' };
-        const missing = loadEvalEnv(env, path.join(os.tmpdir(), 'no-such-env-file'));
-        for (const name of REDIS_ENV_VARS) assert.equal(env[name], undefined);
-        assert.deepEqual(missing, ['VOYAGE_API_KEY', 'UPSTASH_VECTOR_REST_URL', 'UPSTASH_VECTOR_REST_TOKEN']);
-        assert.equal(fs.existsSync(path.join(os.tmpdir(), 'no-such-env-file')), false);
     });
 });

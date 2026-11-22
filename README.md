@@ -7,7 +7,7 @@ Personal portfolio website built with Next.js 15 and React 19. Showcases project
 - **Framework:** Next.js 15 (App Router), React 19, TypeScript 5
 - **Styling:** Tailwind CSS 3 with CSS variable theming
 - **Email:** Resend API (`/api/contact` route)
-- **AI assistant:** Claude Haiku 5.5 (Anthropic SDK), Voyage AI, Upstash Vector + Redis, Vercel Cron
+- **AI assistant:** Claude Sonnet 5.5 (Anthropic SDK), Voyage AI, Upstash Vector + Redis, Vercel Cron
 - **Icons:** Lucide React, React Icons
 - **Deployment:** Vercel (recommended)
 
@@ -43,7 +43,11 @@ npm run build    # production build
 npm start        # serve production build
 npm run lint     # ESLint
 npm test         # assistant limit tests and eval scoring tests (node:test via tsx)
-npm run eval:correctness   # Ask AI factual-correctness eval (real API calls; see evals/README.md)
+npm run eval:correctness   # Ask AI criteria #1-#5: correctness, faithfulness, showcase, contact,
+npm run eval:boundaries    #   boundaries (real API calls, graded by Claude; see evals/README.md)
+npm run eval:limits        # Ask AI criteria #6-#8: usage limits, consented logging, weekly digest
+npm run eval:logging       #   (checked by code on a fake site: no keys, no network, $0)
+npm run eval:digest
 ```
 
 ## Project Structure
@@ -79,11 +83,12 @@ Both open one chat panel (`src/app/components/chat/`, mounted once in `layout.ts
    turns exist), runs a hybrid search in Upstash Vector (Voyage `voyage-4` query embedding + BM25
    sparse terms, fused with RRF, with a light boost for higher-priority sources), and reranks the ~20
    results with Voyage `rerank-2.5`, keeping the top 5 above a relevance cutoff.
-2. `answer.ts` streams Claude Haiku 5.5 (effort `low`) with a prompt-cached system block (persona,
+2. `answer.ts` streams Claude Sonnet 5.5 (effort `low`) with a prompt-cached system block (persona,
    rules and the private Assistant facts, `prompt.ts`) and the chunks as `search_result` blocks, so
    Claude's native citations become the source chips. A `refusal` stop reason shows a polite fallback.
-3. `api/assistant/chat` enforces 15 questions per visitor per day (salted hash of IP + user agent),
-   45 per IP address per day, 15 per minute site-wide, a 500-character cap, and a $5/month Anthropic
+3. `api/assistant/chat` enforces 8 questions per device per day (an httpOnly device cookie that
+   `/api/assistant/status` sets when the chat opens, stored only as a salted hash; IP + user agent
+   when a browser blocks it), 40 per IP address per day, 15 per minute site-wide, a 500-character cap, and a $5/month Anthropic
    budget (all tracked in Upstash Redis, rewrite calls included). Answers that fail before Claude
    starts refund the question; cut-off answers are billed. `/api/contact` (also used by the chat's
    "Message Luis" card) allows 5 messages per IP per hour when Redis is configured.

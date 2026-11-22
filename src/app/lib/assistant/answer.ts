@@ -1,4 +1,4 @@
-// Answering: Claude Haiku 5.5 streams an answer grounded in the retrieved chunks, which are
+// Answering: Claude (ASSISTANT.model, Sonnet 5.5) streams an answer grounded in the retrieved chunks, which are
 // passed as search-result blocks so Claude's native citations decide the source chips.
 // Callable on its own (with any chunks) for evaluation.
 import { ASSISTANT } from './config';

@@ -8,11 +8,19 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "tsx --test src/app/lib/assistant/*.test.ts evals/lib/*.test.ts",
+    "test": "tsx --test src/app/lib/assistant/*.test.ts \"evals/**/*.test.ts\"",
     "assistant:index": "tsx scripts/assistant-index.ts",
     "assistant:chunks": "tsx scripts/assistant-index.ts --dry-run",
-    "eval:correctness": "tsx evals/correctness.ts",
-    "eval:faithfulness": "tsx evals/faithfulness.ts"
+    "eval": "tsx evals/run.ts",
+    "eval:correctness": "tsx evals/run.ts correctness",
+    "eval:faithfulness": "tsx evals/run.ts faithfulness",
+    "eval:showcase": "tsx evals/run.ts showcase",
+    "eval:contact": "tsx evals/run.ts contact",
+    "eval:boundaries": "tsx evals/run.ts boundaries",
+    "eval:limits": "tsx evals/run.ts limits",
+    "eval:logging": "tsx evals/run.ts logging",
+    "eval:digest": "tsx evals/run.ts digest",
+    "eval:retrieval": "tsx evals/run.ts retrieval"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.10.0",

@@ -1,0 +1,200 @@
+{
+  "criterion": "Showcase Quality: for at least 17 of 20 skill and fit questions, the answer names the project or experience Luis picked as the best match, gives a concrete detail about it, and links to it with a working link.",
+  "status": "draft: matches picked from projects.ts and experience.ts; Luis reviews them (and reorders, adds or removes matches) before the first full run",
+  "items": [
+    {
+      "id": "tech-multi-agent",
+      "question": "Has Luis built multi-agent AI systems?",
+      "kind": "technical",
+      "matches": [
+        { "name": "Agentic Abstraction for Chip Engineering (AACE), built in the NXP bootcamp", "chunks": ["site:project:agentic-abstraction-for-chip-engineering-aace", "site:education:nxp-semiconductors-engineering-bootcamp-agentic-ai-in-the-cloud"] },
+        { "name": "NutriNav AI", "chunks": ["site:project:nutrinav-ai"] }
+      ]
+    },
+    {
+      "id": "tech-rag",
+      "question": "Has Luis built a retrieval-augmented generation (RAG) system?",
+      "kind": "technical",
+      "matches": [
+        { "name": "Luis's Personal AI Assistant (the Ask AI chat)", "chunks": ["site:project:luis-s-personal-ai-assistant"] },
+        { "name": "The Unofficial Guide", "chunks": ["site:project:the-unofficial-guide"] },
+        { "name": "LLM Bible Tutor", "chunks": ["site:project:llm-bible-tutor"] }
+      ]
+    },
+    {
+      "id": "fit-applied-ai",
+      "question": "Would Luis be a good fit for an applied AI engineering role?",
+      "kind": "technical",
+      "matches": [
+        { "name": "ROSS (Swans Applied AI Hackathon first place)", "chunks": ["site:project:ross"] },
+        { "name": "Agentic Abstraction for Chip Engineering (AACE), built in the NXP bootcamp", "chunks": ["site:project:agentic-abstraction-for-chip-engineering-aace", "site:education:nxp-semiconductors-engineering-bootcamp-agentic-ai-in-the-cloud"] },
+        { "name": "Luis's Personal AI Assistant (the Ask AI chat)", "chunks": ["site:project:luis-s-personal-ai-assistant"] }
+      ]
+    },
+    {
+      "id": "tech-fullstack",
+      "question": "What's the best example of Luis's full-stack work?",
+      "kind": "technical",
+      "matches": [
+        { "name": "kanso", "chunks": ["site:project:kanso", "site:now:kanso-building-a-digital-clarity-notebook-tasks-notes-habits-mood"] },
+        { "name": "Blog Template", "chunks": ["site:project:blog-template"] },
+        { "name": "Poke-Photo Tag", "chunks": ["site:project:poke-photo-tag"] }
+      ]
+    },
+    {
+      "id": "tech-react",
+      "question": "We need someone strong in React. What has Luis built with it?",
+      "kind": "technical",
+      "matches": [
+        { "name": "Software Engineer Intern at Ectron Corporation", "chunks": ["site:role:ectron-corporation-software-engineer-intern"] },
+        { "name": "kanso", "chunks": ["site:project:kanso", "site:now:kanso-building-a-digital-clarity-notebook-tasks-notes-habits-mood"] },
+        { "name": "Front-End Developer Intern at Sports Excitement", "chunks": ["site:role:sports-excitement-front-end-developer-intern"] }
+      ]
+    },
+    {
+      "id": "tech-mobile",
+      "question": "Does Luis have any mobile app experience?",
+      "kind": "technical",
+      "matches": [
+        { "name": "Full-Stack Intern at Second Course", "chunks": ["site:role:second-course-full-stack-intern"] }
+      ]
+    },
+    {
+      "id": "tech-python-backend",
+      "question": "Has Luis built backend APIs in Python?",
+      "kind": "technical",
+      "matches": [
+        { "name": "kanso", "chunks": ["site:project:kanso", "site:now:kanso-building-a-digital-clarity-notebook-tasks-notes-habits-mood"] },
+        { "name": "kanso AI", "chunks": ["site:project:kanso-ai"] },
+        { "name": "Agentic Abstraction for Chip Engineering (AACE), built in the NXP bootcamp", "chunks": ["site:project:agentic-abstraction-for-chip-engineering-aace", "site:education:nxp-semiconductors-engineering-bootcamp-agentic-ai-in-the-cloud"] },
+        { "name": "Provenance Guard", "chunks": ["site:project:provenance-guard"] }
+      ]
+    },
+    {
+      "id": "tech-cloud",
+      "question": "What has Luis done with AWS or other cloud infrastructure?",
+      "kind": "technical",
+      "matches": [
+        { "name": "Agentic Abstraction for Chip Engineering (AACE), built in the NXP bootcamp", "chunks": ["site:project:agentic-abstraction-for-chip-engineering-aace", "site:education:nxp-semiconductors-engineering-bootcamp-agentic-ai-in-the-cloud"] },
+        { "name": "Software Engineer Intern at Ectron Corporation (Azure Maps, Azure SQL)", "chunks": ["site:role:ectron-corporation-software-engineer-intern"] }
+      ]
+    },
+    {
+      "id": "tech-llm-shipped",
+      "question": "Has Luis shipped an LLM feature that people can actually use?",
+      "kind": "technical",
+      "matches": [
+        { "name": "Luis's Personal AI Assistant (the Ask AI chat)", "chunks": ["site:project:luis-s-personal-ai-assistant"] },
+        { "name": "kanso AI", "chunks": ["site:project:kanso-ai"] }
+      ]
+    },
+    {
+      "id": "tech-ml-model",
+      "question": "Has Luis trained or fine-tuned a machine learning model?",
+      "kind": "technical",
+      "matches": [
+        { "name": "TakeMeter", "chunks": ["site:project:takemeter"] }
+      ]
+    },
+    {
+      "id": "tech-databases",
+      "question": "What experience does Luis have with databases?",
+      "kind": "technical",
+      "matches": [
+        { "name": "kanso (PostgreSQL)", "chunks": ["site:project:kanso", "site:now:kanso-building-a-digital-clarity-notebook-tasks-notes-habits-mood"] },
+        { "name": "Poke-Photo Tag (MongoDB leaderboard)", "chunks": ["site:project:poke-photo-tag"] },
+        { "name": "Full-Stack Intern at Second Course (Firestore)", "chunks": ["site:role:second-course-full-stack-intern"] },
+        { "name": "Software Engineer Intern at Ectron Corporation (Azure SQL)", "chunks": ["site:role:ectron-corporation-software-engineer-intern"] }
+      ],
+      "note": "Broad on purpose: several good answers. The MongoDB certificate alone is not a project or experience."
+    },
+    {
+      "id": "tech-auth-security",
+      "question": "Has Luis implemented authentication or security features?",
+      "kind": "technical",
+      "matches": [
+        { "name": "Blog Template (JWT, bcrypt, Passport.js)", "chunks": ["site:project:blog-template"] },
+        { "name": "Undergraduate Researcher at AI4Business Lab (adversarial attacks on AI agents)", "chunks": ["site:role:ai4business-lab-undergraduate-researcher-adversarial-attacks-defenses-in-dee"] },
+        { "name": "kanso (Supabase Auth)", "chunks": ["site:project:kanso", "site:now:kanso-building-a-digital-clarity-notebook-tasks-notes-habits-mood"] }
+      ]
+    },
+    {
+      "id": "soft-leadership",
+      "question": "Can you give an example of Luis showing leadership?",
+      "kind": "soft-skill",
+      "matches": [
+        { "name": "Software Engineer Intern at Ectron Corporation (mentored two interns)", "chunks": ["site:role:ectron-corporation-software-engineer-intern"] },
+        { "name": "Outreach Chair at ColorStack", "chunks": ["site:leadership:colorstack-outreach-chair", "site:now:colorstack-outreach-chair"] }
+      ]
+    },
+    {
+      "id": "soft-mentoring",
+      "question": "Has Luis ever mentored or taught other people?",
+      "kind": "soft-skill",
+      "matches": [
+        { "name": "Software Engineer Intern at Ectron Corporation (mentored two interns)", "chunks": ["site:role:ectron-corporation-software-engineer-intern"] },
+        { "name": "After School Enrichment Tutor, SPARKS", "chunks": ["site:beyond-tech:after-school-enrichment-tutor"] }
+      ]
+    },
+    {
+      "id": "soft-teamwork",
+      "question": "How does Luis work as part of a team?",
+      "kind": "soft-skill",
+      "matches": [
+        { "name": "Front-End Developer Intern at Sports Excitement (weekly sprints, about 10 teammates)", "chunks": ["site:role:sports-excitement-front-end-developer-intern"] },
+        { "name": "NXP Engineering Bootcamp / AACE (team of five)", "chunks": ["site:education:nxp-semiconductors-engineering-bootcamp-agentic-ai-in-the-cloud", "site:project:agentic-abstraction-for-chip-engineering-aace"] },
+        { "name": "Full-Stack Intern at Second Course", "chunks": ["site:role:second-course-full-stack-intern"] }
+      ]
+    },
+    {
+      "id": "soft-pressure",
+      "question": "How does Luis handle pressure and fast-paced work?",
+      "kind": "soft-skill",
+      "matches": [
+        { "name": "Emergency Medical Technician, American Medical Response", "chunks": ["site:beyond-tech:emergency-medical-technician"] },
+        { "name": "ROSS (Swans Applied AI Hackathon first place)", "chunks": ["site:project:ross"] }
+      ],
+      "note": "ROSS's content doesn't mention pressure; it's acceptable because a hackathon win is the obvious engineering example."
+    },
+    {
+      "id": "soft-communication",
+      "question": "Can you give an example of Luis's communication skills?",
+      "kind": "soft-skill",
+      "matches": [
+        { "name": "SEO & Digital Marketing Strategist at Calexico Neighborhood House", "chunks": ["site:role:calexico-neighborhood-house-mission-thrift-store-happy-kids--seo-digital-marketing-strategist"] },
+        { "name": "Outreach Chair at ColorStack", "chunks": ["site:leadership:colorstack-outreach-chair", "site:now:colorstack-outreach-chair"] },
+        { "name": "Software Engineer Intern at Ectron Corporation (mentored two interns)", "chunks": ["site:role:ectron-corporation-software-engineer-intern"] }
+      ]
+    },
+    {
+      "id": "soft-initiative",
+      "question": "Does Luis take initiative and own things end to end?",
+      "kind": "soft-skill",
+      "matches": [
+        { "name": "kanso", "chunks": ["site:project:kanso", "site:now:kanso-building-a-digital-clarity-notebook-tasks-notes-habits-mood"] },
+        { "name": "SEO & Digital Marketing Strategist at Calexico Neighborhood House (built the online sales operation)", "chunks": ["site:role:calexico-neighborhood-house-mission-thrift-store-happy-kids--seo-digital-marketing-strategist"] },
+        { "name": "Outreach Chair at ColorStack (helped launch the chapter)", "chunks": ["site:leadership:colorstack-outreach-chair", "site:now:colorstack-outreach-chair"] }
+      ]
+    },
+    {
+      "id": "soft-learning",
+      "question": "How quickly does Luis pick up new technologies?",
+      "kind": "soft-skill",
+      "matches": [
+        { "name": "Software Engineer Intern at Ectron Corporation (learned Plasmic CMS, Azure Maps)", "chunks": ["site:role:ectron-corporation-software-engineer-intern"] },
+        { "name": "NXP Engineering Bootcamp / AACE", "chunks": ["site:education:nxp-semiconductors-engineering-bootcamp-agentic-ai-in-the-cloud", "site:project:agentic-abstraction-for-chip-engineering-aace"] },
+        { "name": "CodePath AI201 (four AI systems)", "chunks": ["site:certificate:codepath-ai201-applications-of-ai-engineering"] }
+      ]
+    },
+    {
+      "id": "soft-users",
+      "question": "Has Luis built something for real users or worked directly with customers?",
+      "kind": "soft-skill",
+      "matches": [
+        { "name": "Full-Stack Intern at Second Course (app used by 300+ students)", "chunks": ["site:role:second-course-full-stack-intern"] },
+        { "name": "SEO & Digital Marketing Strategist at Calexico Neighborhood House", "chunks": ["site:role:calexico-neighborhood-house-mission-thrift-store-happy-kids--seo-digital-marketing-strategist"] },
+        { "name": "Luis's Personal AI Assistant (the Ask AI chat)", "chunks": ["site:project:luis-s-personal-ai-assistant"] }
+      ]
+    }
+  ]
+}

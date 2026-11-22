@@ -1,7 +1,19 @@
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, describe, mock, test } from 'node:test';
 import { ASSISTANT } from './config';
-import { ipId, questionsRemaining, refundQuestion, spendQuestion, underRateLimit, visitorId, type CounterStore } from './usage';
+import {
+    DEVICE_COOKIE,
+    deviceCookie,
+    deviceIdOf,
+    ipId,
+    newDeviceId,
+    questionsRemaining,
+    refundQuestion,
+    spendQuestion,
+    underRateLimit,
+    visitorId,
+    type CounterStore,
+} from './usage';
 
 /** In-memory stand-in for the Upstash Redis commands the limits use. */
 function memoryStore(): CounterStore {
@@ -53,6 +65,51 @@ describe('visitor and IP ids', () => {
     });
 });
 
+describe('device cookie', () => {
+    const DEVICE_A = '0b6f1c8e-3d2a-4f5b-9c7d-1e2f3a4b5c6d';
+    const DEVICE_B = '9f8e7d6c-5b4a-4321-8fed-cba987654321';
+    const withCookie = (ip: string, ua: string, cookie: string) =>
+        new Request('https://example.test/', { headers: { 'x-forwarded-for': ip, 'user-agent': ua, cookie } });
+
+    test('two devices with the same IP and browser are different visitors', () => {
+        const a = withCookie('203.0.113.7', 'Same Browser', `${DEVICE_COOKIE}=${DEVICE_A}`);
+        const b = withCookie('203.0.113.7', 'Same Browser', `${DEVICE_COOKIE}=${DEVICE_B}`);
+        assert.notEqual(visitorId(a), visitorId(b));
+        assert.equal(ipId(a), ipId(b));
+    });
+
+    test('one device keeps its id across networks and browser updates', () => {
+        const home = withCookie('203.0.113.7', 'Browser 1', `other=1; ${DEVICE_COOKIE}=${DEVICE_A}`);
+        const phone = withCookie('198.51.100.1', 'Browser 2', `${DEVICE_COOKIE}=${DEVICE_A}`);
+        assert.equal(deviceIdOf(home), DEVICE_A);
+        assert.equal(visitorId(home), visitorId(phone));
+    });
+
+    test('a missing or malformed cookie falls back to IP + user agent', () => {
+        const plain = request('203.0.113.7', 'Browser A');
+        assert.equal(deviceIdOf(plain), null);
+        const forged = withCookie('203.0.113.7', 'Browser A', `${DEVICE_COOKIE}=not-a-uuid`);
+        assert.equal(deviceIdOf(forged), null);
+        assert.equal(visitorId(forged), visitorId(plain));
+    });
+
+    test('new ids are valid, unique, and never appear in the visitor key', () => {
+        const id = newDeviceId();
+        assert.notEqual(id, newDeviceId());
+        const req = withCookie('203.0.113.7', 'x', `${DEVICE_COOKIE}=${id}`);
+        assert.equal(deviceIdOf(req), id);
+        assert.ok(!visitorId(req).includes(id));
+    });
+
+    test('the cookie is httpOnly and scoped to the assistant routes', () => {
+        const c = deviceCookie(DEVICE_A);
+        assert.ok(c.startsWith(`${DEVICE_COOKIE}=${DEVICE_A};`));
+        assert.match(c, /; HttpOnly/);
+        assert.match(c, /; Path=\/api\/assistant/);
+        assert.match(c, /; SameSite=Lax/);
+    });
+});
+
 describe('per-visitor daily limit', () => {
     test(`allows ${ASSISTANT.dailyQuestionLimit} questions a day, then refuses`, async () => {
         const store = memoryStore();
@@ -95,7 +152,8 @@ describe('per-IP daily ceiling', () => {
 
     test('a refused question does not use up the visitor allowance', async () => {
         const store = memoryStore();
-        for (let v = 0; v < 3; v++) await askSpread(store, { visitor: `ua-${v}`, ip: 'shared' }, ASSISTANT.dailyQuestionLimit);
+        const visitors = Math.ceil(ASSISTANT.dailyIpQuestionLimit / ASSISTANT.dailyQuestionLimit);
+        for (let v = 0; v < visitors; v++) await askSpread(store, { visitor: `ua-${v}`, ip: 'shared' }, ASSISTANT.dailyQuestionLimit);
         const fresh = { visitor: 'fresh', ip: 'shared' };
         assert.deepEqual(await spendQuestion(fresh, store), { ok: false, reason: 'limit' });
         assert.equal(await questionsRemaining({ visitor: 'fresh', ip: 'other' }, store), ASSISTANT.dailyQuestionLimit);
@@ -103,9 +161,11 @@ describe('per-IP daily ceiling', () => {
 
     test('remaining reflects the IP ceiling and refunds give the IP its question back', async () => {
         const store = memoryStore();
-        await askSpread(store, { visitor: 'a', ip: 'shared' }, ASSISTANT.dailyQuestionLimit);
-        await askSpread(store, { visitor: 'b', ip: 'shared' }, ASSISTANT.dailyQuestionLimit);
-        await askSpread(store, { visitor: 'c', ip: 'shared' }, ASSISTANT.dailyQuestionLimit - 1);
+        // Use all but one of the IP's ceiling across full visitors, then a partial one.
+        const used = ASSISTANT.dailyIpQuestionLimit - 1;
+        const full = Math.floor(used / ASSISTANT.dailyQuestionLimit);
+        for (let v = 0; v < full; v++) await askSpread(store, { visitor: `full-${v}`, ip: 'shared' }, ASSISTANT.dailyQuestionLimit);
+        await askSpread(store, { visitor: 'partial', ip: 'shared' }, used % ASSISTANT.dailyQuestionLimit);
         const d = { visitor: 'd', ip: 'shared' };
         assert.equal(await questionsRemaining(d, store), 1);
         assert.deepEqual(await spendQuestion(d, store), { ok: true, remaining: 0 });

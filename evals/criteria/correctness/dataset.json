@@ -76,7 +76,7 @@
         { "fact": "Title: Front-End Developer Intern", "highStakes": true },
         { "fact": "Dec 2024 - Mar 2025", "highStakes": false },
         { "fact": "Built a responsive web application / interfaces with React and Tailwind CSS", "highStakes": false },
-        { "fact": "Worked on UI/UX for a global sports platform", "highStakes": false }
+        { "fact": "Rebuilt the login, sign-in and sign-up pages for a youth sports social network from a Figma design", "highStakes": false }
       ]
     },
     {
@@ -89,7 +89,7 @@
         { "fact": "A full-stack asset-tracking application", "highStakes": false },
         { "fact": "Helped workers locate tools and equipment at job sites", "highStakes": false }
       ],
-      "note": "CONFLICT: the site says Jun 2024 - Aug 2024, the résumé PDF says May 2024 - Aug 2024. Confirm the start month."
+      "note": "Confirmed: Jun 2024 - Aug 2024 (site and LinkedIn). The résumé PDF still says May 2024 until it is re-exported."
     },
     {
       "id": "role-calexico-neighborhood-house",
@@ -110,9 +110,9 @@
         { "fact": "Title: Outreach Chair", "highStakes": true },
         { "fact": "ColorStack (SDSU chapter)", "highStakes": true },
         { "fact": "Since Jan 2026, still current", "highStakes": false },
-        { "fact": "Leads recruitment strategy and digital outreach, connecting members with career opportunities", "highStakes": false }
+        { "fact": "Plans workshops and speaker events connecting students with industry professionals", "highStakes": false }
       ],
-      "note": "CONFLICT: the site says Jan 2026 - Present, the résumé PDF says Feb 2026 - Present. The résumé also lists him as 'ColorStack (SDSU Chapter Founder)'; confirm whether 'founder' belongs here."
+      "note": "Confirmed: Jan 2026 - Present (site and LinkedIn). The résumé PDF still says Feb 2026 until it is re-exported. The résumé also lists him as 'ColorStack (SDSU Chapter Founder)'; confirm whether 'founder' belongs here."
     },
     {
       "id": "role-internships-list",
@@ -217,7 +217,7 @@
       "question": "How does this site's AI assistant work?",
       "keyFacts": [
         { "fact": "A RAG assistant that answers from Luis's own content (site data, résumé, LinkedIn, public GitHub READMEs)", "highStakes": false },
-        { "fact": "Answers with Claude Haiku 5.5", "highStakes": false },
+        { "fact": "Answers with Claude Sonnet", "highStakes": false },
         { "fact": "Uses Voyage AI embeddings and reranking", "highStakes": false },
         { "fact": "Searches an Upstash Vector index (hybrid dense + BM25)", "highStakes": false },
         { "fact": "Cites its sources", "highStakes": false }
@@ -273,7 +273,7 @@
       "keyFacts": [
         { "fact": "LangGraph", "highStakes": false },
         { "fact": "RAG systems", "highStakes": false },
-        { "fact": "LLM APIs", "highStakes": false }
+        { "fact": "Works with LLM APIs (the term itself, or named LLM providers such as OpenAI, Anthropic Claude, Gemini or AWS Bedrock)", "highStakes": false }
       ]
     },
     {

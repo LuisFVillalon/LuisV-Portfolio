@@ -8,8 +8,9 @@ export type SavedTurn = { q: string; a: string; sources: string[]; at: string; f
 export type SavedConversation = { id: string; page: string; startedAt: string; updatedAt: string; turns: SavedTurn[] };
 
 const TTL_SECONDS = ASSISTANT.conversationTtlDays * 24 * 60 * 60;
-const INDEX_KEY = 'assistant:chats';
-const chatKey = (id: string) => `assistant:chat:${id}`;
+/** Sorted set of conversation ids, scored by last update (ms); the digest reads it. */
+export const INDEX_KEY = 'assistant:chats';
+export const chatKey = (id: string) => `assistant:chat:${id}`;
 
 export const isConversationId = (id: unknown): id is string =>
     typeof id === 'string' && /^[a-zA-Z0-9-]{8,64}$/.test(id);

@@ -1,10 +1,10 @@
-// Monthly Anthropic spend (the $5 budget guard) and the question limits (per visitor and per IP
-// per day, plus a site-wide per-minute burst limit), all in Upstash Redis. No key holds anything
-// about who the visitor is beyond a salted hash.
-import { createHash } from 'crypto';
+// Monthly Anthropic spend (the $5 budget guard) and the question limits (per visitor, i.e. per
+// device, and per IP per day, plus a site-wide per-minute burst limit), all in Upstash Redis. No
+// key holds anything about who the visitor is beyond a salted hash.
+import { createHash, randomUUID } from 'crypto';
 import type Anthropic from '@anthropic-ai/sdk';
 import type { Redis } from '@upstash/redis';
-import { ASSISTANT, HAIKU_PRICES } from './config';
+import { ASSISTANT, MODEL_PRICES } from './config';
 import { getRedis } from './clients';
 
 const DAY_SECONDS = 60 * 60 * 24;
@@ -14,14 +14,19 @@ const dayKey = (visitor: string, d = new Date()) => `assistant:q:${d.toISOString
 const ipDayKey = (ip: string, d = new Date()) => `assistant:qip:${d.toISOString().slice(0, 10)}:${ip}`;
 const burstKey = (d = new Date()) => `assistant:burst:${d.toISOString().slice(0, 16)}`;
 
-/** Cost in USD of one Claude Haiku 5.5 call. */
-export function costUsd(usage: Pick<Anthropic.Usage, 'input_tokens' | 'output_tokens' | 'cache_creation_input_tokens' | 'cache_read_input_tokens'>): number {
+/** Cost in USD of one call, on the answering model (ASSISTANT.model, read at call time) unless another is named. */
+export function costUsd(
+    usage: Pick<Anthropic.Usage, 'input_tokens' | 'output_tokens' | 'cache_creation_input_tokens' | 'cache_read_input_tokens'>,
+    model: string = ASSISTANT.model,
+): number {
+    const prices = MODEL_PRICES[model as keyof typeof MODEL_PRICES];
+    if (!prices) throw new Error(`No prices for ${model}; add it to MODEL_PRICES so the budget guard stays accurate`);
     const m = 1_000_000;
     return (
-        (usage.input_tokens * HAIKU_PRICES.input +
-            usage.output_tokens * HAIKU_PRICES.output +
-            (usage.cache_creation_input_tokens ?? 0) * HAIKU_PRICES.cacheWrite5m +
-            (usage.cache_read_input_tokens ?? 0) * HAIKU_PRICES.cacheRead) /
+        (usage.input_tokens * prices.input +
+            usage.output_tokens * prices.output +
+            (usage.cache_creation_input_tokens ?? 0) * prices.cacheWrite5m +
+            (usage.cache_read_input_tokens ?? 0) * prices.cacheRead) /
         m
     );
 }
@@ -57,8 +62,43 @@ const saltedHash = (value: string) => {
     return createHash('sha256').update(`${salt}|${value}`).digest('hex').slice(0, 24);
 };
 
-/** Visitor key: salted hash of IP + user agent, so the raw IP is never stored. */
-export function visitorId(req: Request): string {
+/**
+ * Device cookie: a random id the status route sets the first time the chat opens (httpOnly, sent
+ * only to /api/assistant), so each device gets its own daily allowance, even two identical
+ * browsers on one campus network. It is used only for the limits and is stored only hashed.
+ * Clearing it gives a fresh allowance, which is why the per-IP ceiling stays as the backstop.
+ */
+export const DEVICE_COOKIE = 'assistant_device';
+const DEVICE_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+
+/** The request's device id, or null when it has none (or a malformed one). */
+export function deviceIdOf(req: Request): string | null {
+    for (const part of (req.headers.get('cookie') ?? '').split(';')) {
+        const [name, ...rest] = part.trim().split('=');
+        if (name === DEVICE_COOKIE) {
+            const value = rest.join('=');
+            return DEVICE_ID.test(value) ? value : null;
+        }
+    }
+    return null;
+}
+
+export const newDeviceId = (): string => randomUUID();
+
+/** The Set-Cookie value for a new device id (a year; Secure outside local development). */
+export function deviceCookie(id: string): string {
+    const secure = process.env.NODE_ENV === 'production' ? '; Secure' : '';
+    return `${DEVICE_COOKIE}=${id}; Path=/api/assistant; Max-Age=${365 * DAY_SECONDS}; HttpOnly; SameSite=Lax${secure}`;
+}
+
+/**
+ * Visitor key, never the raw value: a salted hash of the device id, or, for a request without the
+ * cookie (cookies blocked, or a first question racing the status call), of IP + user agent.
+ * The chat route never sets the cookie itself, so blocking cookies can't mint a fresh allowance
+ * per question. `device` overrides the cookie (the status route passes the id it just set).
+ */
+export function visitorId(req: Request, device: string | null = deviceIdOf(req)): string {
+    if (device) return saltedHash(`device|${device}`);
     return saltedHash(`${clientIp(req)}|${req.headers.get('user-agent') ?? ''}`);
 }
 

@@ -1,21 +1,16 @@
-// THE GRADER: the model, the prompt and the output schema that label each answer.
-// Everything that decides a verdict lives in this one file so it can be reviewed in one read.
+// THE CORRECTNESS GRADER: the prompt, the output schema and the rules that label each answer.
+// Everything that decides a verdict lives in this one file so it can be reviewed in one read
+// (the grading model and its effort are shared by every criterion: core/grader.ts).
 //
 // Labels (criterion #1, Factual Correctness):
 //   Correct   - every required key fact is present and nothing contradicts them
 //   Partial   - nothing is wrong, but at least one required key fact is missing
 //   Incorrect - at least one fact is wrong (a key fact is contradicted, or the answer states
 //               something that contradicts the reference facts)
-import type Anthropic from '@anthropic-ai/sdk';
+import { jsonRequest, parseJsonObject, text } from '../../core/grader';
 import type { EvalItem } from './dataset';
 
-/** A stronger model than the one answering (Claude Haiku 5.5). */
-export const GRADER_MODEL = 'claude-sonnet-5-5';
-/** Grading is a short judgment call; medium keeps the whole run well under $1. */
-export const GRADER_EFFORT = 'medium' as const;
 export const GRADER_MAX_TOKENS = 4096;
-/** Claude Sonnet 5.5 prices in USD per million tokens. */
-export const GRADER_PRICES = { input: 2, output: 10, cacheWrite5m: 2.5, cacheRead: 0.1 } as const;
 
 export const GRADER_SYSTEM = `You grade answers from an AI assistant on a software engineer's portfolio website. Recruiters ask it factual questions about the engineer, Luis Villalón. You check one answer against reference key facts written by Luis.
 
@@ -100,15 +95,8 @@ export function highStakesReference(items: EvalItem[]): string[] {
     return out;
 }
 
-export function graderRequest(item: EvalItem, answer: string, referenceFacts: string[]): Anthropic.MessageCreateParamsNonStreaming {
-    return {
-        model: GRADER_MODEL,
-        max_tokens: GRADER_MAX_TOKENS,
-        output_config: { effort: GRADER_EFFORT, format: { type: 'json_schema', schema: GRADER_SCHEMA as unknown as Record<string, unknown> } },
-        system: GRADER_SYSTEM,
-        messages: [{ role: 'user', content: graderUserMessage(item, answer, referenceFacts) }],
-    };
-}
+export const graderRequest = (item: EvalItem, answer: string, referenceFacts: string[]) =>
+    jsonRequest({ system: GRADER_SYSTEM, user: graderUserMessage(item, answer, referenceFacts), schema: GRADER_SCHEMA, maxTokens: GRADER_MAX_TOKENS });
 
 // ── Parsing ────────────────────────────────────────────────────────────────────────────────
 
@@ -145,15 +133,8 @@ const worse = (a: Label, b: Label) => (LABELS.indexOf(a) >= LABELS.indexOf(b) ? 
  * the one its own per-fact verdicts imply, so a lenient label can never pass a contradicted or
  * missing fact. Every required key fact must have exactly one verdict.
  */
-export function parseGraderOutput(text: string, keyFacts: string[]): Grade {
-    let raw: unknown;
-    try {
-        raw = JSON.parse(text);
-    } catch {
-        throw new Error(`Grader output is not JSON: ${text.slice(0, 200)}`);
-    }
-    const o = raw as Record<string, unknown>;
-    if (!o || typeof o !== 'object') throw new Error('Grader output is not an object');
+export function parseGraderOutput(output: string, keyFacts: string[]): Grade {
+    const o = parseJsonObject(output);
     if (!LABELS.includes(o.label as Label)) throw new Error(`Grader label is invalid: ${String(o.label)}`);
     if (typeof o.reason !== 'string') throw new Error('Grader reason is missing');
     if (!Array.isArray(o.facts)) throw new Error('Grader facts are missing');
@@ -162,7 +143,7 @@ export function parseGraderOutput(text: string, keyFacts: string[]): Grade {
     const facts: FactVerdict[] = o.facts.map((f: Record<string, unknown>, i: number) => {
         if (typeof f?.fact !== 'string' || !VERDICTS.includes(f.verdict as FactVerdict['verdict']))
             throw new Error(`Grader facts[${i}] is invalid`);
-        return { fact: f.fact, verdict: f.verdict as FactVerdict['verdict'], evidence: typeof f.evidence === 'string' ? f.evidence : '' };
+        return { fact: f.fact, verdict: f.verdict as FactVerdict['verdict'], evidence: text(f.evidence) };
     });
     for (const kf of keyFacts) {
         const n = facts.filter((f) => sameFact(f.fact, kf)).length;
@@ -178,15 +159,4 @@ export function parseGraderOutput(text: string, keyFacts: string[]): Grade {
     const graderLabel = o.label as Label;
     const label = worse(graderLabel, labelFromVerdicts(facts, wrongStatements));
     return { label, ...(label !== graderLabel ? { graderLabel } : {}), facts, wrongStatements, reason: o.reason };
-}
-
-/** Cost in USD of one grader call. */
-export function graderCostUsd(usage: Pick<Anthropic.Usage, 'input_tokens' | 'output_tokens' | 'cache_creation_input_tokens' | 'cache_read_input_tokens'>): number {
-    return (
-        (usage.input_tokens * GRADER_PRICES.input +
-            usage.output_tokens * GRADER_PRICES.output +
-            (usage.cache_creation_input_tokens ?? 0) * GRADER_PRICES.cacheWrite5m +
-            (usage.cache_read_input_tokens ?? 0) * GRADER_PRICES.cacheRead) /
-        1_000_000
-    );
 }
